@@ -1,0 +1,3 @@
+Dmitriy Krantsberg: :  https://github.com/dkrantsberg/movies-db-sample
+Nathaniel Jahromi: https://github.com/njahromi/Movies
+Leo Harada: https://github.com/leoharada-source/Aetna-Test-Project 
