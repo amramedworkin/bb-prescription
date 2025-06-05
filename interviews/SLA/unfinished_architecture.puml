@@ -1,0 +1,24 @@
+@startuml
+
+package "Larger Network" {
+  rectangle "Subnet" {
+    component "API Gateway" as API
+
+    package "Compute Layer" {
+      component "EC2 Instance 1" as EC2_1
+      component "EC2 Instance 2" as EC2_2
+      component "EC2 Instance 3" as EC2_3
+      API -[dashed]-> EC2_1
+      API -[dashed]-> EC2_2
+      API -[dashed]-> EC2_3
+    }
+
+    component "Authentication Service" as Auth
+    API -[dashed]-> Auth
+
+    component "Data Storage" as Storage
+    "Compute Layer" -[dashed]-> Storage
+  }
+}
+
+@enduml

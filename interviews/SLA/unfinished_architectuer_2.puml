@@ -1,0 +1,35 @@
+@startuml Generic_Formulary_Architecture
+
+title "Health Insurance Formulary API – Scalable Service Architecture"
+
+package "Corporate Network" {
+  
+  node "Public Subnet" {
+    rectangle "API Gateway\n(Receives requests)" as API
+    rectangle "Authentication Service\n(Token, session validation)" as Auth
+  }
+
+  node "Private Subnet" {
+    rectangle "App Server A\nHandles formulary logic" as EC2A
+    rectangle "App Server B\nHandles formulary logic" as EC2B
+  }
+
+  node "Storage Zone" {
+    database "Formulary Data\n(Drug coverage records)" as FormularyDB
+    database "Request Audit DB\n(Logging & compliance)" as AuditLog
+  }
+
+  cloud "Partner Clients\n(Pharmacies, Brokers)" as Users
+}
+
+Users --> API : HTTPS Formulary Request
+API --> Auth : Validate identity & scope
+Auth --> API : AuthZ OK
+API --> EC2A : Forward request
+API --> EC2B : Alternate path (load balanced)
+EC2A --> FormularyDB : Query formulary data
+EC2B --> FormularyDB
+EC2A --> AuditLog : Log request
+EC2B --> AuditLog
+
+@enduml
