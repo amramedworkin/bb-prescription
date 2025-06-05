@@ -1,0 +1,332 @@
+openapi: 3.0.0
+info:
+  title: Aetna SuperApp Prior Authorization (PA) Read-Only API
+  description: |
+    This OpenAPI specification describes the read-only API for retrieving Prior Authorization (PA) information within the Aetna SuperApp ecosystem. This API mirrors the member-facing functionality detailed in the provided workflow document[cite: 325, 326].
+
+    **Purpose:** To provide external consumers (e.g., partners, other applications) with programmatic access to prior authorization statuses and details for Aetna members.
+    
+    **Scope:**
+    * Retrieval of a list of medical and pharmacy prior authorizations for a given member.
+    * Retrieval of detailed information for a specific prior authorization.
+    * Supports historical data up to 2 years back[cite: 329].
+    * Provides standardized display statuses for both medical and RX PAs, as mapped by an internal aggregated API[cite: 333].
+
+    **Current Limitations/Gaps (as per source documentation):**
+    * **Read-Only:** This API does not support the submission of new prior authorizations or the modification of existing ones. The documented member workflow is display-only.
+    * **Educational Content:** The "How it Works" educational content is currently general and not Line of Business (LOB) specific[cite: 340]. Future enhancements for customization are on backlog.
+  version: 1.0.0
+servers:
+  - url: https://api.aetnasuperapp.com/v1
+    description: Production API endpoint for Aetna SuperApp Prior Authorizations
+tags:
+  - name: Prior Authorizations
+    description: Operations related to member Prior Authorizations
+
+paths:
+  /members/{memberId}/prior-authorizations:
+    get:
+      summary: Get a list of Prior Authorizations for a Member
+      description: |
+        Retrieves a paginated list of medical and pharmacy prior authorizations for a specified member,
+        sorted by most recent first[cite: 328]. Historical data up to two years back is available[cite: 329].
+        Results can be filtered by type, status, and date range.
+      operationId: getPriorAuthorizationsList
+      tags:
+        - Prior Authorizations
+      parameters:
+        - in: path
+          name: memberId
+          schema:
+            type: string
+            pattern: '^[A-Za-z0-9-]+$'
+          required: true
+          description: Unique identifier for the Aetna member.
+        - in: query
+          name: paType
+          schema:
+            type: string
+            enum: [medical, rx]
+          description: Filter by Prior Authorization type (medical or rx)[cite: 330].
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [Submitted, Processing, Processing-Paused, Approved, Denied, Canceled, Partially Approved] # Combines Medical and RX statuses for display [cite: 332, 333]
+          description: Filter by display status of the Prior Authorization.
+        - in: query
+          name: fromDate
+          schema:
+            type: string
+            format: date
+          description: Start date for historical filter (YYYY-MM-DD). Data up to 2 years back is shown[cite: 329].
+        - in: query
+          name: toDate
+          schema:
+            type: string
+            format: date
+          description: End date for historical filter (YYYY-MM-DD).
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int32
+            default: 10
+            minimum: 1
+            maximum: 100
+          description: Maximum number of prior authorizations to return.
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int32
+            default: 0
+            minimum: 0
+          description: Number of prior authorizations to skip for pagination.
+      responses:
+        '200':
+          description: A list of prior authorizations successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                    description: Total number of prior authorizations matching the criteria.
+                  priorAuthorizations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PriorAuthorizationListItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /members/{memberId}/prior-authorizations/{requestId}:
+    get:
+      summary: Get details for a specific Prior Authorization
+      description: |
+        Retrieves comprehensive details for a single prior authorization using its unique `requestId` (service authorization ID)[cite: 337].
+        Provides overall status, provider/facility, service lines, and a progress stepper[cite: 335, 336].
+      operationId: getPriorAuthorizationDetails
+      tags:
+        - Prior Authorizations
+      parameters:
+        - in: path
+          name: memberId
+          schema:
+            type: string
+            pattern: '^[A-Za-z0-9-]+$'
+          required: true
+          description: Unique identifier for the Aetna member.
+        - in: path
+          name: requestId
+          schema:
+            type: string
+            pattern: '^[A-Za-z0-9-]+$'
+          required: true
+          description: Unique identifier for the Prior Authorization request (service authorization ID)[cite: 337].
+      responses:
+        '200':
+          description: Prior authorization details successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriorAuthorizationDetails'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    PriorAuthorizationListItem:
+      type: object
+      description: A summary of a Prior Authorization request as seen in the List View[cite: 330].
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the Prior Authorization (maps to Request ID/Service Authorization ID)[cite: 337].
+          example: "PA-123456789"
+        status:
+          type: string
+          description: |
+            The current display status of the Prior Authorization.
+            For medical PAs: Submitted, Processing, Processing-Paused, Approved, Denied, Canceled, Partially Approved[cite: 332].
+            For RX PAs: Processing, Approved, Denied, Canceled[cite: 333].
+          example: "Approved"
+        providerOrFacility:
+          type: string
+          description: The name of the provider or facility who submitted the PA[cite: 330].
+          example: "Thomas Johnson"
+        type:
+          type: string
+          enum: [medical, rx]
+          description: The type of Prior Authorization (medical or rx)[cite: 330].
+          example: "medical"
+        dateReceived:
+          type: string
+          format: date
+          description: The date Aetna received the request (YYYY-MM-DD)[cite: 330].
+          example: "2024-05-31"
+
+    PriorAuthorizationDetails:
+      type: object
+      description: Detailed information for a specific Prior Authorization request[cite: 335].
+      allOf:
+        - $ref: '#/components/schemas/PriorAuthorizationListItem' # Inherits common fields
+      properties:
+        memberId:
+          type: string
+          description: The member's ID associated with this prior authorization[cite: 337].
+          example: "M123456789"
+        overallStatusExplanation:
+          type: string
+          description: A brief explanation of the overall status[cite: 335].
+          example: "Your prior authorization has been submitted."
+        serviceLines:
+          type: array
+          description: Details of individual service lines submitted under this prior authorization[cite: 335].
+          items:
+            $ref: '#/components/schemas/ServiceLine'
+        progressStepper:
+          type: array
+          description: A progress map showing the PA's current stage and remaining steps[cite: 336].
+          items:
+            $ref: '#/components/schemas/ProgressStep'
+        howItWorksLink:
+          type: string
+          format: url
+          description: |
+            Link to the general "How it Works" educational content about Prior Authorizations[cite: 339].
+            Note: This content is currently general and not LOB specific[cite: 340].
+          example: "https://www.aetna.com/priorauth/howitworks"
+
+    ServiceLine:
+      type: object
+      description: Details for a single service line within a Prior Authorization.
+      properties:
+        serviceName:
+          type: string
+          description: Description of the service submitted.
+          example: "DONOR NEPHRECTOMY, OPEN (LIVING DONOR) OR EXCIISION PREPARATION AND MAINTENANCE OF ALLOGRAFT"
+        status:
+          type: string
+          description: The status of this specific service line (e.g., Approved, Denied, Submitted).
+          example: "Approved"
+        quantityOfMeasures:
+          type: string
+          description: The quantity or measure associated with the service line, if applicable.
+          example: "1 unit"
+
+    ProgressStep:
+      type: object
+      description: A single step in the Prior Authorization progress stepper[cite: 336].
+      properties:
+        stage:
+          type: string
+          description: The name of the stage in the PA process.
+          example: "Submitted"
+        status:
+          type: string
+          description: The status of this specific stage (e.g., Completed, Current, Pending).
+          example: "Current"
+        date:
+          type: string
+          format: date
+          description: The date this stage was reached, if applicable.
+          example: "2024-02-08"
+
+  securitySchemes:
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 Client Credentials flow for application-level authentication.
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.aetnasuperapp.com/oauth/token
+          scopes:
+            prior_auth.read: Read prior authorization information.
+
+  responses:
+    BadRequest:
+      description: Bad Request - Invalid input or parameters.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: "400"
+              message:
+                type: string
+                example: "Invalid member ID format."
+    Unauthorized:
+      description: Unauthorized - Authentication required or failed.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: "401"
+              message:
+                type: string
+                example: "Authentication required."
+    Forbidden:
+      description: Forbidden - Insufficient permissions to access the resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: "403"
+              message:
+                type: string
+                example: "Access denied for this member."
+    NotFound:
+      description: Not Found - The requested resource could not be found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: "404"
+              message:
+                type: string
+                example: "Prior Authorization not found."
+    InternalServerError:
+      description: Internal Server Error - An unexpected error occurred on the server.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: "500"
+              message:
+                type: string
+                example: "An unexpected error occurred."
+
+security:
+  - oAuth2:
+      - prior_auth.read
