@@ -1,0 +1,78 @@
+@startuml Plan Document List Retrieval
+
+title Plan Document List Retrieval (AWS Integration)
+
+actor "AH Client BFF" as ClientBFF
+participant "Benefit Service (AWS API Gateway + Lambda)" as BenefitService
+database "Cache (e.g., Redis/ElastiCache)" as Cache
+participant "Core-Proxy Service" as CoreProxy
+participant "Core Plan Document List API" as CoreAPI
+
+== Scenario 1: Plan Document List (Commercial/IFP) - Cached ==
+ClientBFF -> BenefitService: POST /plan-document-list/retrieve (policyResourceId, membershipResourceId, dateAsOf)
+activate BenefitService
+BenefitService -> BenefitService: Determine Cache Key (policyResourceId, dateAsOf)
+BenefitService -> Cache: Check for cached data (Commercial/IFP key)
+activate Cache
+Cache --> BenefitService: Cache Hit (Plan Document List Data)
+deactivate Cache
+BenefitService --> ClientBFF: Return Cached Plan Document List
+deactivate BenefitService
+
+== Scenario 2: Plan Document List (Commercial/IFP) - Not Cached ==
+ClientBFF -> BenefitService: POST /plan-document-list/retrieve (policyResourceId, membershipResourceId, dateAsOf)
+activate BenefitService
+BenefitService -> BenefitService: Determine Cache Key (policyResourceId, dateAsOf)
+BenefitService -> Cache: Check for cached data (Commercial/IFP key)
+activate Cache
+Cache --> BenefitService: Cache Miss
+deactivate Cache
+BenefitService -> CoreAPI: POST /eieheader/v4/healthpolicies/communicationcontents/search/retrieve (same params)
+activate CoreAPI
+CoreAPI --> BenefitService: Return Plan Document List Response (HTTP 200/OK or HHL Not Signed)
+deactivate CoreAPI
+BenefitService -> Cache: Cache Response (if not error, with 1-hour TTL)
+activate Cache
+Cache --> BenefitService: Data cached
+deactivate Cache
+BenefitService --> ClientBFF: Return Plan Document List Response
+deactivate BenefitService
+
+== Scenario 3: Plan Document List (Medicare) - Cache Key Determination ==
+ClientBFF -> BenefitService: POST /plan-document-list/retrieve (policyResourceId, membershipResourceId, dateAsOf)
+activate BenefitService
+BenefitService -> BenefitService: Determine if Medicare (membershipResourceId prefix 59~)
+BenefitService -> CoreProxy: Call /v1/memberships/{id} (using membershipResourceId)
+activate CoreProxy
+CoreProxy --> BenefitService: Return membership details (including alternateIdentifications)
+deactivate CoreProxy
+BenefitService -> BenefitService: Extract HIOS plan ID (IDT38) for IFP or determine Medicare Group/Individual
+BenefitService -> BenefitService: If Medicare, gather priorAdjacentContractPBP, externalPlanId, classCode from alternateIdentifications based on dateAsOf logic.
+BenefitService -> BenefitService: Construct Medicare Cache Key (dateAsOf + policyResourceId + [externalPlanId + classCode + priorAdjacentContractPBP for Group] or [priorAdjacentContractPBP for Individual])
+' Note: If going with simpler Medicare cache key, it would be membershipResourceId in the cache key.
+
+== Scenario 4: Plan Document List (Medicare) - Cached ==
+BenefitService -> Cache: Check for cached data (Medicare key)
+activate Cache
+Cache --> BenefitService: Cache Hit (Plan Document List Data)
+deactivate Cache
+BenefitService --> ClientBFF: Return Cached Plan Document List
+deactivate BenefitService
+
+== Scenario 5: Plan Document List (Medicare) - Not Cached ==
+BenefitService -> Cache: Check for cached data (Medicare key)
+activate Cache
+Cache --> BenefitService: Cache Miss
+deactivate Cache
+BenefitService -> CoreAPI: POST /eieheader/v4/healthpolicies/communicationcontents/search/retrieve (same params)
+activate CoreAPI
+CoreAPI --> BenefitService: Return Plan Document List Response (HTTP 200/OK or HHL Not Signed)
+deactivate CoreAPI
+BenefitService -> Cache: Cache Response (if not error, with 1-hour TTL)
+activate Cache
+Cache --> BenefitService: Data cached
+deactivate Cache
+BenefitService --> ClientBFF: Return Plan Document List Response
+deactivate BenefitService
+
+@enduml

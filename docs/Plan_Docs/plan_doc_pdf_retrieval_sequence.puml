@@ -1,0 +1,43 @@
+@startuml Plan Document PDF Download
+
+title Plan Document PDF Download (AWS Integration)
+
+actor "AH Client BFF" as ClientBFF
+participant "Benefit Service (AWS API Gateway + Lambda)" as BenefitService
+database "S3 Bucket (plan-doc search)" as S3Bucket
+participant "Core Plan Document PDF API" as CorePDFAPI
+
+== Scenario 1: PDF Download - Cached in S3 ==
+ClientBFF -> BenefitService: POST /plan-document/retrieve (communicationContentResourceId)
+activate BenefitService
+BenefitService -> S3Bucket: Check for communicationContentResourceId/document.pdf
+activate S3Bucket
+S3Bucket --> BenefitService: PDF Exists (document.pdf and metadata.json)
+deactivate S3Bucket
+BenefitService --> ClientBFF: Return PDF Document (content-type: application/pdf)
+deactivate BenefitService
+
+== Scenario 2: PDF Download - Not Cached in S3 ==
+ClientBFF -> BenefitService: POST /plan-document/retrieve (communicationContentResourceId)
+activate BenefitService
+BenefitService -> S3Bucket: Check for communicationContentResourceId/document.pdf
+activate S3Bucket
+S3Bucket --> BenefitService: PDF Not Found
+deactivate S3Bucket
+BenefitService -> CorePDFAPI: GET /eieheader/v5/communicationcontents/{id} (using communicationContentResourceId)
+activate CorePDFAPI
+CorePDFAPI --> BenefitService: Return PDF Document (or empty file/error)
+deactivate CorePDFAPI
+BenefitService -> BenefitService: Check PDF byte size (if 0 bytes, return 500 error)
+alt If valid PDF (not 0 bytes)
+    BenefitService -> S3Bucket: Store PDF as "document.pdf" and metadata.json for communicationContentResourceId
+    activate S3Bucket
+    S3Bucket --> BenefitService: PDF Stored Successfully
+    deactivate S3Bucket
+    BenefitService --> ClientBFF: Return PDF Document (content-type: application/pdf)
+else If 0 bytes
+    BenefitService --> ClientBFF: Return HTTP 500 Error (or appropriate error response)
+end
+deactivate BenefitService
+
+@enduml
