@@ -1,0 +1,250 @@
+@startuml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v17.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/Database/ElastiCacheCacheNode.puml
+!include AWSPuml/Storage/S3.puml
+
+!unquoted procedure $actor($alias, $label, $sprite="aws-icons-for-plantuml/General/User.puml")
+  actor ":$sprite:\n$label" as $alias
+!endprocedure
+
+!unquoted procedure $participant($alias, $label, $sprite="aws-icons-for-plantuml/General/General/Default.puml")
+  participant ":$sprite:\n$label" as $alias
+!endprocedure
+
+' Common Actors and Participants
+$actor(User, "User\non CVS SuperApp")
+$participant(CVS_BFF, "CVS BFF\n(New Service)")
+$participant(AWS_APIGateway, "AWS API Gateway", $APIGATEWAY_SPRITE)
+$participant(BenefitsService, "Benefits Service\n(AWS Lambda)", $LAMBDA_SPRITE)
+$participant(S3_Cache, "S3 Cache\n(for PDFs)", $S3_SPRITE)
+$participant(Redis_Cache, "Redis Cache\n(for List)", $ELASTICACHECACHENODE_SPRITE)
+database "Core API\n(Source of Truth)" as Core_API
+database "Metadata Service\n(for Augmentation)" as Metadata_Service
+
+'================================================================================
+' Option 1: Adapt Existing On-Demand Architecture (Chosen Direction)
+'================================================================================
+title Option 1: On-Demand Architecture (List Retrieval)
+
+autonumber "<b>[0]"
+User -> CVS_BFF: GET /plan-documents/list
+activate CVS_BFF
+
+CVS_BFF -> AWS_APIGateway: POST /plan-document-list/retrieve
+activate AWS_APIGateway
+
+AWS_APIGateway -> BenefitsService: Invoke Lambda
+activate BenefitsService
+
+BenefitsService -> Redis_Cache: Check for cached document list
+activate Redis_Cache
+alt Cache Miss
+    Redis_Cache --> BenefitsService: Not found
+    BenefitsService -> Core_API: Request document list
+    activate Core_API
+    Core_API --> BenefitsService: Return document list
+    deactivate Core_API
+    BenefitsService -> Redis_Cache: Store document list (TTL 1hr)
+else Cache Hit
+    Redis_Cache --> BenefitsService: Return cached document list
+end
+deactivate Redis_Cache
+
+
+BenefitsService --> AWS_APIGateway: Return document list
+deactivate BenefitsService
+AWS_APIGateway --> CVS_BFF: Forward response
+deactivate AWS_APIGateway
+
+CVS_BFF -> CVS_BFF: Augment/Transform data if needed
+CVS_BFF --> User: Return formatted document list
+deactivate CVS_BFF
+
+@enduml
+
+@startuml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v17.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/Storage/S3.puml
+
+!unquoted procedure $actor($alias, $label, $sprite="aws-icons-for-plantuml/General/User.puml")
+  actor ":$sprite:\n$label" as $alias
+!endprocedure
+
+!unquoted procedure $participant($alias, $label, $sprite="aws-icons-for-plantuml/General/General/Default.puml")
+  participant ":$sprite:\n$label" as $alias
+!endprocedure
+
+' Common Actors and Participants
+$actor(User, "User\non CVS SuperApp")
+$participant(CVS_BFF, "CVS BFF\n(New Service)")
+$participant(AWS_APIGateway, "AWS API Gateway", $APIGATEWAY_SPRITE)
+$participant(BenefitsService, "Benefits Service\n(AWS Lambda)", $LAMBDA_SPRITE)
+$participant(S3_Cache, "S3 Cache\n(for PDFs)", $S3_SPRITE)
+database "Core API\n(Source of Truth)" as Core_API
+
+'================================================================================
+' Option 1: Adapt Existing On-Demand Architecture (PDF Retrieval)
+'================================================================================
+title Option 1: On-Demand Architecture (PDF Retrieval)
+
+autonumber "<b>[0]"
+User -> CVS_BFF: POST /plan-documents/retrieve\n(with documentId)
+activate CVS_BFF
+
+CVS_BFF -> AWS_APIGateway: POST /plan-document/retrieve
+activate AWS_APIGateway
+
+AWS_APIGateway -> BenefitsService: Invoke Lambda
+activate BenefitsService
+
+BenefitsService -> S3_Cache: Check for cached PDF
+activate S3_Cache
+
+alt Cache Miss
+    S3_Cache --> BenefitsService: Not found
+    BenefitsService -> Core_API: Request PDF
+    activate Core_API
+    Core_API --> BenefitsService: Return PDF
+    deactivate Core_API
+    BenefitsService -> S3_Cache: Store PDF
+else Cache Hit
+    S3_Cache --> BenefitsService: Return cached PDF
+end
+deactivate S3_Cache
+
+BenefitsService --> AWS_APIGateway: Return PDF
+deactivate BenefitsService
+
+AWS_APIGateway --> CVS_BFF: Forward PDF
+deactivate AWS_APIGateway
+
+CVS_BFF --> User: Return PDF file
+deactivate CVS_BFF
+@enduml
+
+@startuml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v17.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/Compute/Lambda.puml
+
+!unquoted procedure $actor($alias, $label, $sprite="aws-icons-for-plantuml/General/User.puml")
+  actor ":$sprite:\n$label" as $alias
+!endprocedure
+
+!unquoted procedure $participant($alias, $label, $sprite="aws-icons-for-plantuml/General/General/Default.puml")
+  participant ":$sprite:\n$label" as $alias
+!endprocedure
+
+' Common Actors and Participants
+$actor(User, "User\non CVS SuperApp")
+$participant(CVS_BFF, "CVS BFF\n(New Service)")
+$participant(AWS_APIGateway, "AWS API Gateway", $APIGATEWAY_SPRITE)
+$participant(BenefitsService, "Benefits Service\n(AWS Lambda)", $LAMBDA_SPRITE)
+database "Core API\n(Source of Truth)" as Core_API
+database ClientCache as "Client-Side\nCache"
+
+
+'================================================================================
+' Option 2: App Startup Pre-fetch
+'================================================================================
+title Option 2: App Startup Pre-fetch
+
+autonumber "<b>[0]"
+== App Startup ==
+User -> CVS_BFF: App Startup / Login Event
+activate CVS_BFF
+CVS_BFF -> AWS_APIGateway: Request Plan Doc List
+activate AWS_APIGateway
+AWS_APIGateway -> BenefitsService: Invoke Lambda
+activate BenefitsService
+BenefitsService -> Core_API: Get all relevant doc metadata
+activate Core_API
+Core_API --> BenefitsService: Return metadata
+deactivate Core_API
+BenefitsService --> AWS_APIGateway: Return list
+deactivate BenefitsService
+AWS_APIGateway --> CVS_BFF: Forward list
+deactivate AWS_APIGateway
+
+CVS_BFF --> User: Return pre-fetched list
+deactivate CVS_BFF
+User -> ClientCache: Store document list
+...
+== User Navigates to Plan Docs Page ==
+User -> ClientCache: Request document list
+activate ClientCache
+ClientCache --> User: Return cached list instantly
+deactivate ClientCache
+
+@enduml
+
+@startuml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v17.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/Compute/Lambda.puml
+
+!unquoted procedure $actor($alias, $label, $sprite="aws-icons-for-plantuml/General/User.puml")
+  actor ":$sprite:\n$label" as $alias
+!endprocedure
+
+!unquoted procedure $participant($alias, $label, $sprite="aws-icons-for-plantuml/General/General/Default.puml")
+  participant ":$sprite:\n$label" as $alias
+!endprocedure
+
+' Common Actors and Participants
+$actor(User, "User\non CVS SuperApp")
+$participant(CVS_BFF, "CVS BFF\n(New Service)")
+$participant(AWS_APIGateway, "AWS API Gateway", $APIGATEWAY_SPRITE)
+$participant(BenefitsService, "Benefits Service\n(AWS Lambda)", $LAMBDA_SPRITE)
+database "Core API\n(Source of Truth)" as Core_API
+database BFF_Cache as "BFF-Internal\nCache/Store"
+database Metadata_Service as "Metadata Augmentation\nService/DB"
+
+'================================================================================
+' Option 3: BFF-Centric Caching & Augmentation
+'================================================================================
+title Option 3: BFF-Centric Caching & Augmentation
+
+autonumber "<b>[0]"
+User -> CVS_BFF: GET /plan-documents/list
+activate CVS_BFF
+
+CVS_BFF -> BFF_Cache: Check for cached list
+activate BFF_Cache
+
+alt Cache Miss
+    BFF_Cache --> CVS_BFF: Not found
+    CVS_BFF -> AWS_APIGateway: POST /plan-document-list/retrieve
+    activate AWS_APIGateway
+
+    AWS_APIGateway -> BenefitsService: Invoke Lambda
+    activate BenefitsService
+    BenefitsService --> AWS_APIGateway: Return raw document list
+    deactivate BenefitsService
+    AWS_APIGateway --> CVS_BFF: Forward raw list
+    deactivate AWS_APIGateway
+
+    CVS_BFF -> Metadata_Service: Get additional metadata (e.g., PlanSponsorName)
+    activate Metadata_Service
+    Metadata_Service --> CVS_BFF: Return metadata
+    deactivate Metadata_Service
+
+    CVS_BFF -> CVS_BFF: Augment and Transform data
+    CVS_BFF -> BFF_Cache: Store augmented list
+else Cache Hit
+    BFF_Cache --> CVS_BFF: Return cached list
+end
+deactivate BFF_Cache
+
+CVS_BFF --> User: Return formatted document list
+deactivate CVS_BFF
+
+@enduml

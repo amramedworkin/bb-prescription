@@ -1,0 +1,129 @@
+'================================================================================
+' Option 1: Sequence Diagram (List Retrieval)
+'================================================================================
+@startuml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v17.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/Database/ElastiCacheCacheNode.puml
+!include AWSPuml/Storage/S3.puml
+
+!unquoted procedure $actor($alias, $label, $sprite="aws-icons-for-plantuml/General/User.puml")
+  actor ":$sprite:\n$label" as $alias
+!endprocedure
+
+!unquoted procedure $participant($alias, $label, $sprite="aws-icons-for-plantuml/General/General/Default.puml")
+  participant ":$sprite:\n$label" as $alias
+!endprocedure
+
+title Option 1: On-Demand Architecture (Sequence Flow)
+
+$actor(User, "User\non CVS SuperApp")
+$participant(CVS_BFF, "CVS BFF\n(New Service)")
+$participant(AWS_APIGateway, "AWS API Gateway", $APIGATEWAY_SPRITE)
+$participant(BenefitsService, "Benefits Service\n(AWS Lambda)", $LAMBDA_SPRITE)
+$participant(S3_Cache, "S3 Cache\n(for PDFs)", $S3_SPRITE)
+$participant(Redis_Cache, "Redis Cache\n(for List)", $ELASTICACHECACHENODE_SPRITE)
+database "Core API\n(Source of Truth)" as Core_API
+
+autonumber "<b>[0]"
+== List Retrieval ==
+User -> CVS_BFF: GET /plan-documents/list
+activate CVS_BFF
+CVS_BFF -> AWS_APIGateway: POST /plan-document-list/retrieve
+activate AWS_APIGateway
+AWS_APIGateway -> BenefitsService: Invoke Lambda
+activate BenefitsService
+BenefitsService -> Redis_Cache: Check for cached list
+activate Redis_Cache
+alt Cache Miss
+    Redis_Cache --> BenefitsService: Not found
+    BenefitsService -> Core_API: Request document list
+    activate Core_API
+    Core_API --> BenefitsService: Return document list
+    deactivate Core_API
+    BenefitsService -> Redis_Cache: Store document list (TTL 1hr)
+else Cache Hit
+    Redis_Cache --> BenefitsService: Return cached list
+end
+deactivate Redis_Cache
+BenefitsService --> AWS_APIGateway: Return document list
+deactivate BenefitsService
+AWS_APIGateway --> CVS_BFF: Forward response
+deactivate AWS_APIGateway
+CVS_BFF -> CVS_BFF: Augment/Transform data
+CVS_BFF --> User: Return formatted list
+deactivate CVS_BFF
+
+...
+== PDF Retrieval ==
+User -> CVS_BFF: POST /plan-documents/retrieve\n(with documentId)
+activate CVS_BFF
+CVS_BFF -> AWS_APIGateway: POST /plan-document/retrieve
+activate AWS_APIGateway
+AWS_APIGateway -> BenefitsService: Invoke Lambda
+activate BenefitsService
+BenefitsService -> S3_Cache: Check for cached PDF
+activate S3_Cache
+alt Cache Miss
+    S3_Cache --> BenefitsService: Not found
+    BenefitsService -> Core_API: Request PDF
+    activate Core_API
+    Core_API --> BenefitsService: Return PDF
+    deactivate Core_API
+    BenefitsService -> S3_Cache: Store PDF
+else Cache Hit
+    S3_Cache --> BenefitsService: Return cached PDF
+end
+deactivate S3_Cache
+BenefitsService --> AWS_APIGateway: Return PDF
+deactivate BenefitsService
+AWS_APIGateway --> CVS_BFF: Forward PDF
+deactivate AWS_APIGateway
+CVS_BFF --> User: Return PDF file
+deactivate CVS_BFF
+@enduml
+
+'================================================================================
+' Option 1: Component Diagram
+'================================================================================
+@startuml
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v17.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/Groups/AWSCloud.puml
+!include AWSPuml/ApplicationIntegration/APIGateway.puml
+!include AWSPuml/Compute/Lambda.puml
+!include AWSPuml/Database/ElastiCacheCacheNode.puml
+!include AWSPuml/Storage/S3.puml
+
+!unquoted procedure $actor($alias, $label, $sprite="aws-icons-for-plantuml/General/User.puml")
+  actor ":$sprite:\n$label" as $alias
+!endprocedure
+
+title Option 1: On-Demand Architecture (Component View)
+
+$actor(User, "CVS SuperApp\nUser")
+
+package "New BFF Tier" {
+  component [CVS BFF]
+}
+
+$AWSCloud_Boundary(aws, "AWS Cloud (Existing)") {
+    $APIGateway(api_gateway, "API Gateway", "Handles API requests")
+    $Lambda(benefits_service, "Benefits Service", "Orchestrates data retrieval")
+    $S3(s3, "S3 Bucket", "Caches PDF documents")
+    $ElastiCacheCacheNode(redis, "ElastiCache", "Caches document list metadata")
+}
+
+database "Core API" {
+  [Source of Truth]
+}
+
+User --> [CVS BFF] : HTTPS
+[CVS BFF] --> api_gateway : HTTPS
+api_gateway --> benefits_service : Invokes
+benefits_service --> redis : Reads/Writes List
+benefits_service --> s3 : Reads/Writes PDF
+benefits_service --> [Source of Truth] : On Cache Miss
+@enduml
