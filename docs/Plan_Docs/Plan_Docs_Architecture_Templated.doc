@@ -1,0 +1,556 @@
+Message-ID: <1715130749.171.1750686709897@598a10593efa>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_170_642276795.1750686709896"
+
+------=_Part_170_642276795.1750686709896
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Architecture Template</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Architecture Template</h1>
+    <div class=3D"Section1">
+        <p>
+<style>[data-colorid=3Dqwne2gkxuz]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dqwne2gkxuz]{color:#5999f8}[data-colorid=3Dpiu6fijag7]{c=
+olor:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dpiu6fijag7]{colo=
+r:#5999f8}[data-colorid=3Dncs8u5zoru]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dncs8u5zoru]{color:#5999f8}[data-colorid=3Dy9rm7wqv=
+q3]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dy9rm7wqvq3]=
+{color:#5999f8}[data-colorid=3Dlvz6oqw0w4]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dlvz6oqw0w4]{color:#5999f8}[data-colorid=3Ds0tu9=
+tywuf]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Ds0tu9tyw=
+uf]{color:#5999f8}[data-colorid=3Dgcg4opv4zy]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Dgcg4opv4zy]{color:#5999f8}[data-colorid=3Dvv=
+6q683sj2]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dvv6q6=
+83sj2]{color:#5999f8}[data-colorid=3Dynyw09ijsg]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Dynyw09ijsg]{color:#5999f8}[data-colorid=
+=3Dg7bwhbx80b]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+g7bwhbx80b]{color:#5999f8}[data-colorid=3Dpkxlincy05]{color:#0747a6} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Dpkxlincy05]{color:#5999f8}[data-colo=
+rid=3Dv4vkccawcy]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=
+=3Dv4vkccawcy]{color:#5999f8}[data-colorid=3Dmldnmqfxix]{color:#0747a6} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dmldnmqfxix]{color:#5999f8}[data-c=
+olorid=3Dopufc6i9q8]{color:#0747a6} html[data-color-mode=3Ddark] [data-colo=
+rid=3Dopufc6i9q8]{color:#5999f8}[data-colorid=3Db2xhee20gt]{color:#0747a6} =
+html[data-color-mode=3Ddark] [data-colorid=3Db2xhee20gt]{color:#5999f8}[dat=
+a-colorid=3Du6blfzd85r]{color:#0747a6} html[data-color-mode=3Ddark] [data-c=
+olorid=3Du6blfzd85r]{color:#5999f8}[data-colorid=3Dlahauoeqtf]{color:#0747a=
+6} html[data-color-mode=3Ddark] [data-colorid=3Dlahauoeqtf]{color:#5999f8}[=
+data-colorid=3Dfufesd4ga4]{color:#0747a6} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dfufesd4ga4]{color:#5999f8}[data-colorid=3Du3zl1rnw40]{color:#07=
+47a6} html[data-color-mode=3Ddark] [data-colorid=3Du3zl1rnw40]{color:#5999f=
+8}[data-colorid=3Dt89g0lywyr]{color:#0747a6} html[data-color-mode=3Ddark] [=
+data-colorid=3Dt89g0lywyr]{color:#5999f8}[data-colorid=3Devgpqehx28]{color:=
+#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Devgpqehx28]{color:#59=
+99f8}[data-colorid=3Dznt5eo4ie4]{color:#0747a6} html[data-color-mode=3Ddark=
+] [data-colorid=3Dznt5eo4ie4]{color:#5999f8}[data-colorid=3Du0hunugjec]{col=
+or:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Du0hunugjec]{color:=
+#5999f8}[data-colorid=3Dtznkaskwf5]{color:#0747a6} html[data-color-mode=3Dd=
+ark] [data-colorid=3Dtznkaskwf5]{color:#5999f8}[data-colorid=3Dqytid5tqd6]{=
+color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dqytid5tqd6]{col=
+or:#5999f8}[data-colorid=3Dumedho1ix1]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dumedho1ix1]{color:#5999f8}[data-colorid=3Dt7h4jqms=
+12]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dt7h4jqms12]=
+{color:#5999f8}[data-colorid=3Dc37x9xmvim]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dc37x9xmvim]{color:#5999f8}[data-colorid=3Dznaud=
+50diu]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dznaud50d=
+iu]{color:#5999f8}[data-colorid=3Deo98wjt71w]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Deo98wjt71w]{color:#5999f8}[data-colorid=3Dkz=
+p3me8krs]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dkzp3m=
+e8krs]{color:#5999f8}[data-colorid=3Da5sgri60aw]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Da5sgri60aw]{color:#5999f8}[data-colorid=
+=3Dcug7g18gor]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+cug7g18gor]{color:#5999f8}[data-colorid=3Djzm72faxqi]{color:#0747a6} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Djzm72faxqi]{color:#5999f8}[data-colo=
+rid=3Dts46juzesz]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=
+=3Dts46juzesz]{color:#5999f8}[data-colorid=3Dj652acroqf]{color:#0747a6} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dj652acroqf]{color:#5999f8}[data-c=
+olorid=3Dpxmcnk0f68]{color:#0747a6} html[data-color-mode=3Ddark] [data-colo=
+rid=3Dpxmcnk0f68]{color:#5999f8}[data-colorid=3Ddj122l13k7]{color:#0747a6} =
+html[data-color-mode=3Ddark] [data-colorid=3Ddj122l13k7]{color:#5999f8}[dat=
+a-colorid=3Dldkpkvy1av]{color:#0747a6} html[data-color-mode=3Ddark] [data-c=
+olorid=3Dldkpkvy1av]{color:#5999f8}[data-colorid=3Dyx87bgsbqt]{color:#0747a=
+6} html[data-color-mode=3Ddark] [data-colorid=3Dyx87bgsbqt]{color:#5999f8}[=
+data-colorid=3Dil9bq69ku5]{color:#0747a6} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dil9bq69ku5]{color:#5999f8}[data-colorid=3Dkn33ogafu7]{color:#07=
+47a6} html[data-color-mode=3Ddark] [data-colorid=3Dkn33ogafu7]{color:#5999f=
+8}[data-colorid=3Dej9f1pgzkt]{color:#0747a6} html[data-color-mode=3Ddark] [=
+data-colorid=3Dej9f1pgzkt]{color:#5999f8}[data-colorid=3Deajpagwu0s]{color:=
+#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Deajpagwu0s]{color:#59=
+99f8}[data-colorid=3Db3e8bnepjd]{color:#0747a6} html[data-color-mode=3Ddark=
+] [data-colorid=3Db3e8bnepjd]{color:#5999f8}[data-colorid=3Dvztto74aw4]{col=
+or:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dvztto74aw4]{color:=
+#5999f8}[data-colorid=3Doojshpk5en]{color:#0747a6} html[data-color-mode=3Dd=
+ark] [data-colorid=3Doojshpk5en]{color:#5999f8}[data-colorid=3Dehn3l4by5b]{=
+color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dehn3l4by5b]{col=
+or:#5999f8}[data-colorid=3Db8x1yf0446]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Db8x1yf0446]{color:#5999f8}[data-colorid=3Dnh5qyc99=
+y9]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dnh5qyc99y9]=
+{color:#5999f8}[data-colorid=3Drcwnp5unj2]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Drcwnp5unj2]{color:#5999f8}[data-colorid=3Dwxqwh=
+o8jb0]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dwxqwho8j=
+b0]{color:#5999f8}[data-colorid=3Df6c3hic3ua]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Df6c3hic3ua]{color:#5999f8}[data-colorid=3Dy3=
+16jcwulr]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dy316j=
+cwulr]{color:#5999f8}[data-colorid=3Djkgsu5uu96]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Djkgsu5uu96]{color:#5999f8}[data-colorid=
+=3Dek02eikef9]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+ek02eikef9]{color:#5999f8}</style>Title of page should be Feature Name</p>
+<p></p>
+<style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1750686709865 {padding: 0px;}
+div.rbtoc1750686709865 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1750686709865 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style>
+<div class=3D"toc-macro rbtoc1750686709865">
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-Feature">Feature</a></li>
+<li><a href=3D"#ArchitectureTemplate-Summary">Summary</a></li>
+<li><a href=3D"#ArchitectureTemplate-Discovery">Discovery</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-Option1">Option 1</a></li>
+<li><a href=3D"#ArchitectureTemplate-Option2">Option 2</a></li>
+</ul></li>
+<li><a href=3D"#ArchitectureTemplate-SolutionSketch">Solution Sketch</a></l=
+i>
+<li><a href=3D"#ArchitectureTemplate-OrchestrationDiagram">Orchestration Di=
+agram</a></li>
+<li><a href=3D"#ArchitectureTemplate-APIs/Swagger">APIs/Swagger</a></li>
+<li><a href=3D"#ArchitectureTemplate-NFR">NFR</a></li>
+<li><a href=3D"#ArchitectureTemplate-Services">Services</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-ServiceLogic">Service Logic</a></li>
+<li><a href=3D"#ArchitectureTemplate-ServiceComponents">Service Components<=
+/a></li>
+</ul></li>
+<li><a href=3D"#ArchitectureTemplate-ClientChanges">Client Changes</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-Clientsidelogic">Client side logic</a>=
+</li>
+<li><a href=3D"#ArchitectureTemplate-Fieldmapping">Field mapping</a></li>
+<li><a href=3D"#ArchitectureTemplate-Anydifferencesbetweenplatforms">Any di=
+fferences between platforms</a></li>
+</ul></li>
+<li><a href=3D"#ArchitectureTemplate-Scenarios">Scenarios</a></li>
+<li><a href=3D"#ArchitectureTemplate-Testing">Testing</a></li>
+<li><a href=3D"#ArchitectureTemplate-SecurityReview">Security Review</a></l=
+i>
+<li><a href=3D"#ArchitectureTemplate-ContactsandImpactedTeams/People">Conta=
+cts and Impacted Teams/People</a></li>
+</ul>
+</div>
+<h1 id=3D"ArchitectureTemplate-Feature">Feature</h1>
+<p><em><span data-colorid=3D"lvz6oqw0w4">URL/Link to feature in Rally</span=
+></em></p>
+<h1 id=3D"ArchitectureTemplate-Summary">Summary</h1>
+<p><em><span data-colorid=3D"f6c3hic3ua">Brief summary of the requirements =
+and solution (or solution options).</span></em></p>
+<p><em><span data-colorid=3D"b2xhee20gt">Could link out to any documentatio=
+n from analysts or PMs.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-Discovery">Discovery</h1>
+<p><em><span data-colorid=3D"wxqwho8jb0">If there are multiple options - de=
+scribe each one with pros/cons. Indicate chosen direction.</span></em></p>
+<h2 id=3D"ArchitectureTemplate-Option1">Option 1</h2>
+<h2 id=3D"ArchitectureTemplate-Option2">Option 2</h2>
+<h1 id=3D"ArchitectureTemplate-SolutionSketch">Solution Sketch</h1>
+<p><em><span data-colorid=3D"tznkaskwf5">High level system/application diag=
+ram showing logical flow and updates needed.</span></em></p>
+<p><em><span data-colorid=3D"fufesd4ga4">Can use LucidChart widget - use in=
+sert/+ item from top toolbar and find LucidChart widget.</span></em></p>
+<p><em><span data-colorid=3D"j652acroqf">Or upload an attachment (RSA) to d=
+isplay in the screen. Use =E2=80=9Cfiles and images=E2=80=9D link from top =
+toolbar.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-OrchestrationDiagram">Orchestration Diagram<=
+/h1>
+<p><em><span data-colorid=3D"znt5eo4ie4">(For IA work/ EDB Service Updates =
+Only)</span></em></p>
+<p><em><span data-colorid=3D"mldnmqfxix">Upload an RSA attachment to displa=
+y in the screen. Use =E2=80=9Cfiles and images=E2=80=9D link from top toolb=
+ar for this.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-APIs/Swagger">APIs/Swagger</h1>
+<p><em><span data-colorid=3D"b8x1yf0446">This should be a link to SwaggerHu=
+b where the API schema has been uploaded for anything hosted in AWS APIc. C=
+an also optionally include a copy in the page as an attachment for convenie=
+nce. </span></em></p>
+<p><em><span data-colorid=3D"vv6q683sj2">For APIs hosted in Middletown/Wind=
+sor APIc - need swagger uploaded here are referenced. Use =E2=80=9Cfiles an=
+d images=E2=80=9D link from top toolbar. And a link to the API definition i=
+n the APIc documentation portal in QA. Please also include the APIc product=
+ that the API is part of.</span></em></p>
+<p><em><span data-colorid=3D"pkxlincy05">Provide example API request and re=
+sponse using =E2=80=9Ccode=E2=80=9D widget (use + item from top toolbar) fo=
+r each API.</span></em></p>
+<p><em><span data-colorid=3D"u3zl1rnw40">Note any specific schema changes. =
+DPIM or Swagger attributes that were updated.</span></em></p>
+<p><em><span data-colorid=3D"qytid5tqd6">Consider also if any APIs or servi=
+ces will be deprecated - when should this happen. Considering iOS/Android a=
+nd older client versions.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-NFR">NFR</h1>
+<p><em><span data-colorid=3D"dj122l13k7">Are there NFR changes are part of =
+the solution? Volume increase/decrease? Response time expected to improve? =
+</span><strong><span data-colorid=3D"u0hunugjec"> Performance testing requi=
+red? </span></strong><span data-colorid=3D"u6blfzd85r"> Please note this he=
+re. Please note the rate limit that should be used for each API that is par=
+t of the solution.</span></em></p>
+<p><em><span data-colorid=3D"yx87bgsbqt">Attach NFR spreadsheet.</span></em=
+></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-Services">Services</h1>
+<h2 id=3D"ArchitectureTemplate-ServiceLogic">Service Logic</h2>
+<p><em><span data-colorid=3D"ek02eikef9">Overview of flow through the servi=
+ce. This can be depicted in several ways</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"ej9f1pgzkt">Overview description of the logica=
+l flow through the services/APIs</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"qwne2gkxuz">Sequence Diagram</span></em></p></=
+li>
+<li>
+<p><em><strong><span data-colorid=3D"opufc6i9q8">Transformation/Mapping</sp=
+an></strong><span data-colorid=3D"il9bq69ku5"> - use the table widget from =
+top toolbar. Source to Target.</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"b3e8bnepjd">Request from client - showing how =
+this gets formed, each attribute, into request to any back-end app token AP=
+Is or other integrations or DB queries/updates.</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"cug7g18gor">Response back to client - showing =
+how each attribute gets formed into response to client from any db queries/=
+updates, app token API integrations or any other.</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"umedho1ix1">May require more than just two tab=
+les depending upon steps/components/solution</span></em></p></li>
+</ul></li>
+</ul>
+<h2 id=3D"ArchitectureTemplate-ServiceComponents">Service Components</h2>
+<p><em><span data-colorid=3D"y9rm7wqvq3">Describe each component and the pu=
+rpose - including specifics that will be needed for development team to imp=
+lement - </span><strong><span data-colorid=3D"jzm72faxqi">examples</span></=
+strong><span data-colorid=3D"c37x9xmvim"> may include:</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"eo98wjt71w">ODM (core rules engine)</span></em=
+></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"nh5qyc99y9">What are the rules, inputs, output=
+s - could be an attachment. Could just be a summary to start with.</span></=
+em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"oojshpk5en">Extreme Scale (caching in core ser=
+vices)</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"eajpagwu0s">Cache key</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"lahauoeqtf">Expiry</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"ts46juzesz">Grid size</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"jkgsu5uu96">ACE/EDB service(s) that are part o=
+f the solution</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"rcwnp5unj2">Cloud or On Prem</span></em></p></=
+li>
+<li>
+<p><em><span data-colorid=3D"evgpqehx28">AEI teams that support the service=
+s</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"g7bwhbx80b">AWS services</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"t89g0lywyr">Tech stack</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"ynyw09ijsg">CMS (Contentful or other)</span></=
+em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"v4vkccawcy">Content Model</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"pxmcnk0f68">Database</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"znaud50diu">Technology</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"s0tu9tywuf">Schema/Data stored</span></em></p>=
+</li>
+<li>
+<p><em><span data-colorid=3D"ehn3l4by5b">Interaction</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"y316jcwulr">Anticipated size</span></em></p></=
+li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"piu6fijag7">EDA or other Files/ETL process</sp=
+an></em></p></li>
+<li>
+<p><em><span data-colorid=3D"kzp3me8krs">Etc, etc</span></em></p></li>
+</ul>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-ClientChanges">Client Changes</h1>
+<h2 id=3D"ArchitectureTemplate-Clientsidelogic">Client side logic</h2>
+<p><em><span data-colorid=3D"gcg4opv4zy">Summary of how client should integ=
+rate.</span></em></p>
+<h2 id=3D"ArchitectureTemplate-Fieldmapping">Field mapping</h2>
+<p><em><span data-colorid=3D"t7h4jqms12">Screenshots, miro links, table etc=
+ - whatever is needed showing the UI fields and what the client should use =
+to populate that information.</span></em></p>
+<h2 id=3D"ArchitectureTemplate-Anydifferencesbetweenplatforms">Any differen=
+ces between platforms</h2>
+<p><em><span data-colorid=3D"vztto74aw4">Consider if any different integrat=
+ion/logic may be needed for Web vs iOS vs Android.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-Scenarios">Scenarios</h1>
+<p><em><span data-colorid=3D"a5sgri60aw">Identify use cases that are critic=
+al for this feature in mapping, logic, testing.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-Testing">Testing</h1>
+<p><em><span data-colorid=3D"kn33ogafu7">Please explain how this solution/u=
+pdate should be tested. Any aspects of the solution specific to testability=
+.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-SecurityReview">Security Review</h1>
+<p><em><span data-colorid=3D"ldkpkvy1av">Provide any notes, changes done as=
+ part of security review. Security reviews should be done especially when s=
+omething non-standard is happening. Third party integration, some new techn=
+ology/component, SDK recommendation, SFTP, PII/PHI storage, etc =E2=80=A6 p=
+lease do a security review with members of security team and provide date, =
+findings, changes here.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-ContactsandImpactedTeams/People">Contacts an=
+d Impacted Teams/People</h1>
+<p><em><span data-colorid=3D"ncs8u5zoru">Bulleted list of teams and individ=
+uals that are updated</span></em></p>
+    </div>
+</body>
+</html>
+------=_Part_170_642276795.1750686709896--
