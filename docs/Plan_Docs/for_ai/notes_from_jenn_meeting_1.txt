@@ -1,0 +1,22 @@
+1. Entry point CVS SuperApp has services 
+   - those services are going to call into AWS APIC
+   - New endpoint in our superapp to our APIC
+   - Rate cards 
+   - Reate limits
+   - Herschel has started a rate limit page
+
+2. Invoke a new route in the CVS BFF specific to plan documents list
+   - From the CVS BFF we are going to call the benefits service
+   - Token from 
+
+3. Rohit Puri is our CVS contact
+   - We had a conversation with Herschel and Rohit
+   - How are we going invoke this API
+   -  
+
+repo ID Cards
+- Aetna Health CVS BFF
+- 
+
+Alan Chaimberlan - Facet
+

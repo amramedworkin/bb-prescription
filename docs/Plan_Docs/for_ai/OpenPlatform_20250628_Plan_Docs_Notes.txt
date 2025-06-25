@@ -1,0 +1,38 @@
+1. In a scenario where we only have one PDF, tapping on plan document will show them the pdf
+
+2. Same chrome as other place for this scenario
+
+3. In a scendario where we have multiple plan documents, we will need a list of the various documents, with some document description, if not it won't show
+3.1. Then the user can click on the doc and show it
+3.2. The plan comnes with various options: share, print, etc.
+3.3. Assume all will be PDF
+3.4. If not PDF, we will need another template
+3.5. Very rare that there is only one plan document
+3.6. Caremark has this scenario but Aetna really doesn't
+3.7. Scenario where there are zero documents
+3.8. Prepare for the search capability
+3.9. We are not building towards search yet.
+3.10. Aetna currently has a search in web, brining into the app next PI
+3.11. They are not seeing any functionality currently in the app
+3.12. Do not want to degrade performanc=e
+3.13. Scope is to access just the plan doc, no other features.
+3.14. May need to make this a page, not a sheet.
+3.15. Documentation needs to be consistent between Aetna and CVS
+3.16. There is definitely is a language component for this as well.
+3.16.1. We show language in parenthesis in the app
+3.16.2. Do we need to include the language components
+3.16.3. Is this document name created: concat language to doc name
+3.16.4. We need to keep this in mind and give some attribute to filter them out.
+3.16.5. Future: Here is the doc in your native language
+3.16.6. Raise this as how might we question
+3.17. I need to get with them on what the json should look like if there is one or zero docs
+3.18. Plan doc search in scope for SuperApp?  Not something we have solved yet.  Lots of discussion of when and how.
+3.18.1. Prototype bas search
+3.18.2. Not in scope for this iteration
+3.18.3. But is on the radar.
+3.19. For plan documents, we don't have a description
+3.19.1. They will not display the field
+3.20. Same with the plan name
+
+QA3 User: DMT-S-W265265248
+ 

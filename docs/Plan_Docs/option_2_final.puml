@@ -1,0 +1,44 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+title Option 2: App Startup Pre-fetch (Solution Flow - Generic PlantUML)
+
+left to right direction
+
+' External Clients
+System_Ext(openplatform_client, "OpenPlatform Client", "Web/Mobile Application")
+
+' OpenPlatform BFF Deployment Node
+Deployment_Node(openplatform_bff_node, "OpenPlatform BFF System", "Serverless Infrastructure for Plan Documents") {
+  AddProperty("Location", "AWS Region (e.g., us-east-1)")
+  Deployment_Node_L(api_gateway_node, "API Gateway Instance", "AWS API Gateway", "Serves as the entry point for BFF API requests") {
+    Container(api_gateway_app, "API Gateway", "API Management Layer", "Handles external requests, routing to BFF service.")
+  }
+  Deployment_Node_L(bff_lambda_node, "BFF Service Environment", "AWS Lambda", "Serverless execution environment for BFF logic") {
+    Container(bff_service_app, "OpenPlatform BFF Service", "Node.js Lambda Function", "Responsible for pre-fetching the plan document list.")
+  }
+}
+
+' Plan Doc Index System Deployment Node
+Deployment_Node(plan_doc_index_node, "Plan Doc Index System", "Centralized Metadata Source") {
+  AddProperty("Location", "External Data Center/Cloud")
+  Deployment_Node_L(index_api_node, "Plan Doc Index API Node", "Application Server", "Provides plan document metadata.") {
+    Container(index_api_app, "Plan Doc Index API", "RESTful API", "Source for plan document metadata.")
+  }
+}
+
+' Client-Side or BFF-Side Cache
+Deployment_Node(client_bff_cache_node, "Client/BFF Cache", "Local/Distributed Cache") {
+  AddProperty("Location", "OpenPlatform Client or OpenPlatform BFF")
+  ContainerDb(client_bff_cache_db, "Cached Plan List", "In-memory/Distributed Cache", "Stores pre-fetched plan document list data.")
+}
+
+
+' Relationships
+Rel(openplatform_client, api_gateway_app, "1. App Startup (Initiates pre-fetch)")
+Rel(api_gateway_app, bff_service_app, "2. Invokes BFF Service")
+Rel(bff_service_app, index_api_app, "3. Fetches Plan Doc List")
+Rel(bff_service_app, client_bff_cache_db, "4. Caches Data")
+Rel(openplatform_client, client_bff_cache_db, "5. Retrieves Data (on Page Load)", "Instant load")
+
+@enduml

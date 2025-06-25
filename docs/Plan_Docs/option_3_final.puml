@@ -1,0 +1,55 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+title Option 3: BFF-Centric Caching & Augmentation (Solution Flow - Generic PlantUML)
+
+left to right direction
+
+' External Clients
+System_Ext(openplatform_client, "OpenPlatform Client", "Web/Mobile Application")
+
+' OpenPlatform BFF Deployment Node
+Deployment_Node(openplatform_bff_node, "OpenPlatform BFF System", "Serverless Infrastructure for Plan Documents") {
+  AddProperty("Location", "AWS Region (e.g., us-east-1)")
+  Deployment_Node_L(api_gateway_node, "API Gateway Instance", "AWS API Gateway", "Serves as the entry point for BFF API requests") {
+    Container(api_gateway_app, "API Gateway", "API Management Layer", "Handles external requests, routing to BFF service.")
+  }
+  Deployment_Node_L(bff_lambda_node, "BFF Service Environment", "AWS Lambda", "Serverless execution environment for BFF logic") {
+    Container(bff_service_app, "OpenPlatform BFF Service", "Node.js Lambda Function", "Performs caching, augmentation, and orchestration.")
+  }
+  Deployment_Node_L(bff_redis_node, "BFF Redis Cluster", "ElastiCache for Redis", "Managed in-memory data store for BFF-specific caching") {
+    ContainerDb(bff_redis_cache_db, "BFF Redis Cache", "In-memory Data Store", "Caches plan document list data specific to OpenPlatform.")
+  }
+  Deployment_Node_L(static_metadata_node, "Static Metadata Cache", "Local/Distributed Storage", "Stores static data for augmentation") {
+    ContainerDb(static_metadata_cache_db, "Static Metadata Cache", "Key-Value Store", "Provides lookup for augmenting missing metadata.")
+  }
+}
+
+' Aetna Health Benefits System Deployment Node
+Deployment_Node(benefits_system_node, "Aetna Health Benefits System", "Existing Microservice Infrastructure") {
+  AddProperty("Location", "AWS Region (e.g., us-east-1)")
+  Deployment_Node_L(benefits_api_node, "Benefits Service Environment", "AWS Lambda/ECS", "Execution environment for existing Benefits Service") {
+    Container(benefits_api_app, "Benefits Service API", "Java/Node.js Microservice", "Provides plan document list and PDF retrieval logic.")
+  }
+  Deployment_Node_L(benefits_redis_node, "Benefits Redis Cluster", "ElastiCache for Redis", "Managed in-memory data store for caching") {
+    ContainerDb(benefits_redis_cache_db, "Benefits Redis Cache", "In-memory Data Store", "Caches Plan List Metadata (TTL 1hr).")
+  }
+  Deployment_Node_L(s3_node, "S3 Bucket", "AWS S3", "Object storage for PDF files") {
+    ContainerDb(object_storage_db, "Object Storage (S3)", "Blob Storage", "Caches PDF Documents.")
+  }
+}
+
+' External Core System
+System_Ext(core_plan_doc_system_ext, "Core Plan Doc System", "Source of Truth for Documents")
+
+' Relationships
+Rel(openplatform_client, api_gateway_app, "1. Requests Plan Doc List/PDF")
+Rel(api_gateway_app, bff_service_app, "2. Invokes BFF Service")
+Rel(bff_service_app, bff_redis_cache_db, "3a. Checks/Updates BFF Cache (List)")
+Rel(bff_service_app, benefits_api_app, "3b. Requests Doc List/PDF from Benefits Service")
+Rel(benefits_api_app, benefits_redis_cache_db, "4a. Checks/Updates Benefits Cache (List)")
+Rel(benefits_api_app, object_storage_db, "4b. Checks/Updates Benefits S3 Cache (PDF)")
+Rel(benefits_api_app, core_plan_doc_system_ext, "5. Fetches from Core System (on cache miss)")
+Rel(bff_service_app, static_metadata_cache_db, "6. Augments Data (from Static Cache)")
+
+@enduml
