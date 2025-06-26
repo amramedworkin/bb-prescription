@@ -1,0 +1,373 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: v4healthpoliciesidcommunicationcontents
+  title: /v4/healthpolicies/{id}/communicationcontents
+  version: 4.0.2
+  description: 'This API retrieves communication contents information for a given
+    health policy.  It returns an expiring URL in encrypted format  to the actual
+    documents.  The consumer can use this URL to get the documents by calling REST
+    API .This will return the actual content (eg: PDF document).'
+  contact:
+    name: Sunil Manthena
+    email: ManthenaS@aetna.com
+schemes:
+- https
+basePath: /v4
+produces:
+- application/json
+securityDefinitions:
+  oauth-passGrant:
+    type: oauth2
+    description: ""
+    flow: password
+    scopes:
+      PII: ""
+      PHI: ""
+      OPENID: ""
+    tokenUrl: https://qaapih1.aetna.com/healthcare/qapath1/v3/auth/oauth2product/jwt/token
+  oauth:
+    type: oauth2
+    description: ""
+    flow: accessCode
+    scopes:
+      PII: ""
+      PHI: ""
+      OPENID: ""
+    authorizationUrl: https://apih1.int.aetna.com/healthcare/prod/v5/auth/oauth2/authorize
+    tokenUrl: https://apih1.int.aetna.com/healthcare/prod/v5/auth/oauth2/token
+  implicit:
+    type: oauth2
+    description: ""
+    flow: implicit
+    scopes:
+      PII: ""
+      PHI: ""
+      OPENID: ""
+    authorizationUrl: https://apih1.int.aetna.com/healthcare/prod/v5/auth/oauth2/authorize
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+    description: This API is protected by user-level (aka authorization code grant
+      access token) and JWT.
+security:
+- oauth:
+  - PII
+- oauth:
+  - PHI
+- oauth:
+  - OPENID
+- implicit:
+  - PII
+- implicit:
+  - PHI
+- implicit:
+  - OPENID
+- oauth-passGrant:
+  - PII
+- oauth-passGrant:
+  - PHI
+- oauth-passGrant:
+  - OPENID
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  phase: realized
+paths:
+  /healthpolicies/{id}/communicationcontents:
+    get:
+      responses:
+        200:
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Sample Response JSON'
+        555:
+          description: Service Error
+          schema:
+            $ref: '#/definitions/APIerror'
+      description: ""
+      summary: Retrieves communication contents information for a given health policy.
+    parameters:
+    - name: id
+      type: string
+      required: true
+      in: path
+      description: 'healthPolicyId. Ex: 68~ 000001-01AZ0003'
+    - name: controlNumber
+      type: string
+      required: false
+      in: query
+      description: Ex:0747787
+    - name: plans
+      type: string
+      required: false
+      in: query
+      description: plan summary and bic combinations with delimiters. Ex:A,47400|C,46400|A,41900|A,45400|B,46600
+    - name: esdsType
+      type: string
+      required: false
+      in: query
+      description: 'Ex: MEMSV'
+    - name: esdsSubtype
+      type: string
+      required: false
+      in: query
+      description: 'Ex: CPQDRAFT'
+    - name: navigatorAvailability
+      type: string
+      required: false
+      in: query
+      description: 'Ex: Available'
+    - name: effectiveDt
+      type: string
+      required: false
+      in: query
+      description: Plan effective start date
+    - name: documentStatus
+      type: string
+      required: false
+      in: query
+      description: 'Ex: Issued'
+    - name: planSponsorStatus
+      type: string
+      required: false
+      in: query
+      description: 'Ex: Active'
+    - name: docLanguage
+      type: string
+      required: false
+      in: query
+      description: 'Ex: ENG'
+    - name: format
+      type: string
+      required: false
+      in: query
+      description: 'Ex: PDF'
+    - name: effDtOperator
+      type: string
+      required: false
+      in: query
+      description: 'Ex: Equal to or Less Than'
+    - name: versionStatus
+      type: integer
+      required: false
+      in: query
+      description: 'Ex: 1 for Released'
+      format: int32
+    - name: dateAsOf
+      type: string
+      required: false
+      in: query
+      description: date to retrieve the health policies info
+      format: date
+    - name: membershipId
+      type: string
+      required: false
+      in: query
+      description: 'membershipId Ex: 59~123456789001+000001-02SC0001+2015-03-01'
+    options:
+      responses:
+        200:
+          description: 200 OK
+      security:
+      - []
+definitions:
+  eieHeaderObj:
+    properties:
+      eieHeader:
+        type: object
+        xml:
+          namespace: ""
+        properties:
+          action:
+            type: string
+          accessToken:
+            type: string
+          transactionID:
+            type: string
+          multiPath:
+            type: string
+          impersonatingApplicationIdentifier:
+            type: object
+            properties:
+              idSource:
+                type: string
+              idValue:
+                type: string
+              idType:
+                type: string
+          applicationIdentifier:
+            type: object
+            properties:
+              idSource:
+                type: string
+              idValue:
+                type: string
+              idType:
+                type: string
+          eieHeaderUserContext:
+            type: object
+            properties:
+              assuranceLevel:
+                type: string
+              dnAccountName:
+                type: string
+              eieHeaderAuthorizedRole:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    authorizedRole:
+                      type: string
+              impersonatingAccountIdentifier:
+                type: object
+                properties:
+                  idSource:
+                    type: string
+                  idValue:
+                    type: string
+                  idType:
+                    type: string
+              accountIdentifier:
+                type: object
+                properties:
+                  idSource:
+                    type: string
+                  idValue:
+                    type: string
+                  idType:
+                    type: string
+          eieHeaderVersion:
+            type: object
+            properties:
+              major:
+                type: string
+              minor:
+                type: string
+              maintenance:
+                type: string
+  Sample Response JSON:
+    description: Sample Response JSON To Consumer
+    type: object
+    properties:
+      readHealthPoliciesCommunicationContentsResponse:
+        type: object
+        properties:
+          readCommunicationContents:
+            type: object
+            properties:
+              communicationContent:
+                type: array
+                items:
+                  properties:
+                    webHyperlink:
+                      type: string
+                    documentType:
+                      type: string
+                    description:
+                      type: string
+                    title:
+                      type: string
+                    format:
+                      type: string
+                    documentSubType:
+                      type: string
+                    language:
+                      type: string
+                    contentSize:
+                      type: string
+                    communicationContentIdentifier:
+                      type: array
+                      items:
+                        properties:
+                          idSource:
+                            type: string
+                          idValue:
+                            type: string
+                          idType:
+                            type: string
+                          resourceId:
+                            type: string
+                    communicationContentEffectivePeriod:
+                      type: object
+                      properties:
+                        dateTimeAsOf:
+                          type: string
+                        dateTimeBegin:
+                          type: string
+                        dateTimeEnd:
+                          type: string
+                  required:
+                  - documentType
+    example:
+      readHealthPoliciesCommunicationContentsResponse:
+        readCommunicationContents:
+          communicationContent:
+          - webHyperlink: DBxhAmde/SZj8CMAy/g8O+4sMKc8QOyyq5K6h45mrVQ8gRVSZP0/Y3Uuemw0XJQB4KkhqS4vOdBJHBRJrhOrsYJQzrlXaO720ZGpwsL7/lXqoCd7k5OFCKKpl3KfkekJYRCm+8wAr6s+/bC6vVOGZmWJcC/GbZuAJLgfSMqR9pg=
+            documentType: SB
+            description: Summary Of Benefits
+            title: SB_2018_H2829_001_SP.pdf
+            format: PDF
+            documentSubType: SBMDCRE
+            language: Spanish
+            contentSize: "5852789"
+            communicationContentIdentifier:
+              idSource: "101"
+              idValue: '{D0EF1D64-0000-C31D-B91B-CFB1C9194D5B}+SB+SBMDCRE+2018-06-20T16:03:35.208Z+2018-06-20T16:03:35.208Z+PDF+pdf+5852789+243'
+              idType: communicationContents
+          - webHyperlink: 8paUmYjgk3Urp/awnuLBTKBJOS1VKIC32PgSd6DpxU4+iw/ioMB0K0+E1FBoFXxPRNsloZo3SEeB+V4VUqEpW4hsg7c5a9iD0lktdFFTK8cbMXZi8LbR1dAcddlgjw63S0AyZ1Y6KKyliM+kXTkmyXIDfa/gKu7Tg2M9DAKjT7w=
+            documentType: LIS
+            description: Low Income Subsidy Premium Chart
+            title: LIS_2018_H2829_001_SP.pdf
+            format: PDF
+            documentSubType: LISPREMM
+            language: Spanish
+            contentSize: "176828"
+            communicationContentIdentifier:
+              idSource: "101"
+              idValue: '{90EE1D64-0000-C312-A7B7-B23E96846970}+LIS+LISPREMM+2018-06-20T16:02:11.370Z+2018-06-20T16:02:11.370Z+PDF+pdf+176828+276'
+              idType: communicationContents
+          - webHyperlink: nm/NefROKNLuVFxLvyjsH6REoxhW67rvmQlo6GQMQdS+UFyre0iIDf50zkAGogC5YBGtE9ZuXodnI/YHeTCiAAx7/hoeycxaV4SJUviYdEiDZWri//0fNLWKVOCsbX6jWKe4KQoPd27NOZ60w/TkWCNaZnxPUnhKcQUf7jbduiQ=
+            documentType: EOC
+            description: Evidence Of Coverage
+            title: EOC_2018_H2829_001_EN.pdf
+            format: PDF
+            documentSubType: EOCDTLS
+            language: English
+            contentSize: "10550720"
+            communicationContentIdentifier:
+              idSource: "101"
+              idValue: '{80ED1D64-0000-C31A-A549-3F0106EE3666}+EOC+EOCDTLS+2018-06-20T16:01:03.449Z+2018-06-20T16:01:03.449Z+PDF+pdf+10550720+222'
+              idType: communicationContents
+  APIerror:
+    description: ""
+    type: object
+    properties:
+      httpCode:
+        type: string
+        description: Indicates the httpCode returned in the header
+        example: "555"
+      httpMessage:
+        type: string
+        description: Short description of the error
+        example: Unauthorized
+      moreInformation:
+        type: string
+        description: Long description of the error
+        example: Client id missing
+externalDocs:
+  description: HTTP Common Error Codes
+  url: https://docshare2013.aetna.com/sites/mcoeESBAPIDocs/Shared%20Documents/API%20Connect%20Documentation/API%20Connect%20Returned%20Errors/API%20Common%20Error%20Code.pdf
+consumes:
+- application/json
+x-ibm-endpoints:
+- endpointUrl: https://apih1.int.aetna.com/healthcare/prod
+  type:
+  - production
+  - development
+- endpointUrl: https://apih1.aetna.com/healthcare/prod
+  type:
+  - production
+  - development
+...

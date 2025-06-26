@@ -1,0 +1,23 @@
+Omni Search 
+- Google search for Aetna health
+- Works from LLM but is not member generative
+- Statc data in the proprietary llm
+- Stacked and ranked
+- Exapnding it significantly so that it is generative member basis
+- Can we answer their questions
+- Prescriptions, funcitionality
+- August timeline (THAT IS RIDICULOUS)
+- Presecriptions integration 
+- Other domains
+- Alison Hersef
+- Pharmacy functionality 
+- AI required for build work
+- Omni search until the PI3 boundary
+- Controlling bandwidth
+- Sync up with Alison, where can we help
+- Isolated us medications and pharmacies
+- Gaps in AI architecture
+- August push is not in the system
+- Omni Campaign list
+- Project time lines
+- FindCare agent

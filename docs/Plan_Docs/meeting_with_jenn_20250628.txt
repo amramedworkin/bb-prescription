@@ -1,0 +1,35 @@
+1. Stage 1 - No vision
+2. Check features
+   - Do they have plan docs enabled.
+3. There is no vision accumulators
+4. No entry point for vision today with how things are defined in the superapp
+5. Medical and dental accumulators but no visual accumulators
+6. Medical plan docs/Dental plan docs
+7. Features regardless
+8. Certain plan sponsors in commercial that don't have plan docs with us.
+8.1. Small group sponsors may not have plan documents
+8.2. What is the rule - Look in Facets
+9. Return sometimes both medical and dental documents
+8.1. We don't know that all of those checks that are in place.
+8.2. We quiery with all of our medical and dental
+8.3. We still have dental plan summary
+8.4. Plan documents are based policy ID
+9. Membership resource ID needs to come in on every request
+9.1. In order to get the memberships we are going to have to call plan groups
+9.2. Need to use the plan group id to ask for 
+9.3. Membership ID and Policy ID and today's date
+9.4. Now we know this through features ID
+9.5. Two APIs plan groups and features
+9.6. Some of the other featurs won't have a policy id
+9.7. You don't have to go through
+9.8. Tear it apart so that a single document just returns a single item in the list, then we 
+10. Suggest splitting into two requests
+11. Confluence page for features lookup.
+12. Message available, Hide plan docs and message HHL signed indicator
+13. Does superapp bff have integration with contentful.
+14. Possibilities of these use cases on messaging.
+15. Even if they had AEM on their side taking care of this
+16. We would have to send the data.
+17. They are going to want to add messaging.
+18. Message are stored in contentful or content catalog
+

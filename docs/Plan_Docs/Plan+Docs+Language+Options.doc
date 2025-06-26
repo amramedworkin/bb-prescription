@@ -1,0 +1,281 @@
+Message-ID: <499473023.191.1750959511705@ca1d55c16c28>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_190_1828621077.1750959511705"
+
+------=_Part_190_1828621077.1750959511705
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Plan Docs Language Options</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Plan Docs Language Options</h1>
+    <div class=3D"Section1">
+        <h1 id=3D"PlanDocsLanguageOptions-FeatureF137398">Feature F137398</=
+h1>
+<p><a class=3D"external-link" href=3D"https://rally1.rallydev.com/#/7241143=
+15503d/portfolioitemstreegrid?detail=3D%2Fportfolioitem%2Ffeature%2F6929784=
+17057&amp;view=3Da72e627a-3d71-4dbe-b777-5260973407ec&amp;fdp=3Dtrue" rel=
+=3D"nofollow">https://rally1.rallydev.com/#/724114315503d/portfolioitemstre=
+egrid?detail=3D%2Fportfolioitem%2Ffeature%2F692978417057&amp;view=3Da72e627=
+a-3d71-4dbe-b777-5260973407ec&amp;fdp=3Dtrue</a></p>
+<h1 id=3D"PlanDocsLanguageOptions-Summary">Summary</h1>
+<p>For PI1.2024 - just doing a bit of early discovery since we don=E2=80=99=
+t yet have design or firm requirements. Looking at what data is available i=
+n Filenet for plan documents related to language and categorization for IFP=
+ and MNG members.</p>
+<h1 id=3D"PlanDocsLanguageOptions-Discovery">Discovery</h1>
+<p>Filenet does capture the language for each document, document title, doc=
+ument type, document subtype.</p>
+<p>Document type can be ANOC, EOC, Formulary, LIS, SB, STARS, SOC, SBC, Pol=
+icy Document, Handbook, etc</p>
+<p>Product Types can be MedicareJV, Medicare Individual, Medicare DSNP, Med=
+icare Group, IVL Exchange, IVL Exchange JV</p>
+<p>There are Policy Period Start and End Dates, Version Effective Dates.</p=
+>
+<p>Document Title example: =E2=80=9C1418392_2024 TX Silver 1 El Paso HMO CS=
+R 73_ES.pdf=E2=80=9D</p>
+<p>For the above titled document, the Document Type, Document Subtype and D=
+escription fields are all the same: =E2=80=9CPolicy Document=E2=80=9D</p>
+<p>But for others - like this Medicare DSNP plan - these can be different</=
+p>
+<p>Document Type: EOC, Document Subtype: EOCDTLS, Description: =E2=80=9CEvi=
+dence of Coverage=E2=80=9D</p>
+<p>Document Language is also saved with the document metadata. Don=E2=80=99=
+t have a complete list of the possibilities - but we can get this.</p>
+<p></p>
+<p>For language, would need to hear from PM as to what should be translated=
+. I think we display the description to the member today with the language =
+in parenthesis beside it.</p>
+<p>If AH has language as Spanish vs English, we could translate the documen=
+t title. But for other languages this is not really supported. Not sure wha=
+t behavior should be. TBD.</p>
+<p></p>
+<p>We should get a current/recent data dump from Filenet for document metad=
+ata for each of the product types.</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_190_1828621077.1750959511705--

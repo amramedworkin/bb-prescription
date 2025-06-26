@@ -1,0 +1,260 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: v5communicationcontentsid
+  title: /v5/communicationcontents/{id}
+  version: 5.0.4
+  contact:
+    name: Guru Nagarajan,muvvas@aetna.com
+    email: Nagarajang@aetna.com
+  description: This API will retrieve the document content based on the communication
+    content identifier.
+schemes:
+- https
+basePath: /v5
+securityDefinitions:
+  Password-oauth:
+    type: oauth2
+    description: ""
+    flow: password
+    scopes:
+      PII: ""
+      PHI: ""
+      OPENID: ""
+    tokenUrl: https://qaapih1.int.aetna.com/healthcare/qapath1/v5/auth/oauth2/token
+  user-oauth:
+    type: oauth2
+    description: ""
+    flow: accessCode
+    scopes:
+      PHI: ""
+      PII: ""
+      OPENID: ""
+    authorizationUrl: https://devapih1.int.aetna.com/healthcare/devpath3/v5/auth/oauth2/authorize
+    tokenUrl: https://devapih1.int.aetna.com/healthcare/devpath3/v5/auth/oauth2/jwt
+  Implicit-oauth:
+    type: oauth2
+    description: ""
+    flow: implicit
+    authorizationUrl: https://qaapih1.int.aetna.com/healthcare/qapath1/v5/auth/oauth2/authorize
+    scopes:
+      PII: ""
+      PHI: ""
+      OPENID: ""
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+    description: This API requires OAuth user authentication, JWT
+security:
+- Password-oauth:
+  - PII
+- Password-oauth:
+  - PHI
+- user-oauth:
+  - PHI
+- user-oauth:
+  - PII
+- Implicit-oauth:
+  - PII
+- Implicit-oauth:
+  - PHI
+- Password-oauth:
+  - OPENID
+- user-oauth:
+  - OPENID
+- Implicit-oauth:
+  - OPENID
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  phase: realized
+paths:
+  /communicationcontents/{id}:
+    get:
+      responses:
+        200:
+          description: 200 OK.
+          schema:
+            type: string
+            format: binary
+        555:
+          description: Service Error
+          schema:
+            $ref: '#/definitions/APIError'
+      summary: This operation will retrieve the document content.
+      description: "**/v5/communicationcontents/{id}** \n### Request Parameter Example
+        ### \n- {id} - communication content identifier. Passed as a path parameter
+        in the format idSource~idValue.\n          - Docment Management System(s)\n\t\t
+        \ 101~document inquiry id + document Type + document subtype + versionStartDate
+        for doc inquiry service + versionEndDate for doc inquiry service + format
+        + docExtension + contentSize + key \n\t\t  e.g., 101~{65D40A06-CD96-4E0C-A700-AA18820DBA35}+SBC+SBCCONSUMR+2012-07-23T16:43:33.594Z+2012-07-23T16:43:33.594Z+PDF+pdf+262724+212\n\t\t
+        \ - Document Management System(s)\n\t\t  106~member id + individualIdProxy
+        + document inquiry id + document Type + document subtype + versionStartDate
+        for doc inquiry service + versionEndDate for doc inquiry service + format
+        + docExtension + contentSize + key \n\t\t  e.g., 106~123456789001 + RSLBBBQBBPXY
+        + {65D40A06-CD96-4E0C-A700-AA18820DBA35}+SBC+SBCCONSUMR+2012-07-23T16:43:33.594Z+2012-07-23T16:43:33.594Z+PDF+pdf+262724+212\n\t\t
+        - ePub \n\t\t  70023~document identifier (NodeId) + DMS(document management
+        server)\n\t\t  e.g., 70003~12791629 + BDL\n\n### API Description:###\nThis
+        API GET /v5/communicationcontents/{id} operation will retrieve the document
+        content."
+      parameters:
+      - name: responseLevel
+        type: string
+        required: false
+        enum:
+        - Standard
+        - Extended
+        in: query
+        description: This attributes indicates the level of the response based on
+          the consumer specification.Possible values are Standard, Extended.Default
+          value will be Standard.
+    parameters:
+    - name: id
+      type: string
+      required: true
+      in: path
+      description: communication content identifier
+    options:
+      responses:
+        200:
+          description: 200 OK
+      parameters:
+      - name: id
+        type: string
+        required: true
+        in: path
+        description: communication content identifier
+      security:
+      - []
+definitions:
+  eieHeaderObj:
+    properties:
+      eieHeader:
+        type: object
+        xml:
+          namespace: ""
+        properties:
+          action:
+            type: string
+          accessToken:
+            type: string
+          transactionID:
+            type: string
+          multiPath:
+            type: string
+          impersonatingApplicationIdentifier:
+            type: object
+            properties:
+              idSource:
+                type: string
+              idValue:
+                type: string
+              idType:
+                type: string
+          applicationIdentifier:
+            type: object
+            properties:
+              idSource:
+                type: string
+              idValue:
+                type: string
+              idType:
+                type: string
+          eieHeaderUserContext:
+            type: object
+            properties:
+              assuranceLevel:
+                type: string
+              dnAccountName:
+                type: string
+              eieHeaderAuthorizedRole:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    authorizedRole:
+                      type: string
+              impersonatingAccountIdentifier:
+                type: object
+                properties:
+                  idSource:
+                    type: string
+                  idValue:
+                    type: string
+                  idType:
+                    type: string
+              accountIdentifier:
+                type: object
+                properties:
+                  idSource:
+                    type: string
+                  idValue:
+                    type: string
+                  idType:
+                    type: string
+              eieHeaderBusinessIdentifier:
+                type: object
+                properties:
+                  businessIdentifier:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idSource:
+                          type: string
+                        idValue:
+                          type: string
+                        idType:
+                          type: string
+          eieHeaderVersion:
+            type: object
+            properties:
+              major:
+                type: string
+              minor:
+                type: string
+              maintenance:
+                type: string
+  APIError:
+    description: ""
+    type: object
+    properties:
+      httpCode:
+        type: string
+        description: Indicates the httpCode returned in the header
+        example: "401"
+      httpMessage:
+        type: string
+        description: Short description of the error
+        example: Unauthorized
+      moreInformation:
+        type: string
+        description: Long description of the error
+        example: Client id missing
+tags: []
+externalDocs:
+  description: HTTP Common Error Codes
+  url: https://docshare2013.aetna.com/sites/mcoeESBAPIDocs/Shared%20Documents/API%20Connect%20Documentation/API%20Connect%20Returned%20Errors/API%20Common%20Error%20Code.pdf
+produces:
+- application/pdf
+- image/png
+- image/jpeg
+- image/tiff
+- text/csv
+- application/msword
+- application/vnd.openxmlformats-officedocument.wordprocessingml.document
+- application/vnd.ms-excel
+- application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- application/gzip
+- text/plain
+x-ibm-endpoints:
+- endpointUrl: https://apih1.int.aetna.com/healthcare/prod
+  type:
+  - production
+  - development
+- endpointUrl: https://apih1.aetna.com/healthcare/prod
+  type:
+  - production
+  - development
+...
