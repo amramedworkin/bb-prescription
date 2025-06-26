@@ -1,0 +1,38 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Component Diagram for OpenPlatform BFF - Option 1
+
+Container_Boundary(openplatform_bff, "OpenPlatform BFF (Backend-for-Frontend Service)") {
+  Component(list_controller, "PlanDocListController", "API Endpoint Handler", "Processes requests for plan document lists.")
+  Component(pdf_controller, "PlanDocRetrieveController", "API Endpoint Handler", "Processes requests for specific plan document PDFs.")
+  Component(benefits_proxy, "BenefitsServiceProxy", "External Service Client", "Handles communication with the Aetna Health Benefits Service.")
+  Component(response_transformer, "ResponseTransformer", "Data Transformation Module", "Formats raw data from Benefits Service into OpenPlatform client's contract, including language and missing field handling.")
+  Component(error_handler, "ErrorHandler", "Error Handling Module", "Translates backend errors into client-friendly messages.")
+}
+
+Boundary(external_dependencies, "External Dependencies") {
+    System_Ext(api_gateway, "API Gateway", "AWS API Gateway", "Receives requests from OpenPlatform client applications.")
+    System_Ext(aetna_benefits_service, "Aetna Health Benefits Service", "Existing Microservice", "Provides plan document list and PDF retrieval.")
+}
+
+Rel(api_gateway, list_controller, "1. Forwards List Requests", "HTTPS/JSON")
+Rel(api_gateway, pdf_controller, "1. Forwards PDF Requests", "HTTPS/JSON")
+
+Rel(list_controller, benefits_proxy, "2a. Requests Plan List")
+Rel(pdf_controller, benefits_proxy, "2b. Requests PDF")
+
+Rel(benefits_proxy, aetna_benefits_service, "3. Makes HTTP calls")
+
+Rel(benefits_proxy, list_controller, "4a. Returns Raw List Data")
+Rel(benefits_proxy, pdf_controller, "4b. Returns Raw PDF Data")
+
+Rel(list_controller, response_transformer, "5a. Sends List for Transformation")
+Rel(response_transformer, list_controller, "6a. Returns Transformed List")
+
+Rel(list_controller, error_handler, "7a. Routes List Errors")
+Rel(pdf_controller, error_handler, "7b. Routes PDF Errors")
+
+Rel(response_transformer, error_handler, "Routes Transformation Errors")
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Container Diagram for OpenPlatform Plan Documents System - Option 1
+
+Person(user, "OpenPlatform User", "A user of the OpenPlatform mobile or web application.")
+
+System_Boundary(openplatform_app_boundary, "OpenPlatform Application") {
+  Container(mobile_app, "Mobile App", "iOS/Android Application", "Allows users to access various OpenPlatform features, including plan documents.")
+  Container(web_app, "Web App", "Single-Page Application (SPA)", "Allows users to access various OpenPlatform features, including plan documents.")
+}
+
+System_Boundary(plan_docs_system_boundary, "OpenPlatform Plan Documents System") {
+  Container(api_gateway, "API Gateway", "AWS API Gateway", "Exposes the OpenPlatform BFF via a REST API, handling requests from client applications.")
+  Container(openplatform_bff, "OpenPlatform BFF", "Backend-for-Frontend Service", "A new service that orchestrates plan document list and PDF retrieval, and transforms responses for the client.")
+}
+
+System_Ext(aetna_benefits_service, "Aetna Health Benefits Service", "Existing Microservice", "Provides core plan document list and PDF retrieval logic.")
+ContainerDb(benefits_redis_cache, "Benefits Redis Cache", "Redis", "Existing cache for plan document list metadata (1 hour TTL).")
+ContainerDb(s3_pdf_cache, "S3 PDF Cache", "AWS S3 Bucket", "Existing cache for PDF documents.")
+System_Ext(core_plan_doc_system, "Core Plan Doc System", "Backend System", "The authoritative source for plan documents (e.g., ePub, Filenet).")
+
+
+Rel(user, mobile_app, "Uses")
+Rel(user, web_app, "Uses")
+
+Rel(mobile_app, api_gateway, "1. Requests Plan Docs (List/PDF)", "HTTPS/JSON")
+Rel(web_app, api_gateway, "1. Requests Plan Docs (List/PDF)", "HTTPS/JSON")
+Rel(api_gateway, openplatform_bff, "2. Forwards Request", "HTTPS")
+
+Rel(openplatform_bff, aetna_benefits_service, "3. Requests Plan Doc List/PDF", "HTTPS/REST")
+
+Rel(aetna_benefits_service, benefits_redis_cache, "4a. Checks/Updates List Cache")
+Rel(aetna_benefits_service, s3_pdf_cache, "4b. Checks/Updates PDF Cache")
+Rel(aetna_benefits_service, core_plan_doc_system, "5. Fetches from Core API (on cache miss)")
+
+@enduml

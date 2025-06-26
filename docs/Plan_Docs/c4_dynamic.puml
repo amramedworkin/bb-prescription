@@ -1,0 +1,35 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+title Dynamic Diagram: Plan Document List Retrieval Flow - Option 1
+
+actor "OpenPlatform User" as user
+participant "OpenPlatform Client" as client
+participant "API Gateway" as api_gw <<AWS API Gateway>>
+participant "OpenPlatform BFF Service" as bff
+participant "Aetna Health Benefits Service" as benefits_svc <<Existing Microservice>>
+database "Benefits Redis Cache" as redis_cache <<Existing Cache>>
+database "Core Plan Doc System" as core_api <<Existing System>>
+
+autoactivate on
+
+user -> client : 1. Navigates to Plan Documents page
+client -> api_gw : 2. Request Plan Document List
+api_gw -> bff : 3. Forward Request (POST /v1/cvs/plan-documents/list)
+bff -> benefits_svc : 4. Call Benefits Service (POST /plan-document-list/retrieve)
+
+benefits_svc -> redis_cache : 5a. Check Redis Cache for list
+alt List in Redis Cache?
+  redis_cache --> benefits_svc : 5a.1. Return Cached List
+else Not in Redis Cache
+  benefits_svc -> core_api : 5b.1. Fetch List from Core Plan Doc System
+  core_api --> benefits_svc : 5b.2. Return List
+  benefits_svc -> redis_cache : 5b.3. Cache List in Redis
+end
+
+benefits_svc --> bff : 6. Return Plan Document List (raw data)
+bff -> bff : 7. Transform & Augment List Data\n(e.g., add language, hide missing fields)
+bff --> client : 8. Send Transformed List
+client -> user : 9. Display Plan Document List
+
+@enduml
