@@ -1,0 +1,64 @@
+@startuml
+start
+
+partition "OpenPlatform Client" {
+  :User navigates to Plan Docs / Taps document;
+  :Send request to BFF;
+}
+
+partition "OpenPlatform BFF" {
+  :Receive request from Client;
+  if (Request is for List) then (List Flow)
+    :Call Benefits Service /list endpoint;
+  else (PDF Flow)
+    :Call Benefits Service /retrieve endpoint;
+  endif
+}
+
+partition "Benefits Service" {
+  if (Flow is List) then (List Processing)
+    :Check Redis Cache for list;
+    if (List in Redis Cache?) then (Yes)
+      :Retrieve list from Redis;
+    else (No)
+      :Fetch list from Core Plan Doc System;
+      :Cache list in Redis;
+    endif
+    :Return list to BFF;
+  else (PDF Processing)
+    :Check S3 Bucket for PDF;
+    if (PDF in S3 Cache?) then (Yes)
+      :Stream PDF from S3;
+    else (No)
+      :Fetch PDF from Core Plan Doc System;
+      if (Fetched PDF is 0 bytes?) then (Yes)
+        :Return Error (do not cache);
+        stop
+      else (No)
+        :Store PDF in S3;
+        :Stream PDF from S3;
+      endif
+    endif
+    :Return PDF/Error to BFF;
+  endif
+}
+
+partition "OpenPlatform BFF" {
+  if (Response is List) then (List Response)
+    :Transform & Augment List Data;
+    :Send transformed list to Client;
+  else (PDF Response)
+    :Stream PDF/Error to Client;
+  endif
+}
+
+partition "OpenPlatform Client" {
+  :Receive Response;
+  if (Response is List) then (Display List)
+    :Display List (0, 1, or multiple docs);
+  else (Display PDF)
+    :Display PDF / Handle Error;
+  endif
+}
+stop
+@enduml
