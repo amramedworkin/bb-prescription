@@ -1,0 +1,26 @@
+1. Check with zero doc examples for what is returned.
+2. Might be examples on the confluence page HHL not signed page for empty pages
+3. EIE headers tranlsate the token to get the plans group api
+4. That will return all of the information about this member.
+5. plangroupid
+6. Use that to sift through to find where the policy resource exist?
+7. Oh it exists in this plan group
+8. Initialization routine Getthe one plan group id for the user
+9. Find the resource id
+10. Being built out for ID cards.
+11. Needs to be made more generic
+12. Always pick the same plan group
+13. Multiple medical and medicaire
+14. Medicaire and dental
+15. COB - Coordination of Benefits
+15.1. One as primary
+15.2. Both end up paying a portion
+15.3. Two differnt plan groups
+15.4. Two different aetna plan groups
+15.5. Select at login 
+15.6. Different member resource id -> Your relationship as an individual with a sspecific employer, or plan sponsor.
+16. Universal ID for people - ProxyID
+17. AP01, AWS ApplicationStartup - Console filters
+18. LOB, PlansSponsorId, RElationship To Subscriber => Membership set
+18.1. Where are we doing it
+
