@@ -1,0 +1,87 @@
+@startuml
+!theme plain
+
+title Option 1: Plan Documents Access (with ID Cards Pre-check Logic)
+
+actor "OpenPlatform Client" as Client
+participant "OpenPlatform BFF" as BFF
+participant "Plan Groups API" as PlanGroups
+participant "Features API (MMF)" as Features
+participant "Benefits Service" as Benefits
+database "Redis Cache" as Redis
+database "S3 Cache" as S3
+participant "Core Plan Doc API" as CoreAPI
+
+skinparam sequence {
+    ParticipantBorderColor #555
+    ParticipantBackgroundColor #f0f0f0
+    ActorBorderColor #555
+    ArrowColor #333
+    LifeLineBorderColor #aaa
+    BoxBorderColor #555
+    BoxBackgroundColor #fafafa
+}
+
+skinparam note {
+    BackgroundColor #f0f8ff
+    BorderColor #88c
+}
+
+box "Initial Eligibility & Grouping (from ID Cards flow)" #LightBlue
+    Client -> BFF : Initial request for user data
+    BFF -> PlanGroups : call /v1/plangroups
+    PlanGroups --> BFF : return planGroups
+    BFF -> BFF : Parse all memberResourceIds for active medical/dental plans
+    BFF -> Features : call /v2/features
+    Features --> BFF : return features
+    BFF -> BFF : Check for feature flag CVSSuperApp
+end box
+
+note right of Client
+  User is determined eligible and navigates to Plan Documents page.\n
+  The client now follows the Plan Docs specific logic.
+end note
+
+box "Feature Check & List Retrieval (Plan Docs Flow)" #LightGreen
+    Client -> Features : Pre-check for document features (e.g., PlanDocsMsgAvail)
+    Features --> Client : Return enabled features
+
+    alt PlanDocsMsgAvail is enabled or no doc features
+        Client -> Client : Display "Special Messaging" UI
+        note right : End of flow
+    else Relevant PlanDoc features are enabled
+        Client -> BFF : POST /v1/cvs/plan-documents/list\n(with policyResourceId, membershipResourceId)
+        BFF -> Benefits : GET /plan-document-list/retrieve
+        Benefits -> Redis : Check for cached document list
+
+        alt Cache Miss
+            Benefits -> CoreAPI : Request document list
+            CoreAPI --> Benefits : Return document list
+            Benefits -> Redis : Cache response (1-hour TTL)
+        end
+
+        Redis --> Benefits : Return cached/new list
+        Benefits --> BFF : Return document list (may include reasonCode)
+        BFF -> BFF : Augment/transform data for client
+        BFF --> Client : Return document list response
+    end
+end box
+
+box "PDF Retrieval" #LightCoral
+    note over Client, BFF : User selects a document from the list, triggering PDF retrieval.
+    Client -> BFF : POST /v1/cvs/plan-documents/retrieve\n(with documentId)
+    BFF -> Benefits : GET /plan-document/retrieve\n(with communicationContentResourceId)
+    Benefits -> S3 : Check for cached PDF
+
+    alt Cache Miss
+        Benefits -> CoreAPI : Request PDF document
+        CoreAPI --> Benefits : Return PDF
+        note right of Benefits : Verify byte size > 0
+        Benefits -> S3 : Store PDF in S3 cache
+    end
+
+    S3 --> Benefits : Return cached/new PDF
+    Benefits --> BFF : Stream PDF
+    BFF --> Client : Stream PDF
+end box
+@enduml
