@@ -1,0 +1,835 @@
+Message-ID: <435241332.55.1751390324671@e9cd0822615f>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_54_1620199236.1751390324670"
+
+------=_Part_54_1620199236.1751390324670
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>ID Cards - Initial Super App Integration</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>ID Cards - Initial Super App Integration</h1>
+    <div class=3D"Section1">
+        <style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1751390324164 {padding: 0px;}
+div.rbtoc1751390324164 ul {list-style: none;margin-left: 0px;}
+div.rbtoc1751390324164 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style>
+<div class=3D"toc-macro rbtoc1751390324164">
+<style>[data-colorid=3Dx7k1vmdjn2]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dx7k1vmdjn2]{color:#5999f8}[data-colorid=3Dx2651rv6w2]{c=
+olor:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dx2651rv6w2]{colo=
+r:#5999f8}[data-colorid=3Dzo14md4lqg]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dzo14md4lqg]{color:#5999f8}[data-colorid=3Dgevbf7at=
+8s]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dgevbf7at8s]=
+{color:#5999f8}[data-colorid=3Dybo7c6h6py]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dybo7c6h6py]{color:#5999f8}[data-colorid=3Dlmhau=
+f03lo]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dlmhauf03=
+lo]{color:#5999f8}</style>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-Feature">Feature</a></li=
+>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-Summary">Summary</a></li=
+>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-SolutionSketch">Solution=
+ Sketch</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-WebSequenceDiagram">Web =
+Sequence Diagram</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-APIs/Swagger">APIs/Swagg=
+er</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-NFR">NFR</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-Services">Services</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-ServiceLogic">Service Lo=
+gic</a></li>
+</ul></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-ClientChanges">Client Ch=
+anges</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-Clientsidelogic">Client =
+side logic</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-Fieldmapping">Field mapp=
+ing</a></li>
+</ul></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-AdditionalDetails">Addit=
+ional Details</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-Testing">Testing</a></li=
+>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-SecurityReview">Security=
+ Review</a></li>
+<li><a href=3D"#IDCards-InitialSuperAppIntegration-ContactsandImpactedTeams=
+/People">Contacts and Impacted Teams/People</a></li>
+</ul>
+</div>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-Feature">Feature</h1>
+<p><a class=3D"external-link" href=3D"https://rally1.rallydev.com/#/?detail=
+=3D/portfolioitem/feature/823877886771&amp;fdp=3Dtrue" rel=3D"nofollow">htt=
+ps://rally1.rallydev.com/#/?detail=3D/portfolioitem/feature/823877886771&am=
+p;fdp=3Dtrue</a></p>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-Summary">Summary</h1>
+<p><em><span data-colorid=3D"ybo7c6h6py">Brief summary of the requirements =
+and solution (or solution options).</span></em></p>
+<p><em><span data-colorid=3D"zo14md4lqg">Could link out to any documentatio=
+n from analysts or PMs.</span></em></p>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-SolutionSketch">Solution Sketc=
+h</h1>
+<div style=3D"text-align: left;page-break-inside: avoid;">
+<style>[data-colorid=3Dx7k1vmdjn2]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dx7k1vmdjn2]{color:#5999f8}[data-colorid=3Dx2651rv6w2]{c=
+olor:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dx2651rv6w2]{colo=
+r:#5999f8}[data-colorid=3Dzo14md4lqg]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dzo14md4lqg]{color:#5999f8}[data-colorid=3Dgevbf7at=
+8s]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dgevbf7at8s]=
+{color:#5999f8}[data-colorid=3Dybo7c6h6py]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dybo7c6h6py]{color:#5999f8}[data-colorid=3Dlmhau=
+f03lo]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dlmhauf03=
+lo]{color:#5999f8}</style>
+<div style=3D"display: inline-block;max-width: 100.0%;width: 1935.0px;heigh=
+t: auto;">
+<span class=3D"confluence-embedded-file-wrapper"><img class=3D"confluence-e=
+mbedded-image confluence-external-resource" src=3D"https://atlassian-lucidc=
+hart-com.s3.amazonaws.com/8d4239ff-cc50-3b11-823c-0576c36d4c79/300af2de-2d8=
+2-4608-87de-5385c1141412/page-0.png?X-Amz-Security-Token=3DIQoJb3JpZ2luX2Vj=
+EOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIESlzXuMZVWcx1FHuGX=
+QB6ucQQ8JM3ZMJ07m0QLTxmtAAiEA3DNvfb7K%2F1qnbgklMQjAFJMe1jx0Fpum2kndbWVn32gq=
+uQUI2v%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw5MzU2MDY5MjYxODIiDIKn1qGXfEMHZWL=
+y5SqNBYVR2IvW8L1O%2FFAlGyINqtjei%2Fu9tX5y9ABAmZcnInzITBZl976WzR5gsF0zQtDIOj=
+9%2BYdWS%2BQ7c4S0esTA0YnZbDs3%2FXJL6hdG1X8n%2BmNUkZ%2Bo7bQPzxa3IfKoxQoN0R7C=
+wYlsE%2FlYB7KnuCC8pUUYBJFgnEWaau8UCXDXaikF9uaQl6J9qncU5%2BOmwHd0EFhLuIuQdm3=
+ycMVJ2%2F5mmJpg7L7mmsCjCj7VEZYP04CPksR6L7znMK6%2FUxRn%2FkTLE%2F1zWiidwyIJse=
+4rOZXmcDbx5a7LBohbJ5kVq7Ar%2BaixP4yDKTsoUBIlozgh5LUndZxZHlNQ5B3cNLG3HGZjNPo=
+1DcgL7szH4mnCjJOpSpwwvRzoAFmDDGjXsltttBfiR4GNkIGQf2PKS3%2BCDPcSw81dRFjBTQeB=
+Uh0L70FXscK5IyxjQNPuAR6ddNFuqSLDi15xAl%2BRlQqXJRqOtjUFzzjYfp6y2yRcuxIm4SwQH=
+p7fCSOwjoIzHfV5veWLeaI9D2cu0kqhPSbI1FBenbYWJZuvBt8vIQgkRNnSn%2FtJF5POEDY%2B=
+y3Oxl0RvOefBLBu1lpUmdxgIBQuSyD2GzO%2FiErEf1qjfgwDQqHs%2FnlSxPSjrQ8kvDIYuNQW=
+1HerufuHQI3aE7szO6vHrhC1weOUC6WlVw0rHuUYeGOQYMHfTNjO9TBIcIS4pQJ6H3EHE3mUwyK=
+WXNR6YsaCzeU0YbZfmtYGqaQPT2gKacXGbNn9nYUzkgoIXjluU90wuJNL2hNR2m9UZttEji37qA=
+yEYAKrBLTGezr8Lw8sAeFZFioiucQ63iBl%2Bq0m9wJBi8RaFCiPa2irVbvByWaVx1%2BHPhoDD=
+vdmJBjoVD2yz3yuyCmS9NMIOakMMGOrEBDrtxd0QCf%2B%2FeFMqqPGnwWDSi22nPxsi74Y23nI=
+BJd2idJuMXl%2FsyyILknpuntcVD1ovysQ9EiI%2FFvgAi%2FIvemNwTfdhxKyTle%2BhpzSnga=
+vZRPc73Sd2517IG0Hj4%2BRQpUb4YSB%2FWm5vvYZMrK7Sh6Q3VraMeIlL3t97YmzgIObObBuPo=
+2Hvv0eCF%2F7jRRiLyDjguFkDhf5Nxt%2Bby2lvFKC7FkySF%2BIEDkemypaC2xx30&amp;X-Am=
+z-Algorithm=3DAWS4-HMAC-SHA256&amp;X-Amz-Date=3D20250701T171844Z&amp;X-Amz-=
+SignedHeaders=3Dhost&amp;X-Amz-Credential=3DASIA5TVUEXNTK3LR35RI%2F20250701=
+%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Expires=3D300&amp;X-Amz-Signatur=
+e=3D6d903d41c053c7ff9a1422eefaafa7186a44ae31c563b13496fda292656381b2" data-=
+image-src=3D"https://atlassian-lucidchart-com.s3.amazonaws.com/8d4239ff-cc5=
+0-3b11-823c-0576c36d4c79/300af2de-2d82-4608-87de-5385c1141412/page-0.png?X-=
+Amz-Security-Token=3DIQoJb3JpZ2luX2VjEOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCX=
+VzLWVhc3QtMSJHMEUCIESlzXuMZVWcx1FHuGXQB6ucQQ8JM3ZMJ07m0QLTxmtAAiEA3DNvfb7K%=
+2F1qnbgklMQjAFJMe1jx0Fpum2kndbWVn32gquQUI2v%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FAR=
+AAGgw5MzU2MDY5MjYxODIiDIKn1qGXfEMHZWLy5SqNBYVR2IvW8L1O%2FFAlGyINqtjei%2Fu9t=
+X5y9ABAmZcnInzITBZl976WzR5gsF0zQtDIOj9%2BYdWS%2BQ7c4S0esTA0YnZbDs3%2FXJL6hd=
+G1X8n%2BmNUkZ%2Bo7bQPzxa3IfKoxQoN0R7CwYlsE%2FlYB7KnuCC8pUUYBJFgnEWaau8UCXDX=
+aikF9uaQl6J9qncU5%2BOmwHd0EFhLuIuQdm3ycMVJ2%2F5mmJpg7L7mmsCjCj7VEZYP04CPksR=
+6L7znMK6%2FUxRn%2FkTLE%2F1zWiidwyIJse4rOZXmcDbx5a7LBohbJ5kVq7Ar%2BaixP4yDKT=
+soUBIlozgh5LUndZxZHlNQ5B3cNLG3HGZjNPo1DcgL7szH4mnCjJOpSpwwvRzoAFmDDGjXslttt=
+BfiR4GNkIGQf2PKS3%2BCDPcSw81dRFjBTQeBUh0L70FXscK5IyxjQNPuAR6ddNFuqSLDi15xAl=
+%2BRlQqXJRqOtjUFzzjYfp6y2yRcuxIm4SwQHp7fCSOwjoIzHfV5veWLeaI9D2cu0kqhPSbI1FB=
+enbYWJZuvBt8vIQgkRNnSn%2FtJF5POEDY%2By3Oxl0RvOefBLBu1lpUmdxgIBQuSyD2GzO%2Fi=
+ErEf1qjfgwDQqHs%2FnlSxPSjrQ8kvDIYuNQW1HerufuHQI3aE7szO6vHrhC1weOUC6WlVw0rHu=
+UYeGOQYMHfTNjO9TBIcIS4pQJ6H3EHE3mUwyKWXNR6YsaCzeU0YbZfmtYGqaQPT2gKacXGbNn9n=
+YUzkgoIXjluU90wuJNL2hNR2m9UZttEji37qAyEYAKrBLTGezr8Lw8sAeFZFioiucQ63iBl%2Bq=
+0m9wJBi8RaFCiPa2irVbvByWaVx1%2BHPhoDDvdmJBjoVD2yz3yuyCmS9NMIOakMMGOrEBDrtxd=
+0QCf%2B%2FeFMqqPGnwWDSi22nPxsi74Y23nIBJd2idJuMXl%2FsyyILknpuntcVD1ovysQ9EiI=
+%2FFvgAi%2FIvemNwTfdhxKyTle%2BhpzSngavZRPc73Sd2517IG0Hj4%2BRQpUb4YSB%2FWm5v=
+vYZMrK7Sh6Q3VraMeIlL3t97YmzgIObObBuPo2Hvv0eCF%2F7jRRiLyDjguFkDhf5Nxt%2Bby2l=
+vFKC7FkySF%2BIEDkemypaC2xx30&amp;X-Amz-Algorithm=3DAWS4-HMAC-SHA256&amp;X-A=
+mz-Date=3D20250701T171844Z&amp;X-Amz-SignedHeaders=3Dhost&amp;X-Amz-Credent=
+ial=3DASIA5TVUEXNTK3LR35RI%2F20250701%2Fus-east-1%2Fs3%2Faws4_request&amp;X=
+-Amz-Expires=3D300&amp;X-Amz-Signature=3D6d903d41c053c7ff9a1422eefaafa7186a=
+44ae31c563b13496fda292656381b2" loading=3D"lazy"></span>
+</div>
+</div>
+<p></p>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-WebSequenceDiagram">Web Sequen=
+ce Diagram</h1>
+<div style=3D"text-align: left;page-break-inside: avoid;">
+<style>[data-colorid=3Dx7k1vmdjn2]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dx7k1vmdjn2]{color:#5999f8}[data-colorid=3Dx2651rv6w2]{c=
+olor:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dx2651rv6w2]{colo=
+r:#5999f8}[data-colorid=3Dzo14md4lqg]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dzo14md4lqg]{color:#5999f8}[data-colorid=3Dgevbf7at=
+8s]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dgevbf7at8s]=
+{color:#5999f8}[data-colorid=3Dybo7c6h6py]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dybo7c6h6py]{color:#5999f8}[data-colorid=3Dlmhau=
+f03lo]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dlmhauf03=
+lo]{color:#5999f8}</style>
+<div style=3D"display: inline-block;max-width: 100.0%;width: 1151.0px;heigh=
+t: auto;">
+<span class=3D"confluence-embedded-file-wrapper"><img class=3D"confluence-e=
+mbedded-image confluence-external-resource" src=3D"https://atlassian-lucidc=
+hart-com.s3.amazonaws.com/8d4239ff-cc50-3b11-823c-0576c36d4c79/c86c584c-aaa=
+b-4717-a85c-d52c228cad11/page-0.png?X-Amz-Security-Token=3DIQoJb3JpZ2luX2Vj=
+EOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDmJ2bS840%2FEc8IO=
+TFu3p6SRSLjMAmAZTspy10vkzDfqgIhAM%2Fhuj%2FPJGxWsQU%2FdW1cwd04FAJRuJXtIVdcPD=
+fVdMwNKroFCNr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMOTM1NjA2OTI2MTgyIgycI4MHU=
+0z%2BS9EjgdEqjgUtXW4Ux%2FK1u8BnwMzTCS30YJACGB3DWZ%2FDFf%2FG48Xl4wBHBhHyWkrj=
+3GeqxE5%2Fv2%2BwnIYhn2m9FHdjUQLp%2FwxZ0HbbKuc26sNDf2szORORgpYXJtMagYdjN7wkR=
+6pj3Rm8U75lbLAwmKRiydmOa2PTdSRCY2QzzkcVmS8zUsaNDCDIwZESaa2Netj0mBbEcvLoEkFD=
+sEOwmiVcjGVU8hkoYOsdhtFItMf0%2By%2Bh1GuoQf3WWJrOFUW0hbbstDe9vA7Ld%2Fq29J3a4=
+4Y8DP%2BuqWs1xiHIBf9biYqPVtVWQSfJ2HhvemO%2B2xSOFMn9wf0LZU0piQBWPDX5E2Bx9390=
+YKEV3zMVZhnvqEb1v6Miw3YbMTOsUl71R2B%2Ba%2F8GlbFPvQWRF7zE3Cgw0wP3V2QHAmM1B3%=
+2B%2FFfjdrtJnj%2F%2FiG0pgmDPQH8XwAWLAWaeyUVP6xv1OjpkDwnfJp4OLhgNb94AOjRe32M=
+kfswhFdXwrbJ7Vo7t116w0eedEfiKQ94Np7anlCsQKc0qtSVztZEbicQD7zpI3691sHIStOBvXn=
+3k2DMnrTJmDM7LbExSFbhk2VK%2Bjc%2FJRzTV8rO72aVyG20jdgR%2BJrdbVQkOsFZoYAclGHn=
+TwE91EcSQwpAIhca4Uuih2nbkPfPPlody2k1AOezMud09k%2FUVrJgZwlZeIRLnr5ye88OcXQVX=
+g0GCREbh13iOmjzyD9K8Vk2YiceBkcALLrGyWv5BoDfAVDvR1gfrIsYIz9cLT4Mye5%2BLwQRF8=
+Y62FX0VoddhX6KRqZFJQfyciMEd7RXMpaRq%2BZB2gs%2BZu6K0gNEBr6%2FjWI35%2BDuKM6FR=
+Ct58RjPd0%2BCfywmtQ2EaowGnj6BDRtOGmAQ2i2mEwnZmQwwY6sAEcQwn5EzgsyZsDMrYsDqoq=
+Aam68%2F0tVVpPIYNhRWY3TVzHwl6y4Zbhr4IgjUUflfr3N0F1%2BrbCs6R2h4jveaxUCKT7Mxb=
+a%2FZ3uZc9V%2FaBDe56YbyjjSDVrOJAOEfUaDk48gR2ZZcl36Debh9W4ZKq5BKWJbW9Q2dB59S=
+SI1ummLN4mUAH0kee0PXN%2F04UJTEhSsr7KD5Tnhf%2Fjmb7lDHKce7paLbOP4vnk0IqXMABB6=
+Q%3D%3D&amp;X-Amz-Algorithm=3DAWS4-HMAC-SHA256&amp;X-Amz-Date=3D20250701T17=
+1844Z&amp;X-Amz-SignedHeaders=3Dhost&amp;X-Amz-Credential=3DASIA5TVUEXNTNCM=
+BXKUQ%2F20250701%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Expires=3D300&am=
+p;X-Amz-Signature=3D871a871c10e43878910780a5e690cc2b834429ab7f08b3b5023b837=
+8e84019d5" data-image-src=3D"https://atlassian-lucidchart-com.s3.amazonaws.=
+com/8d4239ff-cc50-3b11-823c-0576c36d4c79/c86c584c-aaab-4717-a85c-d52c228cad=
+11/page-0.png?X-Amz-Security-Token=3DIQoJb3JpZ2luX2VjEOH%2F%2F%2F%2F%2F%2F%=
+2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDmJ2bS840%2FEc8IOTFu3p6SRSLjMAmAZTspy10=
+vkzDfqgIhAM%2Fhuj%2FPJGxWsQU%2FdW1cwd04FAJRuJXtIVdcPDfVdMwNKroFCNr%2F%2F%2F=
+%2F%2F%2F%2F%2F%2F%2FwEQABoMOTM1NjA2OTI2MTgyIgycI4MHU0z%2BS9EjgdEqjgUtXW4Ux=
+%2FK1u8BnwMzTCS30YJACGB3DWZ%2FDFf%2FG48Xl4wBHBhHyWkrj3GeqxE5%2Fv2%2BwnIYhn2=
+m9FHdjUQLp%2FwxZ0HbbKuc26sNDf2szORORgpYXJtMagYdjN7wkR6pj3Rm8U75lbLAwmKRiydm=
+Oa2PTdSRCY2QzzkcVmS8zUsaNDCDIwZESaa2Netj0mBbEcvLoEkFDsEOwmiVcjGVU8hkoYOsdht=
+FItMf0%2By%2Bh1GuoQf3WWJrOFUW0hbbstDe9vA7Ld%2Fq29J3a44Y8DP%2BuqWs1xiHIBf9bi=
+YqPVtVWQSfJ2HhvemO%2B2xSOFMn9wf0LZU0piQBWPDX5E2Bx9390YKEV3zMVZhnvqEb1v6Miw3=
+YbMTOsUl71R2B%2Ba%2F8GlbFPvQWRF7zE3Cgw0wP3V2QHAmM1B3%2B%2FFfjdrtJnj%2F%2FiG=
+0pgmDPQH8XwAWLAWaeyUVP6xv1OjpkDwnfJp4OLhgNb94AOjRe32MkfswhFdXwrbJ7Vo7t116w0=
+eedEfiKQ94Np7anlCsQKc0qtSVztZEbicQD7zpI3691sHIStOBvXn3k2DMnrTJmDM7LbExSFbhk=
+2VK%2Bjc%2FJRzTV8rO72aVyG20jdgR%2BJrdbVQkOsFZoYAclGHnTwE91EcSQwpAIhca4Uuih2=
+nbkPfPPlody2k1AOezMud09k%2FUVrJgZwlZeIRLnr5ye88OcXQVXg0GCREbh13iOmjzyD9K8Vk=
+2YiceBkcALLrGyWv5BoDfAVDvR1gfrIsYIz9cLT4Mye5%2BLwQRF8Y62FX0VoddhX6KRqZFJQfy=
+ciMEd7RXMpaRq%2BZB2gs%2BZu6K0gNEBr6%2FjWI35%2BDuKM6FRCt58RjPd0%2BCfywmtQ2Ea=
+owGnj6BDRtOGmAQ2i2mEwnZmQwwY6sAEcQwn5EzgsyZsDMrYsDqoqAam68%2F0tVVpPIYNhRWY3=
+TVzHwl6y4Zbhr4IgjUUflfr3N0F1%2BrbCs6R2h4jveaxUCKT7Mxba%2FZ3uZc9V%2FaBDe56Yb=
+yjjSDVrOJAOEfUaDk48gR2ZZcl36Debh9W4ZKq5BKWJbW9Q2dB59SSI1ummLN4mUAH0kee0PXN%=
+2F04UJTEhSsr7KD5Tnhf%2Fjmb7lDHKce7paLbOP4vnk0IqXMABB6Q%3D%3D&amp;X-Amz-Algo=
+rithm=3DAWS4-HMAC-SHA256&amp;X-Amz-Date=3D20250701T171844Z&amp;X-Amz-Signed=
+Headers=3Dhost&amp;X-Amz-Credential=3DASIA5TVUEXNTNCMBXKUQ%2F20250701%2Fus-=
+east-1%2Fs3%2Faws4_request&amp;X-Amz-Expires=3D300&amp;X-Amz-Signature=3D87=
+1a871c10e43878910780a5e690cc2b834429ab7f08b3b5023b8378e84019d5" loading=3D"=
+lazy"></span>
+</div>
+</div>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-APIs/Swagger">APIs/Swagger</h1=
+>
+<p><a class=3D"external-link" href=3D"https://apiforge.cvshealth.com/apis/e=
+ditor/Microservices/ah-superapp-idcards/1.0.0" rel=3D"nofollow">https://api=
+forge.cvshealth.com/apis/editor/Microservices/ah-superapp-idcards/1.0.0</a>=
+</p>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-NFR">NFR</h1>
+<p><strong>Performance Testing Results:</strong><br>
+-Requested peformance test of Id Card list and details API on 6/17/2025. Up=
+date TBD</p>
+<p><strong>Rate Limit Updates:</strong></p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"872" data-layout=3D"center" data-local-id=3D"d27=
+a6fb5-186b-4bb0-ada8-e483d36eb981" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 105.0px;">
+<col style=3D"width: 221.0px;">
+<col style=3D"width: 85.0px;">
+<col style=3D"width: 127.0px;">
+<col style=3D"width: 97.0px;">
+<col style=3D"width: 131.0px;">
+<col style=3D"width: 96.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>Consumer</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>API</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>current volume</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>OE volume</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Expected</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Existing Rate Limit</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>New Rate Limit</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>AH AWS App Token</p></td>
+<td class=3D"confluenceTd">
+<p>ID Card Detail<br><br>
+API Product: <br><br>
+awsaetnahealth-correspondence-healthcare-1a-i<br><br>
+API Name: atv3aetnahealthidentificationcardsid-apigw</p></td>
+<td class=3D"confluenceTd">
+<p>15/min</p></td>
+<td class=3D"confluenceTd">
+<p>150/min</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>21,060/min</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>ID Card List</p>
+<p>API Product:</p>
+<p>awsaetnahealth-correspondence-healthcare-1-i<br><br>
+API Name:</p>
+<p><br>
+atv3aetnahealthmembersidentificationcards-apigw</p></td>
+<td class=3D"confluenceTd">
+<p>17/min</p></td>
+<td class=3D"confluenceTd">
+<p>170/min</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>1750/min</p></td>
+<td class=3D"confluenceTd">
+<p>5000/min</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>AH iOS</p></td>
+<td class=3D"confluenceTd">
+<p>ID Card Detail</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>ID Card List</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>CVS</p></td>
+<td class=3D"confluenceTd">
+<p>ID Card Detail</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>7200/min</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>7200/min</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>ID Card List</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>4800/min</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>4800/min</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-Services">Services</h1>
+<ul>
+<li>
+<p>plan-groups</p></li>
+<li>
+<p>multimembershipfeatures</p></li>
+<li>
+<p>cvs-bff (needs to be built)</p></li>
+<li>
+<p>id-cards-service</p></li>
+</ul>
+<h2 id=3D"IDCards-InitialSuperAppIntegration-ServiceLogic">Service Logic</h=
+2>
+<p></p>
+<ul>
+<li>
+<p>Service will call plangroups API</p>
+<ul>
+<li>
+<p>Service will call launch darkly to check on PSUIDs to ensure member is e=
+ligible to see Super App ID Cards Feature</p></li>
+<li>
+<p>Find <span class=3D"inline-comment-marker" data-ref=3D"6e1a4662-d202-4d4=
+c-b871-994e31e1f18b">portalGroups</span> with LOB of either commercial or <=
+span class=3D"inline-comment-marker" data-ref=3D"8daacf25-57ff-4c3b-80bf-4c=
+8821dfac4b">medicare</span> (TODO: do we need to support pharmacy aka speci=
+alties?)</p></li>
+<li>
+<p>Filter plans who have digital access revoked (plan sponsor wave number 9=
+55 or 988)</p>
+<ul>
+<li>
+<p>within these plans - find policies with primary policy type as either De=
+ntal or Medical</p>
+<ul>
+<li>
+<p>Check memberships that have a status of <code>Active</code> or <code>Dep=
+endant Active Coverage</code> (TODO: any other statuses?)</p></li>
+<li>
+<p>The remaining portal groups are valid, so we loop through each portal gr=
+oup, returning all appropriate unique memberIds</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>
+<p>Service will call multimembership Features with unique memberIds</p>
+<ul>
+<li>
+<p>Return back unquie memberIds that have idcard feature toggle enabled</p>=
+</li>
+</ul></li>
+<li>
+<p>Call identification card list API with all unique memberIds in parrellel=
+</p>
+<ul>
+<li>
+<p>Grab all <code>identificationCardResourceId</code></p></li>
+</ul></li>
+<li>
+<p>Call idcard details in parrallel for all <code>identificationCardResourc=
+eId</code>=E2=80=99s</p></li>
+</ul>
+<p>How to split ID Card Image on iOS =E2=86=92 <a class=3D"external-link" h=
+ref=3D"https://github.com/cvs-health-source-code/aetnahealth-ios/blob/3334f=
+8099aaca1146feac923b3b94c4ca0436d0d/Packages/AppDependencies/Sources/AppDep=
+endencies/Features/IDCard/IDCardViewModel.swift#L313" rel=3D"nofollow">http=
+s://github.com/cvs-health-source-code/aetnahealth-ios/blob/3334f8099aaca114=
+6feac923b3b94c4ca0436d0d/Packages/AppDependencies/Sources/AppDependencies/F=
+eatures/IDCard/IDCardViewModel.swift#L313</a></p>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-ClientChanges">Client Changes<=
+/h1>
+<h2 id=3D"IDCards-InitialSuperAppIntegration-Clientsidelogic">Client side l=
+ogic</h2>
+<p><em><span data-colorid=3D"lmhauf03lo">Summary of how client should integ=
+rate.</span></em></p>
+<h2 id=3D"IDCards-InitialSuperAppIntegration-Fieldmapping">Field mapping</h=
+2>
+<p></p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"e9=
+10200a-802d-4f5c-97e0-192ccf093eb4" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>Response Key</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Mapping</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].cardType</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardType</code=
+></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].cardImageFront</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardImages.ima=
+geFront</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].cardImageBack</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardImages.ima=
+geBack</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].cardImageCombined</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardImages.ima=
+geCombined</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].cardImageType</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardImageConte=
+ntType</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].memberName</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.memberships[].pe=
+rson.nameFull</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].memberId</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.memberships[].me=
+mberId</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].subscriberName (do we need?)</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].planType</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.policies[].policyType</code></p></t=
+d>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].payerId</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardReadout[].=
+dataElementValue where dataElementName =3D=3D=3D "Payor Id"</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].payerName</p></td>
+<td class=3D"confluenceTd">
+<p>Aetna</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].groupName</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardReadout[].=
+dataElementValue where dataElementName =3D=3D=3D "Plansponsor Name"</code><=
+/p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].groupId</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardReadout[].=
+dataElementValue where dataElementName =3D=3D=3D "Group Number"</code></p><=
+/td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].relationshipToSubscriber</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.memberships[].re=
+lationshipToSubscriber</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>cards[].idCardResourceId</p></td>
+<td class=3D"confluenceTd">
+<p><code>readIdentificationcardResponse.identificationCard.idCardResourceId=
+</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-AdditionalDetails">Additional =
+Details</h1>
+<ul>
+<li>
+<p>Figma for CVS Design: <a class=3D"external-link" data-card-appearance=3D=
+"inline" href=3D"https://www.figma.com/design/X56T4Qq2pajDcTDeg5UZO7/Benefi=
+ts-integration-workspace?node-id=3D6270-988713&amp;p=3Df&amp;t=3DtsNN7k7ZGx=
+lfqeTa-0" rel=3D"nofollow">https://www.figma.com/design/X56T4Qq2pajDcTDeg5U=
+ZO7/Benefits-integration-workspace?node-id=3D6270-988713&amp;p=3Df&amp;t=3D=
+tsNN7k7ZGxlfqeTa-0</a></p></li>
+</ul>
+<ul>
+<li>
+<p>iOS Logic for Spending Details Plan Group Picker -&gt;<a class=3D"extern=
+al-link" href=3D"https://github.com/cvs-health-source-code/aetnahealth-ios/=
+blob/646593adc7391cc1cc4d926e0cbce6d10f6d03e3/Packages/AetnaShared/Sources/=
+AetnaAccount/Models/Account.swift#L758" rel=3D"nofollow">https://github.com=
+/cvs-health-source-code/aetnahealth-ios/blob/646593adc7391cc1cc4d926e0cbce6=
+d10f6d03e3/Packages/AetnaShared/Sources/AetnaAccount/Models/Account.swift#L=
+758</a></p></li>
+<li>
+<p>Plan Sponsor Wave Number =E2=86=92 <a href=3D"/wiki/spaces/NGX/pages/271=
+7452072/F125450+M0028+User+Messaging" data-linked-resource-id=3D"2717452072=
+" data-linked-resource-version=3D"16" data-linked-resource-type=3D"page">F1=
+25450: M0028 User Messaging</a></p></li>
+<li>
+<p>MMF Toggle <code>CVSSuperApp</code></p></li>
+</ul>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-Testing">Testing</h1>
+<p><em><span data-colorid=3D"x2651rv6w2">TODO: Find Edge Cases </span></em>=
+</p>
+<ul>
+<li>
+<p>example multiple active medical plans?</p></li>
+</ul>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-SecurityReview">Security Revie=
+w</h1>
+<p><em><span data-colorid=3D"gevbf7at8s">Provide any notes, changes done as=
+ part of security review. Security reviews should be done especially when s=
+omething non-standard is happening. Third party integration, some new techn=
+ology/component, SDK recommendation, SFTP, PII/PHI storage, etc =E2=80=A6 p=
+lease do a security review with members of security team and provide date, =
+findings, changes here.</span></em></p>
+<h1 id=3D"IDCards-InitialSuperAppIntegration-ContactsandImpactedTeams/Peopl=
+e">Contacts and Impacted Teams/People</h1>
+<ul>
+<li>
+<p>CVS Docs =E2=86=92 <a href=3D"/wiki/spaces/SESA/pages/4564682026/Medical=
++Id+card" data-linked-resource-id=3D"4564682026" data-linked-resource-versi=
+on=3D"12" data-linked-resource-type=3D"page">Medical Id card</a></p></li>
+</ul>
+<p><em><span data-colorid=3D"x7k1vmdjn2">Bulleted list of teams and individ=
+uals that are updated</span></em></p>
+    </div>
+</body>
+</html>
+------=_Part_54_1620199236.1751390324670--
