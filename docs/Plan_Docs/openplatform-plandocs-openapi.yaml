@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: OpenPlatform - Plan Documents BFF
+  description: Provides plan document list and PDF retrieval for the OpenPlatform.
+  version: 1.0.0
+paths:
+  /v1/cvs/plan-documents/list:
+    post:
+      summary: Retrieves the list of plan documents for a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanDocListRequest'
+      responses:
+        '200':
+          description: Successful retrieval of document list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDocListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /v1/cvs/plan-documents/retrieve:
+    post:
+      summary: Retrieves a specific plan document PDF.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanDocRetrieveRequest'
+      responses:
+        '200':
+          description: Success - PDF file returned.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    PlanDocListRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          required:
+            - policyResourceId
+            - membershipResourceId
+            - dateAsOf
+          properties:
+            policyResourceId:
+              type: string
+              description: 'Policy Resource ID from application startup API'
+              example: '3~141975+A+1'
+            membershipResourceId:
+              type: string
+              description: 'Membership Resource ID from application startup API'
+              example: '5~235287654+10+1+20200601+141975+A+1'
+            dateAsOf:
+              type: string
+              format: date
+              description: 'Date for which the documents are requested (YYYY-MM-DD)'
+              example: '2025-06-28'
+    PlanDocListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        reasonCode:
+          type: string
+          description: 'Reason code for special scenarios (e.g., HHL Not signed)'
+          example: 'HHL Not signed'
+    DocumentMetadata:
+      type: object
+      properties:
+        webHyperlink:
+          type: string
+          description: 'URL for the communication content (from original backend)'
+          example: 'https://www.aetna.com/epublishing/getPlanDocument?serviceName=fetchPDF&nodeId=347812301'
+        documentType:
+          type: string
+          description: 'Type of the document (e.g., Dental, Medical, SBC, EOC)'
+          example: 'Dental'
+        description:
+          type: string
+          description: 'Description of the communication content, used for document title display'
+          example: 'Benefit Plan Description'
+        title:
+          type: string
+          description: 'Title of the communication content (e.g., filename from IFP)'
+          example: '2024-IFP-767941_48161MO0210015-00_SBC.pdf'
+        format:
+          type: string
+          description: 'Format of the document (e.g., PDF, HTML)'
+          example: 'PDF'
+        documentSubType:
+          type: string
+          description: 'Sub-type of the document (e.g., SBCIVLEX, EOCDTLS)'
+          example: 'SBCIVLEX'
+        language:
+          type: string
+          description: 'Language of the communication content (e.g., ENG, SPA)'
+          example: 'ENG'
+        contentSize:
+          type: string
+          description: 'Size of the content in bytes'
+          example: '537838'
+        communicationContentIdentifier:
+          type: array
+          items:
+            type: object
+            properties:
+              idSource: { type: string }
+              idValue: { type: string }
+              idType: { type: string }
+              resourceId: { type: string, description: 'Unique resource ID for the content' }
+          description: 'Identifiers for the communication content'
+        communicationContentEffectivePeriod:
+          type: object
+          properties:
+            dateTimeAsOf: { type: string, format: date }
+            dateTimeBegin: { type: string, format: date-time }
+            dateTimeEnd: { type: string, format: date-time }
+          description: 'Effective period of the communication content'
+        planId:
+          type: string
+          example: '751133+BA+2'
+        documentName:
+          type: string
+          example: 'Plan Document (Spanish)'
+        documentId:
+          type: string
+          example: '70023~13910995'
+        documentUrl:
+          type: string
+          description: 'Internal URL to retrieve the PDF via BFF'
+          example: '/v1/cvs/plan-documents/retrieve'
+    PlanDocRetrieveRequest:
+      type: object
+      required:
+        - documentId
+      properties:
+        documentId:
+          type: string
+          description: 'Corresponds to communicationContentResourceId in the backend (communicationContentIdentifier.resourceId)'
+          example: '70023~13910995'
+    Error:
+      type: object
+      properties:
+        httpCode:
+          type: string
+          example: '400'
+        httpMessage:
+          type: string
+          example: 'Bad Request'
+        moreInformation:
+          type: string
+          example: 'planId is a required field.'
+

@@ -1,156 +1,97 @@
 1. Foundational & Strategic Stories
 These stories define the high-level goals and scope of the initiative.
 
-
-Initiative: A large-scale effort that groups multiple epics to achieve a business goal. 
-
+Initiative (multiple epics) 
 
 Story: Enable OpenPlatform users to access their plan documents by creating a new BFF, integrating with existing backend services, and providing a resilient, performant user experience. 
 
-
-
-
 Theme: A strategic driver that groups related work. 
-
 
 Story: Enhance User Experience by providing users with seamless and fast access to their essential plan documents. 
 
-
-
-
-
 Story: Increase Development Velocity by reusing proven, existing architecture and services to reduce initial development time and risk. 
 
-
-
-
-Epic: A large body of work that can be broken down into smaller stories. 
-
+Epic (multiple stories) 
 
 Story: Implement plan document access for OpenPlatform by building a dedicated Backend-for-Frontend (BFF) that routes list and PDF retrieval requests to existing AWS services. 
 
-
-
 2. Architectural & Technical Enablement Stories
-These stories form the technical backbone of the new architecture. 
 
-
-Architectural Runway Story: A story focused on building the technical infrastructure to support future features. 
-
+Architectural Runway Story (tech infra) 
 
 Story: Establish the new OpenPlatform BFF as a deployable microservice within the AWS platform, leveraging existing CI/CD pipelines and infrastructure-as-code practices. 
 
-
-Enabler Story (Exploration/Spike): A time-boxed research task to reduce uncertainty. 
-
+Enabler Story (Exploration/Spike-Time Boxed) 
 
 Story: Spike: Analyze architectural options for fetching plan documents, including adapting the existing on-demand architecture, pre-fetching at app startup, and a BFF-centric hybrid model, to determine the optimal approach for balancing performance and complexity. 
 
-
-
-
-
-Enabler Story (Infrastructure): A task to configure the necessary environments. 
-
+Enabler Story (Infrastructure) 
 
 Story: Configure the necessary routing, permissions, and service integrations within the AWS ecosystem to allow the new OpenPlatform BFF to communicate with the existing backend Benefits Service and Features API. 
 
-
-
-Enabler Story (Compliance/Security): A task to ensure the architecture meets security requirements. 
-
+Enabler Story (Compliance/Security) 
 
 Story: Conduct a security review of the new OpenPlatform BFF, validating its authentication/authorization mechanisms, rate limiting, data encryption, and access controls to ensure it is a secure entry point into the AWS ecosystem. 
 
-3. Migration & Integration Stories
-These stories are crucial for connecting the new architecture with the mature system. 
+3. Migration & Integration Stories (new-to-existing connections)
 
-
-Integration Story: A story focused on the connections between components. 
-
+Integration Story (component connx)
 
 Story: As the OpenPlatform BFF, I want to integrate with the existing Benefits Service by calling its /plan-document-list/retrieve endpoint to fetch a user's document list. 
 
+Strangler Fig Pattern Story (replace old system)
 
+Story: Implement a new route for Plan Document requests within the OpenPlatform ecosystem that directs all client traffic through the new OpenPlatform BFF instead of any existing path. 
 
-Strangler Fig Pattern Story: A story for incrementally replacing an old system. 
+Note: No Data Migration Stories
 
-
-Story: Implement a new route for Plan Document requests within the OpenPlatform ecosystem that directs all client traffic through the new OpenPlatform BFF instead of another existing path. 
-
-
-Note: Data Migration Stories were not applicable as the project involves creating new data flows rather than a one-time migration of stored data.
-
-4. User-Facing & Functional Stories
+4. User-Facing & Functional Stories (common)
 These are the traditional stories that deliver direct value to the end-user. 
 
-
-Feature-Driven Story: A cohesive piece of functionality composed of multiple user stories. 
-
+Feature-Driven Story (multiple stories)
 
 Feature: OpenPlatform - Plan Documents Access. 
 
-
-
-Standard User Story (Frontend): A story following the classic "As a [user]..." format. 
-
+Standard User Story (Frontend)
 
 Story: As an OpenPlatform user, when I navigate to the Plan Documents section and there are multiple plan documents available, I want to see a list of documents with their names so I can choose which one to view. 
-
 
 Story: As an OpenPlatform user, if my plan requires a signed Hold Harmless Letter and it's not signed, I want to see a clear message explaining this, instead of an empty document list. 
 
 Standard User Story (Backend):
 
-
 Story: As an OpenPlatform BFF, I want to retrieve a specific plan document PDF by its documentId so that I can deliver it to the OpenPlatform client. 
 
-5. Non-Functional Requirement (NFR) Stories
-These stories are critical for ensuring the new architecture meets required quality attributes. 
+5. Non-Functional Requirement (NFR) Stories (new arch meets required quality)
 
 Performance Story:
 
-
 Story: As the Benefits Service, I want to use Redis to cache plan document lists for one hour so that I can reduce load on core APIs and improve response times for the OpenPlatform BFF. 
-
-
 
 Story: The new BFF endpoints must adhere to the existing backend rate limits of 950/min for the list endpoint and 2333/min for the PDF endpoint to ensure system stability. 
 
 Scalability Story:
 
-
 Story: The Plan Documents feature must be horizontally scalable to handle anticipated growth in OpenPlatform user traffic by leveraging existing scalable AWS services (API Gateway, Lambda, S3). 
 
 Reliability/Availability Story:
 
-
 Story: The OpenPlatform BFF must gracefully handle API error responses (e.g., 4xx, 5xx) from the downstream Benefits Service by propagating appropriate error codes and user-friendly messages to the client. 
-
 
 Usability Story:
 
-
 Story: As an OpenPlatform user, I want the plan document viewing experience to be consistent in design and behavior with other document views in the app, so I have a seamless user experience. 
 
-
-6. Operational & Maintenance Stories
-These stories focus on the long-term health and maintainability of the new architecture. 
+6. Operational & Maintenance Stories (health/maintainability)
 
 Tooling and Automation Story:
 
-
 Story: Implement comprehensive logging, monitoring, and alerting for the new OpenPlatform BFF to provide visibility into its performance, errors, and traffic patterns via existing APM tools. 
-
 
 Documentation Story:
 
-
 Story: Create and publish a formal OpenAPI (YAML) specification for the new OpenPlatform BFF endpoints, including detailed schemas and examples for the request and response models. 
 
-
-
 Technical Debt Story:
-
 
 Story: To mitigate data gaps from upstream services, a limited data augmentation capability will be built into the BFF, while deferring the complexity of a full BFF-side caching solution to a future iteration. 
