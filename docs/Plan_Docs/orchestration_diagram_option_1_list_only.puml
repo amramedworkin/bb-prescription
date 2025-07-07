@@ -1,0 +1,70 @@
+@startuml
+!theme spacelab
+
+title Detailed Plan Document List Orchestration
+
+|#Application|OpenPlatform Client|
+start
+:User navigates to Plan Docs;
+:Calls **Features API** with `membershipResourceId`;
+note right
+  Checks for feature flags:
+  - `DenPlanDocs`
+  - `MedPlanDocs`
+  - `VisionPlanDocs`
+  - `PlanDocsMsgAvail`
+end note
+|#Technology|Features API|
+:Receives request;
+:Returns enabled features for the member;
+|#Application|OpenPlatform Client|
+:Receives Features API response;
+if (PlanDocsMsgAvail is enabled OR no PlanDoc types are enabled?) then (yes)
+  :Displays "Special Messaging" UI;
+  stop
+else (no)
+  :Constructs request body with\n`policyResourceId`, `membershipResourceId`, `dateAsOf`;
+  :Sends POST request to\n**/v1/cvs/plan-documents/list**;
+  |#Technology|OpenPlatform BFF (Orchestrator)|
+  :Receives List Request from Client;
+  :Calls **Benefits Service**\n`/plan-document-list/retrieve`;
+  |#Technology|Benefits Service|
+  :Receives request from BFF;
+  :Derives composite cache key;
+  note right
+    Cache key includes `dateAsOf`, `policyResourceId`,
+    and other attributes for Medicare/Commercial plans.
+  end note
+  :Checks **Redis Cache** for `planDocListResponse`;
+  if (Cache Hit?) then (yes)
+    :Returns cached list to BFF;
+  else (no)
+    :Calls **Core Plan Doc API**;
+    |#Technology|Core Plan Doc API|
+    :Retrieves document metadata;
+    :Returns list, potentially with\n`reasonCode: "HHL Not signed"`;
+    |#Technology|Benefits Service|
+    :Receives list from Core API;
+    :Caches the response in **Redis** (1-hour TTL);
+    :Returns list to BFF;
+  endif
+  |#Technology|OpenPlatform BFF (Orchestrator)|
+  :Receives list from Benefits Service;
+  :Augments data (e.g., appends language to name);
+  :Transforms response to OpenPlatform contract;
+  :Returns formatted document list to Client;
+  |#Application|OpenPlatform Client|
+  :Receives final list from BFF;
+  if (Response contains `reasonCode: "HHL Not signed"`?) then (yes)
+    :Displays "Special Messaging" UI for HHL;
+  else (no)
+    if (Document list is empty?) then (yes)
+      :Displays "No documents available" message;
+    else (no)
+      :Displays list of documents to the user;
+    endif
+  endif
+  stop
+endif
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+!theme spacelab
+
+title Plan Documents Orchestration (Option 1)
+
+|#Application|OpenPlatform Client|
+start
+:User navigates to Plan Docs;
+:Calls **Features API** to check eligibility;
+if (Is eligible for documents?) then (yes)
+  :Sends request for Document List;
+  |#Technology|OpenPlatform BFF (Orchestrator)|
+  :Receives List Request from Client;
+  :Calls **Benefits Service** for list;
+  note right
+    **Benefits Service Logic (List Retrieval)**
+    1. Check **Redis Cache** for the list.
+    2. On cache miss, call **Core API**.
+    3. Store the new list in **Redis Cache**.
+  end note
+  :Receives list from Benefits Service;
+  :Augments and transforms data as needed;
+  :Returns formatted document list;
+  |#Application|OpenPlatform Client|
+  :Receives and displays the document list;
+  if (User selects a document to view?) then (yes)
+    :Sends request for specific PDF;
+    |#Technology|OpenPlatform BFF (Orchestrator)|
+    :Receives PDF Request from Client;
+    :Calls **Benefits Service** for PDF;
+    note right
+      **Benefits Service Logic (PDF Retrieval)**
+      1. Check **S3 Cache** for the PDF.
+      2. On cache miss, call **Core API**.
+      3. Store the new PDF in **S3 Cache**.
+    end note
+    :Receives PDF stream from Benefits Service;
+    :Streams PDF back to Client;
+    |#Application|OpenPlatform Client|
+    :Receives and displays the PDF;
+  else (no)
+  endif
+else (no)
+  :Displays a special message to the user\n(e.g., "No documents available");
+endif
+stop
+
+@enduml
