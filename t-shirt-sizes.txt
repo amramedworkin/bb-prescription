@@ -1,0 +1,8 @@
+T-Shirt Size Values
+XXS =10 points
+XS = 20 points
+S = 40 points
+M = 60 points
+L = 100 points
+XL = 200 points
+XXL = Too big to size (500 points

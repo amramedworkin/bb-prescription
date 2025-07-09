@@ -1,0 +1,2324 @@
+Date: Mon, 7 Jul 2025 16:48:32 +0000 (UTC)
+Message-ID: <137669277.375.1751906912790@d050a4fc4d2e>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_374_1215652000.1751906912790"
+
+------=_Part_374_1215652000.1751906912790
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Carve Out Users</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Carve Out Users</h1>
+    <div class=3D"Section1">
+        <p>
+<style>[data-colorid=3Dc9epjk9ovb]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dc9epjk9ovb]{color:#5999f8}[data-colorid=3Dzf6i8y47mm]{c=
+olor:#ff5630} html[data-color-mode=3Ddark] [data-colorid=3Dzf6i8y47mm]{colo=
+r:#cf2600}[data-colorid=3Dfxhbios0b5]{color:#ff5630} html[data-color-mode=
+=3Ddark] [data-colorid=3Dfxhbios0b5]{color:#cf2600}[data-colorid=3Deikud4eq=
+y0]{color:#ff5630} html[data-color-mode=3Ddark] [data-colorid=3Deikud4eqy0]=
+{color:#cf2600}[data-colorid=3Dd1adx2c0h0]{color:#ff5630} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dd1adx2c0h0]{color:#cf2600}[data-colorid=3Dy3q3d=
+7zbtz]{color:#ff5630} html[data-color-mode=3Ddark] [data-colorid=3Dy3q3d7zb=
+tz]{color:#cf2600}[data-colorid=3Defdybhp1ge]{color:#ff5630} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Defdybhp1ge]{color:#cf2600}[data-colorid=3Dix=
+hyzrt7qj]{color:#ff5630} html[data-color-mode=3Ddark] [data-colorid=3Dixhyz=
+rt7qj]{color:#cf2600}[data-colorid=3Dhq5olfixku]{color:#ff5630} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Dhq5olfixku]{color:#cf2600}[data-colorid=
+=3Dmai9y3ti9z]{color:#ff5630} html[data-color-mode=3Ddark] [data-colorid=3D=
+mai9y3ti9z]{color:#cf2600}[data-colorid=3Dsph0gr7869]{color:#ff5630} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Dsph0gr7869]{color:#cf2600}[data-colo=
+rid=3Dd8uiekmu50]{color:#ff5630} html[data-color-mode=3Ddark] [data-colorid=
+=3Dd8uiekmu50]{color:#cf2600}[data-colorid=3De30ea2rhp3]{color:#ff5630} htm=
+l[data-color-mode=3Ddark] [data-colorid=3De30ea2rhp3]{color:#cf2600}[data-c=
+olorid=3Dg8ewqdf802]{color:#ff5630} html[data-color-mode=3Ddark] [data-colo=
+rid=3Dg8ewqdf802]{color:#cf2600}[data-colorid=3Dlvwac26dre]{color:#ff5630} =
+html[data-color-mode=3Ddark] [data-colorid=3Dlvwac26dre]{color:#cf2600}[dat=
+a-colorid=3Dri52n2knpz]{color:#ff5630} html[data-color-mode=3Ddark] [data-c=
+olorid=3Dri52n2knpz]{color:#cf2600}</style></p>
+<style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1751906912765 {padding: 0px;}
+div.rbtoc1751906912765 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1751906912765 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style>
+<div class=3D"toc-macro rbtoc1751906912765">
+<ul class=3D"toc-indentation">
+<li><a href=3D"#CarveOutUsers-QA1">QA1</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#CarveOutUsers-SIT1">SIT1</a></li>
+<li><a href=3D"#CarveOutUsers-SIT2">SIT2</a></li>
+</ul></li>
+<li><a href=3D"#CarveOutUsers-QA2">QA2</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#CarveOutUsers-SIT1.1">SIT1</a></li>
+<li><a href=3D"#CarveOutUsers-SIT2.1">SIT2</a></li>
+</ul></li>
+<li><a href=3D"#CarveOutUsers-QA3">QA3</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#CarveOutUsers-SIT1.2">SIT1</a></li>
+<li><a href=3D"#CarveOutUsers-SIT2.2">SIT2</a></li>
+</ul></li>
+</ul>
+</div>
+<p>Use the below test harness URLs to test these users:</p>
+<p><a class=3D"external-link" href=3D"https://sdksit1.caremark.com/sdk/tran=
+sformation/dev/ui/universal/index.html?plv8=3Dtrue#" rel=3D"nofollow">https=
+://sdksit1.caremark.com/sdk/transformation/dev/ui/universal/index.html?plv8=
+=3Dtrue#</a> (SIT1)</p>
+<p><a class=3D"external-link" href=3D"https://sdksit4.caremark.com/sdk/tran=
+sformation/dev/ui/universal/index.html?plv8=3Dtrue#" rel=3D"nofollow">https=
+://sdksit4.caremark.com/sdk/transformation/dev/ui/universal/index.html?plv8=
+=3Dtrue#</a> (SIT2)</p>
+<h1 id=3D"CarveOutUsers-QA1"><strong><u>QA1</u></strong></h1>
+<h2 id=3D"CarveOutUsers-SIT1">SIT1</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"5=
+0ac1943-fb9c-42ca-b2bb-74d6ffa1b912" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 86.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 102.0px;">
+<col style=3D"width: 91.0px;">
+<col style=3D"width: 140.0px;">
+<col style=3D"width: 53.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>LDAP</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>First Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Last Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>DoB</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Gender</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong> Aetna CUMB ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna Proxy ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Notes:</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>CVS External ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Address</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>SR/SIT</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W185359174</p></td>
+<td class=3D"confluenceTd">
+<p>JESSICA</p></td>
+<td class=3D"confluenceTd">
+<p>JONES</p></td>
+<td class=3D"confluenceTd">
+<p>1945-09-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185359174</p></td>
+<td class=3D"confluenceTd">
+<p>0TWH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210002001</p></td>
+<td class=3D"confluenceTd">
+<p>1704 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W185351571<br><span data-colorid=3D"e30ea2rhp3">(this family not s=
+et up for alternatives)</span></p></td>
+<td class=3D"confluenceTd">
+<p>DAVID</p></td>
+<td class=3D"confluenceTd">
+<p>BANNER</p></td>
+<td class=3D"confluenceTd">
+<p>1985-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185351571</p></td>
+<td class=3D"confluenceTd">
+<p>BFNV1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210004001</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185351573</p></td>
+<td class=3D"confluenceTd">
+<p>SUZY</p></td>
+<td class=3D"confluenceTd">
+<p>BANNER</p></td>
+<td class=3D"confluenceTd">
+<p>1989-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185351573</p></td>
+<td class=3D"confluenceTd">
+<p>GFNV1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210004002</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185351574</p></td>
+<td class=3D"confluenceTd">
+<p>MARK</p></td>
+<td class=3D"confluenceTd">
+<p>BANNER</p></td>
+<td class=3D"confluenceTd">
+<p>2010-10-15</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185351574</p></td>
+<td class=3D"confluenceTd">
+<p>7FNV1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210004003</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185351575</p></td>
+<td class=3D"confluenceTd">
+<p>DIA</p></td>
+<td class=3D"confluenceTd">
+<p>BANNER</p></td>
+<td class=3D"confluenceTd">
+<p>2000-07-20</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185351575</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"zf6i8y47mm">This dependent doesn't have CV=
+S pharmacy benefits, i.e not carved out</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>N/A</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W185359175</p></td>
+<td class=3D"confluenceTd">
+<p>GEORGE</p></td>
+<td class=3D"confluenceTd">
+<p>JETSON</p></td>
+<td class=3D"confluenceTd">
+<p>1977-02-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185359175</p></td>
+<td class=3D"confluenceTd">
+<p>CTWH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210003001</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1) <br></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185359176</p></td>
+<td class=3D"confluenceTd">
+<p>JANE</p></td>
+<td class=3D"confluenceTd">
+<p>JETSON</p></td>
+<td class=3D"confluenceTd">
+<p>1982-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185359176</p></td>
+<td class=3D"confluenceTd">
+<p>JTWH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210003002</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p>ELROY</p></td>
+<td class=3D"confluenceTd">
+<p>JETSON</p></td>
+<td class=3D"confluenceTd">
+<p>2000-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p>This dependent has CVS pharmacy benefits but not medical benefits from A=
+etna</p></td>
+<td class=3D"confluenceTd">
+<p>SP1210003003</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185359177</p></td>
+<td class=3D"confluenceTd">
+<p>MARY</p></td>
+<td class=3D"confluenceTd">
+<p>JETSON</p></td>
+<td class=3D"confluenceTd">
+<p>2011-05-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185359177</p></td>
+<td class=3D"confluenceTd">
+<p>8TWH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1210003004</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 121 (SIT1)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185359178</p></td>
+<td class=3D"confluenceTd">
+<p>MICKEY</p></td>
+<td class=3D"confluenceTd">
+<p>JETSON</p></td>
+<td class=3D"confluenceTd">
+<p>2000-10-09</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185359178</p></td>
+<td class=3D"confluenceTd">
+<p>YTWH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"hq5olfixku">This dependent doesn't have CV=
+S pharmacy benefits, i.e not carved out</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"CarveOutUsers-SIT2">SIT2</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"0=
+8f5f03f-7b51-4797-a349-836ee2868d5f" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 140.0px;">
+<col style=3D"width: 89.0px;">
+<col style=3D"width: 140.0px;">
+<col style=3D"width: 55.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>LDAP</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>First Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Last Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>DoB</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Gender</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna CUMB ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna Proxy ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Notes:</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>CVS External ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p></p></th>
+<th class=3D"confluenceTh">
+<p><strong>SR #</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W185361751</p></td>
+<td class=3D"confluenceTd">
+<p>JESSICA</p></td>
+<td class=3D"confluenceTd">
+<p>LIMBO</p></td>
+<td class=3D"confluenceTd">
+<p>1966-09-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185361751</p></td>
+<td class=3D"confluenceTd">
+<p>4CJH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220002001</p></td>
+<td class=3D"confluenceTd">
+<p>1604 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W185351572</p></td>
+<td class=3D"confluenceTd">
+<p>XAVIER</p></td>
+<td class=3D"confluenceTd">
+<p>HUNTER</p></td>
+<td class=3D"confluenceTd">
+<p>1984-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185351572</p></td>
+<td class=3D"confluenceTd">
+<p>QFNV1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220004001</p></td>
+<td class=3D"confluenceTd">
+<p>224 STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185351576</p></td>
+<td class=3D"confluenceTd">
+<p>SUZY</p></td>
+<td class=3D"confluenceTd">
+<p>HUNTER</p></td>
+<td class=3D"confluenceTd">
+<p>1988-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185351576</p></td>
+<td class=3D"confluenceTd">
+<p>RFNV1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220004002</p></td>
+<td class=3D"confluenceTd">
+<p>224 STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185351577</p></td>
+<td class=3D"confluenceTd">
+<p>MARK</p></td>
+<td class=3D"confluenceTd">
+<p>HUNTER</p></td>
+<td class=3D"confluenceTd">
+<p>2012-10-15</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185351577</p></td>
+<td class=3D"confluenceTd">
+<p>3FNV1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220004003</p></td>
+<td class=3D"confluenceTd">
+<p>224 STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185351578</p></td>
+<td class=3D"confluenceTd">
+<p>AMY</p></td>
+<td class=3D"confluenceTd">
+<p>HUNTER</p></td>
+<td class=3D"confluenceTd">
+<p>1990-10-09</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185351578</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"g8ewqdf802">This dependent doesn't have CV=
+S pharmacy benefits, i.e not carved out</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>N/A</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W185361752</p></td>
+<td class=3D"confluenceTd">
+<p>TUPAC</p></td>
+<td class=3D"confluenceTd">
+<p>SHAKUR</p></td>
+<td class=3D"confluenceTd">
+<p>1977-02-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185361752</p></td>
+<td class=3D"confluenceTd">
+<p>LCJH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220003001</p></td>
+<td class=3D"confluenceTd">
+<p>1605 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185361753</p></td>
+<td class=3D"confluenceTd">
+<p>JANE</p></td>
+<td class=3D"confluenceTd">
+<p>SHAKUR</p></td>
+<td class=3D"confluenceTd">
+<p>1981-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185361753</p></td>
+<td class=3D"confluenceTd">
+<p>6CJH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220003002</p></td>
+<td class=3D"confluenceTd">
+<p>1605 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p>AMARU</p></td>
+<td class=3D"confluenceTd">
+<p>SHAKUR</p></td>
+<td class=3D"confluenceTd">
+<p>1996-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p>This dependent has CVS pharmacy benefits but not Aetna medical benefits<=
+/p></td>
+<td class=3D"confluenceTd">
+<p>SP1220003003</p></td>
+<td class=3D"confluenceTd">
+<p>1605 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185361754</p></td>
+<td class=3D"confluenceTd">
+<p>GABI</p></td>
+<td class=3D"confluenceTd">
+<p>SHAKUR</p></td>
+<td class=3D"confluenceTd">
+<p>2009-05-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>185361754</p></td>
+<td class=3D"confluenceTd">
+<p>SCJH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SP1220003004</p></td>
+<td class=3D"confluenceTd">
+<p>1605 N STORY ROAD, Richardson, TX 75081</p></td>
+<td class=3D"confluenceTd">
+<p>SR 122 (SIT2)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W185361755</p></td>
+<td class=3D"confluenceTd">
+<p>ROY</p></td>
+<td class=3D"confluenceTd">
+<p>SHAKUR</p></td>
+<td class=3D"confluenceTd">
+<p>1999-10-09</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>185361755</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"ixhyzrt7qj">This dependent doesn't have CV=
+S pharmacy benefits, i.e not carved out</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"CarveOutUsers-QA2"><u>QA2</u></h1>
+<h2 id=3D"CarveOutUsers-SIT1.1">SIT1</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"2=
+5ee8dc6-08a4-47d8-aa8f-34adbc8c786c" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 49.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 52.0px;">
+<col style=3D"width: 129.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 102.0px;">
+<col style=3D"width: 140.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>LDAP</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>First Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Last Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>DoB</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Gender</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna CUMB ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna Proxy ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Notes:</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>CVS External ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>SR #</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Address</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265821231</p></td>
+<td class=3D"confluenceTd">
+<p>MIKE</p></td>
+<td class=3D"confluenceTd">
+<p>LARKIN</p></td>
+<td class=3D"confluenceTd">
+<p>1970-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265821231</p></td>
+<td class=3D"confluenceTd">
+<p>D1006FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000101</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>1703 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265823569</p></td>
+<td class=3D"confluenceTd">
+<p>JOE</p></td>
+<td class=3D"confluenceTd">
+<p>CAULEY</p></td>
+<td class=3D"confluenceTd">
+<p>1985-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823569</p></td>
+<td class=3D"confluenceTd">
+<p>40806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000201</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265822495 <strong><span data-colorid=3D"fxhbios0b5">(has retail r=
+efills)</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>MICHELLE</p></td>
+<td class=3D"confluenceTd">
+<p>VERRETT</p></td>
+<td class=3D"confluenceTd">
+<p>1985-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265822495</p></td>
+<td class=3D"confluenceTd">
+<p>VGJ06FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000401</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265822497 <strong><span data-colorid=3D"d1adx2c0h0">(has retail r=
+efills)</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>FRED</p></td>
+<td class=3D"confluenceTd">
+<p>VERRETT</p></td>
+<td class=3D"confluenceTd">
+<p>1980-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265822497</p></td>
+<td class=3D"confluenceTd">
+<p>2GJ06FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000402</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265822498 <strong><span data-colorid=3D"y3q3d7zbtz">(has retail r=
+efills)</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>DEBBIE</p></td>
+<td class=3D"confluenceTd">
+<p>VERRETT</p></td>
+<td class=3D"confluenceTd">
+<p>2011-05-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265822498</p></td>
+<td class=3D"confluenceTd">
+<p>MGJ06FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000403</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265823572</p>
+<p>(this family wont work for retail refills cause of plan difference issue=
+)</p></td>
+<td class=3D"confluenceTd">
+<p>CHANEY</p></td>
+<td class=3D"confluenceTd">
+<p>MACK</p></td>
+<td class=3D"confluenceTd">
+<p>1976-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823572</p></td>
+<td class=3D"confluenceTd">
+<p>Z0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000301</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823574</p></td>
+<td class=3D"confluenceTd">
+<p>CHANEY</p></td>
+<td class=3D"confluenceTd">
+<p>JOANN</p></td>
+<td class=3D"confluenceTd">
+<p>1975-10-15</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265823574</p></td>
+<td class=3D"confluenceTd">
+<p>T0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000302</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>CHANEY</p></td>
+<td class=3D"confluenceTd">
+<p>GEORGE</p></td>
+<td class=3D"confluenceTd">
+<p>2000-09-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>This dependent has CVS pharmacy benefits but not Aetna medical benefits<=
+/p></td>
+<td class=3D"confluenceTd">
+<p>66901000303</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>1704 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823575</p></td>
+<td class=3D"confluenceTd">
+<p>CHANEY</p></td>
+<td class=3D"confluenceTd">
+<p>BETTY</p></td>
+<td class=3D"confluenceTd">
+<p>2010-02-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265823575</p></td>
+<td class=3D"confluenceTd">
+<p>L0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>66901000304</p></td>
+<td class=3D"confluenceTd">
+<p>669</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823576</p></td>
+<td class=3D"confluenceTd">
+<p>CHANEY</p></td>
+<td class=3D"confluenceTd">
+<p>JACK</p></td>
+<td class=3D"confluenceTd">
+<p>2000-01-01</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823576</p></td>
+<td class=3D"confluenceTd">
+<p>60806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"lvwac26dre">This dependent doesn't have CV=
+S pharmacy benefits, i.e not carved out</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"CarveOutUsers-SIT2.1">SIT2</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"9=
+05f550f-4cf9-4ebd-a224-6eb0301eb6f2" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 53.0px;">
+<col style=3D"width: 153.0px;">
+<col style=3D"width: 85.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 133.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>LDAP</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>First Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Last Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>DoB</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Gender</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna CUMB ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna Proxy ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Notes:</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>CVS External ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>SR #</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Address</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265822496</p></td>
+<td class=3D"confluenceTd">
+<p>LEROY</p></td>
+<td class=3D"confluenceTd">
+<p>DIGGLES</p></td>
+<td class=3D"confluenceTd">
+<p>1969-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265822496</p></td>
+<td class=3D"confluenceTd">
+<p>HGJ06FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700101</p></td>
+<td class=3D"confluenceTd">
+<p>670</p></td>
+<td class=3D"confluenceTd">
+<p>1703 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265823568</p></td>
+<td class=3D"confluenceTd">
+<p>WILLIE</p></td>
+<td class=3D"confluenceTd">
+<p>HADNOT</p></td>
+<td class=3D"confluenceTd">
+<p>1968-09-18</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823568</p></td>
+<td class=3D"confluenceTd">
+<p>D0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700201</p></td>
+<td class=3D"confluenceTd">
+<p>670</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265823567<br><strong><span data-colorid=3D"efdybhp1ge">(has pharm=
+acy refills)</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>JIMMY</p></td>
+<td class=3D"confluenceTd">
+<p>CLARK</p></td>
+<td class=3D"confluenceTd">
+<p>1980-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823567</p></td>
+<td class=3D"confluenceTd">
+<p>Y0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700401</p></td>
+<td class=3D"confluenceTd">
+<p>670, 1217</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823570<br><strong><span data-colorid=3D"mai9y3ti9z">(has pharm=
+acy refills)</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>MARIE</p></td>
+<td class=3D"confluenceTd">
+<p>CLARK</p></td>
+<td class=3D"confluenceTd">
+<p>1982-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265823570</p></td>
+<td class=3D"confluenceTd">
+<p>P0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700402</p></td>
+<td class=3D"confluenceTd">
+<p>670, 1217</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823571<br><strong><span data-colorid=3D"ri52n2knpz">(has pharm=
+acy refills)</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p>ANNE</p></td>
+<td class=3D"confluenceTd">
+<p>CLARK</p></td>
+<td class=3D"confluenceTd">
+<p>2012-05-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265823571</p></td>
+<td class=3D"confluenceTd">
+<p>90806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700403</p></td>
+<td class=3D"confluenceTd">
+<p>670, 1217</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265823573</p>
+<p>(this family wont work for retail refills cause of plan difference issue=
+)</p></td>
+<td class=3D"confluenceTd">
+<p>JONNIE</p></td>
+<td class=3D"confluenceTd">
+<p>FOWLER</p></td>
+<td class=3D"confluenceTd">
+<p>1976-9-18</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823573</p></td>
+<td class=3D"confluenceTd">
+<p>F0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700301</p></td>
+<td class=3D"confluenceTd">
+<p>670</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823577</p></td>
+<td class=3D"confluenceTd">
+<p>TANZIE</p></td>
+<td class=3D"confluenceTd">
+<p>FOWLER</p></td>
+<td class=3D"confluenceTd">
+<p>1974-10-15</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265823577</p></td>
+<td class=3D"confluenceTd">
+<p>S0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700302</p></td>
+<td class=3D"confluenceTd">
+<p>670</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823578</p></td>
+<td class=3D"confluenceTd">
+<p>MECHELLE</p></td>
+<td class=3D"confluenceTd">
+<p>FOWLER</p></td>
+<td class=3D"confluenceTd">
+<p>2009-02-11</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>265823578</p></td>
+<td class=3D"confluenceTd">
+<p>10806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>SR006700304</p></td>
+<td class=3D"confluenceTd">
+<p>670</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265823579</p></td>
+<td class=3D"confluenceTd">
+<p>RICKY</p></td>
+<td class=3D"confluenceTd">
+<p>FOWLER</p></td>
+<td class=3D"confluenceTd">
+<p>2001-01-01</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265823579</p></td>
+<td class=3D"confluenceTd">
+<p>X0806FFFFPXZ</p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"sph0gr7869">This dependent doesn't have CV=
+S pharmacy benefits, i.e not carved out</span></strong></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>124 STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>TONI</p></td>
+<td class=3D"confluenceTd">
+<p>FOWLER</p></td>
+<td class=3D"confluenceTd">
+<p>2001-09-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>--</p></td>
+<td class=3D"confluenceTd">
+<p>This dependent has CVS pharmacy benefits but not Aetna medical benefits<=
+/p></td>
+<td class=3D"confluenceTd">
+<p>SR006700303</p></td>
+<td class=3D"confluenceTd">
+<p>670</p></td>
+<td class=3D"confluenceTd">
+<p>1704 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"CarveOutUsers-QA3"><strong><u>QA3</u></strong></h1>
+<h2 id=3D"CarveOutUsers-SIT1.2">SIT1</h2>
+<p><strong><span data-colorid=3D"eikud4eqy0">PLEASE DON'T PLACE ORDERS UNLE=
+SS ABSOLUTELY NECESSARY TO TEST, SINCE MULTIPLE TEAMS ARE USING THESE USERS=
+ AND MANY USERS HAD WRONG PROXY IDs SETUP IN CREATION PROCESS</span></stron=
+g></p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"7=
+6324fe1-7011-489b-b8f3-e53e096bde92" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 51.0px;">
+<col style=3D"width: 72.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 51.0px;">
+<col style=3D"width: 50.0px;">
+<col style=3D"width: 71.0px;">
+<col style=3D"width: 140.0px;">
+<col style=3D"width: 85.0px;">
+<col style=3D"width: 48.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>#</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>LDAP</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>First Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Last Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>DoB</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Gender</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna CUMBID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna Proxy ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>CVS External ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Address</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Membership ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>other</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>IND</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W264592624</p></td>
+<td class=3D"confluenceTd">
+<p>DARREL</p></td>
+<td class=3D"confluenceTd">
+<p>IUSERONE</p></td>
+<td class=3D"confluenceTd">
+<p>1930-10-20</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>264592624</p></td>
+<td class=3D"confluenceTd">
+<p>B4L3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W2055800101</p></td>
+<td class=3D"confluenceTd">
+<p><code>1703 N STORY ROAD</code>, <code>RICHARDSON</code>, <code>TX</code>=
+ <code>75081</code></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>IND<br><span data-colorid=3D"d8uiekmu50">(this user not set up for alter=
+natives)</span></p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W264788655</p>
+<p>(Select DMT-A-RAUX-0005)</p></td>
+<td class=3D"confluenceTd">
+<p>GRETTA</p></td>
+<td class=3D"confluenceTd">
+<p>IUSERFOUR</p></td>
+<td class=3D"confluenceTd">
+<p>1956-04-07</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>264788655<br>
+264592630</p></td>
+<td class=3D"confluenceTd">
+<p>84L3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W2055800401</p></td>
+<td class=3D"confluenceTd">
+<p><code>1706 N STORY ROAD</code>, <code>RICHARDSON</code>, <code>TX</code>=
+ <code>75081</code></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>Multiple plan sponsor</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>IND</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265056343</p>
+<p>(This user has a coldpack refill)</p></td>
+<td class=3D"confluenceTd">
+<p>LUKE</p></td>
+<td class=3D"confluenceTd">
+<p>CAGE</p></td>
+<td class=3D"confluenceTd">
+<p>1970-12-11</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>265056343</p></td>
+<td class=3D"confluenceTd">
+<p>757N1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>1703 N STORY ROAD, <code>RICHARDSON</code>, <code>TX</code> <code>75081<=
+/code></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>IND</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W264592626</p>
+<p>(Select DMT-CHK-006-02)</p></td>
+<td class=3D"confluenceTd">
+<p>DONALD</p></td>
+<td class=3D"confluenceTd">
+<p>IUSERTHREE</p></td>
+<td class=3D"confluenceTd">
+<p>1930-04-16</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>264592626<br>
+265042866</p></td>
+<td class=3D"confluenceTd">
+<p>K4L3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W2055800301</p></td>
+<td class=3D"confluenceTd">
+<p>1705 N STORY ROAD, RICHARDSON, TX, 75081</p></td>
+<td class=3D"confluenceTd">
+<p>5~265042866+10+2+20200101+791968+B+1</p></td>
+<td class=3D"confluenceTd">
+<p><strong>JV user with multiple plan sponsors</strong></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>SUB</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W264592652</p></td>
+<td class=3D"confluenceTd">
+<p>JAMES</p></td>
+<td class=3D"confluenceTd">
+<p>OLDFART</p></td>
+<td class=3D"confluenceTd">
+<p>1946-06-29</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>264592652</p></td>
+<td class=3D"confluenceTd">
+<p>GPL3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W2055800801</p></td>
+<td class=3D"confluenceTd">
+<p>201 MAIN STREET, <code>RICHARDSON</code>, <code>TX</code> <code>75081</c=
+ode></p></td>
+<td class=3D"confluenceTd">
+<p>5~264592652+10+3+20200101+792405+C+3</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-D-W264592653</p></td>
+<td class=3D"confluenceTd">
+<p>JEAN</p></td>
+<td class=3D"confluenceTd">
+<p>OLDFART</p></td>
+<td class=3D"confluenceTd">
+<p>1945-08-01</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>264592653</p></td>
+<td class=3D"confluenceTd">
+<p>7PL3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W2055800802</p></td>
+<td class=3D"confluenceTd">
+<p>201 MAIN STREET, <code>RICHARDSON</code>, <code>TX</code> <code>75081</c=
+ode></p></td>
+<td class=3D"confluenceTd">
+<p>5~264592653+10+3+20200101+792405+C+3</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-D-W264593957</p></td>
+<td class=3D"confluenceTd">
+<p>TOKYO</p></td>
+<td class=3D"confluenceTd">
+<p>HEIST</p></td>
+<td class=3D"confluenceTd">
+<p>2000-01-01</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>264593957</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>5~264593957+10+3+20200101+792405+C+3</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Dependent without pharmacy benefits</strong></p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>SUB</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>DMT-S-W264889996</p>
+<p><span data-colorid=3D"c9epjk9ovb">(User used in Automation - DO NOT modi=
+fy ANYTHING about this member's data)</span></p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>JUAN</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>JULIO</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>1965-08-07</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>M</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>264889996</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>RWY0XKBBBPXY</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>SP1210005001</p></td>
+<td class=3D"confluenceTd">
+<p><code>101 MAIN STREET</code>, <code>RICHARDSON</code>, <code>TX</code> <=
+code>75081</code></p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p>5~264889996+10+2+20190101+753371+B+2</p></td>
+<td data-highlight-colour=3D"#fff0b3" class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-D-W264595969</p></td>
+<td class=3D"confluenceTd">
+<p>ESTER</p></td>
+<td class=3D"confluenceTd">
+<p>JULIO</p></td>
+<td class=3D"confluenceTd">
+<p>1970-05-06</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>264595969</p></td>
+<td class=3D"confluenceTd">
+<p>3WY0XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>SP1210005002</p></td>
+<td class=3D"confluenceTd">
+<p><code>101 MAIN STREET</code>, <code>RICHARDSON</code>, <code>TX</code> <=
+code>75081</code></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p>JONES</p></td>
+<td class=3D"confluenceTd">
+<p>JULIO</p></td>
+<td class=3D"confluenceTd">
+<p>1996-09-29</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p>SP1210005003</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p><strong>This dependent has CVS pharmacy benefits but not Aetna medical b=
+enefits</strong></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-D-W264792067</p></td>
+<td class=3D"confluenceTd">
+<p>JEAN</p></td>
+<td class=3D"confluenceTd">
+<p>JULIO</p></td>
+<td class=3D"confluenceTd">
+<p>2000-10-09</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p>264792067</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p style=3D"text-align: center;">--</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p><strong>Dependent without CVS pharmacy benefits</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"CarveOutUsers-SIT2.2">SIT2</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"d=
+8b1e1bf-d304-48c8-a6ba-0ce79877d286" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 51.0px;">
+<col style=3D"width: 58.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 48.0px;">
+<col style=3D"width: 89.0px;">
+<col style=3D"width: 48.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>#</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>LDAP</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>First Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Last Name</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>DoB</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Gender</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna CUMBID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Aetna Proxy ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>CVS External ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Membership ID</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Address</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>other</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>IND</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-S-W265027100</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DANIEL</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>IUSERONE</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>1930-01-30</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>M</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027100</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>C5XH1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W9811065101</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>Medical</del></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>IND</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W264886614</p>
+<p>(<u>DMT-A-RAUX-0005</u> - Dental<br><code>VERIZON CAU-0080</code> - Medi=
+cal)</p></td>
+<td class=3D"confluenceTd">
+<p>GEORGE</p></td>
+<td class=3D"confluenceTd">
+<p>IUSERFOUR</p></td>
+<td class=3D"confluenceTd">
+<p>1956-04-07</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p><br>
+264592563</p></td>
+<td class=3D"confluenceTd">
+<p>NZZ3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W5811065401</p></td>
+<td class=3D"confluenceTd">
+<p>multiple membership ids<br>
+Dental:<br><code>5~264592563+10+4+20200101+792405+D+4</code><br>
+Medical:<br><code>5~264886614+10+2+20200101+753371+B+2</code><br><code>5~26=
+4886614+11+3+20200101+753371+C+3</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>1706 N STORY ROAD</code>, <code>RICHARDSON</code>, <code>TX</code>=
+ <code>75081</code></p></td>
+<td class=3D"confluenceTd">
+<p>Multiple plan sponsors 264886614</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>IND</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W265056344</p></td>
+<td class=3D"confluenceTd">
+<p>JEFF</p></td>
+<td class=3D"confluenceTd">
+<p>DIMBO</p></td>
+<td class=3D"confluenceTd">
+<p>1971-12-11</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>265056344</p></td>
+<td class=3D"confluenceTd">
+<p>K57N1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p>SP1220001001</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>1603 N STORY ROAD, <code>RICHARDSON</code>, <code>TX</code> <code>75081<=
+/code></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>SUB</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-S-W265027252</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>TIM</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>MERCEDES</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>1971-05-10</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>M</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027252</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>GB5H1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W4811065501</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>Medical + Dental</del></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>DEP</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-D-W265027253</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>JANE</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>MERCEDES</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>1967-08-03</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>F</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027253</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>7B5H1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W4811065502</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>Medical</del></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>DEP</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-D-W265027254</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>KIDDOONE</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>MERCEDES</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>2000-06-21</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>F</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027254</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>KB5H1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W4811065503</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>DEP</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-D-W265027255</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>KIDDOTWO</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>MERCEDES</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>1999-05-02</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>M</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027255</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>RB5H1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W4811065504</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>DEP</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-D-W265027256</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>MINORKIDDO</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>MERCEDES</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>2012-07-03</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>F</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027256</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>3B5H1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W4811065505</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>Medical benefits expiring 04/2020</del></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>SUB</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-S-W264592562</p>
+<p>(choose VERIZON plan to use pharmacy)</p></td>
+<td class=3D"confluenceTd">
+<p>RAY</p></td>
+<td class=3D"confluenceTd">
+<p>PONTIAC</p></td>
+<td class=3D"confluenceTd">
+<p>1959-08-15</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>264592562<br></p></td>
+<td class=3D"confluenceTd">
+<p>2ZZ3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W3811065601</p></td>
+<td class=3D"confluenceTd">
+<p>select VERIZON CAU-0080 plan</p>
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>101 MAIN STREET, <code>RICHARDSON</code>, <code>TX</code> <code>75081</c=
+ode></p></td>
+<td class=3D"confluenceTd">
+<p>Multiple plan sponsors 265028971</p>
+<p>Error 7009 -04/01/2024</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-D-W265028975</p></td>
+<td class=3D"confluenceTd">
+<p>ANNIE</p></td>
+<td class=3D"confluenceTd">
+<p>PONTIAC</p></td>
+<td class=3D"confluenceTd">
+<p>1956-03-23</p></td>
+<td class=3D"confluenceTd">
+<p>F</p></td>
+<td class=3D"confluenceTd">
+<p><code>265045519</code></p></td>
+<td class=3D"confluenceTd">
+<p>5MVH1BBBBPXZ</p></td>
+<td class=3D"confluenceTd">
+<p>W3811065602</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>101 MAIN STREET, <code>RICHARDSON</code>, <code>TX</code> <code>75081</c=
+ode></p></td>
+<td class=3D"confluenceTd">
+<p>Benefits from plan sponsor 2 265028975</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>DEP</p></td>
+<td class=3D"confluenceTd">
+<p>DMT-D-W264690595</p></td>
+<td class=3D"confluenceTd">
+<p>MINORKIDDO</p></td>
+<td class=3D"confluenceTd">
+<p>PONTIAC</p></td>
+<td class=3D"confluenceTd">
+<p>2010-01-05</p></td>
+<td class=3D"confluenceTd">
+<p>M</p></td>
+<td class=3D"confluenceTd">
+<p>264690595</p></td>
+<td class=3D"confluenceTd">
+<p>MZZ3XKBBBPXY</p></td>
+<td class=3D"confluenceTd">
+<p>W3811065603</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>101 MAIN STREET, <code>RICHARDSON</code>, <code>TX</code> <code>75081</c=
+ode></p></td>
+<td class=3D"confluenceTd">
+<p>Benefits from plan sponsor 1</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>SUB</del><br></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>DMT-S-W265027259</del></p>
+<p></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>RAPHALE</del></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>GUZMAN</del></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>1975-06-27</del></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>F</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027259</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>JB5H1BBBBPXZ</del></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>W1811065801</del></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>
+<del>Medical + Dental</del></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>
+<del>DEP</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>DMT-D-W265027260</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>PHILIPE</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>GUZMAN</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>1976-04-14</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>M</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>265027260</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>8B5H1BBBBPXZ</del></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>W1811065802</del></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>
+<del>Medical + Dental</del></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"b4=
+50a4ba-67ec-4243-ac15-b72490f40c97" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p></p></th>
+<th class=3D"confluenceTh">
+<p></p></th>
+<th class=3D"confluenceTh">
+<p></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_374_1215652000.1751906912790--
