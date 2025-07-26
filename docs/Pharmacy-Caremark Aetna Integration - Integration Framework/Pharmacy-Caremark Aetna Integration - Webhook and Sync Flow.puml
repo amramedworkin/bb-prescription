@@ -1,0 +1,72 @@
+@startuml Webhook Sync & Reconciliation Flowchart
+
+!theme spacelab
+
+title "Flowchart: High-Reliability Webhook Sync Process"
+
+|Service Provider|
+start
+:Data Change Occurs
+(e.g., UX Block updated);
+:Generate Webhook Payload
+(event_id, block_id, version);
+:Sign Payload with HMAC-SHA256;
+:Send POST to Consumer's
+Webhook Endpoint;
+|Service Consumer|
+:Receive Webhook POST;
+:Validate HMAC Signature;
+if (Signature is valid?) then (yes)
+  :Respond immediately with
+  **HTTP 200 OK**;
+  :Enqueue Event for
+  Async Processing;
+  stop
+else (no)
+  :Discard request;
+  :Log security warning;
+  stop
+endif
+
+|Consumer Async Worker|
+start
+:Dequeue Event;
+:Check event_id against
+local cache to prevent duplicates;
+if (Is new event?) then (yes)
+  :Log event_id;
+  :Make GET request to Provider API
+  (e.g., /api/v1/ux-blocks/{block_id});
+  |Service Provider|
+  :Receive GET request;
+  :Return latest data block;
+  |Consumer Async Worker|
+  :Receive data block;
+  :Update local database/cache
+  with new data;
+  :Processing Complete;
+else (no)
+  :Discard duplicate event;
+endif
+stop
+
+|Consumer Reconciliation Job (Daily)|
+start
+:Make GET request to
+/api/v1/ux-blocks/versions-digest;
+|Service Provider|
+:Return list of all
+block_ids and version hashes;
+|Consumer Reconciliation Job (Daily)|
+:Receive version digest;
+:Compare with local state;
+if (Discrepancies found?) then (yes)
+  :For each mismatched block,
+  fetch the full block from the API;
+  :Update local state;
+else (no)
+endif
+:Reconciliation Complete;
+stop
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+!theme vibrant
+
+skinparam componentStyle uml2
+skinparam rectangle {
+    roundCorner 20
+}
+skinparam database {
+    roundCorner 20
+}
+skinparam cloud {
+    roundCorner 20
+}
+
+title OpenPlatform - Plan Documents Architecture
+
+actor "OpenPlatform Client\n(CVS Super App)" as Client
+
+cloud "AWS Cloud" {
+    component "OpenPlatform BFF\n(New)" as BFF <<BFF>>
+    component "Features API\n(Existing)" as FeaturesAPI <<API>>
+    component "Benefits Service\n(Existing)" as BenefitsService <<Service>>
+    database "Redis Cache\n(List Metadata)" as Redis
+    database "S3 Cache\n(PDFs)" as S3
+    component "Core APIs\n(System of Record)" as CoreAPI
+}
+
+Client -right-> FeaturesAPI : 1. Checks feature flags
+Client -right-> BFF : 2. Requests document list / PDF
+
+BFF -right-> BenefitsService : 3. Proxies requests to backend
+
+BenefitsService .down.> Redis : 4a. Caches/retrieves list metadata
+BenefitsService .down.> S3 : 4b. Caches/retrieves PDFs
+BenefitsService -right-> CoreAPI : 5. Fetches from source on cache miss
+
+@enduml

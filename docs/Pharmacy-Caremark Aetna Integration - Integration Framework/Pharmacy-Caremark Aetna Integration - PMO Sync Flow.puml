@@ -1,0 +1,84 @@
+@startuml PMO Synchronization Flowchart
+
+!theme spacelab
+
+title "Flowchart: Joint Project Management & PMO Sync"
+
+|Both Organizations|
+start
+:Program Leads co-author
+**Joint Project Charter**;
+:Executive Sponsors
+review and approve Charter;
+note right
+  - Defines Scope
+  - Defines Goals
+  - Assigns PMs
+end note
+
+|Provider PMO|
+:Create detailed
+**Internal Project Schedule**
+(e.g., in Jira);
+
+|Consumer PMO|
+:Create detailed
+**Internal Project Schedule**
+(e.g., in Asana);
+
+|Both PMs (Weekly Tactical Sync)|
+:Collaborate to create and maintain
+the **Integrated Master Schedule (IMS)**;
+note right
+  IMS Contains:
+  - Major Milestones
+  - Key Deliverables (Interface Control Points)
+  - Cross-organizational Dependencies
+end note
+
+:Project Execution Begins;
+
+repeat
+  |Provider Team|
+  :Work on internal tasks;
+  :Deliver to an Interface
+  Control Point (e.g., API deployed);
+
+  |Consumer Team|
+  :Work on internal tasks;
+  :Begin dependent work upon
+  Provider's delivery;
+
+  |Both PMs (Weekly Tactical Sync)|
+  :Review progress against IMS;
+  :Identify upcoming dependencies;
+  :Update shared Risk Register;
+  if (Blocker or Major Risk Identified?) then (yes)
+    :Escalate to Program Leads;
+  endif
+repeat while (Project Not Complete)
+
+|Steering Committee (Bi-weekly)|
+:PMs present summary to
+Program Leads & Exec Sponsors;
+:Review project health,
+scope, and budget;
+:Make go/no-go decisions;
+
+|Change Control|
+start
+:Change is proposed that
+impacts IMS or Charter;
+:Formal **Change Request (CR)**
+is created;
+:Both PMs review and
+jointly approve CR;
+if (Approved) then (yes)
+  :Update IMS and
+  internal schedules;
+else (no)
+  :Reject CR;
+endif
+stop
+
+@enduml

@@ -1,0 +1,77 @@
+@startuml C4 Diagrams
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+' Styling
+skinparam linetype ortho
+skinparam roundcorner 10
+skinparam shadowing false
+skinparam handwritten false
+skinparam sequenceArrowThickness 2
+skinparam sequenceParticipant bordercolor #2E7D32
+skinparam sequenceParticipantBackgroundColor #E8F5E9
+
+' Actors
+Person(consumer_dev, "Consumer Developer", "Integrates with Provider's services.")
+Person(provider_dev, "Provider Developer", "Maintains and evolves the services.")
+Person(end_user, "End User", "Interacts with the Consumer's Application.")
+
+System_Boundary(consumer_boundary, "Service Consumer System") {
+    Container(consumer_app, "Consumer Application", "Web/Mobile App", "The primary application used by End Users. Consumes data and UX blocks from the Provider.")
+    ContainerDb(consumer_db, "Consumer Backend DB", "Database", "Stores local application state and cached data from the Provider.")
+    Container(consumer_worker, "Async Worker", "Message Queue/Worker", "Processes webhook events and performs out-of-band data reconciliation.")
+}
+
+System_Boundary(provider_boundary, "Service Provider System") {
+    Container(provider_api, "Provider API System", "Java/Spring", "Exposes REST API and UX/Data Block services. Manages business logic and data orchestration.")
+    ContainerDb(provider_db, "Provider Core DB", "PostgreSQL", "Primary data store for all business entities.")
+    Container(provider_auth, "Auth Service", "OAuth2 Server", "Manages mTLS certificates and issues tokens.")
+    Container(provider_observability, "Observability Platform", "Datadog/Splunk", "Collects logs, traces, and metrics for monitoring and alerting.")
+}
+
+' Relationships
+Rel(end_user, consumer_app, "Uses")
+
+Rel(consumer_dev, consumer_app, "Builds & Maintains")
+Rel(provider_dev, provider_api, "Builds & Maintains")
+
+Rel(consumer_app, provider_api, "Makes API Calls (mTLS)", "HTTPS/JSON")
+Rel(consumer_app, consumer_db, "Reads/Writes Cached Data")
+Rel(consumer_worker, consumer_db, "Reads/Writes Reconciled Data")
+Rel(consumer_worker, provider_api, "Makes Reconciliation API Calls", "HTTPS/JSON")
+
+Rel(provider_api, consumer_worker, "Sends Webhook Notifications", "HTTPS/HMAC")
+Rel(provider_api, provider_db, "Reads/Writes Core Data")
+Rel(provider_api, provider_auth, "Validates Credentials")
+Rel(provider_api, provider_observability, "Sends Logs & Traces")
+
+' Component Diagram for Provider API System
+Container_Boundary(api_boundary, "Provider API System") {
+    Component(api_gateway, "API Gateway", "Spring Cloud Gateway", "Handles mTLS termination, rate limiting, request routing, and schema validation.")
+    Component(rest_controller, "REST API Controller", "Spring Boot", "Exposes /api/v1/... endpoints for core data entities.")
+    Component(ux_block_controller, "UX/Data Block Controller", "Spring Boot", "Exposes /api/v1/ux-blocks/... endpoints.")
+    Component(webhook_service, "Webhook Service", "Spring Boot/AMQP", "Generates and sends signed webhook events upon data changes.")
+    Component(reconciliation_service, "Reconciliation Service", "Spring Boot", "Provides version-digest endpoints for out-of-band sync.")
+    Component(data_access_layer, "Data Access Layer", "JPA/Hibernate", "Handles all database interactions.")
+
+    Rel(api_gateway, rest_controller, "Routes requests to")
+    Rel(api_gateway, ux_block_controller, "Routes requests to")
+    Rel(api_gateway, reconciliation_service, "Routes requests to")
+
+    Rel(rest_controller, data_access_layer, "Uses")
+    Rel(ux_block_controller, data_access_layer, "Uses")
+    Rel(reconciliation_service, data_access_layer, "Uses")
+
+    ' Internal data flow for webhooks
+    Rel(rest_controller, webhook_service, "Triggers events on data change")
+    Rel(ux_block_controller, webhook_service, "Triggers events on data change")
+}
+
+' Connect external systems to components
+Rel(consumer_app, api_gateway, "Makes API Calls (mTLS)", "HTTPS/JSON")
+Rel(consumer_worker, api_gateway, "Makes Reconciliation API Calls", "HTTPS/JSON")
+Rel(webhook_service, consumer_worker, "Sends Webhook Notifications", "HTTPS/HMAC")
+Rel(data_access_layer, provider_db, "Reads/Writes Core Data", "JDBC")
+
+@enduml
