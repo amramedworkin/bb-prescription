@@ -4,3 +4,9 @@
 **/~*
 docs/tamar
 *postman*/
+docs/Plan_Docs/Postman.app/
+docs/Plan_Docs/Postman-2.app/
+**/Postman*.app/
+**/Postman*.app/**
+*.app/Contents/Frameworks/
+*.app/Contents/Resources/app.asar
