@@ -1,0 +1,24 @@
+{
+    "features": [
+        {
+            "code": "0_CP4IACE12OCP",
+            "memberships": [
+                {
+                    "membershipResourceId": "5~265688554+10+3+20200101+761878+B+2",
+                    "status": "NA",
+                    "enabled": false
+                },
+                {
+                    "membershipResourceId": "5~265688554+10+4+20200101+761878+C+3",
+                    "status": "NA",
+                    "enabled": false
+                },
+                {
+                    "membershipResourceId": "5~265688554+10+1+20200101+761878+A+1",
+                    "status": "NA",
+                    "enabled": false
+                }
+            ]
+        },
+    ]
+}

@@ -1,0 +1,1771 @@
+{
+    "memberships": [
+        {
+            "membershipIdentifier": {
+                "resourceId": "5~265101191+10+1+20200101+794706+A+1"
+            },
+            "features": [
+                {
+                    "code": "0_Dis_Test1_OP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_PT_Testing_Feature3",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_Test_C-SNP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_Test_Feat_DB2_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_Test_Feat_Tarun",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_TestFeature_AH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_TestFeatureQAPath3",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_Testingfeature",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_TestingTelemedicine",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_TestingTempIdCardDen",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "0_Voyager_CDC_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "1_PE_Testing_01",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "1_PE_Testing_02",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "1_PE_Testing_03",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "1_PE_Testing_04",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "1_PE_Testing_05",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "1_PE_Testing_06",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "A1AIndicator",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "A1APrgmIndicator",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ACC_CMT_Manual",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AccExpanded",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AccumClaims",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ACOIndicator",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ActiveCarePlan",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Aetna_Dental_Fund",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AetnaHealthEnabled",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AetnaHealthEnabled_Web",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Aetna_Health_Fund",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AggregatedPriorAuthAPI",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AHIncentives",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AlertCenter",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Appeals",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AppealsSubmit",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "AtHomeDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumChemotherapy",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumDrOffVisit",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumHospCare",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumImmedMedAttn",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumOupatSurgery",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumPregnancy",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumRoutineCare",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenSumTests",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenTracker",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BenzRecommendedActions",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BHInclude",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "BreastHlthSurvey",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CA_HMO",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CancerSupportCtr",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Caremark",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CarePathBenefitsPOC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CarePathGlobal",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CarePathTopicDiabetes",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CarePathTopicJoint",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CarePathTopicMaternity",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CarePathTopicMaternityCostco",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Claim_Pay_Off_Msg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ClaimReadyMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ClaimsList",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ClaimsReceipts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ClaimSubmit",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ClickCall",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "COB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CombinedAccums",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ConnDimRefFeatTest",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ContactUs",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Covax_Msg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CoverageRequest",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CSMessaging",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CustomTierDisplay",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CVSBrand",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CVS_OTC_HS",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CVSRxCarveout",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "CVSSuperApp",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DenAccumHistory",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DenCap",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DenPlanDocs",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DenPlanSumm",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DenServiceLimits",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DentalAccums",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DentalClaimSubmit",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DentalDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Dental_Forms",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DentalPricing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Dental_Search",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DiabetesMgmt",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DigitalCoaching",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DispPendMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DocASAP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Documents",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DocumentsMaster",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "DualEligibilitySearch",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EAPSearch",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EFT",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Email_IDCard",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EmailRequired",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EncounterMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EnglishChat",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EVCBH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EVCepicPlanID",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EVCGenMed",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EVCVC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "EVCVPC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ExitSurvey",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_ACC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_BH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Chronic",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Dental",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_DigestiveHealth",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_DiscountPrograms_API",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_DoctorOnDemand",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_EAP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_EmployeeBenefits",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_EnrollVendor",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_EVC_API",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_ExpertOpinion",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_GeneticTest",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Hearing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Hlth_Decision",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_HSA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_InFertility",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_LAB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_MSK",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_OnsiteClinic",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_OTC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_PatientPortal",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_PayerShare",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_PayPremium",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_PHA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Pharmacy",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Pricing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Rewards",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Sleep",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_SmokingCessation",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_TAA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_TAA_API",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Teladoc",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Telemedicine",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Vendor",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Vision",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Voluntary",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_VPC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Ext_Wellness",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Fax_IDCard",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "FeedbackSurvey",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "FindAPharmacy",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "FitnessDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "FitReimb",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "FlexFiveMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "FluShotMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "GettingStarted",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "GuestDemoProxy",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_AFR3_Test",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_COKTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_CRULERefresh",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_CRULERefresh2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_CRULERefresh3",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_CRULETODELETE",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_DBRulerefresh",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_DBRuleRefresh1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_DBRuleRefresh2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HeaAction",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HealthAndWellness",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Healthwise",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HeaOppAssessment",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Hearing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HearingDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_ExternalDBRule",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HIC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HighTechRadiology",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_InternalDBRule",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_IVLE_External",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_IVLETest",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HlthMgmtEnroll",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "HlthyLifeCoach",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Medicare_External",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Medicaretest",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_PSLevel",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Regression_0619",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Regression1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Regression2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_SpecialFeatureRefresh",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_TestCDCPartial",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_testConnection",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_TestExternalCDC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Test_Ext_Feat_subSegment_Cd",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_TestFeature",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Test_Feature_In_Condition",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_Test_Feature_Not_Equal",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "H_TestOnboarding",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "IdCard",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "IDCardReq",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "IdentVitSav",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "IHL_NurseLine",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "IMSIncentives",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "InformedChoice",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "informed_rewards_imaging",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "informed_rewards_procedure",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "IPA_ProvMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "JointPainSupportCtr",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "JVCustSched",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "JVPatientPortalLink",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "JVTelemedicine",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "KanaMessaging",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "LasikDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Login_NGA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "M0028Message",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MailRefillReq",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MaternityEnroll",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MaternitySupportCtr",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Maven",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MC_HomeBanner",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MC_NCLC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MC_Scheduling",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MdcrPlanMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedAccumHistory",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedCap",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedCompassNAP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedEoB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Medical_Disclaimer",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicareGrpSearch",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicareIVLVideo",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicareMAPD_MAVideo",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicareMAPDVideo",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicarePayPremium",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicareVBID",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicareVideo",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedicationPricing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedPIN",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedPlanDocs",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedPlanSumm",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedServiceLimits",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MedSuppLimits",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MEP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MessageAttachments",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MessageCenter",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MessageCenter_New_API",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MHEP_PHR",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MinuteClinic",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MODStatus",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "MPEOnlyPricing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "NatProdAndSvcDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "NewRxReq",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "NurseEmail",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "NY_DEPENDENT_EOB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "NYOrganDonorReg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "OB_SSO_INTEGRATION_TEST",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "OnlineChat",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "OnsiteClinic",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "OptumTAA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PaperSuppContent",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Payflex",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PayflexNATesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PayflexOnlineTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PayflexScheduledOfflineTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PayflexTemporarilyOfflineTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Payments",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PCD",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PCPAssign",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PCPEnable",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PCPReq",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PDPAccums",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PedDentalPricing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PersonalHealthRecord",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pharmacy",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PharmacyEOBs",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PharmacyPriorAuth",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pharm_Paper_Pref",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pharm_Pref_Bill",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pharm_Pref_Comm",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pharm_Pref_Family_Access",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pharm_Pref_Ship",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PHR",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PilotControlToggle",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PlanDocsMsgAvail",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Email",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Language",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Other_Paper",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Paper",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Phone",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Phone_International",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Preferences_Profile",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PrescPlanSumm",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PreventHlthSchedule",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Pricing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProductDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProvCultBadge",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProvFaithBaseSensitive",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProviderBillRecon",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProviderDirect",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProviderRatings",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProviderSearch",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ProviderSearchNoNetwork",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PT_External_Test1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PT_External_Test2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PT_External_Test3",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PT_External_Test4",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PT_External_Test5",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "PT_External_Test6",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "QuickCare",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RaceEthnicity",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RealIdCardBH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RealIdcardDen",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RealIdCardMed",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RealIdCardMedDen",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RealIdCardRx",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RealIdCardVitSav",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RequestCall",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RequestCallA1A",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RetailRefillReq",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Rewards",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RewardsCenterMFE",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Rewards_Maint",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "RxList",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "S19_Attestation",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SearchCMEDNAP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SearchDentalCDENT",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SeniorWellnessDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ShopCVS",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SkipChatBot",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SmartCompare",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SmartCompareMedicare",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SmartCompareSI",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SmartEOB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SpanishChat",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SpanishIDCardReq",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SSHL",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SSOAetnaIntl",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SSOBH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SSOCVSMedicareEOB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SSOCVSSpecialtyRx",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Subro",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "SubrogationMessage",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Support",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TaxDocEnable",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TeladocSDK",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Telemedicine",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TempIdCardBH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TempIdCardDen",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TempIdCardMed",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TempIdCardMedDen",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TempIdCardRx",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TempIdCardVitSav",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestExt_BH",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestExt_FSA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestExt_HRA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "testFData1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestFeat_JavaDesc",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Test_Feature_CD_IIB_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Test_Feature_New",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestFSA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestingCloudRuleFC",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Testing_External_Rx",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TestingGoLive",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TEST_MIGRATION",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TouchID",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TPA",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Trackers",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TransgenderSupportCtr",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TRSSNLink",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "TrueAccumMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "UpFrontAdvMsg",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Urgent_Mess_Five",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Urgent_Mess_Four",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Urgent_Mess_Mstr",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Urgent_Mess_Sec",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Urgent_Mess_Six",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Urgent_Mess_Ter",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_ABHI_AWS_TESTING",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VacSchedule",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AFR_COMM_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI3",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI4",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI5",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI6",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI7",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI8",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutmFeaturesAPI9",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomationProviderSearchTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomationWalletTestingQA2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomatonBenTrackerTestingQA2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomatonPricingTestingQA2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomatonRealIdCardMedTestingQA2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomatonTempIdCardDenTestingQA2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_AutomatonTrackersTestingQA2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Cloud_CN_Test",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Cloud_DAG_Test",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_COMM_External_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_COMM_Internal",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_COMM_Internal_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_COMM_Test_AFR",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Comparison_DAG_External",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Comparison_DAG_Internal",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_DBRule_test",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_DEF_COMM_Internal_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_DEF_Internal_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VertHighTech",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VertHospitality",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_External_COMM_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_External_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_External_Comparsion_Testing1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_External_Test",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Ext_LobOffboarding",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_FacetModernization1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_FacetModernization2",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_FacetModernization3",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_FacetModernization4",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_FeatureoneLOB",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "ViewPrintELG",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Internal_COMM_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Internal_Comparsion_Testing",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Internal_Comparsion_Testing1",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Internal_Test",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Int_LobOffboarding",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Vision",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VisionClaimForm",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VisionDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VisionPlanDocs",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "VitSavVerb",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_LOBfeature",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_MDCRtestfeat",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_RLTORLEXMT",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Ruletest",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_SivaTestFeature",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_test_cloud",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Testcloud",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Test_Feature_SP",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Testforcloud",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_testing_cloud",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_Testingfeat",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "V_VoyagerMDCR",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Wallet",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "WebMap",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "WeightMgmtDiscounts",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "WomensHealthSupportCtr",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Z_AutomationNATesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Z_AutomationOnlineTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Z_AutomationScheduledOfflineTesting",
+                    "featureStatus": "UNKNOWN"
+                },
+                {
+                    "code": "Z_AutomationTemporarilyOfflineTesting",
+                    "featureStatus": "UNKNOWN"
+                }
+            ]
+        }
+    ]
+}

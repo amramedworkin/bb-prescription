@@ -129,9 +129,10 @@ curl --location 'https://core-auth-management.qa.aetnadigital.net/uaftoken'
 
 
 1. CVS Super App passes token /sa/plan-document/v1/list on APIc03 GW
-
+    <see eie_headers.md>
 2. APIc03 GW performs the following
 2.a. Deconstructs the token into EIE headers
+    <see eie_headers.md>
 2.b. Forwards the request with EIE headers to /sa/plan-document/v1/list on CVS BFF
 3. CVS BFF service /sa/plan-document/v1/list orchestrates:
 3.a. Runs the sequence to construct application_startup payload
