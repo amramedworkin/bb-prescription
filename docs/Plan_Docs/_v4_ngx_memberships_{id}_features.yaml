@@ -1,0 +1,324 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: ngx-memberships-id-features
+  title: /v4/ngx_memberships/{id}/features
+  version: 4.0.2
+  description: |-
+    This API checks the membership’s eligibility for a feature for ngx application. It provides a Boolean value to indicate whether a feature is enabled for a membership or not.
+    Along with the boolean indicator, few more additional attributes related to the feature will be returned.
+  contact:
+    name: Purna Cherukumalli
+    email: cherukumallip@aetna.com
+schemes:
+- https
+basePath: /v4
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+    description: '{ "BuildEieHeader" : "Map", "SecurityTemplate" : "User_Oauth_Template",
+      "Backend" : "IIB", "Errorhandlingpolicy": "Standard Policy", "Consumer":"External",
+      "Mutual Auth between Consumer and APIC" : "Not Required" }'
+  User_Password_Oauth:
+    type: oauth2
+    description: ""
+    flow: password
+    scopes:
+      PII: ""
+      PHI: ""
+    tokenUrl: https://qaapih1.aetna.com/healthcare/qapath2/v7/auth/oauth2/token
+  User_Implicit_Oauth:
+    type: oauth2
+    description: ""
+    flow: implicit
+    scopes:
+      PII: ""
+      PHI: ""
+    authorizationUrl: https://qaapih1.aetna.com/healthcare/qapath2/v7/sso/auth/oauth2/implicit/authorize
+  User_AccessCode_Oauth:
+    type: oauth2
+    description: ""
+    flow: accessCode
+    scopes:
+      PII: ""
+      PHI: ""
+    authorizationUrl: https://qaapih1.aetna.com/healthcare/qapath2/v7/auth/oauth2/authorize
+    tokenUrl: https://qaapih1.aetna.com/healthcare/qapath2/v7/auth/oauth2/token
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  phase: realized
+paths:
+  /ngx_memberships/{id}/features:
+    get:
+      responses:
+        200:
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/getMembershipFeaturesAPIResponse'
+        555:
+          description: Service Error
+          schema:
+            $ref: '#/definitions/APIError'
+      summary: This method accepts membership Id as a path parameter and a set of
+        feature codes to be evaluated in the query parameter. If a feature or a set
+        of feature codes are passed, only those features will be evaluated. If no
+        featureCode is passed in the request, this API responds with all the membership
+        related features. Response of this API contains an enabled indicator (Boolean)
+        for each of the feature with few more attributes related to a feature.
+      description: "The orchestration service behind the API layer evaluates the feature
+        codes by applying Global level ON/OFF switches and the plan summary level
+        ON/OFF rules. \n- Sample API Request URL : https://devhapi.aetna.com/technical/sb/IA/v4/ngx_memberships/{id}/features?featureCodes=BenTracker|HeaOppAssessment\n<p>
+        featureCodes query parameter is optional and need not to be passed if consumer
+        wants to retrieve all the applicable features and their related attributes
+        for the membership ID. </p>"
+      parameters:
+      - name: featureCodes
+        type: string
+        required: false
+        in: query
+        description: 'One or more feature codes with pipe (|) delimited. Example:
+          BenTracker|HeaAction|PersonalHealthRecord'
+      - name: enabledOnly
+        type: boolean
+        required: false
+        in: query
+        description: An optional boolean type element that accepts true or false values.       Cosuming
+          applications can send the value as true if the response must only contain
+          the list of features with true as a toggle value.       By default or if
+          supplied as false, the API will return all features with toggle value as
+          false or true or with status=UNKNOWN.
+    parameters:
+    - name: id
+      type: string
+      required: true
+      in: path
+      description: 'MembershipIdentifier in idSource~idValue format. Example : 5~183593319+10+1+20150101+740699+A+1
+        for commercial and 59~123456789001 + 000001-02SC0001 + 2015-03-01 for Medicare
+        Line of Businesses.'
+    options:
+      responses:
+        200:
+          description: 200 OK
+      security:
+      - []
+tags: []
+definitions:
+  eieHeaderObj:
+    properties:
+      eieHeader:
+        type: object
+        xml:
+          namespace: ""
+        properties:
+          action:
+            type: string
+          accessToken:
+            type: string
+          transactionID:
+            type: string
+          multiPath:
+            type: string
+          impersonatingApplicationIdentifier:
+            type: object
+            properties:
+              idSource:
+                type: string
+              idValue:
+                type: string
+              idType:
+                type: string
+          applicationIdentifier:
+            type: object
+            properties:
+              idSource:
+                type: string
+              idValue:
+                type: string
+              idType:
+                type: string
+          eieHeaderUserContext:
+            type: object
+            properties:
+              assuranceLevel:
+                type: string
+              dnAccountName:
+                type: string
+              eieHeaderAuthorizedRole:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    authorizedRole:
+                      type: string
+              impersonatingAccountIdentifier:
+                type: object
+                properties:
+                  idSource:
+                    type: string
+                  idValue:
+                    type: string
+                  idType:
+                    type: string
+              accountIdentifier:
+                type: object
+                properties:
+                  idSource:
+                    type: string
+                  idValue:
+                    type: string
+                  idType:
+                    type: string
+          eieHeaderVersion:
+            type: object
+            properties:
+              major:
+                type: string
+              minor:
+                type: string
+              maintenance:
+                type: string
+  getMembershipFeaturesAPIResponse:
+    description: Response object to be returned by ngx_memberships/{id}/feeatures
+      API.
+    type: object
+    properties:
+      ReadMembershipFeaturesResponse:
+        type: object
+        properties:
+          features:
+            type: array
+            items:
+              properties:
+                featureCode:
+                  type: string
+                  description: feature code
+                  example: BenTracker
+                enabled:
+                  type: boolean
+                  description: indicates whether the feature is enabled or not for
+                    the memeber. This is an optional element and will not be populated
+                    when status = UNKNOWN (due to member not onboarded or due to invalid
+                    feature code)
+                  example: true
+                status:
+                  type: string
+                  enum:
+                  - SCHEDULED_OFFLINE
+                  - TEMPORARILY_OFFLINE
+                  - ONLINE
+                  - NA
+                  - UNKNOWN
+                  description: A string to provide additional information on the current
+                    status of the feature in addition to the enabled indicator to
+                    improvise the user experience. Permitted values are SCHEDULED_OFFLINE,
+                    TEMPORARILY_OFFLINE, ONLINE, NA, UNKNOWN. status = NA when enabled
+                    = false & status = UNKNOWN if value for the enabled element cannot
+                    be determined due to membership not onboarded or due to an invalid
+                    feature code.
+                  example: SCHEDULED_OFFLINE
+                statusMessage:
+                  type: string
+                  description: Text to be displayed to a member about an outage.This
+                    element is populated only when status != ONLINE
+                  example: Benefits related features are unavailable due to scheduled
+                    maintenance
+                scheduledPeriod:
+                  type: object
+                  description: This object is populated only when statusMessage =
+                    SCHEDULED_OFFLINE
+                  properties:
+                    datetimeBegin:
+                      type: string
+                      description: start time stamp of the scheduled outage
+                      example: "2017-08-01T10:00:00Z"
+                    datetimeEnd:
+                      type: string
+                      description: end time stamp of the scheduled outage
+                      example: "2017-08-01T11:00:00Z"
+                label:
+                  type: string
+                  description: link title/label to be displayed for the user
+                  example: Go To Teledoc
+                url:
+                  type: string
+                  description: cold link of the federation, populated only when feture
+                    connection status is OFF
+                  example: https://login.teledoc.com/
+                connectionId:
+                  type: string
+                  description: feature connections connection idenfier, populated
+                    when feature connection status is ON
+                  example: 110013~12345
+                featureConnections:
+                  type: array
+                  items:
+                    properties:
+                      connectionId:
+                        type: string
+                        description: feature connections connection idenfier, populated
+                          when feature connection status is ON
+                        example: 110013~12345
+                      label:
+                        type: string
+                        description: link title/label to be displayed for the user
+                        example: Go To Teledoc
+                      url:
+                        type: string
+                        description: cold link of the service provider, populated
+                          only when feature connection status is OFF
+                        example: https://login.teledoc.com/
+                      tag:
+                        type: string
+                        description: Tag is a lable that indicates something to which
+                          the Feature Connection is attached.
+                        example: Helpful Resources
+              type: object
+  APIError:
+    description: ""
+    type: object
+    properties:
+      httpCode:
+        type: string
+        description: Indicates the httpCode returned in the header
+        example: "401"
+      httpMessage:
+        type: string
+        description: Short description of the error
+        example: Unauthorized
+      moreInformation:
+        type: string
+        description: Long description of the error
+        example: Client id missing
+externalDocs:
+  description: HTTP Common Error Codes
+  url: https://eaintegrationgovernance.github.io/APIC-Common-Error-Codes.github.io/
+security:
+- User_Password_Oauth:
+  - PII
+- User_Password_Oauth:
+  - PHI
+- User_Implicit_Oauth:
+  - PII
+- User_Implicit_Oauth:
+  - PHI
+- User_AccessCode_Oauth:
+  - PII
+- User_AccessCode_Oauth:
+  - PHI
+x-ibm-endpoints:
+- endpointUrl: https://apih1.int.aetna.com/healthcare/prod
+  type:
+  - production
+  - development
+- endpointUrl: https://apih1.aetna.com/healthcare/prod
+  type:
+  - production
+  - development
+...

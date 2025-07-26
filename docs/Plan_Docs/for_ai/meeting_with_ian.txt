@@ -1,0 +1,163 @@
+The goal is to construct a list of membershipResourceIds, policyResourceIds, and to set the effective date (dateAsOf to now) then call a function
+POST /plan-document-list/retrieve - Provides the plan document list to client with the body of the following json
+{
+  "membershipResourceId": "5~265106287+11+51+20190101+751133+BA+2",
+  "policyResourceId": "3~751133+BA+2",
+  "dateAsOf": "2025-05-30T00:00:00.000Z"
+}
+
+To do this we get a token, passed to a REST service front end /sa/v1/plan-document/list which is converted into EIE header variables by APIc 03 Gateway, forwarded to the service in CVS BFF, /sa/v1/plan-document-list which calls /v1/plangroups in Plan Groups group, which then calls out to /application_startup in the Core Proxy, which forwards it to /at/application_startup in the APIc 01 GW
+the return is a list of membershipResourceIds and policyResourceIds which are then used to call /plan-document-list/retrieve
+
+The APIc03 GW sends the 
+
+USER->/sa/v1/plan-document/list on APIc03GW->/sa/v1/plan-document/list on CVS BFF->/v1/plandocs on Plan Groups->application_startup on Core Proxy->at/application_startup on APIc 01 GW
+
+when the values are returned, the next sequence is to pass 
+
+
+1. CVS OpenPlatform calls (POST) /sa/v1/plan-document/list in APIc 03 Gateway passing the token containing EIE header information
+2. APIc 03 Gateway deconstructs the token into EIE header values
+3. /sa/v1/plan-document/list calls CVS BFF /sa/v1/plan-document/list with the EIE headers
+4. CVS BFF /sa/v1/plan-document/list calls Plan Groups /v1/plangroups with populated headers
+5. /v1/plangroups calls Core Proxy /application_startup with the populated EIE headers
+2.a. 
+2. APIc 03 Gateway calls (POST) /sa/v1/plan-document/list in CVS BFF passing memberResourceIds
+3. CVS BFF calls (POST) /v1/plangroups passing memberResourceIds
+4. /v1/plangroups returns 
+
+They don't have any context of the member outside of the token
+Token comes through as EIE headers - Plan Groups (portal groups)
+
+APIc Deconstructs the token into the EIE headers
+They get passed to the plangroups
+Look for the line of business
+PlanSponsorID
+relationshipToSubscriber
+LineOfBusiness = Commercial
+    Underneath this we have PirmaryPolicyType
+    Policies underneath that
+        memberships
+            Find the operative membership
+            ActivelyCovered
+            there is the membershipResourceId
+                Call resources with
+
+memberResourceId
+
+
+fields @timestamp, @message, @logStream, @log
+| sort @timestamp desc
+| filter @message like 'Incoming'
+| filter @logStream like /app/
+| filter url not like 'health'
+| filter traceId like '6e631fcd687fae0100e0f205'
+
+
+
+fields @timestamp, @message, @logStream, @log
+| sort @timestamp desc
+| filter traceId like '6e631fcd687fae0100e0f205'
+
+Dworkin, Amram added Behrmann, Ian J to the chat.
+
+ 
+Dworkin, Amram named the meeting ID Card/Plan Docs - Integrated startup review.
+
+ 
+11:02 AM Meeting ended: 3m 2s 
+
+ 
+11:13 AM Meeting started
+
+GETTING THE LOGS FROM CLOUDWATCH
+1. navigate to the AWSAPPS QA portal
+1.a. https://cvshealthit.awsapps.com/start/#/
+2. Click on the NPR (QA) account
+2.a. Aeta Digital - NPR  (898916586688 | aetna-digital-aws-npr@aetna.com)
+3. Click on the NPR Option to access the AWS account with the correct NPR AWS credentials
+3.a. CVS-SSO-AWS-AetnaHealth-Dev-NPR|Access keys
+4. Make sure you are in the correct region
+4.a. United States (N. Virginia) - us-east-1
+5. Go to Cloudwatch
+5.a. Either in the Search Services bar or on the Recently visited panel
+6. Go to the logs tab (right menu Logs)
+7. Go to the Lobs Insights console screen
+8. Set the log group to filter by 
+8.a. Select log groups by 
+    Log group name
+8.b. Selection criteria
+    qa-master-plan-groups-service
+9. Set the filter to find t in the query text entry box to get a valid log to review
+    fields @timestamp, @message, @logStream, @log
+    | sort @timestamp desc
+    | filter @message like 'Incoming'
+    | filter @logStream like /app/
+    | filter url not like 'health'
+10. Run the query by clicking the [Run query] button
+11. Look through the log entries searching for a value that has the valid plan-groups data
+
+
+ 
+
+
+qa-master-multimembershipfeatures
+ 
+| filter @message like 'Incoming'
+ 
+| filter @logStream like /app/
+ 
+| filter url not like 'health'
+ 
+https://qa-health.aetna.com/dev/login
+ 
+Aetna2aetna
+ 
+https://github.com/cvs-health-source-code/aetnahealth-cvs-bff
+ 
+https://github.com/cvs-health-source-code
+ 
+
+
+  
+ 
+ 
+CURL TO GET APPLICATION_STARTUP
+curl --location 'https://core-auth-management.qa.aetnadigital.net/uaftoken'
+{"uafToken":"AAIkN2ZlNDllNmEtZDE3Yi00OGQ1LTk2OTMtNDQwYmViZjMzZTk22URuARUebVeR9mqJFtrCAvfEHt5zSmrUjGICnCAKYOrhk4V8aYeCNKm_HJyE2ZcGZ7UWOka8UJyIXMI3iyRc28HhB_14d018LMpXAQNjVvaIydHj4AdffJHYckFRaitLIcx-nyJfoz28kYceTJSPhA"}
+
+
+
+1. CVS Super App passes token /sa/plan-document/v1/list on APIc03 GW
+
+2. APIc03 GW performs the following
+2.a. Deconstructs the token into EIE headers
+2.b. Forwards the request with EIE headers to /sa/plan-document/v1/list on CVS BFF
+3. CVS BFF service /sa/plan-document/v1/list orchestrates:
+3.a. Runs the sequence to construct application_startup payload
+3.a.1. Calls /v1/plangroups on Plan Groups server with EIE headers
+3.a.1.A. /v1/plangroups on Plan Groups calls /application_startup on Core Proxy server with EIE headers
+3.a.1.A.i. /application_startup on Core Proxy calls /at/application_startup on APIc01 GW with EIE headers
+3.a.1.A.i.(1) /at/application_startup on APIc01 GW constructs the member's pre-load payload
+3.a.1.A.i.(2) /at/application_startup on APIc01 GW returns the member pre-load payload in its response to /application_startup on Core Proxy
+    <see application_startup_response.json>
+3.a.1.A.ii. /application_startup on Core Proxy returns the member payload in its response to /v1/plangroups on Plan Groups
+    <see application_startup_response.json>
+3.a.1.B. /v1/plangroups on Plan Groups returns plangroups in its response to /sa/plan-document/v1/list on CVS BFF
+    <see qa-master-plan-groups-service-url=plangroups-5-rows-datafied.json>
+3.b. /sa/plan-document/v1/list loops through plan groups to retrieve features for document retrieval filtering
+3.b.1. Loop through plan groups in /v1/plangroups payload
+    FILTER: lineOfBusiness = 'Commercial'
+    FILTER: policies[].memberships[].status = 'ActivelyCovered'
+    NOTE: In this case effective date is unecessary because plan-documents is always asOf today so ActivelyCovered is all the flag we need.
+3.b.2. This looping action constructs the request transfer object to get features from /v2/features on MMF Service
+    <see v2_features_request_sample.json>
+3.c Calls /v2/features on MMF Service with the constructed request
+    <see v2_features_request_sample.json>
+3.b.2.A. /v2/features on MMF Service retrieves the features from PostgresSQL and/or Redis
+3.b.2.B. /v2/features on MMF Service returns the features in its payload
+    <see v2_features_response_sample.json>
+3.b. /sa/plan-document/v1/list on CVS BFF constructs the document list
+3.b.1. WHAT DOES IT DO HERE?????
+3.b.2. Calls /plan-document-list/v1/retrieve on 
+

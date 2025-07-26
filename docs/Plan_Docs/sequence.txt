@@ -1,0 +1,35 @@
+CVS -> APIc03 : call new /sa/v1/plandocs
+APIc03 -> CvsBFF: call new /sa/v1/plandocs
+CvsBFF -> PlanGroupsService: call /v1/plangroups
+PlanGroupsService -> CvsBFF: return planGroups
+note right of CvsBFF: 1. parse all memberResourceIds \nfor active medical/dental plans \n 2. parse any plan with \nclaim office key of 39
+CvsBFF -> MMF: call /v2/features
+note right of CvsBFF: call with unique membershipResourceIds \n from plan groups
+MMF -> CvsBFF: return features
+note right of CvsBFF: check for feature flag CVSSuperApp
+CvsBFF -> PlanDocsService: call /v4/identificationCards
+note right of CvsBFF: call with unique memberResourceIds ex 41~10293120
+PlanDocsService -> CvsBFF: return ID Card List
+note right of CvsBFF: Parse IdCardResourceIds for all medical/dental cards
+CvsBFF -> PlanDocsService: call /v1/identificationcard (in parrallel)
+PlanDocsService -> CvsBFF: Return allSettled Parrellel calls for idcard details
+note left of CvsBFF: Build Response
+CvsBFF -> CVS: Return Response
+alt dependent membershipId request
+CVS -> APIc03: call /sa/v1/plandocs w/ memberResourceIds
+APIc03 -> CvsBFF: call /sa/v1/plandocs w/ memberResourcIds
+CvsBFF -> PlanGroupsService: call to fetch plangroups
+PlanGroupsService -> CvsBFF: return planGroups
+note right of CvsBFF: Review plan groups response\nto ensure memberId is valid
+CvsBFF -> MMF: call /v2/features
+note right of CvsBFF: call with membershipResourceIds \n from plan groups using memberResourceId as mapper
+MMF -> CvsBFF: return features
+note right of CvsBFF: check for feature flag CVSSuperApp
+CvsBFF -> PlanDocsService: call /v4/identificationCards
+note right of CvsBFF: use memberResourceId from request
+PlanDocsService -> CvsBFF: return ID Card List
+CvsBFF -> PlanDocsService: call /v1/identificationcard (in parrallel)
+PlanDocsService -> CvsBFF: Return allSettled Parrellel calls for idcard details
+note left of CvsBFF: Build Response
+CvsBFF -> CVS: Return Response
+end

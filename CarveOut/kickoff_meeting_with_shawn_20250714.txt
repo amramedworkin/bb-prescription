@@ -1,0 +1,61 @@
+Shawn
+- Medicaide ask 
+- new small team
+- question (needs 5 min)
+- Sharing what we are doing?
+- This flow in Aetna health to help with '
+- PLP, PDB, PlaceOrder, Ship Consent, and <> i90 integrations
+	+ Crosswalk we had to develop on our own (which is why(
+	+ There is still a bunch of front-end logic required
+	+ Meet with teams to determine what we need to do
+	+ We are currently integrated with 47 APIs.
+	+ We are only integration for these five
+
+JOan
+- Do we need to prioritize
+
+Shawn
+- The firedrill is prioritizing with us
+- We need them migrared in hr
+
+Joan
+- How long for all APIs
+
+Shawn
+- Hedges with complexity speech
+- Tries to be diplotic
+- Front end logic is not documented in API specs
+- Documented tin Confluence
+
+
+State of NC
+- Carve out - Aetna Medical / CSV Provider
+- Carve out to CVS
+- Aetna is the pharmacy
+- When it is carve out
+- If the provider signs an attestation
+- We still provide the link
+- We provide a link to CVS Caremark
+- Consolidated claim service
+- In the claim service, for carved out service it 
+- Starts at CVS and goes through ACAS / Processed through Aetna system
+- When it is carved out, they come they come through the consolidated claims service
+- The get it through the CVS API
+- That is using CVS logiv
+- There logic has different eff date
+- We are showing prescription claims
+- We should only be showing prescription claims for the period where we are matching their 
+- The key piece of this, is how do we do it so that we are not displaying any claim information for anything 
+- We are already sayingn that we get the claims
+- For prescription claims we are date of service.
+- If there coverage date is 1/1 we we do nto show any fill before the spresecription date
+- Jenn date for prescription membership matching the plan date
+- Prescription matches PLAN date.
+- Attestation - We just need to have CVS Carve out flag is true
+- The CVS consolidated claim service only pertains to consolidated claims service
+- None of other services manage any capablity other than CVS
+- Refill information, order status, prescription list other information...do we display
+- Does this logic have to be applied across all APIs that 
+- CVS Consolidated Claims service and the prescription list
+- Look at all of the APIs
+   + 

@@ -1,0 +1,877 @@
+{
+  "ReadMembershipFeaturesResponse": {
+    "features": [
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "AccExpanded"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "AetnaHealthEnabled"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "AetnaHealthEnabled_Web"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Aetna_Dental_Fund"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Aetna_Health_Fund"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "AmWell"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "AtHomeDiscounts"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BHInclude"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumChemotherapy"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumDrOffVisit"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumHospCare"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumImmedMedAttn"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumOupatSurgery"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumPregnancy"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumRoutineCare"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenSumTests"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenTracker"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BenzRecommendedActions"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "BreastHlthSurvey"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "CA_HMO"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "CSMessaging"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "CVSRxCarveout"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Caremark"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "ClaimReadyMsg"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "ClaimsList"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "CombinedAccums"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "CoverageRequest"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "DenPlanSumm"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "DentalAccums"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "DentalDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "DentalPricing"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Dental_Forms"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Dental_Search"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "DigitalCoaching"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "DispPendMsg"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "DocASAP"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Documents"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "DocumentsMaster"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "DualEligibilitySearch"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "EmailRequired"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Email_IDCard"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Dental"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_DoctorOnDemand"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_EAP"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_EmployeeBenefits"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Ext_ExpertOpinion",
+        "label": "Second Opinion From a Specialist",
+        "url": "https://www.2nd.md/aetna",
+        "featureConnections": [
+          {
+            "label": "Second Opinion From a Specialist",
+            "url": "https://www.2nd.md/aetna"
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_HSA"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_InFertility"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_LAB"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_OnsiteClinic"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_PHA"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_PatientPortal"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_PayPremium"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Pharmacy"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Rewards"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_SmokingCessation"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_TAA"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Ext_Teladoc",
+        "label": "Teladoc Metadata",
+        "connectionId": "110013~61",
+        "featureConnections": [
+          {
+            "connectionId": "110013~61",
+            "label": "Teladoc Metadata"
+          }
+        ]
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Telemedicine"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Vision"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Voluntary"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Ext_Wellness"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Fax_IDCard"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "FindAPharmacy"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "FitnessDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "FlexFiveMsg"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "GoogleCA"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "GooglePA"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "HeaAction"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "HeaOppAssessment"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Hearing"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "HearingDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "HighTechRadiology"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "HlthMgmtEnroll"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "HlthyLifeCoach"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "IDCardReq"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "IdCard"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "IdentVitSav"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "JVCustSched"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "JVPatientPortalLink"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "JVTelemedicine"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "LasikDiscounts"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MC_HomeBanner"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MC_NCLC"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MC_Scheduling"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MODStatus"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "MPEOnlyPricing"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MailRefillReq"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MaternitySupportCtr"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MedEoB"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MedPlanSumm"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Medical_Disclaimer"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "MedicareGrpSearch"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "MedicarePayPremium"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "MedicareVBID"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "MedicareVideo"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MedicationPricing"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MessageAttachments"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MessageCenter"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "MinuteClinic"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "NatProdAndSvcDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "NewRxReq"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "NurseEmail"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "OnsiteClinic"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "OptumTAA"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "PCD"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "PCPEnable"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "PCPReq"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Payflex"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Payments"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "PersonalHealthRecord"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Pharmacy"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Preferences_Email"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Preferences_Language"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Preferences_Paper"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Preferences_Phone"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Preferences_Profile"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "PreventHlthSchedule"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Pricing"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "ProductDiscounts"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "ProviderRatings"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "ProviderSearch"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "RealIdCardBH"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "RealIdCardMed"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "RealIdCardMedDen"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "RealIdCardRx"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "RealIdCardVitSav"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "RealIdcardDen"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "RetailRefillReq"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "RewAction"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Rewards"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "RxList"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOAetnaIntl"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "SSOBH"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSAccBalPmt"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSAllergyHealth"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSBenefitsPortal"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSBillingUpdate"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSFamilyAccess"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSMedicareEOB"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSShippingUpdate"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SSOCVSSpecialtyRx"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SearchCMEDNAP"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SearchDentalCDENT"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "SeniorWellnessDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "SmartCompare"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "SmartEOB"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TeladocSDK"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Telemedicine"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TempIdCardBH"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TempIdCardDen"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TempIdCardMed"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TempIdCardMedDen"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "TempIdCardRx"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TempIdCardVitSav"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "TouchID"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Trackers"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "UpFrontAdvMsg"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Urgent_Mess_Mstr"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Urgent_Mess_Sec"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "VertHighTech"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "VertHospitality"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "ViewPrintELG"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "Vision"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "VisionClaimForm"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "VisionDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "VitSavVerb"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "Wallet"
+      },
+      {
+        "enabled": true,
+        "status": "ONLINE",
+        "featureCode": "WeightMgmtDiscounts"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "informed_rewards_imaging"
+      },
+      {
+        "enabled": false,
+        "status": "NA",
+        "featureCode": "informed_rewards_procedure"
+      }
+    ]
+  }
+}

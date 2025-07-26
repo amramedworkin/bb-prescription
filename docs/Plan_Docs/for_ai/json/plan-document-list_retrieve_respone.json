@@ -1,0 +1,32 @@
+{
+    "readHealthPoliciesCommunicationContentsResponse": {
+    "readCommunicationContents": {
+      "communicationContent": [
+        {
+          "webHyperlink": "string",
+          "documentType": "string",
+          "description": "string",
+          "title": "string",
+          "format": "string",
+          "documentSubType": "string",
+          "language": "string",
+          "contentSize": "string",
+          "communicationContentIdentifier": [
+            {
+              "idSource": "string",
+              "idValue": "string",
+              "idType": "string",
+              "resourceId": "string"
+            }
+          ],
+          "communicationContentEffectivePeriod": {
+            "dateTimeAsOf": "string",
+            "dateTimeBegin": "string",
+            "dateTimeEnd": "string"
+          },
+          "viewerURL": "string"
+        }
+      ]
+    }
+  }
+}

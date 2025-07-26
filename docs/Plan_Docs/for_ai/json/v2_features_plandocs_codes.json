@@ -1,0 +1,22 @@
+{
+      {
+	"code": "DenPlanDocs",
+	"enabled": false,
+	"featureStatus": "NA"
+      },
+      {
+	"code": "MedPlanDocs",
+	"enabled": true,
+	"featureStatus": "ONLINE"
+      },
+      {
+	"code": "PlanDocsMsgAvail",
+	"enabled": false,
+	"featureStatus": "NA"
+      },
+      {
+	"code": "VisionPlanDocs",
+	"enabled": false,
+	"featureStatus": "NA"
+      }
+}

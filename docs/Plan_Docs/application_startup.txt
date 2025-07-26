@@ -1,0 +1,212 @@
+1. Startup
+URL:
+https://qaapi01.aetna.com/healthcare/qapath3/v5/aetnahealth_applicationstartup
+
+METHOD:
+POST
+
+BODY:
+
+HEADERS:
+id_token (JWT)
+{
+  "ae_version": "1.1.0",
+  "iss": "https://openid.aetna.com/consumer",
+  "sub": "031RCS6NTYHFKX25DE89@aetnae.com",
+  "aud": "89d435af-00b0-4cb6-9a35-f3189f5adc55",
+  "exp": 1752073684,
+  "iat": 1752070084,
+  "given_name": "BAILEY",
+  "family_name": "SCHEUERMAN",
+  "acr": "http://consumer.aetna.com/assurance/loa-2",
+  "ae_dgn": "CN=DMT-S-W265416171,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com",
+  "ae_hcr": "nextGenMember",
+  "ae_accountId": "1~DMT-S-W265416171",
+  "ae_busIndID": [
+    "globalIdentifier",
+    "60005~6803568937376433212",
+    "preferredProxyId",
+    "15~QS3YXBBBHPXZ"
+  ],
+  "ae_impAUD": "",
+  "ae_impHCR": "",
+  "ae_impACR": "",
+  "ae_impDGN": "",
+  "ae_impAccountId": "",
+  "ae_impBusIndID": [],
+  "ae_impGrantedLOA": ""
+}
+
+RESPONSE:
+
+{
+    "readApplicationStartup": {
+        "proxyResourceId": "15~QS3YXBBBHPXZ",
+        "portalGroups": [
+            {
+                "lineOfBusinessName": "Commercial",
+                "planSponsorId": "0000000098777930",
+                "planSponsorName": "DMT-K-MURU-0013-16",
+                "relationshipToSubscriber": "Self",
+                "policies": [
+                    {
+                        "primaryPolicyType": "Medical",
+                        "memberships": [
+                            {
+                                "status": "Actively Covered",
+                                "relationshipToSubscriber": "Self",
+                                "memberResourceId": "41~265416171",
+                                "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+                                "effectiveDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "claimOfficeKey": "98",
+                                "membershipIdSource": "5",
+                                "memberId": "265416171",
+                                "policyResourceId": "3~805233+A+1",
+                                "control": "805233",
+                                "suffix": "10",
+                                "account": "1",
+                                "planSummary": " A",
+                                "planNumber": "1",
+                                "execMedicalPlanInd": "N",
+                                "coverageDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "policyTypes": [
+                                    {
+                                        "policyTypeCode": "MED",
+                                        "policyType": "Medical"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "primaryPolicyType": "Dental",
+                        "memberships": [
+                            {
+                                "status": "Actively Covered",
+                                "relationshipToSubscriber": "Self",
+                                "memberResourceId": "41~265416171",
+                                "membershipResourceId": "5~265416171+10+2+20230101+805233+B+2",
+                                "effectiveDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "claimOfficeKey": "98",
+                                "membershipIdSource": "5",
+                                "memberId": "265416171",
+                                "policyResourceId": "3~805233+B+2",
+                                "control": "805233",
+                                "suffix": "10",
+                                "account": "2",
+                                "planSummary": " B",
+                                "planNumber": "2",
+                                "execMedicalPlanInd": "N",
+                                "coverageDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "policyTypes": [
+                                    {
+                                        "policyTypeCode": "DEN",
+                                        "policyType": "Dental"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "primaryPolicyType": "Vision",
+                        "memberships": [
+                            {
+                                "status": "Actively Covered",
+                                "relationshipToSubscriber": "Self",
+                                "memberResourceId": "41~265416171",
+                                "membershipResourceId": "5~265416171+10+3+20230101+805233+C+3",
+                                "effectiveDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "claimOfficeKey": "98",
+                                "membershipIdSource": "5",
+                                "memberId": "265416171",
+                                "policyResourceId": "3~805233+C+3",
+                                "control": "805233",
+                                "suffix": "10",
+                                "account": "3",
+                                "planSummary": " C",
+                                "planNumber": "3",
+                                "execMedicalPlanInd": "N",
+                                "coverageDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "policyTypes": [
+                                    {
+                                        "policyTypeCode": "VSN",
+                                        "policyType": "Vision"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "primaryPolicyType": "Hearing",
+                        "memberships": [
+                            {
+                                "status": "Actively Covered",
+                                "relationshipToSubscriber": "Self",
+                                "memberResourceId": "41~265416171",
+                                "membershipResourceId": "5~265416171+10+4+20230101+805233+D+4",
+                                "effectiveDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "claimOfficeKey": "98",
+                                "membershipIdSource": "5",
+                                "memberId": "265416171",
+                                "policyResourceId": "3~805233+D+4",
+                                "control": "805233",
+                                "suffix": "10",
+                                "account": "4",
+                                "planSummary": " D",
+                                "planNumber": "4",
+                                "execMedicalPlanInd": "N",
+                                "coverageDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "policyTypes": [
+                                    {
+                                        "policyTypeCode": "HEAR",
+                                        "policyType": "Hearing"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "primaryPolicyType": "Pharmacy",
+                        "memberships": [
+                            {
+                                "status": "Actively Covered",
+                                "relationshipToSubscriber": "Self",
+                                "memberResourceId": "41~265416171",
+                                "membershipResourceId": "5~265416171+10+5+20230101+805233+E+5",
+                                "effectiveDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "claimOfficeKey": "98",
+                                "membershipIdSource": "5",
+                                "memberId": "265416171",
+                                "policyResourceId": "3~805233+E+5",
+                                "control": "805233",
+                                "suffix": "10",
+                                "account": "5",
+                                "planSummary": " E",
+                                "planNumber": "5",
+                                "execMedicalPlanInd": "N",
+                                "coverageDatetimeBegin": "2023-01-01T04:00:00Z",
+                                "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                                "policyTypes": [
+                                    {
+                                        "policyTypeCode": "PHR",
+                                        "policyType": "Pharmacy"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "planSponsorWaveNumber": "996"
+            }
+        ]
+    }
+}

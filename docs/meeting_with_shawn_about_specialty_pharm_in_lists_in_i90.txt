@@ -1,0 +1,18 @@
+1. Scheduled time to determine if Specialty Pharmacy
+2. Server responses for order status and PLP to see if we are getting back the spcialty meds.
+3. We should be checking the get-refills API response from caremark.
+4. We get them from the existing API requests
+5. SDK API does not work 
+6. Does it work in PLP PDP
+7. We cannot invoke the prod PLP from our end
+8. We cannot test this funciton
+9. We need QA users with specialty pharm
+10. Might already have some that specialty orders are in place and coming back.
+11. It is QA1 that has the user.
+12. IAM portal is this admin portal
+
+13. Lillian Roa - Hired to work with CVS to get them setup
+14. Setting up a prescription 
+15. Work group to self-serve the test user
+
+

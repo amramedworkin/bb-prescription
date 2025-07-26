@@ -1,0 +1,441 @@
+[
+  {
+    "@timestamp": "2025-07-23 21:54:03.895",
+    "@message": {
+      "name": "plan-groups-service",
+      "hostname": "220830d5be57",
+      "pid": 1,
+      "level": 30,
+      "url": "/plangroups",
+      "status": 200,
+      "data": "{\"planGroups\":[{\"lineOfBusinessName\":\"Commercial\",\"planSponsorId\":\"0000000086518709\",\"planSponsorName\":\"DMT-PUGA-0040-04\",\"relationshipToSubscriber\":\"Self\",\"policies\":[{\"primaryPolicyType\":\"Medical\",\"memberships\":[{\"status\":\"Actively Covered\",\"relationshipToSubscriber\":\"Self\",\"memberResourceId\":\"41~266118742\",\"membershipResourceId\":\"5~266118742+10+1+20220101+804502+C+1\",\"effectiveDatetimeBegin\":\"2022-01-01T04:00:00Z\",\"effectiveDatetimeEnd\":\"9999-12-31T04:00:00Z\",\"claimOfficeKey\":\"98\",\"membershipIdSource\":\"5\",\"memberId\":\"266118742\",\"policyResourceId\":\"3~804502+C+1\",\"control\":\"804502\",\"suffix\":\"10\",\"account\":\"1\",\"planSummary\":\" C\",\"planNumber\":\"1\",\"execMedicalPlanInd\":\"N\",\"coverageDatetimeBegin\":\"2022-01-01T04:00:00Z\",\"coverageDatetimeEnd\":\"9999-12-31T04:00:00Z\",\"policyTypes\":[{\"policyTypeCode\":\"MED\",\"policyType\":\"Medical\"}]}]}],\"planSponsorWaveNumber\":\"996\"}]}",
+      "duration": 6.577101,
+      "headers": {
+        "x-global-transaction-id": "db930e10688159fb0136d8e1",
+        "x-qapath": "2",
+        "x-aetna-accept-language": "en-US",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "871"
+      },
+      "msg": "End Outgoing Response",
+      "time": "2025-07-23T21:54:03.894Z",
+      "v": 0,
+      "levelname": "INFO",
+      "localtime": "7/23/2025, 9:54:03 PM",
+      "timestamp": "2025-07-23T21:54:03.894Z",
+      "qapath": "2",
+      "traceId": "db930e10688159fb0136d8e1",
+      "language": "en-US",
+      "accountId": "1~DMT-S-W266118742",
+      "userAgent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+      "datafied": {
+        "planGroups": [
+          {
+            "lineOfBusinessName": "Commercial",
+            "planSponsorId": "0000000086518709",
+            "planSponsorName": "DMT-PUGA-0040-04",
+            "relationshipToSubscriber": "Self",
+            "policies": [
+              {
+                "primaryPolicyType": "Medical",
+                "memberships": [
+                  {
+                    "status": "Actively Covered",
+                    "relationshipToSubscriber": "Self",
+                    "memberResourceId": "41~266118742",
+                    "membershipResourceId": "5~266118742+10+1+20220101+804502+C+1",
+                    "effectiveDatetimeBegin": "2022-01-01T04:00:00Z",
+                    "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                    "claimOfficeKey": "98",
+                    "membershipIdSource": "5",
+                    "memberId": "266118742",
+                    "policyResourceId": "3~804502+C+1",
+                    "control": "804502",
+                    "suffix": "10",
+                    "account": "1",
+                    "planSummary": " C",
+                    "planNumber": "1",
+                    "execMedicalPlanInd": "N",
+                    "coverageDatetimeBegin": "2022-01-01T04:00:00Z",
+                    "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                    "policyTypes": [
+                      {
+                        "policyTypeCode": "MED",
+                        "policyType": "Medical"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "planSponsorWaveNumber": "996"
+          }
+        ]
+      }
+    },
+    "@logStream": "qa-master-plan-groups-service-service/app/5a68d3fcb24846ba9cbcee5190f71f07",
+    "@log": "898916586688:qa-master-plan-groups-service"
+  },
+  {
+    "@timestamp": "2025-07-23 21:54:03.888",
+    "@message": {
+      "name": "plan-groups-service",
+      "hostname": "plan-groups-service.qa.aetnadigital.net",
+      "pid": 1,
+      "level": 30,
+      "url": "/v3/plangroups",
+      "method": "GET",
+      "ip": "::ffff:172.17.0.50",
+      "path": "/v3/plangroups",
+      "params": {},
+      "query": {},
+      "body": {},
+      "headers": {
+        "host": "plan-groups-service.qa.aetnadigital.net:8443",
+        "connection": "close",
+        "x-forwarded-for": "10.208.133.140",
+        "x-forwarded-proto": "https",
+        "x-forwarded-port": "443",
+        "x-amzn-trace-id": "Root=1-688159fb-394dd5d738465d2907f74e2e",
+        "eieheaderaction": "READ",
+        "eieheaderversion": "{\"eieHeaderVersion\":{\"major\":2,\"minor\":0,\"maintenance\":0}}",
+        "eieheaderusercontext": "{\"eieHeaderUserContext\":{\"dnAccountName\":\"CN=DMT-S-W266118742,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com\",\"assuranceLevel\":\"http://consumer.aetna.com/assurance/loa-2\",\"eieHeaderAuthorizedRole\":[{\"authorizedRole\":\"memberSubscriber1\"},{\"authorizedRole\":\"subscriber\"},{\"authorizedRole\":\"nextGenMember\"}],\"accountIdentifier\":{\"idSource\":\"1\",\"idValue\":\"DMT-S-W266118742\",\"idType\":\"accounts\"},\"eieHeaderBusinessIdentifier\":{\"businessIdentifier\":[{\"idSource\":\"15\",\"idValue\":\"Q7RL6FFFFPXZ\",\"idType\":\"individuals\"}]}}}",
+        "eieheaderapplicationidentifier": "{\"applicationIdentifier\":{\"idSource\":108,\"idValue\":\"e146171f-02cb-4592-a0ae-bfa5c1461000\",\"idType\":\"applications\"}}",
+        "eieheaderorchestratingapplicationidentifier": "{\"applicationIdentifier\":{\"idSource\":108,\"idValue\":\"e146171f-02cb-4592-a0ae-bfa5c1461000\",\"idType\":\"applications\"}}",
+        "eieheadertransactionid": "db930e10688159fb0136d8e1|e146171f-02cb-4592-a0ae-bfa5c1461000",
+        "x-global-transaction-id": "db930e10688159fb0136d8e1",
+        "x-qapath": "2",
+        "x-aetna-accept-language": "en-US",
+        "user-agent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+        "accept": "application/json",
+        "content-type": "application/json",
+        "accept-encoding": "gzip, compress, deflate, br",
+        "traceparent": "00-ce98ae923ca89b188c1e53ccbbc77109-3dbf546afff07b39-01",
+        "eieheaderversionDeconstructed": {
+          "eieHeaderVersion": {
+            "major": 2,
+            "minor": 0,
+            "maintenance": 0
+          }
+        },
+        "eieheaderusercontextDeconstructed": {
+          "eieHeaderUserContext": {
+            "dnAccountName": "CN=DMT-S-W266118742,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com",
+            "assuranceLevel": "http://consumer.aetna.com/assurance/loa-2",
+            "eieHeaderAuthorizedRole": [
+              {
+                "authorizedRole": "memberSubscriber1"
+              },
+              {
+                "authorizedRole": "subscriber"
+              },
+              {
+                "authorizedRole": "nextGenMember"
+              }
+            ],
+            "accountIdentifier": {
+              "idSource": "1",
+              "idValue": "DMT-S-W266118742",
+              "idType": "accounts"
+            },
+            "eieHeaderBusinessIdentifier": {
+              "businessIdentifier": [
+                {
+                  "idSource": "15",
+                  "idValue": "Q7RL6FFFFPXZ",
+                  "idType": "individuals"
+                }
+              ]
+            }
+          }
+        },
+        "eieheaderapplicationidentifierDeconstructed": {
+          "applicationIdentifier": {
+            "idSource": 108,
+            "idValue": "e146171f-02cb-4592-a0ae-bfa5c1461000",
+            "idType": "applications"
+          }
+        },
+        "eieheaderorchestratingapplicationidentifierDeconstructed": {
+          "applicationIdentifier": {
+            "idSource": 108,
+            "idValue": "e146171f-02cb-4592-a0ae-bfa5c1461000",
+            "idType": "applications"
+          }
+        }
+      },
+      "msg": "Begin Incoming Request",
+      "time": "2025-07-23T21:54:03.888Z",
+      "v": 0,
+      "levelname": "INFO",
+      "localtime": "7/23/2025, 9:54:03 PM",
+      "timestamp": "2025-07-23T21:54:03.888Z",
+      "qapath": "2",
+      "traceId": "db930e10688159fb0136d8e1",
+      "language": "en-US",
+      "accountId": "1~DMT-S-W266118742",
+      "userAgent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+      "datafied": null
+    },
+    "@logStream": "qa-master-plan-groups-service-service/app/5a68d3fcb24846ba9cbcee5190f71f07",
+    "@log": "898916586688:qa-master-plan-groups-service"
+  },
+  {
+    "@timestamp": "2025-07-23 21:54:03.804",
+    "@message": {
+      "name": "plan-groups-service",
+      "hostname": "0f60ffe215b6",
+      "pid": 1,
+      "level": 30,
+      "url": "/plangroups",
+      "status": 200,
+      "data": "{\"planGroups\":[{\"lineOfBusinessName\":\"Commercial\",\"planSponsorId\":\"0000000086518709\",\"planSponsorName\":\"DMT-PUGA-0040-04\",\"relationshipToSubscriber\":\"Self\",\"policies\":[{\"primaryPolicyType\":\"Medical\",\"memberships\":[{\"status\":\"Actively Covered\",\"relationshipToSubscriber\":\"Self\",\"memberResourceId\":\"41~266118742\",\"membershipResourceId\":\"5~266118742+10+1+20220101+804502+C+1\",\"effectiveDatetimeBegin\":\"2022-01-01T04:00:00Z\",\"effectiveDatetimeEnd\":\"9999-12-31T04:00:00Z\",\"claimOfficeKey\":\"98\",\"membershipIdSource\":\"5\",\"memberId\":\"266118742\",\"policyResourceId\":\"3~804502+C+1\",\"control\":\"804502\",\"suffix\":\"10\",\"account\":\"1\",\"planSummary\":\" C\",\"planNumber\":\"1\",\"execMedicalPlanInd\":\"N\",\"coverageDatetimeBegin\":\"2022-01-01T04:00:00Z\",\"coverageDatetimeEnd\":\"9999-12-31T04:00:00Z\",\"policyTypes\":[{\"policyTypeCode\":\"MED\",\"policyType\":\"Medical\"}]}]}],\"planSponsorWaveNumber\":\"996\"}]}",
+      "duration": 6.340891,
+      "headers": {
+        "x-global-transaction-id": "6e631fcd688159fb0065d24d",
+        "x-qapath": "2",
+        "x-aetna-accept-language": "en-US",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "871"
+      },
+      "msg": "End Outgoing Response",
+      "time": "2025-07-23T21:54:03.804Z",
+      "v": 0,
+      "levelname": "INFO",
+      "localtime": "7/23/2025, 9:54:03 PM",
+      "timestamp": "2025-07-23T21:54:03.804Z",
+      "qapath": "2",
+      "traceId": "6e631fcd688159fb0065d24d",
+      "language": "en-US",
+      "accountId": "1~DMT-S-W266118742",
+      "userAgent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+      "datafied": {
+        "planGroups": [
+          {
+            "lineOfBusinessName": "Commercial",
+            "planSponsorId": "0000000086518709",
+            "planSponsorName": "DMT-PUGA-0040-04",
+            "relationshipToSubscriber": "Self",
+            "policies": [
+              {
+                "primaryPolicyType": "Medical",
+                "memberships": [
+                  {
+                    "status": "Actively Covered",
+                    "relationshipToSubscriber": "Self",
+                    "memberResourceId": "41~266118742",
+                    "membershipResourceId": "5~266118742+10+1+20220101+804502+C+1",
+                    "effectiveDatetimeBegin": "2022-01-01T04:00:00Z",
+                    "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                    "claimOfficeKey": "98",
+                    "membershipIdSource": "5",
+                    "memberId": "266118742",
+                    "policyResourceId": "3~804502+C+1",
+                    "control": "804502",
+                    "suffix": "10",
+                    "account": "1",
+                    "planSummary": " C",
+                    "planNumber": "1",
+                    "execMedicalPlanInd": "N",
+                    "coverageDatetimeBegin": "2022-01-01T04:00:00Z",
+                    "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                    "policyTypes": [
+                      {
+                        "policyTypeCode": "MED",
+                        "policyType": "Medical"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "planSponsorWaveNumber": "996"
+          }
+        ]
+      }
+    },
+    "@logStream": "qa-master-plan-groups-service-service/app/e83b3bd385134a20b986db4e2ba78286",
+    "@log": "898916586688:qa-master-plan-groups-service"
+  },
+  {
+    "@timestamp": "2025-07-23 21:54:03.797",
+    "@message": {
+      "name": "plan-groups-service",
+      "hostname": "plan-groups-service.qa.aetnadigital.net",
+      "pid": 1,
+      "level": 30,
+      "url": "/v3/plangroups",
+      "method": "GET",
+      "ip": "::ffff:172.17.0.32",
+      "path": "/v3/plangroups",
+      "params": {},
+      "query": {},
+      "body": {},
+      "headers": {
+        "host": "plan-groups-service.qa.aetnadigital.net:8443",
+        "connection": "close",
+        "x-forwarded-for": "10.208.131.127",
+        "x-forwarded-proto": "https",
+        "x-forwarded-port": "443",
+        "x-amzn-trace-id": "Root=1-688159fb-4d0ebe656d82608b06bab772",
+        "eieheaderaction": "READ",
+        "eieheaderversion": "{\"eieHeaderVersion\":{\"major\":2,\"minor\":0,\"maintenance\":0}}",
+        "eieheaderusercontext": "{\"eieHeaderUserContext\":{\"dnAccountName\":\"CN=DMT-S-W266118742,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com\",\"assuranceLevel\":\"http://consumer.aetna.com/assurance/loa-2\",\"eieHeaderAuthorizedRole\":[{\"authorizedRole\":\"memberSubscriber1\"},{\"authorizedRole\":\"subscriber\"},{\"authorizedRole\":\"nextGenMember\"}],\"accountIdentifier\":{\"idSource\":\"1\",\"idValue\":\"DMT-S-W266118742\",\"idType\":\"accounts\"},\"eieHeaderBusinessIdentifier\":{\"businessIdentifier\":[{\"idSource\":\"15\",\"idValue\":\"Q7RL6FFFFPXZ\",\"idType\":\"individuals\"}]}}}",
+        "eieheaderapplicationidentifier": "{\"applicationIdentifier\":{\"idSource\":108,\"idValue\":\"e146171f-02cb-4592-a0ae-bfa5c1461000\",\"idType\":\"applications\"}}",
+        "eieheaderorchestratingapplicationidentifier": "{\"applicationIdentifier\":{\"idSource\":108,\"idValue\":\"e146171f-02cb-4592-a0ae-bfa5c1461000\",\"idType\":\"applications\"}}",
+        "eieheadertransactionid": "6e631fcd688159fb0065d24d|e146171f-02cb-4592-a0ae-bfa5c1461000",
+        "x-global-transaction-id": "6e631fcd688159fb0065d24d",
+        "x-qapath": "2",
+        "x-aetna-accept-language": "en-US",
+        "user-agent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+        "accept": "application/json",
+        "content-type": "application/json",
+        "accept-encoding": "gzip, compress, deflate, br",
+        "traceparent": "00-35c11aa0986ea5bfa6c8914ce1f01a82-e6e1dce6cc833e10-01",
+        "eieheaderversionDeconstructed": {
+          "eieHeaderVersion": {
+            "major": 2,
+            "minor": 0,
+            "maintenance": 0
+          }
+        },
+        "eieheaderusercontextDeconstructed": {
+          "eieHeaderUserContext": {
+            "dnAccountName": "CN=DMT-S-W266118742,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com",
+            "assuranceLevel": "http://consumer.aetna.com/assurance/loa-2",
+            "eieHeaderAuthorizedRole": [
+              {
+                "authorizedRole": "memberSubscriber1"
+              },
+              {
+                "authorizedRole": "subscriber"
+              },
+              {
+                "authorizedRole": "nextGenMember"
+              }
+            ],
+            "accountIdentifier": {
+              "idSource": "1",
+              "idValue": "DMT-S-W266118742",
+              "idType": "accounts"
+            },
+            "eieHeaderBusinessIdentifier": {
+              "businessIdentifier": [
+                {
+                  "idSource": "15",
+                  "idValue": "Q7RL6FFFFPXZ",
+                  "idType": "individuals"
+                }
+              ]
+            }
+          }
+        },
+        "eieheaderapplicationidentifierDeconstructed": {
+          "applicationIdentifier": {
+            "idSource": 108,
+            "idValue": "e146171f-02cb-4592-a0ae-bfa5c1461000",
+            "idType": "applications"
+          }
+        },
+        "eieheaderorchestratingapplicationidentifierDeconstructed": {
+          "applicationIdentifier": {
+            "idSource": 108,
+            "idValue": "e146171f-02cb-4592-a0ae-bfa5c1461000",
+            "idType": "applications"
+          }
+        }
+      },
+      "msg": "Begin Incoming Request",
+      "time": "2025-07-23T21:54:03.797Z",
+      "v": 0,
+      "levelname": "INFO",
+      "localtime": "7/23/2025, 9:54:03 PM",
+      "timestamp": "2025-07-23T21:54:03.797Z",
+      "qapath": "2",
+      "traceId": "6e631fcd688159fb0065d24d",
+      "language": "en-US",
+      "accountId": "1~DMT-S-W266118742",
+      "userAgent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+      "datafied": null
+    },
+    "@logStream": "qa-master-plan-groups-service-service/app/e83b3bd385134a20b986db4e2ba78286",
+    "@log": "898916586688:qa-master-plan-groups-service"
+  },
+  {
+    "@timestamp": "2025-07-23 21:54:03.036",
+    "@message": {
+      "name": "plan-groups-service",
+      "hostname": "fd4783e34723",
+      "pid": 1,
+      "level": 30,
+      "url": "/plangroups?lineOfBusiness=Commercial&planSponsorIds=0000000086518709&role=Self",
+      "status": 200,
+      "data": "{\"planGroups\":[{\"lineOfBusinessName\":\"Commercial\",\"planSponsorId\":\"0000000086518709\",\"planSponsorName\":\"DMT-PUGA-0040-04\",\"relationshipToSubscriber\":\"Self\",\"policies\":[{\"primaryPolicyType\":\"Medical\",\"memberships\":[{\"status\":\"Actively Covered\",\"relationshipToSubscriber\":\"Self\",\"memberResourceId\":\"41~266118742\",\"membershipResourceId\":\"5~266118742+10+1+20220101+804502+C+1\",\"effectiveDatetimeBegin\":\"2022-01-01T04:00:00Z\",\"effectiveDatetimeEnd\":\"9999-12-31T04:00:00Z\",\"claimOfficeKey\":\"98\",\"membershipIdSource\":\"5\",\"memberId\":\"266118742\",\"policyResourceId\":\"3~804502+C+1\",\"control\":\"804502\",\"suffix\":\"10\",\"account\":\"1\",\"planSummary\":\" C\",\"planNumber\":\"1\",\"execMedicalPlanInd\":\"N\",\"coverageDatetimeBegin\":\"2022-01-01T04:00:00Z\",\"coverageDatetimeEnd\":\"9999-12-31T04:00:00Z\",\"policyTypes\":[{\"policyTypeCode\":\"MED\",\"policyType\":\"Medical\"}]}]}],\"planSponsorWaveNumber\":\"996\"}]}",
+      "duration": 6.139411,
+      "headers": {
+        "x-global-transaction-id": "6e631fcd688159fa014d4dc1",
+        "x-qapath": "2",
+        "x-aetna-accept-language": "en-US",
+        "content-type": "application/json; charset=utf-8",
+        "content-length": "871"
+      },
+      "msg": "End Outgoing Response",
+      "time": "2025-07-23T21:54:03.036Z",
+      "v": 0,
+      "levelname": "INFO",
+      "localtime": "7/23/2025, 9:54:03 PM",
+      "timestamp": "2025-07-23T21:54:03.036Z",
+      "qapath": "2",
+      "traceId": "6e631fcd688159fa014d4dc1",
+      "language": "en-US",
+      "accountId": "1~DMT-S-W266118742",
+      "userAgent": "AetnaHealth/7.36.0 (com.aetna.aetnahealth; Google; sdk_gphone64_arm64; sdk_gphone64_arm64; 16) okhttp/5.0.0",
+      "datafied": {
+        "planGroups": [
+          {
+            "lineOfBusinessName": "Commercial",
+            "planSponsorId": "0000000086518709",
+            "planSponsorName": "DMT-PUGA-0040-04",
+            "relationshipToSubscriber": "Self",
+            "policies": [
+              {
+                "primaryPolicyType": "Medical",
+                "memberships": [
+                  {
+                    "status": "Actively Covered",
+                    "relationshipToSubscriber": "Self",
+                    "memberResourceId": "41~266118742",
+                    "membershipResourceId": "5~266118742+10+1+20220101+804502+C+1",
+                    "effectiveDatetimeBegin": "2022-01-01T04:00:00Z",
+                    "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+                    "claimOfficeKey": "98",
+                    "membershipIdSource": "5",
+                    "memberId": "266118742",
+                    "policyResourceId": "3~804502+C+1",
+                    "control": "804502",
+                    "suffix": "10",
+                    "account": "1",
+                    "planSummary": " C",
+                    "planNumber": "1",
+                    "execMedicalPlanInd": "N",
+                    "coverageDatetimeBegin": "2022-01-01T04:00:00Z",
+                    "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+                    "policyTypes": [
+                      {
+                        "policyTypeCode": "MED",
+                        "policyType": "Medical"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "planSponsorWaveNumber": "996"
+          }
+        ]
+      }
+    },
+    "@logStream": "qa-master-plan-groups-service-service/app/77c4f0b6a3774f43901d102ffd0aba14",
+    "@log": "898916586688:qa-master-plan-groups-service"
+  }
+]
