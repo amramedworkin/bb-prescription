@@ -1,0 +1,13 @@
+// Request 1 - Medical Policy
+{
+  "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+  "policyResourceId": "3~805233+A+1",
+  "dateAsOf": "2025-05-30T00:00:00.000Z"
+}
+
+// Request 2 - Dental Policy  
+{
+  "membershipResourceId": "5~265416171+10+2+20230101+805233+B+2",
+  "policyResourceId": "3~805233+B+2",
+  "dateAsOf": "2025-05-30T00:00:00.000Z"
+}
