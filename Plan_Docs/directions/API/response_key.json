@@ -1,0 +1,22 @@
+ "readHealthPoliciesCommunicationContentsResponse.readCommunicationContents/communicationContent[].
+                    communicationContentIdentifier": [].resourceId
+                        }
+                    ]
+                },
+                {
+                    "webHyperlink": "https://qa3www.aetna.com/epublishing/getPlanDocument?serviceName=fetchPDF&nodeId=13910996",
+                    "documentType": "Medical",
+                    "description": "Plan Update",
+                    "communicationContentIdentifier": [
+                        {
+                            "idSource": "70023",
+                            "idValue": "13910996",
+                            "idType": "communicationContents",
+                            "resourceId": "70023~13910996"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,7 @@
+                "eieheaderaction": "CREATE",
+                "eieheaderversion": "{\"eieHeaderVersion\":{\"major\":2,\"minor\":0,\"maintenance\":0}}",
+                "eieheaderusercontext": "{\"eieHeaderUserContext\":{\"dnAccountName\":\"CN=DMT-D-W265637365,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com\",\"assuranceLevel\":\"http://consumer.aetna.com/assurance/loa-2\",\"eieHeaderAuthorizedRole\":[{\"authorizedRole\":\"memberDependent1\"},{\"authorizedRole\":\"dependent\"},{\"authorizedRole\":\"nextGenMember\"}],\"accountIdentifier\":{\"idSource\":\"1\",\"idValue\":\"DMT-D-W265637365\",\"idType\":\"accounts\"},\"eieHeaderBusinessIdentifier\":{\"businessIdentifier\":[{\"idSource\":\"60005\",\"idValue\":\"1116004483483387578\",\"idType\":\"individuals\"},{\"idSource\":\"15\",\"idValue\":\"3QCTXBBBHPXZ\",\"idType\":\"individuals\"}]}}}",
+                "eieheaderapplicationidentifier": "{\"applicationIdentifier\":{\"idSource\":108,\"idValue\":\"89d435af-00b0-4cb6-9a35-f3189f5adc55\",\"idType\":\"applications\"}}",
+                "eieheaderorchestratingapplicationidentifier": "{\"applicationIdentifier\":{\"idSource\":108,\"idValue\":\"89d435af-00b0-4cb6-9a35-f3189f5adc55\",\"idType\":\"applications\"}}",
+                "eieheadertransactionid": "6e631fcd688124540148bfc1|89d435af-00b0-4cb6-9a35-f3189f5adc55",
+    

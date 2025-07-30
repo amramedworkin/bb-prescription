@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EIE Headers Reference</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        .json-code {
+            background-color: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.875rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            color: #e2e8f0;
+        }
+        .table-responsive {
+            margin-top: 2rem;
+        }
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        .description-cell {
+            max-width: 300px;
+        }
+        .sample-value-cell {
+            min-width: 400px;
+        }
+        /* Custom Prism theme overrides */
+        .token.string {
+            color: #9f7aea !important;
+        }
+        .token.number {
+            color: #38b2ac !important;
+        }
+        .token.boolean {
+            color: #ed8936 !important;
+        }
+        .token.null {
+            color: #e53e3e !important;
+        }
+        .token.punctuation {
+            color: #e2e8f0 !important;
+        }
+        .token.property {
+            color: #68d391 !important;
+        }
+        pre[class*="language-"] {
+            background: #2d3748 !important;
+            border-radius: 0.375rem !important;
+            margin: 0 !important;
+            padding: 1rem !important;
+        }
+        code[class*="language-"] {
+            font-family: 'Fira Code', 'Courier New', monospace !important;
+            font-size: 0.875rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">EIE Headers Reference</h1>
+                
+                <div class="alert alert-info">
+                    <h5>Overview</h5>
+                    <p class="mb-2">Enterprise Integration Engine (EIE) Headers are appended to an incoming request by APIC and passed on to the internal services (IIB or AH Orchestration etc.).</p>
+                    <p class="mb-2">Contains certain data regarding the logged in user, generated during the login flow in the form of JWT token.</p>
+                    <p class="mb-0">JWT token is passed to the client, which then passes it as part of APIC calls. JWT token is the encrypted version of EIE headers. APIC decrypts this and forms EIE headers in the HTTP headers.</p>
+                </div>
+
+                <h2 class="mb-3">EIE Headers Table</h2>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th class="sample-value-cell">Sample Value</th>
+                                <th>Type</th>
+                                <th class="description-cell">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>EIEHeaderAction</strong></td>
+                                <td><code class="language-json">"Read"</code></td>
+                                <td><span class="badge bg-primary">String</span></td>
+                                <td>Action</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EIEHeaderTransactionID</strong></td>
+                                <td><code class="language-json">"204406433"</code></td>
+                                <td><span class="badge bg-primary">String</span></td>
+                                <td>Global Transaction Id</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EIEHeaderApplicationIdentifier</strong></td>
+                                <td>
+                                    <pre class="language-json"><code>{
+  "applicationIdentifier": {
+    "idSource": 108,
+    "idValue": "abbbxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx",
+    "idType": "applications"
+  }
+}</code></pre>
+                                </td>
+                                <td><span class="badge bg-success">JSON</span></td>
+                                <td>Member application</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EIEHeaderOrchestratingApplicationIdentifier</strong></td>
+                                <td>
+                                    <pre class="language-json"><code>{
+  "applicationIdentifier": {
+    "idSource": 108,
+    "idValue": "abbbxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx",
+    "idType": "applications"
+  }
+}</code></pre>
+                                </td>
+                                <td><span class="badge bg-success">JSON</span></td>
+                                <td>Orchestration application, if applicable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EIEHeaderImpersonatingApplicationIdentifier</strong></td>
+                                <td>
+                                    <pre class="language-json"><code>{
+  "applicationIdentifier": {
+    "idSource": 108,
+    "idValue": "abbbxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx",
+    "idType": "applications"
+  }
+}</code></pre>
+                                </td>
+                                <td><span class="badge bg-success">JSON</span></td>
+                                <td>Impersonation application, if applicable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EIEHeaderVersion</strong></td>
+                                <td>
+                                    <pre class="language-json"><code>{
+  "eieHeaderVersion": {
+    "major": 2,
+    "minor": 0,
+    "maintenance": 0
+  }
+}</code></pre>
+                                </td>
+                                <td><span class="badge bg-success">JSON</span></td>
+                                <td>EIE Header version</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EIEHeaderUserContext</strong></td>
+                                <td>
+                                    <pre class="language-json"><code>{
+  "eieHeaderUserContext": {
+    "dnAccountName": "CN=QASP1-SUB-180902748,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com",
+    "assuranceLevel": "http://consumer.aetna.com/assurance/loa-2",
+    "eieHeaderAuthorizedRole": [
+      {
+        "authorizedRole": "AETH-User-Role-1"
+      },
+      {
+        "authorizedRole": "AETH-User-Role-2"
+      }
+    ],
+    "impersonatingAccountIdentifier": {
+      "idSource": "1",
+      "idValue": "POCDevData7",
+      "idType": "accounts"
+    },
+    "accountIdentifier": {
+      "idSource": "1",
+      "idValue": "POCDevData7",
+      "idType": "accounts"
+    }
+  }
+}</code></pre>
+                                </td>
+                                <td><span class="badge bg-success">JSON</span></td>
+                                <td>Account Info from LDAP. If impersonation, Roles are present for the CSR (must be AETH). Otherwise, member (must be AETH). Contains CSR Info and Member Info</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Initialize Prism.js after the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
+        });
+    </script>
+</body>
+</html> 

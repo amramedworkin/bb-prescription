@@ -1,0 +1,319 @@
+Environment
+plan-groups-host
+https://plan-groups-service.qa.aetnadigital.net
+core-apic_host
+https://qaapih1.int.aetna.com
+cvs-base_path
+/cvs/v1/memberships
+cvs_auth-host
+https://cvsauth.qa.aetnadigital.net
+caremark-host-2wayssl
+https://sit1sdkservices-2wayssl.caremark.com
+claim-submission-host
+https://claimsubmission.qa.aetnadigital.net
+multiple_membership_feature
+https://multimembershipfeatures.qa.aetnadigital.net
+product_contacts_host
+https://productcontactsservice.qa.aetnadigital.net
+find_pharmacy-base_path
+/cvs/v1/memberships
+client-bff-service
+https://aetnadigital-client-bff-service.qa.aetnadigital.net
+correspondence_proxy_host
+https://correspondence-proxy.qa.aetnadigital.net
+coordination_of_benefits_host
+https://coordination-of-benefits-service.qa.aetnadigital.net
+cvs_apg_api_key
+a4ddaf8d-b74e-4158-87fb-d3b8e0c29030
+idcards_host
+https://idcardsservice.qa.aetnadigital.net
+cvs_claims-host
+https://cvsclaims.qa.aetnadigital.net
+cvs-claims-host
+https://cvsclaims.qa.aetnadigital.net
+gateway-host
+https://gateway1.qa.aetnadigital.net
+cvs_accums_base_path
+/healthcare/qapath1/v3/aetnahealth_pharmacy
+login_server
+NA
+caremark-host
+https://sit1sdkservices.caremark.com
+drugprice-host
+https://drugprice.qa.aetnadigital.net
+accumulators
+https://accumulators.qa.aetnadigital.net
+cvs_orders-host
+https://cvsorders.qa.aetnadigital.net
+apple_wallet_host
+https://apple-wallet-service.qa.aetnadigital.net
+cvs_pl_api_key
+769c71df-fd85-4645-92e0-b8003a8a4ef3
+medications-host
+https://medications.qa.aetnadigital.net
+auth_server
+https://qaapih2.aetna.com
+find_pharmacy-host
+https://pharmacy.qa.aetnadigital.net
+cvs_member_profile-host
+https://cvsmemberprofile.qa.aetnadigital.net
+smc-processor-host
+https://smc-processor-service.qa.aetnadigital.net
+SMC-message-host
+https://secure-messaging-service.qa.aetnadigital.net
+cms-service-host
+https://cmsservice.qa.aetnadigital.net
+orchestration-host
+https://orchestration.qa.aetnadigital.net
+cvs-prescriptions-host
+https://cvsprescriptions.qa.aetnadigital.net
+cvs_eobs-host
+https://cvseobs.qa.aetnadigital.net
+auth_path
+/healthcare/qapath
+core_auth_management_host
+https://core-auth-management.qa.aetnadigital.net
+medication_details_host
+https://medicationdetailsservice.qa.aetnadigital.net
+pharmacy-plan-summary-host
+https://pharmacy-plan-summary.qa.aetnadigital.net
+core_proxy-host
+https://coreproxy.qa.aetnadigital.net
+cob-processsor-host
+https://cob-processor-service.qa.aetnadigital.net
+mocking-proxy-api-key
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+find-pharmacy-host
+https://pharmacy.qa.aetnadigital.net
+mocking-proxy-host
+https://mocking-proxy.qa.aetnadigital.net
+https://aetnadigital-client-bff-service.qa.aetnadigital.net
+https://coreproxy.qa.aetnadigital.net
+idcards_base_path
+/v4/identificationcards
+chat-orchestrator-server
+https://qaapi01.int.aetna.com/healthcare/qapath1/hcb/v3/userchat/actions
+live-chat-host
+https://live-chat.qa.aetnadigital.net
+aetnahealth-fund-host
+https://aetna-health-fund.qa.aetnadigital.net
+AetnaDigital-Client-BFF-Service
+https://aetnadigital-client-bff-service.qa.aetnadigital.net
+member-comm-host
+https://member-comm-service.qa.aetnadigital.net
+callback-host
+https://callback.qa.aetnadigital.net
+benefit-host
+https://benefits-service.qa.aetnadigital.net
+qapathForUAFToken
+2
+qapath
+1
+cvs_prescriptions-host
+https://cvsprescriptions.qa.aetnadigital.net
+health-financials
+https://health-financials-service.qa.aetnadigital.net
+claim-submission-processor-host
+https://claim-submission-processor.qa.aetnadigital.net
+authQaPathNumber
+1
+authUsername
+qa1-bill-300013286700
+live-chat-apic
+https://qaapi03.aetna.com/healthcare
+cvs-gke-memberToken
+a846705a55584cffa29929175a4aa9666070d58b5eeb4b71ba713d6087fd2e49
+cvs-gke-bearertoken
+dwGw7QuKdjy5bfUqKA5LjknFP7g4
+claim-submission-processor-host
+https://claim-submission-processor.qa.aetnadigital.net
+prescription-management-host
+https://prescription-management.qa.aetnadigital.net
+profile-preferences-host
+https://profile-preferences-service.qa.aetnadigital.net
+pbr-host
+https://pbr.qa.aetnadigital.net
+jwt_cookie
+Enter value
+id_token
+Enter value
+access_token
+Enter value
+redirect_url
+Enter value
+secret_string
+Enter value
+login_code
+Enter value
+benefits-search
+https://benefits-search.qa.aetnadigital.net
+authApicClientId
+Enter value
+member-comm-processor-host
+https://member-comm-processor.qa.aetnadigital.net
+member-detail
+https://member-detail.qa.aetnadigital.net
+uafToken
+Enter value
+eieheaderusercontext
+Enter value
+qa-path
+Enter value
+membershipResourceId
+59~300014110201+Z00000000005427+2024-01-01
+lineOfBusiness
+Enter value
+relationshipToSubscriber
+Enter value
+planSponsorId
+Enter value
+proxyResourceId
+Enter value
+membershipId
+Enter value
+ldapIdSource
+Enter value
+ldapIdValue
+Enter value
+Impersonation-Authorized-Roles
+Enter value
+plan-groups-service-host
+Enter value
+ldap
+Enter value
+enterpriseClaimId
+Enter value
+idCardResourceId
+Enter value
+Impersonation and Authorized roles EIE Header
+Enter value
+memberResourceId
+Enter value
+aetnadigital-client-bff-service-host
+Enter value
+cvs-auth-host
+Enter value
+dependantMembershipId
+Enter value
+dependantLdapIdValue
+Enter value
+accums-host
+Enter value
+ivlMembershipId
+Enter value
+ivlLdapIdValue
+Enter value
+pharmacy-plan-summary-host
+Enter value
+NDC11
+Enter value
+drugprice-host
+Enter value
+orderId
+Enter value
+prescriptionId
+Enter value
+medicareMembershipId
+Enter value
+medicareLdapIdValue
+Enter value
+medicarePrescriptionId
+Enter value
+multipleBody
+Enter value
+cvs-prescriptions-host
+Enter value
+claimId
+Enter value
+dependantPrescriptionId
+Enter value
+dependantClaimId
+Enter value
+core-auth-management-host
+Enter value
+cvs-member-profile-host
+Enter value
+planId
+Enter value
+addressId
+Enter value
+firstName
+Enter value
+lastName
+Enter value
+u18membershipId
+Enter value
+find-pharmacy-host
+Enter value
+correspondence-proxy-host
+Enter value
+memberId
+Enter value
+smcMailboxId
+Enter value
+urlEncodedMembershipId
+Enter value
+cvs-eobs-host
+Enter value
+statementDate
+Enter value
+externalClaimId
+Enter value
+medicareStatementDate
+Enter value
+medicareExternalClaimId
+Enter value
+noInfoMedicareMembershipId
+Enter value
+noInfoMedicareLdapIdValue
+Enter value
+noInfoMedicareStatementDate
+Enter value
+noInfoMembershipId
+Enter value
+noInfoLdapIdValue
+Enter value
+noInfoStatementDate
+Enter value
+noInfoExternalClaimId
+Enter value
+pharmacyMembershipId
+Enter value
+pharmacyLdapIdValue
+Enter value
+docId
+Enter value
+over20Items
+Enter value
+cob-host
+Enter value
+policyResourceId
+Enter value
+privacyRestrictedDependentMembershipId
+Enter value
+dateOfBirth
+Enter value
+aetnaMembershipId
+Enter value
+planSponsorName
+Enter value
+qapath
+Enter value
+Impersonation-Authorized-Roles-Comm
+Enter value
+appToken
+default
+appToken
+Enter value
+cvs-orders-host
+Enter value
+authQaPassword
+•••••••••••
+authCodeChallenge
+•••••••••••••••••••••••••••••••••••••••••••
+authCodeVerifier
+•••••••••••••••••••••••••••••••••
+pharmville-postman-key
+••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+ldapId
+Enter value

@@ -1,0 +1,12 @@
+Field	Value
+Alternative Version	0.0.11.0.0
+Specification Description	Provides the plan document json list and pdf to client
+Document Type	Microservices
+Security Pattern	default
+Line of Business	
+Aetna
+Domain	
+Benefit
+Specification Owner	
+aetna-pharmille-members
+Created By	JackmanJ1@aetna.com

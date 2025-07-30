@@ -1,0 +1,53 @@
+/sa/plandocs/v1/list - Orchestration
+1. Call plangroups and get all information
+2. loop through plangroups response
+	data->planGroups
+		lineOfBusiness = "Commercial"
+		loop through policies[]
+			loop loop through memberships
+				filter on status = "Actively Covered"
+3. Create the features request
+{
+	"enabledOnly": false,
+        "memberships": [
+		{
+			"membershipResourceId": "5~265748757+20+27+20250101+799571+MA+339",
+			"features": [
+				"PlanDocMsgAvail",
+				"MedPlanDocs",
+				"DentalPlanDocs",
+				"VisionPlanDocs"
+			]
+		},
+		{
+			"membershipResourceId": "<other membershipResourceId",
+			"features": [
+				"PlanDocMsgAvail",
+				"MedPlanDocs",
+				"DentalPlanDocs",
+				"VisionPlanDocs"
+			]
+		},
+        ]
+}
+
+create a json object
+{
+	"documentListRequest" {
+		"dateAsOf": "2025-05-30T00:00:00.000Z",
+		"lists": [
+			{
+				"primaryPolicyType": "Medical",
+				"membershipResourceId": "5~266118742+10+1+20220101+804502+C+1",
+				"policyResourceId": "3~804502+C+1"
+			},
+			{
+				"primaryPolicyType": "Dental",
+				"membershipResourceId": "<some other id>",
+				"policyResourceId": "3~804502+C+1"
+			}
+			
+		]
+
+	}
+}

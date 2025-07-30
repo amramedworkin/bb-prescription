@@ -1,0 +1,57 @@
+1. CVS SuperApp sends a POST to /sa/serviceusage/v1 request to APIGW with the member's JWT
+1.a. JWT is defined in /Users/n091733/Projects/bb-prescription/Plan_Docs/for_ai/json/id_token_jwt.json
+
+2.b. Validates the JWT
+
+2.c. APIc GW transform the JWT to EIE headers.
+2.c.1. EIE headers are definded in /Users/n091733/Projects/bb-prescription/Plan_Docs/for_ai/json/eie_headers_extracted_from_jwt.txt
+
+2.d Call the Common superapp initialization
+2.d.1. Call plangroups with the EIE headers set
+
+
+4. Needs to get the plan group to get the plan groups with the following parameters lineOfBusiness=Commercial for MVP.
+5. CVS BFF filters down the response to one plan group based on a given shared requirement for the super app. 
+
+5. From the PlanGroups response CVS-BFF will filter groups:
+5.a. Excludes groups with certain plan sponsor IDs (955, 988). 
+5.b. Filter for Actively Covered
+5.c. Further filters for policies with a primary type of "Dental" or "Medical".
+
+6. `CVS-BFF`  dispatches a post request to MMF v2/features API to check if ["DenServiceLimits", "MedServiceLimits"] are enabled.
+
+6.a. Include parameters: 
+{
+  "memberships": [
+  {
+    membershipResourceId: "5~185762462+10+1+20220101+789436+A+1",
+    features: [ "DenServiceLimits", "MedServiceLimits"],
+    enabledOnly: true,
+  },
+  {
+    membershipResourceId: "5~185762462+10+2+20220101+789436+B+2",
+    features: ["DenServiceLimits","MedServiceLimits"],
+    enabledOnly: true,
+  },
+  ]    
+}
+6.b. The response includes enabled features. Ensure the enabled flag is set to truefor each feature. 
+6.c. If none is enabled CVS-BFF returns an empty response status code: 204 No content || 200 OK
+6.d. If either of the features is enabled, CVS-BFF makes requests for Medical and Dental plan limits as described below:
+
+7. If MedServiceLimits is enabled we request plan limits for Medical and Dental.
+7.a. If DenServiceLimits is enabled we request plan limits for Dental. 
+7.b. CVS-BFF (potentially after checking its cache for recent data) prepare the response object by making parallel calls to:
+7.c. The accumlators service to retrieves the service usage for Medical and Dental
+7.d. Call member service v1/memberships to get  demographic information for the current member. If the current member is the subscriber the, service call will include dependents.
+7.e. These calls MUST be dispatched in parallel.  
+
+8. CVS-BFF 
+8.a. Receives responses, transforms and constructs  the json array 
+"planServices": [{}] where each item includes the information about the service usage.
+8.b. Set’s the cache with the appropriate key and TT
+8.c. Returns the consolidated data to the API Gateway.
+8.d. Adds information in case of partial response under the additionalInformation key. See Shared Docs
+8.e. Set the cache as described in the CVS-BFF shared Document. 
+
+9. API Gateway sends the final planServices response back to the CVS Super App.

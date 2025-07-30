@@ -1,0 +1,280 @@
+penapi: 3.0.3
+info:
+  title: Plan Document
+  description: Provides the plan document json list and pdf to client
+  version: 1.1.0
+servers:
+  - url: /v1
+paths:
+  /plan-document-list/retrieve:
+    post:
+      tags:
+        - Commercial/Medicare Plan Doc List
+      summary: Provides the plan document list to client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/planDocListRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/planDocListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '504':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /plan-document/retrieve:
+    post:
+      tags:
+        - Commercial/Medicare Plan Doc Retrieve
+      summary: Returns the plan document to client
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/planDocRetrieveRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: object
+                required:
+                  - success
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        '504':
+          description: Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+components:
+  schemas:
+    planDocListRequest:
+      required:
+        - policyResourceId
+        - membershipResourceId
+        - dateAsOf
+      type: object
+      properties:
+        membershipResourceId:
+          type: string
+          example: 5~265106287+11+51+20190101+751133+BA+2
+        policyResourceId:
+          type: string
+          example: 3~751133+BA+2
+        dateAsOf:
+          type: string
+          example: '2025-05-30T00:00:00.000Z'
+      description: Input request object
+    planDocListResponse:
+      required:
+        - readHealthPoliciesCommunicationContentsResponse
+      title: planDocListResponse
+      type: object
+      description: This is a success response for commercial or Medicare plan doc list.
+      properties:
+        readHealthPoliciesCommunicationContentsResponse:
+          required:
+            - readCommunicationContents
+          type: object
+          properties:
+            readCommunicationContents:
+              required:
+                - communicationContent
+              type: object
+              properties:
+                communicationContent:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - webHyperlink
+                      - documentType
+                      - description
+                      - communicationContentIdentifier
+                    properties:
+                      webHyperlink:
+                        type: string
+                        description: URL for the communication content
+                      documentType:
+                        type: string
+                        description: Type of the document
+                      description:
+                        type: string
+                        description: Description of the communication content
+                      title:
+                        type: string
+                        description: Title of the communication content
+                      format:
+                        type: string
+                        description: Format of the document (e.g., PDF, HTML)
+                      documentSubType:
+                        type: string
+                        description: Sub-type of the document
+                      language:
+                        type: string
+                        description: Language of the communication content
+                      contentSize:
+                        type: string
+                        description: Size of the content
+                      communicationContentIdentifier:
+                        type: array
+                        items:
+                          type: object
+                          required:
+                            - idSource
+                            - idValue
+                            - idType
+                            - resourceId
+                          properties:
+                            idSource:
+                              type: string
+                              description: Source of the identifier
+                            idValue:
+                              type: string
+                              description: Value of the identifier
+                            idType:
+                              type: string
+                              description: Type of the identifier
+                            resourceId:
+                              type: string
+                              description: Resource ID associated with the content
+                      communicationContentEffectivePeriod:
+                        required:
+                          - dateTimeAsOf
+                          - dateTimeBegin
+                          - dateTimeEnd
+                        type: object
+                        properties:
+                          dateTimeAsOf:
+                            type: string
+                            description: >-
+                              Date and time as of which the information is
+                              effective
+                          dateTimeBegin:
+                            type: string
+                            description: Beginning date and time of the effective period
+                          dateTimeEnd:
+                            type: string
+                            description: End date and time of the effective period
+                      viewerURL:
+                        type: string
+                        description: URL to view the content in a viewer application
+    planDocRetrieveRequest:
+      required:
+        - communicationContentResourceId
+      type: object
+      properties:
+        communicationContentResourceId:
+          type: string
+          example: 70023~13910995
+      description: Input request object
+    error:
+      title: error
+      type: object
+      properties:
+        httpCode:
+          type: string
+          description: >-
+            Status code is used to determine what went wrong and/or how the
+            downstream system responds to the request
+          example: '400'
+        httpMessage:
+          type: string
+          description: A human readable description of the status code
+          example: Bad request
+        moreInformation:
+          type: string
+          description: A more detailed description of the error
+          example: member resource id is invalid
+        status:
+          type: integer
+          description: >-
+            Status code is used to determine what went wrong and/or how the
+            downstream system responds to the request
+          example: 400
+        title:
+          type: string
+          description: A human readable description of the status code
+          example: Bad request
+        detail:
+          type: string
+          description: A more detailed description of the error
+          example: member resource id is invalid

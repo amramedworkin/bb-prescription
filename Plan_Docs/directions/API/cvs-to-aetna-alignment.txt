@@ -1,0 +1,64 @@
+CVS
+request
+--------
+//aetna token
+}
+ 
+
+response
+--------
+
+{
+  "data":[{
+    "planId" : "",
+    "documentName":"" ,
+    "documentId":"",
+    "documentUrl" :"" //nice to have
+  }]
+
+}
+
+Aetna
+
+request
+--------
+{
+  "membershipResourceId": "5~265106287+11+51+20190101+751133+BA+2",
+  "policyResourceId": "3~751133+BA+2",
+  "dateAsOf": "2025-05-30T00:00:00.000Z"
+}
+
+response
+--------
+{
+  "readHealthPoliciesCommunicationContentsResponse": {
+    "readCommunicationContents": {
+      "communicationContent": [
+        {
+          "webHyperlink": "string",
+          "documentType": "string",
+          "description": "string",
+          "title": "string",
+          "format": "string",
+          "documentSubType": "string",
+          "language": "string",
+          "contentSize": "string",
+          "communicationContentIdentifier": [
+            {
+              "idSource": "string",
+              "idValue": "string",
+              "idType": "string",
+              "resourceId": "string"
+            }
+          ],
+          "communicationContentEffectivePeriod": {
+            "dateTimeAsOf": "string",
+            "dateTimeBegin": "string",
+            "dateTimeEnd": "string"
+          },
+          "viewerURL": "string"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,319 @@
+openapi: 3.0.0
+info:
+  title: ID Cards API For Super App Integration
+  description: ''
+  version: 1.0.0
+servers:
+- url: http://0.0.0.0:9056
+  description: local
+- url: https://cvs-bff.dev.aetnadigital.net
+  description: dev
+- url: https://cvs-bff.qa.aetnadigital.net
+  description: qa
+- url: https://cvs-bff.prd.aetnadigital.net
+  description: prod
+tags:
+- name: SuperApp
+  description: Super App Integration with ID Cards
+paths:
+  /sa/idcards/v1/list:
+    post:
+      tags:
+      - SuperApp
+      summary: fetching available ID Cards for a member
+      parameters:
+      - name: Accept-Language
+        in: header
+        description: Defaults to en-US if lang is en and locale is different than
+          US or if lang is anything other than en or es. Defaults to es-ES if the
+          lang is es and locale is different than ES.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: es, en, es-ES, en-US
+      - name: x-grid
+        in: header
+        description: TraceId provided by CVS
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Eieheaderusercontext'
+      - $ref: '#/components/parameters/Eieheaderapplicationidentifier'
+      - $ref: '#/components/parameters/Eieheaderaction'
+      - $ref: '#/components/parameters/Eieheaderorchestratingapplicationidentifier'
+      - $ref: '#/components/parameters/Eieheaderversion'
+      - $ref: '#/components/parameters/Eieheadertransactionid'
+      - $ref: '#/components/parameters/QaPath'
+      - name: trimImages
+        in: query
+        description: If true, extra space around the image will be removed.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdCardListRequest'
+        required: true
+      responses:
+        '200':
+          description: Details around the specific member's Care Management Campaign
+          headers:
+            x-grid:
+              schema:
+                type: string
+            x-global-transaction-id:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdCardListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: The submitted date of birth does not match that associated
+            with the XID. For count see $.cause.failedVerifyCount
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: The XID has failed to verify too many times and has been locked
+            out
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The XID does not exist in the system, e.g. it has expired and
+            been deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: For an XID, a new request has been sent before the prior request
+            has completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  parameters:
+    Eieheaderusercontext:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderusercontext
+    Eieheaderapplicationidentifier:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderapplicationidentifier
+    Eieheaderaction:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderaction
+    Eieheaderorchestratingapplicationidentifier:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderorchestratingapplicationidentifier
+    Eieheaderversion:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderversion
+    Eieheadertransactionid:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheadertransactionid
+    QaPath:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/QaPath
+  schemas:
+    IdCardListRequest:
+      properties:
+        memberResourceIds:
+          type: array
+          items:
+            type: string
+            description: array of memberIds used to request Id Cards for specific
+              members on the plan
+            example: 41~403958340
+    IdCardListResponse:
+      type: object
+      properties:
+        statusCode:
+          $ref: https://apiforge.cvshealth.com/api-oas/global-domains/cvs-api-domains~1.0.0.yaml#/components/schemas/statusCode
+        statusDescription:
+          $ref: https://apiforge.cvshealth.com/api-oas/global-domains/cvs-api-domains~1.0.0.yaml#/components/schemas/statusDescription
+        additionalDetails:
+          type: object
+          required:
+          - message
+          - failedMemberResourceIds
+          properties:
+            message:
+              type: string
+              description: Additional message for the response
+              example: ID Cards retrieved successfully
+            failedMemberResourceIds:
+              type: array
+              items:
+                type: object
+                required:
+                - memberResourceId
+                - status
+                properties:
+                  memberResourceId:
+                    type: string
+                    description: The unique identifier of a member resource identifier.
+                      It contains idSource~idValue of the member
+                    example: 41~183338540
+                  relationshipToSubscriber:
+                    type: string
+                    description: Relationship to the requestor
+                    example: self
+                  status:
+                    type: string
+                    description: Status of the member policy
+                    example: Actively Covered
+                  memberFullName:
+                    type: string
+                    description: Full name of the member
+                    example: John Doe
+              description: List of member resource IDs for which ID cards could not
+                be retrieved
+              example: [
+                ]
+        data:
+          type: object
+          properties:
+            cards:
+              type: array
+              items:
+                $ref: '#/components/schemas/Card'
+    Card:
+      type: object
+      properties:
+        memberships:
+          type: array
+          items:
+            $ref: '#/components/schemas/Membership'
+        cardType:
+          type: string
+          example: Medical/Dental
+          enum:
+          - Medical
+          - Dental
+        cardIdentifier:
+          type: string
+          description: Unique identifier for the card
+        cardImageFront:
+          type: string
+          description: base64 encoded string
+        cardImageBack:
+          type: string
+          description: base64 encoded string
+        cardImageCombined:
+          type: string
+          description: base64 encoded string
+        cardImageType:
+          type: string
+          example: JPEG
+        member:
+          $ref: '#/components/schemas/MemberData'
+        logoURL:
+          type: string
+        customLogoURL:
+          type: string
+        planType:
+          type: string
+        payerId:
+          type: string
+          example: 60054 106
+        payerName:
+          type: string
+        groupName:
+          type: string
+        groupId:
+          type: string
+        planName:
+          type: string
+        planSponsorName:
+          type: string
+        memberServicesNumber:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItems'
+    MemberData:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 5~230489230482304~2018-01-01
+          description: membershipResourceId of ID card
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        dateOfBirth:
+          type: string
+        relationshipToSubscriber:
+          type: string
+          example: Self
+    MembershipData:
+      type: object
+      properties:
+        status:
+          type: string
+          example: Actively Covered
+        id:
+          type: string
+          example: 41~1023810
+          description: memberResourceId of ID card
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        dateOfBirth:
+          type: string
+        relationshipToSubscriber:
+          type: string
+          example: Self
+    Membership:
+      $ref: '#/components/schemas/MembershipData'
+    Address:
+      type: object
+      properties:
+        addressLine:
+          type: array
+          items:
+            type: string
+    LineItems:
+      type: object
+      properties:
+        dataElementName:
+          type: string
+        dataElementValue:
+          type: string
+        category:
+          type: string
+          description: custom groupings for id card detail view
+          example: costSharing
+          enum:
+          - costSharing
+          - cardInformation
+    Error:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-error~1.0.0.yaml#/components/schemas/Error

@@ -1,0 +1,18 @@
+{
+    "data": [
+        "types": [
+            {
+            "documentType": "Medical",
+            "docs": [
+
+      {
+        "planId": "751133+BA+2",
+        "documentName": "Plan Document (Spanish)",
+        "documentId": "70023~13910995",
+        "documentUrl": "/sa/plandocs/v1/retrieve/70023~13910995"
+      }
+    ]
+},
+    ]
+    "readCommunicationsResponse": "HHL Not signed"
+  }
