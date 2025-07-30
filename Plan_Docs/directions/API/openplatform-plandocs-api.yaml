@@ -1,7 +1,48 @@
 openapi: 3.0.3
 info:
   title: OpenPlatform - Plan Documents BFF
-  description: Provides plan document list and PDF retrieval for the OpenPlatform.
+  description: |
+    Provides plan document list and PDF retrieval for the OpenPlatform.
+    
+    ## Internal Processing Logic
+    
+    The `/sa/plandocs/v1/list` endpoint internally processes data from the application startup response
+    to generate multiple calls to the underlying Commercial/Medicare Plan Doc List service.
+    
+    ### Data Extraction Process:
+    1. **Source**: Application startup response from `/aetnahealth/applicationstartup`
+    2. **Extraction**: Loops through `readApplicationStartup.portalGroups[].policies[].memberships[]`
+    3. **Target Service**: POST `/plan-document-list/retrieve` (Commercial/Medicare Plan Doc List service)
+    4. **Generated Requests**: One request per membership with the following structure:
+       ```json
+       {
+         "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+         "policyResourceId": "3~805233+A+1", 
+         "dateAsOf": "2025-05-30T00:00:00.000Z"
+       }
+       ```
+    
+    ### Data Mapping:
+    - `membershipResourceId`: Extracted from `membership.membershipResourceId`
+    - `policyResourceId`: Extracted from `membership.policyResourceId`
+    - `dateAsOf`: Current date in ISO format
+    
+    ### Example Extraction:
+    From application startup response:
+    ```json
+    {
+      "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+      "policyResourceId": "3~805233+A+1"
+    }
+    ```
+    Generates underlying service request:
+    ```json
+    {
+      "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+      "policyResourceId": "3~805233+A+1",
+      "dateAsOf": "2025-05-30T00:00:00.000Z"
+    }
+    ```
   version: 1.0.4
 components:
   securitySchemes:
@@ -66,6 +107,54 @@ components:
         moreInformation:
           type: string
           example: planId is a required field.
+    
+    # Internal Processing Schemas (for documentation purposes)
+    UnderlyingPlanDocListRequest:
+      type: object
+      description: |
+        Internal request structure sent to the underlying Commercial/Medicare Plan Doc List service.
+        This is generated automatically by the BFF based on application startup data.
+      required:
+        - membershipResourceId
+        - policyResourceId
+        - dateAsOf
+      properties:
+        membershipResourceId:
+          type: string
+          description: 'Membership Resource ID extracted from application startup response'
+          example: '5~265416171+10+1+20230101+805233+A+1'
+        policyResourceId:
+          type: string
+          description: 'Policy Resource ID extracted from application startup response'
+          example: '3~805233+A+1'
+        dateAsOf:
+          type: string
+          format: date-time
+          description: 'Current date in ISO format for document retrieval'
+          example: '2025-05-30T00:00:00.000Z'
+    
+    ApplicationStartupMembership:
+      type: object
+      description: |
+        Membership structure from application startup response that is used to generate
+        underlying service requests.
+      properties:
+        membershipResourceId:
+          type: string
+          description: 'Unique membership identifier'
+          example: '5~265416171+10+1+20230101+805233+A+1'
+        policyResourceId:
+          type: string
+          description: 'Associated policy identifier'
+          example: '3~805233+A+1'
+        status:
+          type: string
+          description: 'Membership status'
+          example: 'Actively Covered'
+        primaryPolicyType:
+          type: string
+          description: 'Type of policy (Medical, Dental, Vision, etc.)'
+          example: 'Medical'
     IdTokenPayload:
       type: object
       description: JWT token payload structure for id_token header
@@ -165,6 +254,10 @@ paths:
   /sa/plandocs/v1/list:
     post:
       summary: Retrieves the list of plan documents for a user.
+      description: |
+        This endpoint internally processes application startup data to generate multiple calls to the underlying
+        Commercial/Medicare Plan Doc List service. See the service description for detailed information about
+        the internal data extraction and processing logic.
       security:
         - bearerAuth: []
       parameters:

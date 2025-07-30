@@ -1,0 +1,218 @@
+Application Startup to Plan Document List Request Processing
+
+Overview
+========
+The OpenPlatform Plan Documents BFF service acts as an intermediary layer that processes data from the application startup response to generate multiple requests to the underlying Commercial/Medicare Plan Doc List service. This document describes the data extraction and transformation process.
+
+Source Data Structure
+====================
+The source data comes from the application startup response (`/aetnahealth/applicationstartup`) with the following structure:
+
+readApplicationStartup
+├── proxyResourceId
+└── portalGroups[]
+    └── policies[]
+        ├── primaryPolicyType
+        └── memberships[]
+            ├── membershipResourceId
+            ├── policyResourceId
+            ├── status
+            ├── relationshipToSubscriber
+            ├── effectiveDatetimeBegin
+            ├── effectiveDatetimeEnd
+            └── policyTypes[]
+
+Data Extraction Process
+======================
+The BFF service performs the following steps:
+
+1. **Parse Application Startup Response**
+   - Receives the complete application startup response
+   - Validates the response structure
+   - Extracts the readApplicationStartup object
+
+2. **Iterate Through Portal Groups**
+   - Loops through each portal group in the response
+   - Each portal group represents a different plan sponsor or employer
+
+3. **Process Policies Within Each Portal Group**
+   - For each portal group, iterates through all policies
+   - Policies can include: Medical, Dental, Vision, Hearing, Pharmacy
+   - Each policy has a primaryPolicyType indicating the coverage type
+
+4. **Extract Memberships from Each Policy**
+   - For each policy, processes all memberships
+   - Each membership represents an active coverage relationship
+   - Only "Actively Covered" memberships are processed
+
+5. **Generate Underlying Service Requests**
+   - For each valid membership, creates a request to the underlying service
+   - Target endpoint: POST `/plan-document-list/retrieve`
+   - One request per membership
+
+Data Mapping
+============
+The following fields are extracted and mapped:
+
+Source Field (Application Startup)     → Target Field (Underlying Service)
+-------------------------------------------------------------------------
+membership.membershipResourceId        → membershipResourceId
+membership.policyResourceId            → policyResourceId
+Current date (generated)               → dateAsOf
+
+Example Data Transformation
+==========================
+Input (from application startup response):
+```json
+{
+  "readApplicationStartup": {
+    "portalGroups": [
+      {
+        "policies": [
+          {
+            "primaryPolicyType": "Medical",
+            "memberships": [
+              {
+                "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+                "policyResourceId": "3~805233+A+1",
+                "status": "Actively Covered",
+                "relationshipToSubscriber": "Self"
+              }
+            ]
+          },
+          {
+            "primaryPolicyType": "Dental", 
+            "memberships": [
+              {
+                "membershipResourceId": "5~265416171+10+2+20230101+805233+B+2",
+                "policyResourceId": "3~805233+B+2",
+                "status": "Actively Covered",
+                "relationshipToSubscriber": "Self"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Generated Underlying Service Requests:
+```json
+// Request 1 - Medical Policy
+{
+  "membershipResourceId": "5~265416171+10+1+20230101+805233+A+1",
+  "policyResourceId": "3~805233+A+1",
+  "dateAsOf": "2025-05-30T00:00:00.000Z"
+}
+
+// Request 2 - Dental Policy  
+{
+  "membershipResourceId": "5~265416171+10+2+20230101+805233+B+2",
+  "policyResourceId": "3~805233+B+2",
+  "dateAsOf": "2025-05-30T00:00:00.000Z"
+}
+```
+
+Processing Logic
+================
+1. **Filtering Criteria**
+   - Only process memberships with status = "Actively Covered"
+   - Skip memberships with future effective dates
+   - Skip expired memberships
+
+2. **Date Handling**
+   - dateAsOf is set to the current date in ISO format
+   - Format: YYYY-MM-DDTHH:mm:ss.sssZ
+   - Example: "2025-05-30T00:00:00.000Z"
+
+3. **Error Handling**
+   - If application startup response is invalid, return 400 error
+   - If no valid memberships found, return empty data array
+   - If underlying service calls fail, aggregate errors and return 500
+
+4. **Response Aggregation**
+   - Collect responses from all underlying service calls
+   - Merge document lists from multiple memberships
+   - Remove duplicates based on documentId
+   - Sort by documentName for consistent ordering
+
+Business Rules
+==============
+1. **Coverage Types Processed**
+   - Medical policies
+   - Dental policies  
+   - Vision policies
+   - Hearing policies
+   - Pharmacy policies
+
+2. **Membership Status Requirements**
+   - Must be "Actively Covered"
+   - Must have valid effective date range
+   - Must not be expired
+
+3. **Document Deduplication**
+   - Documents with same documentId are considered duplicates
+   - First occurrence is kept, subsequent duplicates are removed
+   - Maintains document metadata from the first occurrence
+
+4. **Error Propagation**
+   - Individual underlying service failures don't fail the entire request
+   - Partial results are returned with error information
+   - Special messaging indicates partial failures
+
+Performance Considerations
+==========================
+1. **Parallel Processing**
+   - Multiple underlying service calls can be made in parallel
+   - Improves response time for users with multiple memberships
+   - Configurable concurrency limits
+
+2. **Caching Strategy**
+   - Application startup data can be cached for short periods
+   - Reduces load on the application startup service
+   - Cache invalidation on membership changes
+
+3. **Timeout Handling**
+   - Individual underlying service calls have timeouts
+   - Overall request timeout is longer than individual timeouts
+   - Graceful degradation when some calls timeout
+
+Security Considerations
+=======================
+1. **Data Validation**
+   - All extracted data is validated before use
+   - Prevents injection attacks through malformed data
+   - Sanitizes all output data
+
+2. **Access Control**
+   - User context from id_token determines access permissions
+   - Only memberships belonging to the authenticated user are processed
+   - Audit logging for all data access
+
+3. **Token Propagation**
+   - Bearer token is propagated to underlying services
+   - Maintains security context throughout the call chain
+   - Proper error handling for authentication failures
+
+Monitoring and Observability
+============================
+1. **Metrics Collected**
+   - Number of memberships processed
+   - Number of underlying service calls made
+   - Response times for individual calls
+   - Error rates and types
+
+2. **Logging**
+   - Request correlation IDs for tracing
+   - Membership processing details
+   - Underlying service call results
+   - Error details for debugging
+
+3. **Health Checks**
+   - Underlying service availability
+   - Application startup service health
+   - Overall BFF service health
+
+This processing approach allows the BFF to provide a unified interface for plan document retrieval while handling the complexity of multiple memberships and underlying service orchestration. 
