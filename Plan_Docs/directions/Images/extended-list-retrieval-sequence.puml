@@ -1,0 +1,63 @@
+@startuml
+title Extended List Retrieval Sequence (with MMF Service)
+
+actor "CVS Super App" as Client
+participant "APIC S1 GW" as GW
+participant "CVS BFF" as BFF
+participant LaunchDarkly
+participant "Plan Groups" as PlanGroups
+participant "MMF Service" as MMF
+participant "Plan Docs Service" as PDS
+participant "Benefits Service" as BenefitsSvc
+database "Plan Docs List Cache" as Redis
+participant "Core API" as CoreAPI
+
+Client -> GW: POST /sa/plandocs/v1/list
+activate GW
+GW -> BFF: POST /sa/plandocs/v1/list
+activate BFF
+
+BFF -> LaunchDarkly: Check feature flags
+activate LaunchDarkly
+LaunchDarkly --> BFF: Flag status
+deactivate LaunchDarkly
+
+BFF -> PlanGroups: GET /v3/plangroups
+activate PlanGroups
+PlanGroups --> BFF: Plan groups data
+deactivate PlanGroups
+
+BFF -> MMF: GET /v2/features
+activate MMF
+MMF --> BFF: Features data
+deactivate MMF
+
+BFF -> PDS: POST /v1/plan-document-list/retrieve
+activate PDS
+PDS -> BenefitsSvc: Get Document List
+activate BenefitsSvc
+BenefitsSvc -> Redis: Check cache for list
+activate Redis
+
+alt Redis cache miss
+    BenefitsSvc -> CoreAPI: POST /eieheader/v4/.../search/retrieve
+    activate CoreAPI
+    CoreAPI --> BenefitsSvc: Document list data
+    deactivate CoreAPI
+    BenefitsSvc -> Redis: Write list to cache
+end
+
+Redis --> BenefitsSvc: Document list
+deactivate Redis
+BenefitsSvc --> PDS: Document list
+deactivate BenefitsSvc
+PDS --> BFF: Aggregated document list
+deactivate PDS
+
+BFF -> BFF: Aggregate final response
+BFF --> GW: Final document list
+deactivate BFF
+GW --> Client: Final document list
+deactivate GW
+
+@enduml

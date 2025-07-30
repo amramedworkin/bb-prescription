@@ -1,0 +1,44 @@
+@startuml
+title PDF Retrieval Sequence
+
+actor "CVS Super App" as Client
+participant "APIC S1 GW" as GW
+participant "CVS BFF" as BFF
+participant "Plan Docs Service" as PDS
+participant "Benefits Service" as BenefitsSvc
+database "Plan Doc S3 Cache" as S3
+participant "Core API" as CoreAPI
+
+Client -> GW: POST /sa/plandocs/v1/retrieve
+activate GW
+GW -> BFF: POST /sa/plandocs/v1/retrieve
+activate BFF
+BFF -> PDS: POST /v1/plan-document/retrieve
+activate PDS
+PDS -> BenefitsSvc: Get Plan Doc PDF
+activate BenefitsSvc
+
+BenefitsSvc -> S3: Check for PDF
+activate S3
+
+alt S3 cache miss
+    BenefitsSvc -> CoreAPI: GET /v5/communicationcontents/{id}
+    activate CoreAPI
+    CoreAPI --> BenefitsSvc: PDF stream
+    deactivate CoreAPI
+
+    BenefitsSvc -> S3: Write PDF to cache
+end
+
+S3 --> BenefitsSvc: PDF stream
+deactivate S3
+BenefitsSvc --> PDS: PDF stream
+deactivate BenefitsSvc
+PDS --> BFF: PDF stream
+deactivate PDS
+BFF --> GW: PDF stream
+deactivate BFF
+GW --> Client: PDF stream
+deactivate GW
+
+@enduml
