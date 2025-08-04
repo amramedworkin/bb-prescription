@@ -1,0 +1,14 @@
+{
+  "type": "https://developer.caremark.com/errors/member-not-found",
+  "title": "Member Not Found",
+  "status": 404,
+  "detail": "The member ID '123456789' does not correspond to an active, eligible member.",
+  "instance": "/api/v1/members/123456789/eligibility",
+  "trace_id": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "invalid_params": [
+    {
+      "name": "memberId",
+      "reason": "must be a valid 9-digit member identifier"
+    }
+  ]
+}
