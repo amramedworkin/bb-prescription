@@ -1,0 +1,12 @@
+plangroups /v1 - /v3
+
+Sequence diagrams - 
+
+Discrepancy between the documents and 
+
+Get with Ian and ask about caching PlanGroups at the CVS BFF
+
+Medicare - Clarify comments
+
+Link to confluence page for Carve out to Rosse.
+

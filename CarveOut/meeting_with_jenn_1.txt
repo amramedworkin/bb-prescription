@@ -1,0 +1,34 @@
+1. Issues of dependencies between filtering
+- Not just claims
+- Orders and refills and 
+- Use the effective dates from the pharmacy membership
+- If there are no effective date from 2025 filter it out
+- Order and refill (refill was from December)
+- Would we filter if the order straddles in general.
+- What are all of the things that have to be filters
+	+ If I'm looking at an order is there a refill that is not visible.
+- You have a refill and there are zero refills left
+	+ What is the date that is used for refills
+- How do we tell what every pharmacy 
+
+CVS Auth goes through the flow
+- When each individual service, they will need to go get 
+- CVS Auth used to be partner login is now patient profile
+- cvs-auth
+- Bunch of demographic data
+- App token
+- we get a token on behalf of the member
+- That token is used to query CVS
+- Adding dates in where we need to know
+- Kaizan - Sowmini
+- 
+
+
+Omni - 
++ Alison Hereth - Product Manager
++ Jesse Jackman - Product Lead - Principal Staff Engineer reports to Frank
++ John Newton - Metrics strategy - Principal dev - Success or failure per product instruction
++ Dan Green - Principal architect on AI
+Work with Jesse prior - No additional domain work
+Edgar - How do the pharmacy services
+
