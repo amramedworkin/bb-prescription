@@ -1,0 +1,35 @@
+sequenceDiagram
+    autonumber
+    participant Client as User / Client App
+    participant TokenEP as APIC Token Endpoint (/v7/auth/oauth/token)
+    participant DSV as Directory Service V3 (DSV)
+    participant IMI as IMI (System of Record)
+    participant APIGW as APIC Gateway (APIc)
+    participant BFF as OpenPlatform BFF
+    participant Benefits as Benefits Service
+
+    %% OAuth/OIDC Token Issuance
+    Client->>TokenEP: Authorization Code exchange (POST /v7/auth/oauth/token)
+    TokenEP->>DSV: Retrieve user info + business identifiers
+    DSV->>IMI: Get preferredProxyId (loginId)
+    IMI-->>DSV: Return preferredProxyId
+    DSV-->>TokenEP: User profile + identifiers
+    TokenEP->>TokenEP: Build id_token with Aetna claims (ae_accountId, ae_busIndId, ae_hcr)
+    TokenEP-->>Client: access_token, refresh_token, id_token
+
+    note right of TokenEP
+        id_token contains claims used to build
+        EIE headers downstream.
+    end note
+
+    %% API Request with EIE Header Extraction
+    Client->>APIGW: API request + Authorization + id_token
+    APIGW->>APIGW: Validate tokens, parse id_token
+    APIGW->>APIGW: Create EIE headers from claims
+    APIGW->>BFF: Forward request with EIE headers
+
+    %% Downstream Propagation
+    BFF->>Benefits: Request data with EIE headers
+    Benefits-->>BFF: Response
+    BFF-->>APIGW: Response
+    APIGW-->>Client: Response
