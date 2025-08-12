@@ -1,0 +1,17 @@
+CVS -> APIc03 : call new /sa/plandocs/v1/list
+APIc03 -> CvsBFF: call new /sa/plandocs/v1/list
+CvsBFF -> PlanGroupsService: call /v1/plangroups
+PlanGroupsService -> CvsBFF: return planGroups
+note right of CvsBFF: 1. parse all memberResourceIds \nfor active medical/dental plans \n 2. parse any plan with \nclaim office key of 39
+CvsBFF -> MMF: call /v2/features
+note right of CvsBFF: call with unique membershipResourceIds \n from plan groups
+MMF -> CvsBFF: return features
+note right of CvsBFF: check for feature flag CVSSuperApp
+CvsBFF -> PlanDocService: call /v1/plan-document-list/retrieve
+note right of CvsBFF: call with unique memberResourceIds ex 41~10293120
+PlanDocService -> CvsBFF: return Plan Document List
+note right of CvsBFF: Parse IdCardResourceIds for all medical/dental cards
+CvsBFF -> PlanDocService: call /v1/identificationcard (in parrallel)
+PlanDocService -> CvsBFF: Return allSettled Parrellel calls for idcard details
+note left of CvsBFF: Build Response
+CvsBFF -> CVS: Return Response 

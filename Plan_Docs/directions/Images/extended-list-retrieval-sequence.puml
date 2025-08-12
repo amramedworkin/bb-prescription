@@ -2,7 +2,7 @@
 title Extended List Retrieval Sequence (with MMF Service)
 
 actor "CVS Super App" as Client
-participant "APIC S1 GW" as GW
+participant "APIc03 GW" as GW
 participant "CVS BFF" as BFF
 participant LaunchDarkly
 participant "Plan Groups" as PlanGroups
@@ -27,12 +27,15 @@ activate PlanGroups
 PlanGroups --> BFF: Plan groups data
 deactivate PlanGroups
 
-BFF -> MMF: GET /v2/features
+BFF -> BFF: Aggregate List data
+note right of BFF: Aggregate membershipResourceId and policyId for Medical/Dental where status is 'Active' or 'ActiveDependent'
+
+BFF -> MMF: GET /v2/features (selected for CVSSuperApp flag)
 activate MMF
 MMF --> BFF: Features data
 deactivate MMF
 
-BFF -> PDS: POST /v1/plan-document-list/retrieve
+BFF -> PDS: POST /v1/plan-document-list/retrieve (in parallel)
 activate PDS
 PDS -> BenefitsSvc: Get Document List
 activate BenefitsSvc

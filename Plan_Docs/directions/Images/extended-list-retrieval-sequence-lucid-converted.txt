@@ -1,0 +1,23 @@
+CVS -> APIC S1 GW: call new /sa/plandocs/v1/list
+APIC S1 GW -> CVS BFF: call new /sa/plandocs/v1/list
+CVS BFF -> LaunchDarkly: Check feature flags
+LaunchDarkly -> CVS BFF: Flag status
+CVS BFF -> Plan Groups: call /v3/plangroups
+Plan Groups -> CVS BFF: return plan groups data
+CVS BFF -> MMF Service: call /v2/features
+MMF Service -> CVS BFF: return features data
+CVS BFF -> Plan Docs Service: call /v1/plan-document-list/retrieve
+Plan Docs Service -> Benefits Service: Get Document List
+Benefits Service -> Plan Docs List Cache: Check cache for list
+alt Redis cache miss
+Plan Docs List Cache -> Benefits Service: Cache miss
+Benefits Service -> Core API: call /eieheader/v4/.../search/retrieve
+Core API -> Benefits Service: return document list data
+Benefits Service -> Plan Docs List Cache: Write list to cache
+end
+Plan Docs List Cache -> Benefits Service: return document list
+Benefits Service -> Plan Docs Service: return document list
+Plan Docs Service -> CVS BFF: return aggregated document list
+note right of CVS BFF: Aggregate final response
+CVS BFF -> APIC S1 GW: return final document list
+APIC S1 GW -> CVS Super App: return final document list 
