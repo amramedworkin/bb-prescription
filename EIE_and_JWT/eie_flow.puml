@@ -1,0 +1,97 @@
+@startuml EIE_Header_Propagation
+title EIE Header Creation & Propagation Flow
+
+actor "User / Client App" as Client
+participant "APIC Token Endpoint\n(/v7/auth/oauth/token)" as TokenEP
+participant "Directory Service V3\n(DSV)" as DSV
+participant "IMI (System of Record)" as IMI
+participant "APIC Gateway (Runtime)\n(APIc)" as APIGW
+participant "OpenPlatform BFF\n(/sa/plandocs/v1/*)" as BFF
+participant "Plan Groups Service" as PlanGroups
+participant "MMF / Features API" as MMF
+participant "Benefits Service" as Benefits
+database "Redis (List Cache)" as Redis
+database "S3 (PDF Cache)" as S3
+participant "Core API" as Core
+
+== OAuth/OIDC Token Issuance ==
+Client -> TokenEP: Authorization Code exchange\nPOST /v7/auth/oauth/token
+TokenEP -> DSV: GET /DirectoryServiceV3/retrieveuserInfo/{id}/users\n?clientId=...&domain=...
+DSV -> IMI: getProxyIIDByUserLoginId(loginId)
+IMI --> DSV: preferredProxyId, other identifiers
+DSV --> TokenEP: user profile + businessIdentifier list
+TokenEP -> TokenEP: Build OIDC id_token with claims\n(ae_accountId, ae_busIndId, ae_hcr, ...)
+TokenEP --> Client: access_token, refresh_token, **id_token**
+
+note right of TokenEP
+id_token carries Aetna-specific claims:
+- ae_accountId (src~value)
+- ae_busIndId (list of src~value)
+- ae_hcr, ae_version, etc.
+These are the source of EIE headers.
+end note
+
+== App Request with Tokens ==
+Client -> APIGW: POST /sa/plandocs/v1/list\nHeaders: Authorization: Bearer ...\nHeaders: id_token: <OIDC JWT>
+
+APIGW -> APIGW: Validate tokens\nParse id_token claims
+APIGW -> APIGW: Map claims -> EIE Headers\n(e.g., eieheaderusercontext, ...)
+
+note right of APIGW
+APIGW **creates** EIE headers from id_token
+and **attaches** them to all downstream calls
+as HTTP headers over HTTPS.
+end note
+
+APIGW -> BFF: Forward /sa/plandocs/v1/list\nHeaders: EIE headers (derived)
+
+== BFF Orchestration ==
+alt Optional prefetch / groups
+  BFF -> PlanGroups: GET /v3/plangroups\nHeaders: EIE headers
+  PlanGroups --> BFF: plangroups
+  BFF -> MMF: POST /v2/features\nHeaders: EIE headers
+  MMF --> BFF: feature flags (e.g., CVSSuperApp, PlanDocsMsgAvail)
+end
+
+BFF -> Benefits: POST /v1/plan-document-list/retrieve\nBody: memberships/policies/dateAsOf\nHeaders: EIE headers
+
+alt Redis list cache hit
+  Benefits -> Redis: GET list(cacheKey)
+  Redis --> Benefits: list
+else Cache miss
+  Benefits -> Core: POST /eieheader/v4/.../search/retrieve\nHeaders: EIE headers
+  Core --> Benefits: list
+  Benefits -> Redis: SET list(cacheKey, TTL=1h)
+end
+Benefits --> BFF: aggregated list (+ reasonCode if HHL)
+
+alt HHL Not Signed
+  BFF -> BFF: Build empty data[] + readCommunicationsResponse
+else Normal docs
+  BFF -> BFF: Transform to simplified data[]\n(documentId, documentName, documentUrl, planId)
+end
+
+BFF --> APIGW: PlanDoc list response
+APIGW --> Client: PlanDoc list response
+
+== PDF Retrieval (Document Stream) ==
+Client -> APIGW: POST /sa/plandocs/v1/retrieve { documentId }\nAuthorization + id_token
+APIGW -> APIGW: Validate, extract EIE
+APIGW -> BFF: Forward with EIE headers
+BFF -> Benefits: POST /v1/plan-document/retrieve\n{ communicationContentResourceId }\nEIE headers
+
+alt S3 PDF cache hit
+  Benefits -> S3: GET object(resourceId)
+  S3 --> Benefits: PDF bytes
+else Cache miss
+  Benefits -> Core: GET /eieheader/v5/communicationcontents/{id}\nEIE headers
+  Core --> Benefits: PDF bytes
+  Benefits -> Benefits: 0-byte check (guard)
+  Benefits -> S3: PUT object(resourceId)
+end
+
+Benefits --> BFF: PDF stream
+BFF --> APIGW: PDF stream
+APIGW --> Client: application/pdf
+
+@enduml
