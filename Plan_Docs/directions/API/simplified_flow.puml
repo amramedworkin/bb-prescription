@@ -1,0 +1,71 @@
+@startuml
+autonumber
+
+actor User
+
+participant "APIc 03 GW" as Gateway
+participant "CVS BFF" as BFF
+participant "SuperApp plangroup cache" as Cache
+participant "Plan Groups service" as PlanGroupsSvc
+participant "MMF Service" as MMFSvc
+participant "Plan Docs Service" as PlanDocsSvc
+
+User -> Gateway: GET /sa/plandocs/v1/list with id_token [cite: 1]
+activate Gateway
+
+Gateway -> Gateway: Extract EIE Headers from id_token [cite: 2]
+Gateway -> BFF: Pass request to /sa/plandocs/v1/list [cite: 3]
+activate BFF
+
+alt "Check for cached data"
+    BFF -> Cache: Check for cached plandocs for user [cite: 2]
+    activate Cache
+    Cache --> BFF: Return cache status
+    deactivate Cache
+    note over BFF: If cache is hit, skip to filtering [cite: 3]
+else "No cached data"
+    BFF -> PlanGroupsSvc: GET /v3/plangroups [cite: 4]
+    activate PlanGroupsSvc
+    PlanGroupsSvc --> BFF: Return plangroups data
+    deactivate PlanGroupsSvc
+
+    BFF -> MMFSvc: GET /v2/features (for CVSSuperApp flag) [cite: 4]
+    activate MMFSvc
+    MMFSvc --> BFF: Return feature flag status
+    deactivate MMFSvc
+
+    BFF -> BFF: Filter plans without CVSSuperApp flag [cite: 5]
+    BFF -> Cache: Cache the filtered plangroups [cite: 6]
+    activate Cache
+    Cache --> BFF: Confirm cache write
+    deactivate Cache
+end
+
+loop "Filter local plan groups"
+    BFF -> BFF: Filter for ActivelyCovered, Dental/Medical, & exclude sponsor IDs [cite: 7]
+end
+
+loop "Retrieve each plan document"
+    note over BFF: This replaces the 'par' block for compatibility.
+    BFF -> PlanDocsSvc: POST /v1/plan-document-list/retrieve with a filtered ID [cite: 6]
+    activate PlanDocsSvc
+    PlanDocsSvc --> BFF: Return plan document list
+    deactivate PlanDocsSvc
+end
+
+group "Aggregate Results"
+    loop "For each result received"
+        alt "If HHL Not Signed"
+            BFF -> BFF: Add empty array with reasonCode to response [cite: 9]
+        else "Otherwise"
+            BFF -> BFF: Add full results to response array [cite: 10]
+        end
+    end
+end
+
+BFF --> Gateway: Return constructed array
+deactivate BFF
+Gateway --> User: Return final response
+deactivate Gateway
+
+@enduml

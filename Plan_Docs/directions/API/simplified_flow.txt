@@ -1,0 +1,28 @@
+1. User send Auth Header and id_token to APIc 03 GW ReST service /sa/plandocs/v1/list
+
+2. APIc 03 GW extracts EIE Headers from id_token
+
+3. /sa/plandocs/v1/list on APIc 03 GW passes request to /sa/plandocs/v1/list on CVS BFF\
+
+4. /sa/plandocs/v1/list on CVS BFF orchestrates the following
+4.a. Checks if the user in EIE header eieheaderusercontext has cached plandocs in SuperApp plangroup cache
+4.a.1. If they do, skip to 5
+4.b. Calls /v3/plangroups on Plan Groups service
+4.b.1. Returns the plangroups data
+4.b.2. Calls for CVSSuperApp flag enabled on /v2/features service (MultiMembershipFeatures) on MMF Service
+4.b.3. Filters out any plans in plangroups without CVSSuperApp flag on
+4.b.4. Caches the plangroups to SuperApp plangroup cache
+
+5. /sa/plandocs/v1/list on CVS BFF now loops through all plangroups finding those with 
+5.a. Filter is ActivelyCovered
+5.b. Policies aer Dental or Medical
+5.c. Excludes groups with certain plan sponsor IDS (955,988)
+
+6. Filtered membershipresourceids are then sent for lookup at /v1/plan-document-list/retrieve in the Plan Docs Service
+6.a. These requests are run in parallel
+
+7. Results are then aggregated into the /sa/plandocs array format
+7.a. If any of the results have readHealthPoliciesCommnicationContentsResponse.readCommunicationContents.reasonCode = "HHL Not Signed" then return an empty array for this membershipResourceId with the readCommunicationResponse passed in the array
+7.b. Otherwise add the results to the response array 
+
+8. When all parallel requests are complete, return the constructed array to the user through the same pipelien it was sent in
