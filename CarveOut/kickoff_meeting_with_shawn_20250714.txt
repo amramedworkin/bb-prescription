@@ -42,7 +42,7 @@ State of NC
 - When it is carved out, they come they come through the consolidated claims service
 - The get it through the CVS API
 - That is using CVS logiv
-- There logic has different eff date
+- Their logic has different eff date
 - We are showing prescription claims
 - We should only be showing prescription claims for the period where we are matching their 
 - The key piece of this, is how do we do it so that we are not displaying any claim information for anything 

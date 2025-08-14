@@ -1,0 +1,315 @@
+openapi: 3.0.3
+info:
+  title: OpenPlatform - Plan Documents BFF
+  description: Provides plan document list and PDF retrieval for the OpenPlatform.
+  version: 1.0.6
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    PlanDocListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/PlanDocumentItem'
+              - $ref: '#/components/schemas/PlanDocumentHHLItem'
+    PlanDocumentItem:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: Plan identifier
+          example: "751133+BA+2"
+        documentName:
+          type: string
+          description: Name of the document
+          example: "Plan Document (Spanish)"
+        documentId:
+          type: string
+          description: Unique document identifier
+          example: "70023~13910995"
+        documentUrl:
+          type: string
+          description: Internal URL to retrieve the PDF via BFF
+          example: "/sa/plandocs/v1/retrieve/70023~13910995"
+      required:
+        - planId
+        - documentName
+        - documentId
+        - documentUrl
+    PlanDocumentHHLItem:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: Plan identifier
+          example: "751134+BA+2"
+        readCommunicationsResponse:
+          type: string
+          description: Special messaging for the response when HHL is not signed
+          example: "HHL Not signed"
+      required:
+        - planId
+        - readCommunicationsResponse
+    PlanDocRetrieveRequest:
+      type: object
+      required:
+        - documentId
+      properties:
+        documentId:
+          type: string
+          description: Corresponds to communicationContentResourceId in the backend
+            (communicationContentIdentifier.resourceId)
+          example: "70023~13910995"
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: '400'
+        title:
+          type: string
+          example: Bad Request
+        detail:
+          type: string
+          example: Invalid request parameters provided.
+        moreInformation:
+          type: string
+          example: Please check the request format and try again.
+    IdTokenPayload:
+      type: object
+      description: JWT token payload structure for id_token header
+      properties:
+        ae_version:
+          type: string
+          description: Aetna Enterprise version
+          example: 1.1.0
+        iss:
+          type: string
+          description: Token issuer
+          example: https://openid.aetna.com/consumer
+        sub:
+          type: string
+          description: Subject identifier
+          example: 031RCS6NTYHFKX25DE89@aetnae.com
+        aud:
+          type: string
+          description: Audience
+          example: 89d435af-00b0-4cb6-9a35-f3189f5adc55
+        exp:
+          type: integer
+          description: Expiration time (Unix timestamp)
+          example: 1753561541
+        iat:
+          type: integer
+          description: Issued at time (Unix timestamp)
+          example: 1753557941
+        given_name:
+          type: string
+          description: User given name
+          example: BAILEY
+        family_name:
+          type: string
+          description: User family name
+          example: SCHEUERMAN
+        acr:
+          type: string
+          description: Authentication context class reference
+          example: http://consumer.aetna.com/assurance/loa-2
+        ae_dgn:
+          type: string
+          description: Aetna Enterprise Distinguished Name
+          example: CN=DMT-S-W265416171,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com
+        ae_hcr:
+          type: string
+          description: Aetna Enterprise Health Care Role
+          example: nextGenMember
+        ae_accountId:
+          type: string
+          description: Aetna Enterprise Account ID
+          example: 1~DMT-S-W265416171
+        ae_busIndID:
+          type: array
+          items:
+            type: string
+          description: Aetna Enterprise Business Individual IDs
+          example:
+            - globalIdentifier
+            - 60005~6803568937376433212
+            - preferredProxyId
+            - 15~QS3YXBBBHPXZ
+        ae_impAUD:
+          type: string
+          description: Aetna Enterprise Impersonation Audience
+          example: ''
+        ae_impHCR:
+          type: string
+          description: Aetna Enterprise Impersonation Health Care Role
+          example: ''
+        ae_impACR:
+          type: string
+          description: Aetna Enterprise Impersonation Authentication Context Class Reference
+          example: ''
+        ae_impDGN:
+          type: string
+          description: Aetna Enterprise Impersonation Distinguished Name
+          example: ''
+        ae_impAccountId:
+          type: string
+          description: Aetna Enterprise Impersonation Account ID
+          example: ''
+        ae_impBusIndID:
+          type: array
+          items:
+            type: string
+          description: Aetna Enterprise Impersonation Business Individual IDs
+          example: []
+        ae_impGrantedLOA:
+          type: string
+          description: Aetna Enterprise Impersonation Granted Level of Assurance
+          example: ''
+paths:
+  /sa/plandocs/v1/list:
+    post:
+      summary: Retrieves the list of plan documents for a user.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id_token
+          in: header
+          required: true
+          description: JWT token containing user context and authorization information
+          schema:
+            type: string
+            example: eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIwMzFSQ1M2TlRZSEZLWDI1REU4OUBhZXRuYWUuY29tIiwiYXVkIjoiODlkNDM1YWYtMDBiMC00Y2I2LTlhMzUtZjMxODlmNWFkYzU1IiwiZXhwIjoxNzUzNTYxNTQxLCJpYXQiOjE3NTM1NTc5NDEsImdpdmVuX25hbWUiOiJCQUlMRVkiLCJmYW1pbHlfbmFtZSI6IlNDSEVVRVJNQU4iLCJhY3IiOiJodHRwOi8vY29uc3VtZXIuYWV0bmEuY29tL2Fzc3VyYW5jZS9sb2EtMiIsImFlX2RnbiI6IkNOPURNVC1TLVcyNjU0MTYxNzEsT1U9TWVtYmVycyxPVT1FeHRlcm5hbCxEQz1hZXRoZXEsREM9YWV0bmFlcSxEQz1jb20iLCJhZV9oY3IiOiJuZXh0R2VuTWVtYmVyIiwiYWVfYWNjb3VudElkIjoiMX5ETVQtUy1XMjY1NDE2MTcxIiwiYWVfYnVzSW5kSUQiOlsiZ2xvYmFsSWRlbnRpZmllciIsIjYwMDA1fjY4MDM1Njg5MzczNzY0MzMyMTIiLCJwcmVmZXJyZWRQcm94eUlkIiwiMTV-UVMzWVhCQkJIUFhaIl0sImFlX2ltcEFVRCI6IiIsImFlX2ltcEhDUiI6IiIsImFlX2ltcEFDUiI6IiIsImFlX2ltcERHTiI6IiIsImFlX2ltcEFjY291bnRJZCI6IiIsImFlX2ltcEJ1c0luZElEIjpbXSwiYWVfaW1wR3JhbnRlZExPQSI6IiJ9.ADRmgfGQeRujWsf0-feL3IHQTaCDIJ18zFhOwCdW83G3iheH05-UwBf8AKj8xcFjer3IJh1eZrh9wBX6Pxl8lSmJ3sOb_ZkHnXlo2WPS05n_4wWCqgQPGINGwK6UcLYcHT20Yo1nmxyFbigOgnMZgiarqN9SNeIz1C1ZFXt38_d03VbE3CEuyupLzqlqasmuTEiJlJOfhl4r_buZGhiEmO3ZZyyf-fEak1n3TgFhlxKXKEPSVaH2ndSIjcUmUP6-lNsbPbOeJ7Cy3KL3vzDb25Z0lVR2bkQ34VYJjpQBzTNk3Dyehk51EknLAreZBtwEcoTLyPIlnCgqG78mbeK1UQ
+      responses:
+        '200':
+          description: Successful retrieval of plan document list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDocListResponse'
+              examples:
+                success_example:
+                  summary: Successful response with plan documents
+                  value:
+                    data:
+                      - planId: "751133+BA+2"
+                        documentName: "Plan Document (Spanish)"
+                        documentId: "70023~13910995"
+                        documentUrl: "/sa/plandocs/v1/retrieve/70023~13910995"
+                hhl_not_signed_example:
+                  summary: Response with HHL not signed message
+                  value:
+                    data:
+                      - planId: "751133+BA+2"
+                        documentName: "Plan Document (Spanish)"
+                        documentId: "70023~13910995"
+                        documentUrl: "/sa/plandocs/v1/retrieve/70023~13910995"
+                      - planId: "751134+BA+2"
+                        readCommunicationsResponse: "HHL Not signed"
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                bad_request_example:
+                  summary: Bad request error
+                  value:
+                    status: "400"
+                    title: "Bad Request"
+                    detail: "Invalid request parameters provided."
+                    moreInformation: "Please check the request format and try again."
+        '401':
+          description: Unauthorized - Invalid or missing authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                unauthorized_example:
+                  summary: Unauthorized error
+                  value:
+                    status: "401"
+                    title: "Unauthorized"
+                    detail: "Authentication token is invalid or expired."
+                    moreInformation: "Please provide a valid authentication token."
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                forbidden_example:
+                  summary: Forbidden error
+                  value:
+                    status: "403"
+                    title: "Forbidden"
+                    detail: "User does not have permission to access plan document information."
+                    moreInformation: "Contact your administrator for access permissions."
+        '404':
+          description: Not Found - No plan documents available for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                not_found_example:
+                  summary: No plan documents found
+                  value:
+                    status: "404"
+                    title: "Not Found"
+                    detail: "No plan documents are available for the specified user or plan."
+                    moreInformation: "Please verify the user account and plan details."
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                internal_error_example:
+                  summary: Internal server error
+                  value:
+                    status: "500"
+                    title: "Internal Server Error"
+                    detail: "An unexpected error occurred while processing the request."
+                    moreInformation: "Please try again later or contact support if the issue persists."
+  /sa/plandocs/v1/retrieve:
+    post:
+      summary: Retrieves a specific plan document PDF.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanDocRetrieveRequest'
+      responses:
+        '200':
+          description: Success - PDF file returned.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
