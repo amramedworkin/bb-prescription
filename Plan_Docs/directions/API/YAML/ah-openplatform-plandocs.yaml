@@ -17,56 +17,56 @@ components:
           type: array
           items:
             oneOf:
-              - $ref: '#/components/schemas/PlanDocumentItem'
-              - $ref: '#/components/schemas/PlanDocumentHHLItem'
+            - $ref: '#/components/schemas/PlanDocumentItem'
+            - $ref: '#/components/schemas/PlanDocumentHHLItem'
     PlanDocumentItem:
       type: object
       properties:
         planId:
           type: string
           description: Plan identifier
-          example: "751133+BA+2"
+          example: 751133+BA+2
         documentName:
           type: string
           description: Name of the document
-          example: "Plan Document (Spanish)"
+          example: Plan Document (Spanish)
         documentId:
           type: string
           description: Unique document identifier
-          example: "70023~13910995"
+          example: 70023~13910995
         documentUrl:
           type: string
           description: Internal URL to retrieve the PDF via BFF
-          example: "/sa/plandocs/v1/retrieve/70023~13910995"
+          example: /sa/plandocs/v1/retrieve/70023~13910995
       required:
-        - planId
-        - documentName
-        - documentId
-        - documentUrl
+      - planId
+      - documentName
+      - documentId
+      - documentUrl
     PlanDocumentHHLItem:
       type: object
       properties:
         planId:
           type: string
           description: Plan identifier
-          example: "751134+BA+2"
+          example: 751134+BA+2
         readCommunicationsResponse:
           type: string
           description: Special messaging for the response when HHL is not signed
-          example: "HHL Not signed"
+          example: HHL Not signed
       required:
-        - planId
-        - readCommunicationsResponse
+      - planId
+      - readCommunicationsResponse
     PlanDocRetrieveRequest:
       type: object
       required:
-        - documentId
+      - documentId
       properties:
         documentId:
           type: string
           description: Corresponds to communicationContentResourceId in the backend
             (communicationContentIdentifier.resourceId)
-          example: "70023~13910995"
+          example: 70023~13910995
     Error:
       type: object
       properties:
@@ -140,10 +140,10 @@ components:
             type: string
           description: Aetna Enterprise Business Individual IDs
           example:
-            - globalIdentifier
-            - 60005~6803568937376433212
-            - preferredProxyId
-            - 15~QS3YXBBBHPXZ
+          - globalIdentifier
+          - 60005~6803568937376433212
+          - preferredProxyId
+          - 15~QS3YXBBBHPXZ
         ae_impAUD:
           type: string
           description: Aetna Enterprise Impersonation Audience
@@ -154,7 +154,8 @@ components:
           example: ''
         ae_impACR:
           type: string
-          description: Aetna Enterprise Impersonation Authentication Context Class Reference
+          description: Aetna Enterprise Impersonation Authentication Context Class
+            Reference
           example: ''
         ae_impDGN:
           type: string
@@ -169,16 +170,27 @@ components:
           items:
             type: string
           description: Aetna Enterprise Impersonation Business Individual IDs
-          example: []
+          example: [
+            ]
         ae_impGrantedLOA:
           type: string
           description: Aetna Enterprise Impersonation Granted Level of Assurance
           example: ''
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
+  parameters:
+    Eieheaderusercontext:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderusercontext
+    Eieheaderapplicationidentifier:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderapplicationidentifier
+    Eieheaderaction:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderaction
+    Eieheaderorchestratingapplicationidentifier:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderorchestratingapplicationidentifier
+    Eieheaderversion:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderversion
+    Eieheadertransactionid:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheadertransactionid
+    QaPath:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/QaPath
 paths:
   /sa/plandocs/v1/list:
     post:
@@ -186,6 +198,30 @@ paths:
       security:
         - bearerAuth: []
       parameters:
+        - name: Accept-Language
+          in: header
+          description: Defaults to en-US if lang is en and locale is different than US or if lang is anything other than en or es. Defaults to es-ES if the lang is es and locale is different than ES.
+          required: false
+          style: simple
+          explode: false
+          schema:
+            type: string
+          example: es, en, es-ES, en-US
+        - name: x-grid
+          in: header
+          description: TraceId provided by CVS
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Eieheaderusercontext'
+        - $ref: '#/components/parameters/Eieheaderapplicationidentifier'
+        - $ref: '#/components/parameters/Eieheaderaction'
+        - $ref: '#/components/parameters/Eieheaderorchestratingapplicationidentifier'
+        - $ref: '#/components/parameters/Eieheaderversion'
+        - $ref: '#/components/parameters/Eieheadertransactionid'
+        - $ref: '#/components/parameters/QaPath'
         - name: id_token
           in: header
           required: true
@@ -205,20 +241,20 @@ paths:
                   summary: Successful response with plan documents
                   value:
                     data:
-                      - planId: "751133+BA+2"
-                        documentName: "Plan Document (Spanish)"
-                        documentId: "70023~13910995"
-                        documentUrl: "/sa/plandocs/v1/retrieve/70023~13910995"
+                    - planId: 751133+BA+2
+                      documentName: Plan Document (Spanish)
+                      documentId: 70023~13910995
+                      documentUrl: /sa/plandocs/v1/retrieve/70023~13910995
                 hhl_not_signed_example:
                   summary: Response with HHL not signed message
                   value:
                     data:
-                      - planId: "751133+BA+2"
-                        documentName: "Plan Document (Spanish)"
-                        documentId: "70023~13910995"
-                        documentUrl: "/sa/plandocs/v1/retrieve/70023~13910995"
-                      - planId: "751134+BA+2"
-                        readCommunicationsResponse: "HHL Not signed"
+                    - planId: 751133+BA+2
+                      documentName: Plan Document (Spanish)
+                      documentId: 70023~13910995
+                      documentUrl: /sa/plandocs/v1/retrieve/70023~13910995
+                    - planId: 751134+BA+2
+                      readCommunicationsResponse: HHL Not signed
         '400':
           description: Bad request
           content:
@@ -229,10 +265,10 @@ paths:
                 bad_request_example:
                   summary: Bad request error
                   value:
-                    status: "400"
-                    title: "Bad Request"
-                    detail: "Invalid request parameters provided."
-                    moreInformation: "Please check the request format and try again."
+                    status: '400'
+                    title: Bad Request
+                    detail: Invalid request parameters provided.
+                    moreInformation: Please check the request format and try again.
         '401':
           description: Unauthorized - Invalid or missing authentication
           content:
@@ -243,10 +279,10 @@ paths:
                 unauthorized_example:
                   summary: Unauthorized error
                   value:
-                    status: "401"
-                    title: "Unauthorized"
-                    detail: "Authentication token is invalid or expired."
-                    moreInformation: "Please provide a valid authentication token."
+                    status: '401'
+                    title: Unauthorized
+                    detail: Authentication token is invalid or expired.
+                    moreInformation: Please provide a valid authentication token.
         '403':
           description: Forbidden - Insufficient permissions
           content:
@@ -257,10 +293,11 @@ paths:
                 forbidden_example:
                   summary: Forbidden error
                   value:
-                    status: "403"
-                    title: "Forbidden"
-                    detail: "User does not have permission to access plan document information."
-                    moreInformation: "Contact your administrator for access permissions."
+                    status: '403'
+                    title: Forbidden
+                    detail: User does not have permission to access plan document
+                      information.
+                    moreInformation: Contact your administrator for access permissions.
         '404':
           description: Not Found - No plan documents available for the user
           content:
@@ -271,10 +308,11 @@ paths:
                 not_found_example:
                   summary: No plan documents found
                   value:
-                    status: "404"
-                    title: "Not Found"
-                    detail: "No plan documents are available for the specified user or plan."
-                    moreInformation: "Please verify the user account and plan details."
+                    status: '404'
+                    title: Not Found
+                    detail: No plan documents are available for the specified user
+                      or plan.
+                    moreInformation: Please verify the user account and plan details.
         '500':
           description: Internal Server Error
           content:
@@ -285,10 +323,11 @@ paths:
                 internal_error_example:
                   summary: Internal server error
                   value:
-                    status: "500"
-                    title: "Internal Server Error"
-                    detail: "An unexpected error occurred while processing the request."
-                    moreInformation: "Please try again later or contact support if the issue persists."
+                    status: '500'
+                    title: Internal Server Error
+                    detail: An unexpected error occurred while processing the request.
+                    moreInformation: Please try again later or contact support if
+                      the issue persists.
   /sa/plandocs/v1/retrieve:
     post:
       summary: Retrieves a specific plan document PDF.

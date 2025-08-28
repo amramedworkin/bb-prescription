@@ -1,0 +1,12 @@
+Plan Doc Ids
+Fix /plan-document/retrieve for reason code
+Remove documentUrl
+What do we do with a membershipResourceId that is marked no documents (available, not cached)
+Test Users - Got a collection of plan docs.  Who do i ask.
+Why are we missing proxyResourceId.  Something with the test data.  We need to figure out how to get other ones that do not. ProxyResourceId is in applicatoin_startup
+Postman for plan-document-list/retrieve is not set up correctly for Commercial - Getting proxyResourceId required error.
+
+- Meetup tomorrow.
+
+List of items
+ 
