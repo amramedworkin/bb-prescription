@@ -1,0 +1,66 @@
+@startuml Prescription_List_Flow_With_Policy_Filter
+title Prescription List (POST /prescriptions/search) — with Policy Effective Window Filter
+
+actor Client
+participant "CVS Prescription Service" as RxSvc
+participant "Claims Service" as Claims
+database "Claims Cache" as Cache
+participant "CVS Auth Service" as CVSAuth
+participant "Core Proxy\n(/userauthorizations)" as CoreProxy
+participant "Member Profile\n(/familyaccessrules)" as MemberProfile
+participant "CVS Backend\n(/getClaimsHistory)" as CVSBackend
+participant "UAF (Privacy)" as UAF
+participant "Eligibility Service\n(Aetna source of truth)" as Eligibility
+
+== Client request ==
+Client -> RxSvc: POST /prescriptions/search\nbody: { membershipResourceIds[] }\nquery: startDate, endDate
+
+== Delegate to claims ==
+RxSvc -> Claims: GET /pharmacyclaims\n(membershipResourceId(s), startDate, endDate)  
+
+== Cache check ==
+Claims -> Cache: GET claims-v1-{acctIdSource~acctIdValue}-{mshipResId}-{startDate}-{endDate}
+Cache --> Claims: Hit? data / Miss  
+
+alt Cache hit
+  Claims --> RxSvc: Pharmacy claims (cached)
+else Cache miss
+  note over Claims: Validate membership id
+  Claims -> CVSAuth: GET /cvs_auth_token_data
+  CVSAuth --> Claims: tokenId + members[]
+
+  par In parallel
+    Claims -> CoreProxy: /userauthorizations (EIE headers)
+    Claims -> MemberProfile: /familyaccessrules
+    Claims -> CVSBackend: /getClaimsHistory\n(tokenId, startDate, endDate, refId, apiKey)
+  end  
+
+  Claims -> Claims: Apply Family Access Rules (indexId, age, sensitive drug visibility)
+  Claims -> UAF: Check privacy entitlements (EIE headers, memberIds)
+  UAF --> Claims: Entitlements & restrictions
+  Claims -> Claims: Apply UAF restrictions  
+
+  == NEW: Policy Effective Window Filter ==
+  Claims -> Eligibility: GET coverage windows per membershipResourceId(s)
+  Eligibility --> Claims: eligibility windows {effectiveStart, effectiveEnd?}
+  Claims -> Claims: Filter claims by policy window\nkeep if fillDate within [max(policyStart, req.startDate), min(policyEnd?, req.endDate)]
+  note right of Claims
+    Goal: Trim CVS claims that fall outside the member's
+    active policy coverage window (carve-out overshoot).
+  end note
+
+  Claims -> Claims: Build mapped claims payload (SDK?API field mapping)
+  Claims -> Cache: PUT claims-v1-... = mapped payload
+  Claims --> RxSvc: Pharmacy claims (mapped)
+end
+
+== Rx service transform ==
+RxSvc -> RxSvc: Deduplicate by uniqueRxId (keep latest fillDate)  
+RxSvc -> RxSvc: Transform claims ? prescription list (type conversions, title case)  
+opt Filter by request membershipResourceIds
+  RxSvc -> RxSvc: If empty ? no filter; else include only matching IDs  
+end
+
+RxSvc --> Client: 200 OK [ ... prescriptionList[] ]\n(or 200 empty list / 400 missing dates)  
+@enduml
+

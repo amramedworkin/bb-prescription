@@ -1,0 +1,51 @@
+@startuml Prescription_Detail_Flow
+title Prescription Detail (GET /prescriptions?claimId=...&startDate=&endDate=)
+
+actor Client
+participant "CVS Prescription Service" as RxSvc
+participant "Claims Service" as Claims
+database "Claims Cache" as Cache
+participant "CVS Auth Service" as CVSAuth
+participant "Core Proxy\n(/userauthorizations)" as CoreProxy
+participant "Member Profile\n(/familyaccessrules)" as MemberProfile
+participant "CVS Backend\n(/getClaimsHistory)" as CVSBackend
+participant "UAF (Privacy)" as UAF
+
+== Client request ==
+Client -> RxSvc: GET /prescriptions?claimId=...&startDate=...&endDate=...
+
+== Delegate to claims ==
+RxSvc -> Claims: GET /pharmacyclaims\n(membershipResourceId, startDate, endDate)
+
+== Cache check ==
+Claims -> Cache: GET claims-v1-{acctIdSource~acctIdValue}-{mshipResId}-{startDate}-{endDate}
+Cache --> Claims: Hit? data / Miss
+
+alt Cache hit
+  Claims --> RxSvc: Pharmacy claims (cached)
+else Cache miss
+  Claims -> CVSAuth: GET /cvs_auth_token_data
+  CVSAuth --> Claims: tokenId + members[]
+
+  par In parallel
+    Claims -> CoreProxy: /userauthorizations
+    Claims -> MemberProfile: /familyaccessrules
+    Claims -> CVSBackend: /getClaimsHistory (tokenId, startDate, endDate, refId, apiKey)
+  end
+
+  Claims -> Claims: Apply Family Access Rules
+  Claims -> UAF: Evaluate privacy/entitlements
+  UAF --> Claims: Entitlements & restrictions
+  Claims -> Claims: Apply UAF restrictions
+  Claims -> Claims: Build mapped claims payload
+  Claims -> Cache: PUT cache entry
+  Claims --> RxSvc: Pharmacy claims (mapped)
+end
+
+== Rx service detail selection ==
+RxSvc -> RxSvc: Locate claim by claimNumber == claimId
+RxSvc -> RxSvc: Transform to detail response\n(type conversions, title case, cost calculation)
+RxSvc --> Client: 200 OK { claimId, prescriptionId, drugName, drugForm,\nNDC11, refillsLeft, estimatedCost, ... }\n(or 400 missing dates/claimId)
+
+@enduml
+

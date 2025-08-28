@@ -1,0 +1,56 @@
+@startuml Prescription_List_Flow
+title Prescription List (POST /prescriptions/search)
+
+actor Client
+participant "CVS Prescription Service" as RxSvc
+participant "Claims Service" as Claims
+database "Claims Cache" as Cache
+participant "CVS Auth Service" as CVSAuth
+participant "Core Proxy\n(/userauthorizations)" as CoreProxy
+participant "Member Profile\n(/familyaccessrules)" as MemberProfile
+participant "CVS Backend\n(/getClaimsHistory)" as CVSBackend
+participant "UAF (Privacy)" as UAF
+
+== Client request ==
+Client -> RxSvc: POST /prescriptions/search\nbody: { membershipResourceIds[] }\nquery: startDate, endDate
+
+== Delegate to claims ==
+RxSvc -> Claims: GET /pharmacyclaims\n(membershipResourceId(s), startDate, endDate)
+
+== Cache check ==
+Claims -> Cache: GET claims-v1-{acctIdSource~acctIdValue}-{mshipResId}-{startDate}-{endDate}
+Cache --> Claims: Hit? data / Miss
+
+alt Cache hit
+  Claims --> RxSvc: Pharmacy claims (cached)
+else Cache miss
+  note over Claims: Validate membership id
+  Claims -> CVSAuth: GET /cvs_auth_token_data
+  CVSAuth --> Claims: tokenId + members[]
+
+  par In parallel
+    Claims -> CoreProxy: /userauthorizations (EIE headers)
+    Claims -> MemberProfile: /familyaccessrules
+    Claims -> CVSBackend: /getClaimsHistory\n(tokenId, startDate, endDate, refId, apiKey)
+  end
+
+  Claims -> Claims: Apply Family Access Rules (indexId, age, sensitive drug visibility)
+  Claims -> UAF: Check privacy entitlements (EIE headers, memberIds)
+  UAF --> Claims: Entitlements & restrictions
+  Claims -> Claims: Apply UAF restrictions (hide restricted dependents)
+
+  Claims -> Claims: Build mapped claims payload (SDK?API field mapping)
+  Claims -> Cache: PUT claims-v1-{acctIdSource~acctIdValue}-{mshipResId}-{startDate}-{endDate} = mapped payload
+  Claims --> RxSvc: Pharmacy claims (mapped)
+end
+
+== Rx service transform ==
+RxSvc -> RxSvc: Deduplicate by uniqueRxId\n(keep latest fillDate)
+RxSvc -> RxSvc: Transform claims ? prescription list\n(type conversions, title case)
+opt Filter by request membershipResourceIds
+  RxSvc -> RxSvc: If membershipResourceIds empty ? no filter\nElse include only matching mshipResIds
+end
+
+RxSvc --> Client: 200 OK [ { member info, start/end, prescriptionList[] } ]\n(or 200 empty list / 400 missing dates)
+@enduml
+
