@@ -1,0 +1,951 @@
+openapi: 3.0.3
+info:
+  title: Pharmacy Service
+  version: 1.0.0
+  description: |
+    Centralized service that enforces the Policy Effective Window Filter for CVS-sourced prescriptions
+    and claims before Aetna surfaces them to members or downstream flows. All endpoints are prefixed
+    with /v1 for versioning. The service applies:
+      • Attestation/integration gating (e.g., CVSRxCarveOut)
+      • Coverage window trimming using pharmacy membership effective dates
+      • Request window trimming (startDate/endDate)
+      • Family access and privacy (UAF) decisions (optional)
+      • Deduplication by uniqueRxId, keeping the latest fillDate
+      • Membership scoping (membershipResourceIds)
+  contact:
+    name: Aetna Digital - AEI Integration Services
+servers:
+  - url: https://api.aetnahealth.example.com
+    description: Production
+  - url: https://sandbox.aetnahealth.example.com
+    description: Sandbox
+
+tags:
+  - name: Operations
+  - name: Coverage
+  - name: Prescriptions
+  - name: Visibility
+
+x-failure-catalog:
+  description: Canonical failure identifiers returned in error envelopes (additional_data.failure_id).
+  failures:
+    - id: MISSING_REQUIRED_DATE
+      reason: startDate and/or endDate query parameter is missing.
+    - id: INVALID_DATE_FORMAT
+      reason: Date format is invalid. Expected ISO-8601 (YYYY-MM-DD).
+    - id: INVALID_DATE_RANGE
+      reason: startDate is after endDate, or the requested window exceeds policy limits.
+    - id: NOT_ATTESTED
+      reason: Integration/attestation is not enabled (e.g., CVSRxCarveOut=false) for embedded capabilities.
+    - id: CLAIM_NOT_FOUND
+      reason: ClaimId not found for the caller or not associated with any visible member.
+    - id: CLAIM_OUTSIDE_EFFECTIVE_WINDOW
+      reason: Claim exists but its fillDate falls outside the effective coverage window (policy trimmed).
+    - id: HIDDEN_BY_PRIVACY
+      reason: UAF/Privacy restrictions prevent visibility of the requested member/claim/drug.
+    - id: HIDDEN_BY_FAMILY_ACCESS
+      reason: Family access rules prevent visibility of the requested dependent/member.
+    - id: INVALID_MEMBERSHIP_ID
+      reason: Provided membershipResourceId is malformed or not recognized for the caller.
+    - id: TOKEN_EXPIRED
+      reason: Upstream token (CVS Auth) is expired or invalid.
+    - id: UPSTREAM_UNAVAILABLE
+      reason: One or more upstream dependencies are unavailable (e.g., Claims, UAF, Auth).
+
+paths:
+  /v1/health:
+    get:
+      tags: [Operations]
+      summary: Health check
+      operationId: getHealth
+      responses:
+        '200':
+            description: Service is healthy
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/HealthResponse'
+                examples:
+                  ok:
+                    value: { status: OK, service: pharmacy-service, time: "2025-09-04T12:00:00Z" }
+
+  /v1/coverage/windows:
+    get:
+      tags: [Coverage]
+      summary: Get effective coverage windows for one or more members
+      operationId: getCoverageWindows
+      parameters:
+        - in: query
+          name: membershipResourceId
+          required: true
+          schema:
+            type: array
+            items: { type: string }
+          style: form
+          explode: true
+          description: One or more membershipResourceIds.
+      responses:
+        '200':
+          description: Coverage windows resolved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvelopeCoverageWindows'
+              examples:
+                working:
+                  summary: Working call (200)
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data: {}
+                    data:
+                      windows:
+                        - membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                          effectiveStart: "2019-01-01"
+                          effectiveEnd: "2020-12-31"
+                          source: "PharmacyMembership"
+        '400':
+          description: Bad request (dates or ids missing/invalid)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                invalidId:
+                  summary: Non-working call (400)
+                  value:
+                    statusCode: 400
+                    statusDescription: Bad request
+                    additional_data:
+                      failure_id: INVALID_MEMBERSHIP_ID
+                      failure_reason: Provided membershipResourceId is malformed.
+                      diagnostics: { membershipResourceId: ["5~bad-format"] }
+                    data: null
+        '500':
+          description: Upstream crash/unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                upstreamDown:
+                  summary: Non-working call (500)
+                  value:
+                    statusCode: 500
+                    statusDescription: Internal server error
+                    additional_data:
+                      failure_id: UPSTREAM_UNAVAILABLE
+                      failure_reason: Coverage source system timed out.
+                      diagnostics: { dependency: "EligibilityService", timeoutMs: 3000 }
+                    data: null
+
+  /v1/prescriptions/search:
+    post:
+      tags: [Prescriptions]
+      summary: Retrieve policy-filtered prescription list
+      operationId: searchPrescriptions
+      parameters:
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRequest'
+            examples:
+              working_all_members:
+                summary: Working call (200) with all visible members
+                value:
+                  membershipResourceIds: []
+                  options: { applyPrivacy: true, applyFamilyAccess: true, applyDeduplication: true, requireAttestation: true }
+              working_subset:
+                summary: Working call (200) with specific members
+                value:
+                  membershipResourceIds: ["5~263801696+31+1+20180101+788678+C+3"]
+                  options: { applyPrivacy: true, applyFamilyAccess: true, applyDeduplication: true, requireAttestation: true }
+      responses:
+        '200':
+          description: Filtered prescription lists, grouped by member
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvelopeSearchResponse'
+              examples:
+                working_200:
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data: {}
+                    data:
+                      - membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                        memberFirstName: "John"
+                        memberLastName: "Doe"
+                        relationshipToSubscriber: "Self"
+                        startDate: "2019-04-01"
+                        endDate: "2019-12-05"
+                        prescriptionList:
+                          - claimId: "200023611694001"
+                            prescriptionId: "674529584"
+                            drugName: "Lipitor"
+                            drugStrength: "200mg"
+                            quantity: 15
+                            lastFilledDate: "2019-08-12"
+                            daysSupply: 5
+                            fulfilledBy: "Caremark prescription service"
+                            prescriberName: "John Doe"
+                working_200_partial:
+                  summary: 200 OK with partial results (some claims out of window)
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data:
+                      code: PARTIAL_SUCCESS
+                      partial: true
+                      counts: { total: 2, eligible: 1, hiddenByEffectiveWindow: 1, hiddenByPrivacy: 0, hiddenByFamilyAccess: 0, deduplicated: 0 }
+                      partial_failures:
+                        - failure_id: CLAIM_OUTSIDE_EFFECTIVE_WINDOW
+                          failure_reason: Claim exists but is outside the effective coverage window.
+                          diagnostics:
+                            claimId: "200023611694002"
+                            uniqueRxId: "9751485501674528228"
+                            membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                            effectiveStart: "2019-01-01"
+                            effectiveEnd: "2019-12-31"
+                            fillDate: "2018-04-12"
+                    data:
+                      - membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                        memberFirstName: "John"
+                        memberLastName: "Doe"
+                        relationshipToSubscriber: "Self"
+                        startDate: "2019-01-01"
+                        endDate: "2019-12-31"
+                        prescriptionList:
+                          - claimId: "200023611694001"
+                            prescriptionId: "674529584"
+                            drugName: "Lipitor"
+                            drugStrength: "200mg"
+                            quantity: 15
+                            lastFilledDate: "2019-08-12"
+                            daysSupply: 5
+                            fulfilledBy: "Caremark prescription service"
+                            prescriberName: "John Doe"
+
+        '206':
+          description: Partial content (some items excluded by policy)
+          headers:
+            X-Partial-Result:
+              schema: { type: string, example: "true" }
+            X-Partial-Reason:
+              schema: { type: string, example: "CLAIM_OUTSIDE_EFFECTIVE_WINDOW" }
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvelopeSearchResponse'
+              examples:
+                partial_206:
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data:
+                      code: PARTIAL_SUCCESS
+                      partial: true
+                      counts: { total: 2, eligible: 1, hiddenByEffectiveWindow: 1, hiddenByPrivacy: 0, hiddenByFamilyAccess: 0, deduplicated: 0 }
+                      partial_failures:
+                        - failure_id: CLAIM_OUTSIDE_EFFECTIVE_WINDOW
+                          failure_reason: Claim exists but is outside the effective coverage window.
+                          diagnostics:
+                            claimId: "200023611694002"
+                            uniqueRxId: "9751485501674528228"
+                            membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                            effectiveStart: "2019-01-01"
+                            effectiveEnd: "2019-12-31"
+                            fillDate: "2018-04-12"
+                    data:
+                      - membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                        memberFirstName: "John"
+                        memberLastName: "Doe"
+                        relationshipToSubscriber: "Self"
+                        startDate: "2019-01-01"
+                        endDate: "2019-12-31"
+                        prescriptionList:
+                          - claimId: "200023611694001"
+                            prescriptionId: "674529584"
+                            drugName: "Lipitor"
+                            drugStrength: "200mg"
+                            quantity: 15
+                            lastFilledDate: "2019-08-12"
+                            daysSupply: 5
+                            fulfilledBy: "Caremark prescription service"
+                            prescriberName: "John Doe"
+
+        '400':
+          description: Missing or invalid dates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                missingDates:
+                  summary: Non-working call (400)
+                  value:
+                    statusCode: 400
+                    statusDescription: Bad request
+                    additional_data:
+                      failure_id: MISSING_REQUIRED_DATE
+                      failure_reason: startDate and/or endDate query parameter is missing.
+                      diagnostics: { startDate: null, endDate: null }
+                    data: null
+                invalidRange:
+                  summary: Non-working call (400)
+                  value:
+                    statusCode: 400
+                    statusDescription: Bad request
+                    additional_data:
+                      failure_id: INVALID_DATE_RANGE
+                      failure_reason: startDate is after endDate.
+                      diagnostics: { startDate: "2020-12-31", endDate: "2020-01-01" }
+                    data: null
+        '403':
+          description: Attestation required but not enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                notAttested:
+                  summary: Non-working call (403)
+                  value:
+                    statusCode: 403
+                    statusDescription: Forbidden
+                    additional_data:
+                      failure_id: NOT_ATTESTED
+                      failure_reason: CVSRxCarveOut is not enabled for embedded capabilities.
+                      diagnostics: { attestation: false }
+                    data: null
+        '500':
+          description: Dependency failure (auth/claims/privacy)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                upstreamDown:
+                  summary: Non-working call (500)
+                  value:
+                    statusCode: 500
+                    statusDescription: Internal server error
+                    additional_data:
+                      failure_id: UPSTREAM_UNAVAILABLE
+                      failure_reason: Claims service timed out.
+                      diagnostics: { dependency: "ClaimsService", timeoutMs: 3000 }
+                    data: null
+
+  /v1/prescriptions/{claimId}:
+    get:
+      tags: [Prescriptions]
+      summary: Retrieve policy-filtered prescription detail by claimId
+      operationId: getPrescriptionDetail
+      parameters:
+        - name: claimId
+          in: path
+          required: true
+          schema: { type: string }
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      responses:
+        '200':
+          description: Filtered prescription detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvelopePrescriptionDetail'
+              examples:
+                working_200:
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data: {}
+                    data:
+                      claimId: "200023611694001"
+                      prescriptionId: "674529584"
+                      lastFilledDate: "2019-08-12"
+                      memberFirstName: "John"
+                      memberLastName: "Doe"
+                      relationshipToSubscriber: "Self"
+                      membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                      drugName: "Lipitor"
+                      drugStrength: "200mg"
+                      drugForm: "Tablet"
+                      daysSupply: 5
+                      quantity: 15
+                      refillsLeft: 0
+                      prescriberName: "John Doe"
+                      fulfilledBy: "Caremark prescription service"
+                      estimatedCost: 111
+                      prescriptionExpirationDate: "2019-12-12"
+                      prescriptionNumber: "674529584"
+                      NDC11: "536012297"
+        '404':
+          description: Not found or out of window
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                notFound:
+                  summary: Non-working call (404 - claimId not found)
+                  value:
+                    statusCode: 404
+                    statusDescription: Not found
+                    additional_data:
+                      failure_id: CLAIM_NOT_FOUND
+                      failure_reason: No claim exists with the specified claimId for this caller.
+                      diagnostics: { claimId: "999999999999999" }
+                    data: null
+                outsideWindow:
+                  summary: Non-working call (404 - outside effective window)
+                  value:
+                    statusCode: 404
+                    statusDescription: Not found
+                    additional_data:
+                      failure_id: CLAIM_OUTSIDE_EFFECTIVE_WINDOW
+                      failure_reason: Claim exists but is outside the effective coverage window.
+                      diagnostics: { claimId: "200023611694001", effectiveStart: "2019-01-01", effectiveEnd: "2019-12-31", fillDate: "2018-04-12" }
+                    data: null
+        '400':
+          description: Missing or invalid dates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                missingDate:
+                  value:
+                    statusCode: 400
+                    statusDescription: Bad request
+                    additional_data:
+                      failure_id: MISSING_REQUIRED_DATE
+                      failure_reason: startDate and/or endDate query parameter is missing.
+                      diagnostics: { startDate: null, endDate: null }
+                    data: null
+        '500':
+          description: Dependency failure (auth/claims/privacy)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                upstreamDown:
+                  value:
+                    statusCode: 500
+                    statusDescription: Internal server error
+                    additional_data:
+                      failure_id: UPSTREAM_UNAVAILABLE
+                      failure_reason: Claims service timed out.
+                      diagnostics: { dependency: "ClaimsService", timeoutMs: 3000 }
+                    data: null
+
+  /v1/visibility/evaluate:
+    post:
+      tags: [Visibility]
+      summary: Evaluate visibility for arbitrary claim inputs
+      operationId: evaluateVisibility
+      parameters:
+        - $ref: '#/components/parameters/startDate'
+        - $ref: '#/components/parameters/endDate'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluateRequest'
+            examples:
+              working_200:
+                value:
+                  memberContext:
+                    membershipResourceIds: ["5~263801696+31+1+20180101+788678+C+3"]
+                    attestation: { cvsrxCarveOut: true }
+                  claims:
+                    - claimNumber: "200023611694001"
+                      uniqueRxId: "9751485501674528227"
+                      fillDate: "2019-08-12"
+                      membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                      pharmacyName: "CAREMARK PRESCRIPTION SRVC WBP"
+                      drug: { name: "Prozac", strength: "200mg", isSensitive: false }
+                  options: { applyPrivacy: true, applyFamilyAccess: true, applyDeduplication: true }
+      responses:
+        '200':
+          description: Evaluation result with visibility decisions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvelopeEvaluateResponse'
+              examples:
+                working_200:
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data: {}
+                    data:
+                      decisions:
+                        - claimNumber: "200023611694001"
+                          uniqueRxId: "9751485501674528227"
+                          visibility: eligible
+                          reasons: ["withinEffectiveWindow"]
+                          normalized:
+                            claimId: "200023611694001"
+                            prescriptionId: "9751485501674528227"
+                            drugName: "Prozac"
+                            drugStrength: "200mg"
+                            quantity: 5
+                            lastFilledDate: "2019-08-12"
+                            daysSupply: 5
+                            fulfilledBy: "CAREMARK PRESCRIPTION SRVC WBP"
+                            prescriberName: "Unknown"
+                      summary: { total: 1, visible: 1, hiddenByEffectiveWindow: 0, hiddenByPrivacy: 0, deduplicated: 0 }
+                working_200_partial:
+                  summary: 200 OK with partial results (one eligible, one hidden)
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data:
+                      code: PARTIAL_SUCCESS
+                      partial: true
+                      counts: { total: 2, eligible: 1, hiddenByEffectiveWindow: 1, hiddenByPrivacy: 0, hiddenByFamilyAccess: 0, deduplicated: 0 }
+                      partial_failures:
+                        - failure_id: CLAIM_OUTSIDE_EFFECTIVE_WINDOW
+                          failure_reason: Claim exists but is outside the effective coverage window.
+                          diagnostics:
+                            claimNumber: "200023611694002"
+                            uniqueRxId: "9751485501674528228"
+                            membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                            effectiveStart: "2019-01-01"
+                            effectiveEnd: "2019-12-31"
+                            fillDate: "2018-04-12"
+                    data:
+                      decisions:
+                        - claimNumber: "200023611694001"
+                          uniqueRxId: "9751485501674528227"
+                          visibility: eligible
+                          reasons: ["withinEffectiveWindow"]
+                          normalized:
+                            claimId: "200023611694001"
+                            prescriptionId: "9751485501674528227"
+                            drugName: "Prozac"
+                            drugStrength: "200mg"
+                            quantity: 5
+                            lastFilledDate: "2019-08-12"
+                            daysSupply: 5
+                            fulfilledBy: "CAREMARK PRESCRIPTION SRVC WBP"
+                            prescriberName: "Unknown"
+                      summary: { total: 2, visible: 1, hiddenByEffectiveWindow: 1, hiddenByPrivacy: 0, hiddenByFamilyAccess: 0, deduplicated: 0 }
+
+        '206':
+          description: Partial content (some items excluded by policy)
+          headers:
+            X-Partial-Result:
+              schema: { type: string, example: "true" }
+            X-Partial-Reason:
+              schema: { type: string, example: "CLAIM_OUTSIDE_EFFECTIVE_WINDOW" }
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvelopeEvaluateResponse'
+              examples:
+                partial_206:
+                  value:
+                    statusCode: 200
+                    statusDescription: OK
+                    additional_data:
+                      code: PARTIAL_SUCCESS
+                      partial: true
+                      counts: { total: 2, eligible: 1, hiddenByEffectiveWindow: 1, hiddenByPrivacy: 0, hiddenByFamilyAccess: 0, deduplicated: 0 }
+                      partial_failures:
+                        - failure_id: CLAIM_OUTSIDE_EFFECTIVE_WINDOW
+                          failure_reason: Claim exists but is outside the effective coverage window.
+                          diagnostics:
+                            claimNumber: "200023611694002"
+                            uniqueRxId: "9751485501674528228"
+                            membershipResourceId: "5~263801696+31+1+20180101+788678+C+3"
+                            effectiveStart: "2019-01-01"
+                            effectiveEnd: "2019-12-31"
+                            fillDate: "2018-04-12"
+                    data:
+                      decisions:
+                        - claimNumber: "200023611694001"
+                          uniqueRxId: "9751485501674528227"
+                          visibility: eligible
+                          reasons: ["withinEffectiveWindow"]
+                          normalized:
+                            claimId: "200023611694001"
+                            prescriptionId: "9751485501674528227"
+                            drugName: "Prozac"
+                            drugStrength: "200mg"
+                            quantity: 5
+                            lastFilledDate: "2019-08-12"
+                            daysSupply: 5
+                            fulfilledBy: "CAREMARK PRESCRIPTION SRVC WBP"
+                            prescriberName: "Unknown"
+                      summary: { total: 2, visible: 1, hiddenByEffectiveWindow: 1, hiddenByPrivacy: 0, hiddenByFamilyAccess: 0, deduplicated: 0 }
+
+        '400':
+          description: Invalid date range
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                invalidRange:
+                  value:
+                    statusCode: 400
+                    statusDescription: Bad request
+                    additional_data:
+                      failure_id: INVALID_DATE_RANGE
+                      failure_reason: startDate is after endDate.
+                      diagnostics: { startDate: "2020-12-31", endDate: "2020-01-01" }
+                    data: null
+        '403':
+          description: Hidden by privacy/family access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                hiddenPrivacy:
+                  value:
+                    statusCode: 403
+                    statusDescription: Forbidden
+                    additional_data:
+                      failure_id: HIDDEN_BY_PRIVACY
+                      failure_reason: UAF restrictions prevent visibility to this dependent.
+                      diagnostics: { memberId: "263801696" }
+                    data: null
+                hiddenFamily:
+                  value:
+                    statusCode: 403
+                    statusDescription: Forbidden
+                    additional_data:
+                      failure_id: HIDDEN_BY_FAMILY_ACCESS
+                      failure_reason: Family access rules deny visibility.
+                      diagnostics: { relationshipToSubscriber: "AdultDependent" }
+                    data: null
+        '500':
+          description: Dependency failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+
+components:
+  parameters:
+    startDate:
+      in: query
+      name: startDate
+      description: Inclusive ISO date (YYYY-MM-DD). Gateway defaults may apply.
+      required: true
+      schema: { type: string, format: date }
+    endDate:
+      in: query
+      name: endDate
+      description: Inclusive ISO date (YYYY-MM-DD).
+      required: true
+      schema: { type: string, format: date }
+
+  schemas:
+    # Envelopes
+    ErrorEnvelope:
+      type: object
+      properties:
+        statusCode: { type: integer, example: 400 }
+        statusDescription: { type: string, example: "Bad request" }
+        additional_data:
+          type: object
+          description: Additional error context including failure identifiers and reasons.
+          properties:
+            failure_id: { type: string, description: "See x-failure-catalog.failures[].id" }
+            failure_reason: { type: string }
+            diagnostics:
+              type: object
+              additionalProperties: true
+          required: [failure_id, failure_reason]
+        data:
+          nullable: true
+      required: [statusCode, statusDescription, additional_data]
+
+    EnvelopeCoverageWindows:
+      type: object
+      properties:
+        statusCode: { type: integer, example: 200 }
+        statusDescription: { type: string, example: "OK" }
+        additional_data:
+          type: object
+          description: Optional additional metadata.
+          additionalProperties: true
+        data:
+          $ref: '#/components/schemas/CoverageWindowsResponse'
+      required: [statusCode, statusDescription, data]
+
+    EnvelopeSearchResponse:
+      type: object
+      properties:
+        statusCode: { type: integer, example: 200 }
+        statusDescription: { type: string, example: "OK" }
+        additional_data:
+          type: object
+          additionalProperties: true
+        data:
+          type: array
+          items: { $ref: '#/components/schemas/MemberPrescriptionList' }
+      required: [statusCode, statusDescription, data]
+
+    EnvelopePrescriptionDetail:
+      type: object
+      properties:
+        statusCode: { type: integer, example: 200 }
+        statusDescription: { type: string, example: "OK" }
+        additional_data:
+          type: object
+          additionalProperties: true
+        data:
+          $ref: '#/components/schemas/PrescriptionDetail'
+      required: [statusCode, statusDescription, data]
+
+    EnvelopeEvaluateResponse:
+      type: object
+      properties:
+        statusCode: { type: integer, example: 200 }
+        statusDescription: { type: string, example: "OK" }
+        additional_data:
+          type: object
+          additionalProperties: true
+        data:
+          $ref: '#/components/schemas/EvaluateResponse'
+      required: [statusCode, statusDescription, data]
+
+    # Business payloads
+    CoverageWindowsResponse:
+      type: object
+      properties:
+        windows:
+          type: array
+          items: { $ref: '#/components/schemas/CoverageWindow' }
+
+    CoverageWindow:
+      type: object
+      properties:
+        membershipResourceId: { type: string }
+        effectiveStart: { type: string, format: date }
+        effectiveEnd: { type: string, format: date }
+        source: { type: string, description: "System of record (e.g., PharmacyMembership)" }
+      required: [membershipResourceId, effectiveStart]
+
+    SearchRequest:
+      type: object
+      properties:
+        membershipResourceIds:
+          type: array
+          items: { type: string }
+          description: If empty, include all visible members for the session.
+        options:
+          $ref: '#/components/schemas/FilterOptions'
+      required: [membershipResourceIds]
+
+    MemberPrescriptionList:
+      type: object
+      properties:
+        membershipResourceId: { type: string }
+        memberFirstName: { type: string }
+        memberLastName: { type: string }
+        relationshipToSubscriber: { type: string }
+        startDate: { type: string, format: date }
+        endDate: { type: string, format: date }
+        prescriptionList:
+          type: array
+          items: { $ref: '#/components/schemas/PrescriptionSummary' }
+      required: [membershipResourceId, startDate, endDate, prescriptionList]
+
+    PrescriptionSummary:
+      type: object
+      description: Deduplicated list item — one per uniqueRxId (latest fillDate kept).
+      properties:
+        claimId: { type: string }
+        prescriptionId: { type: string }
+        drugName: { type: string }
+        drugStrength: { type: string }
+        quantity: { type: integer }
+        lastFilledDate: { type: string, format: date }
+        daysSupply: { type: integer }
+        fulfilledBy: { type: string }
+        prescriberName: { type: string }
+      required: [claimId, prescriptionId, drugName, lastFilledDate]
+
+    PrescriptionDetail:
+      type: object
+      properties:
+        claimId: { type: string }
+        prescriptionId: { type: string }
+        lastFilledDate: { type: string, format: date }
+        memberFirstName: { type: string }
+        memberLastName: { type: string }
+        relationshipToSubscriber: { type: string }
+        membershipResourceId: { type: string }
+        drugName: { type: string }
+        drugStrength: { type: string }
+        drugForm: { type: string }
+        daysSupply: { type: integer }
+        quantity: { type: integer }
+        refillsLeft: { type: integer }
+        prescriberName: { type: string }
+        fulfilledBy: { type: string }
+        estimatedCost: { type: number }
+        prescriptionExpirationDate: { type: string, format: date }
+        prescriptionNumber: { type: string }
+        NDC11: { type: string }
+
+    EvaluateRequest:
+      type: object
+      properties:
+        memberContext:
+          $ref: '#/components/schemas/MemberContext'
+        claims:
+          type: array
+          items: { $ref: '#/components/schemas/ClaimInput' }
+        options:
+          $ref: '#/components/schemas/FilterOptions'
+      required: [memberContext, claims]
+
+    EvaluateResponse:
+      type: object
+      properties:
+        decisions:
+          type: array
+          items: { $ref: '#/components/schemas/VisibilityDecision' }
+        summary:
+          type: object
+          properties:
+            total: { type: integer }
+            visible: { type: integer }
+            hiddenByEffectiveWindow: { type: integer }
+            hiddenByPrivacy: { type: integer }
+            hiddenByFamilyAccess: { type: integer }
+            deduplicated: { type: integer }
+
+    MemberContext:
+      type: object
+      properties:
+        membershipResourceIds:
+          type: array
+          items: { type: string }
+        attestation:
+          type: object
+          properties:
+            cvsrxCarveOut: { type: boolean }
+          required: [cvsrxCarveOut]
+        privacyContext:
+          type: object
+          description: Optional UAF/entitlement context (opaque).
+          additionalProperties: true
+      required: [membershipResourceIds, attestation]
+
+    ClaimInput:
+      type: object
+      description: Minimal fields required for windowing and deduplication.
+      properties:
+        claimNumber: { type: string }
+        uniqueRxId: { type: string }
+        fillDate: { type: string, format: date }
+        membershipResourceId: { type: string }
+        pharmacyName: { type: string }
+        drug:
+          type: object
+          properties:
+            name: { type: string }
+            strength: { type: string }
+            isSensitive: { type: boolean }
+      required: [claimNumber, uniqueRxId, fillDate, membershipResourceId]
+
+    VisibilityDecision:
+      type: object
+      properties:
+        claimNumber: { type: string }
+        uniqueRxId: { type: string }
+        visibility:
+          type: string
+          enum: [eligible, hiddenByEffectiveWindow, hiddenByPrivacy, hiddenByFamilyAccess]
+        reasons:
+          type: array
+          items: { type: string }
+        normalized:
+          $ref: '#/components/schemas/PrescriptionSummary'
+
+    FilterOptions:
+      type: object
+      properties:
+        applyPrivacy: { type: boolean, default: true }
+        applyFamilyAccess: { type: boolean, default: true }
+        applyDeduplication: { type: boolean, default: true }
+        requireAttestation: { type: boolean, default: true }
+
+    HealthResponse:
+      type: object
+      properties:
+        status: { type: string }
+        service: { type: string }
+        time: { type: string, format: date-time }
+
+
+
+x-implementation-appendix:
+  description: |
+    ENFORCEMENT ORDER
+      1) Validate inputs: startDate/endDate presence and ISO format; ensure startDate <= endDate.
+      2) Resolve attestation/integration state (e.g., CVSRxCarveOut). If requireAttestation=true and not attested → 403 NOT_ATTESTED.
+      3) Resolve coverage windows for all membershipResourceIds (effectiveStart/effectiveEnd).
+      4) Acquire upstream token/context (CVS Auth) as needed.
+      5) Fetch claims for the requested range and visible members (or accept claims as input for /visibility/evaluate).
+      6) Deduplicate by uniqueRxId (retain the record with the MAX(fillDate)).
+      7) Apply the Policy Effective Window = coverageWindow ∩ [startDate, endDate]. Drop anything outside.
+      8) Apply privacy (UAF) and family access filters (if enabled).
+      9) Map to response schema (list/detail/decisions), with clear reasons when hidden.
+
+    CACHE KEYS
+      • coverage: coverage-v1:{membershipResourceId}
+      • claims: claims-v1:{accountIdSource~accountIdValue}:{membershipResourceId}:{startDate}:{endDate}
+      • privacy: privacy-v1:{memberId}:{requestorId}
+      • token: cvs-auth-v1:{membershipResourceId}
+
+    DEDUPLICATION
+      • Group by uniqueRxId, pick the item with the latest fillDate.
+      • For ties, prefer status=ACCEPTED, then most recent claimSequenceNumber.
+
+    OBSERVABILITY
+      • Emit counters: requests_total, trimmed_by_effective_window_total, hidden_by_privacy_total, hidden_by_family_total, deduplicated_total.
+      • Emit histograms: upstream_latency_ms{dependency}, end_to_end_latency_ms.
+      • Log decisions at INFO with correlationId (EIE transaction id) and reasons.
+
+
+x-contract-limits:
+  description: |
+    This specification is fully self-contained. It does not mount or reference any external OpenAPI components,
+    schemas, parameters, or domains beyond what is declared herein. Error envelopes and response bodies are
+    defined locally. Implementations MUST NOT rely on remote $ref targets.
+
+
+x-partial-handling:
+  description: |
+    Controls HTTP status used when the response contains mixed eligibility results (some items in-range, some excluded).
+    Default is 200 OK with a PARTIAL_SUCCESS indicator in additional_data. Implementations MAY return 206 Partial Content
+    when either of the following overrides are present on the request:
+      • Header: Prefer: partial=206
+      • Query: partialAs=206
+    When 206 is used, the response MUST also include these headers:
+      • X-Partial-Result: "true"
+      • X-Partial-Reason: comma-separated list of failure_id values (e.g., "CLAIM_OUTSIDE_EFFECTIVE_WINDOW,HIDDEN_BY_PRIVACY").
+  default_http_status_for_partials: 200
+  override:
+    header: "Prefer: partial=206|200"
+    query: "partialAs=206|200"
+  partial_response_headers:
+    X-Partial-Result: "true|false"
+    X-Partial-Reason: "comma-separated failure_ids"

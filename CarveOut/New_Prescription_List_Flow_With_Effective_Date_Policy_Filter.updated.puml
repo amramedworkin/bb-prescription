@@ -1,0 +1,69 @@
+@startuml
+title Prescription List Flow with Policy Effective Window Filter (Pharmacy Service v1)
+
+actor MemberApp as App
+participant "Pharmacy Service v1" as Psvc
+participant "Coverage Windows" as Cov
+participant "Privacy/UAF" as UAF
+participant "Family Access" as Fam
+participant "CVS Auth" as Auth
+participant "CVS Claims" as Claims
+
+== Search Prescriptions ==
+App -> Psvc: POST /v1/prescriptions/search\n?startDate&endDate\nBody: membershipResourceIds[], options{privacy,family,dedup,requireAttestation}
+activate Psvc
+
+alt requireAttestation && !attested
+  Psvc --> App: 403 ErrorEnvelope{ failure_id=NOT_ATTESTED }
+  deactivate Psvc
+  return
+end
+
+Psvc -> Cov: GET /v1/coverage/windows (membershipResourceId...)
+Cov --> Psvc: windows[effectiveStart,effectiveEnd]
+
+Psvc -> Auth: get token (patient profile)
+Auth --> Psvc: token
+
+Psvc -> Claims: fetch claims (within request window)
+Claims --> Psvc: raw claims (lifetime)
+
+group Normalize + Policy
+  Psvc -> Psvc: dedupe by uniqueRxId (keep MAX fillDate)
+  Psvc -> UAF: check privacy (optional)
+  UAF --> Psvc: allow/deny markers
+  Psvc -> Fam: check family access (optional)
+  Fam --> Psvc: allow/deny markers
+  Psvc -> Psvc: intersect [effectiveStart,effectiveEnd] ∩ [startDate,endDate]
+exclude outside window
+end
+
+alt mixed eligible/ineligible AND (Prefer: partial=206 OR partialAs=206)
+  Psvc --> App: 206 Envelope{ data=eligibleOnly, additional_data.code=PARTIAL_SUCCESS }
+Headers: X-Partial-Result=true, X-Partial-Reason=...
+else mixed eligible/ineligible (default)
+  Psvc --> App: 200 Envelope{ data=eligibleOnly, additional_data.code=PARTIAL_SUCCESS }
+else all eligible
+  Psvc --> App: 200 Envelope{ data=all }
+end
+deactivate Psvc
+
+== Evaluate Visibility (Generic) ==
+App -> Psvc: POST /v1/visibility/evaluate\n?startDate&endDate\nBody: { memberContext, claims[], options }
+activate Psvc
+... same policy, privacy, family, and windowing ...
+Psvc --> App: 200/206 Envelope{ decisions[], additional_data? }
+deactivate Psvc
+
+== Prescription Detail ==
+App -> Psvc: GET /v1/prescriptions/{claimId}?startDate&endDate
+activate Psvc
+Psvc -> Claims: fetch claim by id
+Claims --> Psvc: claim
+alt in window & visible
+  Psvc --> App: 200 PrescriptionDetail
+else not found or out of window
+  Psvc --> App: 404 ErrorEnvelope{ failure_id=CLAIM_NOT_FOUND | CLAIM_OUTSIDE_EFFECTIVE_WINDOW }
+end
+deactivate Psvc
+@enduml
