@@ -42,8 +42,7 @@ RESPONSE:
 {
     "readApplicationStartup": {
         "proxyResourceId": "15~QS3YXBBBHPXZ",
-        "portalGroups": [
-            {
+D            {
                 "lineOfBusinessName": "Commercial",
                 "planSponsorId": "0000000098777930",
                 "planSponsorName": "DMT-K-MURU-0013-16",
