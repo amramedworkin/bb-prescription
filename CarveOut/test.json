@@ -1,0 +1,11 @@
+{
+  "membershipResourceIds": [
+    "5~263801696+31+1+20180101+788678+C+3"
+  ],
+  "options": {
+    "applyPrivacy": true,
+    "applyFamilyAccess": true,
+    "applyDeduplication": true,
+    "requireAttestation": true
+  }
+}
