@@ -1,0 +1,399 @@
+openapi: 3.0.3
+info:
+  title: OpenPlatform - Plan Documents BFF
+  description: Provides plan document list and PDF retrieval for the OpenPlatform.
+  version: 1.1.0
+  license:
+    name: Proprietary
+    url: https://www.aetna.com/legal-notices
+servers:
+  - url: https://api.aetna.com
+    description: Production server
+  - url: https://api-qa.aetna.com
+    description: QA server
+components:
+  schemas:
+    PlanDocListResponse:
+      type: object
+      properties:
+        statusCode:
+          $ref: https://apiforge.cvshealth.com/api-oas/global-domains/cvs-api-domains~1.0.0.yaml#/components/schemas/statusCode
+        statusDescription:
+          $ref: https://apiforge.cvshealth.com/api-oas/global-domains/cvs-api-domains~1.0.0.yaml#/components/schemas/statusDescription
+        additionalDetails:
+          type: object
+          required:
+          - message
+          - failedMembershipResourceIds
+          properties:
+            message:
+              type: string
+              description: Additional message for the response
+              example: Plan Documents retrieved successfully
+            failedMembershipResourceIds:
+              type: array
+              items:
+                type: object
+                required:
+                - membershipResourceId
+                - status
+                properties:
+                  membershipResourceId:
+                    type: string
+                    description: The unique identifier of a membership resource identifier.
+                      It contains idSource~idValue of the membership
+                    example: 41~183338540
+                  relationshipToSubscriber:
+                    type: string
+                    description: Relationship to the requestor
+                    example: self
+                  status:
+                    type: string
+                    description: Status of the membership policy
+                    example: Actively Covered
+                  memberFullName:
+                    type: string
+                    description: Full name of the member
+                    example: John Doe
+              description: List of membership resource IDs for which plan documents
+                could not be retrieved
+              example: [
+                ]
+        data:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/PlanDocumentItem'
+            - $ref: '#/components/schemas/PlanDocumentHHLItem'
+    PlanDocumentItem:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: Plan identifier
+          example: 751133+BA+2
+        documentName:
+          type: string
+          description: Name of the document
+          example: Plan Document (Spanish)
+        documentId:
+          type: string
+          description: Unique document identifier
+          example: 70023~13910995
+        documentUrl:
+          type: string
+          description: Internal URL to retrieve the PDF via BFF
+          example: /sa/plandocs/v1/retrieve/70023~13910995
+      required:
+      - planId
+      - documentName
+      - documentId
+      - documentUrl
+    PlanDocumentHHLItem:
+      type: object
+      properties:
+        planId:
+          type: string
+          description: Plan identifier
+          example: 751134+BA+2
+        readCommunicationsResponse:
+          type: string
+          description: Special messaging for the response when HHL is not signed
+          example: HHL Not signed
+      required:
+      - planId
+      - readCommunicationsResponse
+    PlanDocRetrieveRequest:
+      type: object
+      required:
+      - documentId
+      properties:
+        documentId:
+          type: string
+          description: Corresponds to communicationContentResourceId in the backend
+            (communicationContentIdentifier.resourceId)
+          example: 70023~13910995
+    BenefitProductTypes:
+      type: array
+      items:
+        type: string
+        enum:
+        - medical
+        - dental
+      description: Array of benefit product types to filter plan documents. Valid values are "medical" and "dental". An empty array or omitted parameter returns all plan documents.
+      example: ["medical", "dental"]
+    PlanDocListRequest:
+      type: object
+      properties:
+        benefitProductTypes:
+          $ref: '#/components/schemas/BenefitProductTypes'
+      description: Request body for plan document list retrieval
+    Error:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-error~1.0.0.yaml#/components/schemas/Error
+  parameters:
+    Eieheaderusercontext:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderusercontext
+    Eieheaderapplicationidentifier:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderapplicationidentifier
+    Eieheaderaction:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderaction
+    Eieheaderorchestratingapplicationidentifier:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderorchestratingapplicationidentifier
+    Eieheaderversion:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheaderversion
+    Eieheadertransactionid:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/Eieheadertransactionid
+    QaPath:
+      $ref: https://apiforge.cvshealth.com/api-oas/global-domains/aetnahealth-domains-eieheaders~1.0.0.yaml#/components/parameters/QaPath
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /sa/plandocs/v1/list:
+    post:
+      operationId: listPlanDocuments
+      summary: Retrieves the list of plan documents for a user.
+      security:
+        - BearerAuth: []
+      parameters:
+      - name: Accept-Language
+        in: header
+        description: Defaults to en-US if lang is en and locale is different than
+          US or if lang is anything other than en or es. Defaults to es-ES if the
+          lang is es and locale is different than ES.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: es, en, es-ES, en-US
+      - name: x-grid
+        in: header
+        description: TraceId provided by CVS
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Eieheaderusercontext'
+      - $ref: '#/components/parameters/Eieheaderapplicationidentifier'
+      - $ref: '#/components/parameters/Eieheaderaction'
+      - $ref: '#/components/parameters/Eieheaderorchestratingapplicationidentifier'
+      - $ref: '#/components/parameters/Eieheaderversion'
+      - $ref: '#/components/parameters/Eieheadertransactionid'
+      - $ref: '#/components/parameters/QaPath'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanDocListRequest'
+            examples:
+              medical_only:
+                summary: Filter for medical plan documents only
+                value:
+                  benefitProductTypes: ["medical"]
+              medical_and_dental:
+                summary: Filter for both medical and dental plan documents
+                value:
+                  benefitProductTypes: ["medical", "dental"]
+              all_documents:
+                summary: Get all plan documents (empty array)
+                value:
+                  benefitProductTypes: []
+              no_filter:
+                summary: Get all plan documents (no parameter)
+                value: {}
+      responses:
+        '200':
+          description: Successful retrieval of plan document list.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlanDocListResponse'
+              examples:
+                success_example_original:
+                  summary: Successful response with all plan documents (original format)
+                  value:
+                    statusCode: '0000'
+                    statusDescription: Success
+                    additionalDetails:
+                      message: Plan Documents retrieved successfully
+                      failedMembershipResourceIds: [
+                        ]
+                    data:
+                    - planId: 751133+BA+2
+                      documentName: Plan Document (Spanish)
+                      documentId: 70023~13910995
+                      documentUrl: /sa/plandocs/v1/retrieve/70023~13910995
+                    - planId: 751134+BA+2
+                      documentName: Summary of Benefits and Coverage
+                      documentId: 70024~13910996
+                      documentUrl: /sa/plandocs/v1/retrieve/70024~13910996
+                success_example_mixed:
+                  summary: Successful response with mixed plan documents and HHL items
+                  value:
+                    statusCode: '0000'
+                    statusDescription: Success
+                    additionalDetails:
+                      message: Plan Documents retrieved successfully
+                      failedMembershipResourceIds: [
+                        ]
+                    data:
+                    - planId: 751133+BA+2
+                      documentName: Plan Document (Spanish)
+                      documentId: 70023~13910995
+                      documentUrl: /sa/plandocs/v1/retrieve/70023~13910995
+                    - planId: 751134+BA+2
+                      readCommunicationsResponse: HHL Not signed
+                failed_memberships_example:
+                  summary: Response with failed membership resource IDs
+                  value:
+                    statusCode: '0000'
+                    statusDescription: Success
+                    additionalDetails:
+                      message: Plan Documents retrieved successfully with some failures
+                      failedMembershipResourceIds:
+                      - membershipResourceId: 41~183338540
+                        relationshipToSubscriber: self
+                        status: Inactive
+                        memberFullName: John Doe
+                      - membershipResourceId: 42~987654321
+                        relationshipToSubscriber: spouse
+                        status: Terminated
+                        memberFullName: Jane Doe
+                    data:
+                    - planId: 751133+BA+2
+                      documentName: Plan Document (Spanish)
+                      documentId: 70023~13910995
+                      documentUrl: /sa/plandocs/v1/retrieve/70023~13910995
+                hhl_not_signed_example:
+                  summary: Response with HHL not signed message
+                  value:
+                    statusCode: '0000'
+                    statusDescription: Success
+                    additionalDetails:
+                      message: Plan Documents retrieved successfully
+                      failedMembershipResourceIds: [
+                        ]
+                    data:
+                    - planId: 751133+BA+2
+                      documentName: Plan Document (Spanish)
+                      documentId: 70023~13910995
+                      documentUrl: /sa/plandocs/v1/retrieve/70023~13910995
+                    - planId: 751134+BA+2
+                      readCommunicationsResponse: HHL Not signed
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                bad_request_example:
+                  summary: Bad request error
+                  value:
+                    status: 400
+                    title: Bad Request
+                    detail: Invalid request parameters provided.
+                    moreInformation: Please check the request format and try again.
+                invalid_benefit_product_types:
+                  summary: Invalid benefitProductTypes values
+                  value:
+                    status: 400
+                    title: Bad Request
+                    detail: Invalid benefitProductTypes values provided. Only "medical" and "dental" are allowed.
+                    moreInformation: "Please provide valid benefitProductTypes values: [\"medical\", \"dental\"] or omit the parameter to get all documents."
+        '401':
+          description: Unauthorized - Invalid or missing authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                unauthorized_example:
+                  summary: Unauthorized error
+                  value:
+                    status: 401
+                    title: Unauthorized
+                    detail: Authentication token is invalid or expired.
+                    moreInformation: Please provide a valid authentication token.
+        '403':
+          description: Forbidden - Insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                forbidden_example:
+                  summary: Forbidden error
+                  value:
+                    status: 403
+                    title: Forbidden
+                    detail: User does not have permission to access plan document
+                      information.
+                    moreInformation: Contact your administrator for access permissions.
+        '404':
+          description: Not Found - No plan documents available for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                not_found_example:
+                  summary: No plan documents found
+                  value:
+                    status: 404
+                    title: Not Found
+                    detail: No plan documents are available for the specified user
+                      or plan.
+                    moreInformation: Please verify the user account and plan details.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                internal_error_example:
+                  summary: Internal server error
+                  value:
+                    status: 500
+                    title: Internal Server Error
+                    detail: An unexpected error occurred while processing the request.
+                    moreInformation: Please try again later or contact support if
+                      the issue persists.
+  /sa/plandocs/v1/retrieve:
+    post:
+      operationId: retrievePlanDocument
+      summary: Retrieves a specific plan document PDF.
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlanDocRetrieveRequest'
+      responses:
+        '200':
+          description: Success - PDF file returned.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
