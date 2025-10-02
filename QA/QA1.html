@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QA1 Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .qa-button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        .qa-button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QA1 Test Page</h1>
+        <p>This is a self-contained HTML file for QA1 functionality.</p>
+        
+        <button id="qa1Button" class="qa-button" onclick="handleQA1Click()">
+            Click QA1
+        </button>
+        
+        <div id="result" class="result"></div>
+        
+        <h3>Environment Information:</h3>
+        <p>Environment: <span id="environment">QA</span></p>
+        <p>Load Time: <span id="loadTime"></span></p>
+    </div>
+
+    <script>
+        // Environment configuration (extracted from original file)
+        window.__AHW_DEPLOYED_ENVIRONMENT = 'QA';
+        window.__AHW_LOAD_START_TIME = Date.now();
+        
+        // QA1 Click Handler
+        function handleQA1Click() {
+            console.log('QA1 button clicked');
+            
+            // Get the result div
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                // Add your QA1 specific logic here
+                // This is a placeholder - replace with actual QA1 functionality
+                
+                // Example: Simulate some QA1 test
+                const testResult = performQA1Test();
+                
+                if (testResult.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h4>QA1 Test Passed!</h4>
+                        <p>${testResult.message}</p>
+                        <p>Timestamp: ${new Date().toLocaleString()}</p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `
+                        <h4>QA1 Test Failed!</h4>
+                        <p>${testResult.message}</p>
+                        <p>Timestamp: ${new Date().toLocaleString()}</p>
+                    `;
+                }
+                
+                resultDiv.style.display = 'block';
+                
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h4>QA1 Test Error!</h4>
+                    <p>An error occurred: ${error.message}</p>
+                    <p>Timestamp: ${new Date().toLocaleString()}</p>
+                `;
+                resultDiv.style.display = 'block';
+                console.error('QA1 test error:', error);
+            }
+        }
+        
+        // Placeholder QA1 test function - replace with actual test logic
+        function performQA1Test() {
+            // This is a placeholder function
+            // Replace this with your actual QA1 test logic
+            
+            // Simulate a test that might pass or fail
+            const random = Math.random();
+            
+            if (random > 0.3) {
+                return {
+                    success: true,
+                    message: 'QA1 test completed successfully. All checks passed.'
+                };
+            } else {
+                return {
+                    success: false,
+                    message: 'QA1 test failed. Some checks did not pass.'
+                };
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set environment info
+            document.getElementById('environment').textContent = window.__AHW_DEPLOYED_ENVIRONMENT;
+            document.getElementById('loadTime').textContent = new Date(window.__AHW_LOAD_START_TIME).toLocaleString();
+            
+            console.log('QA1 page loaded');
+            console.log('Environment:', window.__AHW_DEPLOYED_ENVIRONMENT);
+            console.log('Load time:', window.__AHW_LOAD_START_TIME);
+        });
+        
+        // Add any additional QA1 specific functions here
+        // Example: API calls, DOM manipulation, etc.
+        
+    </script>
+</body>
+</html>

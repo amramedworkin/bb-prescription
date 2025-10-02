@@ -1,0 +1,80 @@
+Consolidated Claims API Input Parameters Narrative
+
+The Consolidated Claims API (at/eieheader/v3/memberships/{id}/consolidatedclaims) provides a comprehensive interface for retrieving health claims data for a specific membership ID. The API accepts numerous optional query parameters that allow for precise filtering and customization of the claims data returned.
+
+DATE FILTERING PARAMETERS (Primary Focus):
+
+The most critical parameters for temporal filtering are fromDate and toDate, which work together to define a date range for claims retrieval:
+
+fromDate Parameter:
+- Purpose: Establishes the earliest date boundary for claims retrieval
+- Format: ISO 8601 datetime format (yyyy-MM-ddTHH:MM:SS)
+- Example: "2015-05-17T12:00:00"
+- Behavior: When supplied, the API will retrieve health claims from this date forward
+- Optional: Yes - if not provided, no lower date boundary is applied
+- Use Case: Essential for implementing date-based pagination, historical data analysis, or limiting results to recent claims
+
+toDate Parameter:
+- Purpose: Establishes the latest date boundary for claims retrieval
+- Format: ISO 8601 datetime format (yyyy-MM-ddTHH:MM:SS)
+- Example: "2015-05-17T12:00:00"
+- Behavior: When supplied, the API will retrieve health claims up to and including this date
+- Optional: Yes - if not provided, no upper date boundary is applied
+- Use Case: Critical for creating specific reporting periods, preventing future-dated claims, or establishing data cutoff points
+
+Date Range Strategy:
+The fromDate and toDate parameters are designed to work in conjunction to create precise date windows. When both are provided, they establish a closed date range [fromDate, toDate]. When only one is provided, they create an open-ended range. When neither is provided, all available claims for the membership are potentially returned (subject to other filtering parameters and system limits).
+
+ADDITIONAL FILTERING PARAMETERS:
+
+claimType:
+- Filters claims by type (Pharmacy, Medical, Dental, Vision, Life, Disability, Hearing, Hospital)
+- Accepts abbreviated codes: MED, DEN, PHAR, HEAR, SBH, ALL
+- Defaults to ALL if not supplied
+
+claimId:
+- Filters by external application claim ID (ACAS claim ID, HRP Claim ID)
+- Useful for retrieving specific known claims
+
+Provider-Related Filters:
+- providerType: Filter by servicing provider specialty (Cardiology, Chiropractor, etc.)
+- serviceProviderName: Filter by service provider last name
+- providerTIN: Filter by provider Tax Identification Number
+- providerSpecialty: Filter by provider specialty classification
+- providerPIN: Filter by provider PIN
+
+Medical Coding Filters:
+- procedureCode: Search by procedure codes (up to 6, comma-separated)
+- diagnosisCode: Search by diagnosis codes (up to 6, comma-separated)
+- enableCptWildCard: Enable wildcard searching for procedure codes
+
+Service and Status Filters:
+- serviceType: Filter by Type of Service (TOS)
+- claimStatus: Filter by claim status (CMPL, RVSD, INPR, DENY, IREQ, HP, Paid, Final, Denied)
+- excludeStatus/includeStatus: Include or exclude specific statuses
+
+Specialized Parameters:
+- dateFilterQualifier: Additional date filtering qualification
+- rxClaimFilterType: Specific filtering for prescription claims
+- searchPeriod: Predefined search period specification
+- toothNumber/toothQuadrant: Dental-specific filtering parameters
+
+Response Customization:
+- claimsCount: Limit the number of claims returned
+- maskDrugName: Control drug name visibility for privacy
+- includeClaimExpenses: Include detailed expense information
+- includeReworkStatus: Include claim rework status information
+- memberOnly: Return member information only
+- externalView: Control external view formatting
+- isFHIRResource: Format response as FHIR resource
+- enableCaching: Enable response caching for performance
+
+REQUIRED PARAMETERS:
+
+Path Parameter:
+- id: The membership identifier (required in the URL path)
+
+Header Parameters:
+- x-eieusercontext: Required header containing user context and authorization information
+
+The API's flexibility in date filtering, combined with its comprehensive set of optional parameters, makes it suitable for a wide range of use cases from simple claim lookups to complex analytical queries spanning specific time periods and claim characteristics.

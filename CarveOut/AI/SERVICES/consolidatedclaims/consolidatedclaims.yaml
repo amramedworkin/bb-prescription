@@ -1,0 +1,1053 @@
+openapi: 3.0.0
+info:
+  title: at/eieheader/v3/memberships/{id}/consolidatedclaims
+  version: 3.0.2
+  description: This API will return health claims list for the requesting membership
+    id.
+  contact:
+    email: mbjani@aetna.com
+    name: Meera Jani
+paths:
+  /at/eieheader/v3/memberships/{id}/consolidatedclaims:
+    get:
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIresponse'
+        '555':
+          description: 555 error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIerror'
+      parameters:
+      - name: claimType
+        required: false
+        in: query
+        description: Type???of???claim.???Allowable???values:Pharmacy,Medical,Dental,Vision,Life,Disability,Hearing,Hospital
+          .claimType like MED, DEN, PHAR, HEAR, SBH,ALL(defaults to ALL if not supplied)
+        schema:
+          type: string
+      - name: fromDate
+        required: false
+        in: query
+        description: 'If supplied, will be used to retrieve healthclaims  from this
+          date. date format is yyyy-MM-ddTHH:MM:SS Example: 2015-05-17T12:00:00'
+        schema:
+          type: string
+      - name: toDate
+        required: false
+        in: query
+        description: 'If supplied, will be used to retrieve healthclaims up to this
+          date. date format is yyyy-MM-ddTHH:MM:SS example : 2015-05-17T12:00:00'
+        schema:
+          type: string
+      - name: claimId
+        required: false
+        in: query
+        description: External Application claim id.  ie. ACAS claim id/ HRP Claim
+          id
+        schema:
+          type: string
+      - name: providerType
+        required: false
+        in: query
+        description: Abillity to search for a servicing provider specialty (Cardiology,
+          Chiropractor, etc)
+        schema:
+          type: string
+      - name: serviceType
+        required: false
+        in: query
+        description: Ability to search by Type of Service (TOS)
+        schema:
+          type: string
+      - name: serviceProviderName
+        required: false
+        in: query
+        description: Ability to search by a service provider last name
+        schema:
+          type: string
+      - name: providerTIN
+        required: false
+        in: query
+        description: Ability to search by a provide TIN
+        schema:
+          type: string
+      - name: procedureCode
+        required: false
+        in: query
+        description: Ability to search one or more procedure (up to 6) codes to find
+          within claim lines on file- multiple code entry to be seperated by commas
+        schema:
+          type: string
+      - name: diagnosisCode
+        required: false
+        in: query
+        description: Ability to search diagnosis codes (up to 6) to find within claim
+          lines on file-  multiple code entry to be seperated by commas
+        schema:
+          type: string
+      - name: providerSpecialty
+        required: false
+        in: query
+        description: Ability to search by a provide specialty
+        schema:
+          type: string
+      - name: memberOnly
+        required: false
+        in: query
+        description: member info only
+        schema:
+          type: string
+      - name: includeReworkStatus
+        required: false
+        in: query
+        description: This parameters indicates whether claim rework status should
+          be included in the response or not
+        schema:
+          type: boolean
+      - name: enableCptWildCard
+        required: false
+        in: query
+        description: Ability to wild card search by  procedurecode
+        schema:
+          type: boolean
+      - name: claimStatus
+        required: false
+        in: query
+        description: claimStatus like CMPL|RVSD|INPR|DENY|IREQ|HP|Paid|Final|Denied
+        schema:
+          type: string
+      - name: dateFilterQualifier
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: rxClaimFilterType
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: claimsCount
+        required: false
+        in: query
+        description: count of claims
+        schema:
+          type: string
+      - name: maskDrugName
+        required: false
+        in: query
+        description: to mask drug name
+        schema:
+          type: boolean
+      - name: includeClaimExpenses
+        required: false
+        in: query
+        description: to include claim expenses
+        schema:
+          type: boolean
+      - name: enableCaching
+        required: false
+        in: query
+        description: cache the response
+        schema:
+          type: boolean
+      - name: isFHIRResource
+        required: false
+        in: query
+        schema:
+          type: boolean
+      - name: toothNumber
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: toothQuadrant
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: searchPeriod
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: externalView
+        required: false
+        in: query
+        schema:
+          type: boolean
+      - name: excludeStatus
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: includeStatus
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: providerPIN
+        required: false
+        in: query
+        schema:
+          type: string
+      - name: x-eieaction
+        in: header
+        description: The type of transaction operation. Allowable Values are "CREATE",
+          "READ", "UPDATE" and "DELETE".
+        required: false
+        schema:
+          type: string
+      - name: x-apitransactionId
+        in: header
+        description: Unique identifier for the transaction. e.g. b6aeba865e5d137800f30646
+        required: false
+        schema:
+          type: string
+      - name: x-eiecorrelationid
+        in: header
+        description: Correlation id for the transaction. e.g. {"eiecorrelationid":"fhxdfjgfkfguy,lgyili.;ily|f1d3856c-ca2b-4f08-b072-a57e0b176029|b6aeba865e5d137800f30646"}
+        required: false
+        schema:
+          type: string
+      - name: x-eieapplication
+        in: header
+        description: A unique identifier for the application that appears to be calling.
+          This may be either the actual application that is calling, or, in the case
+          of impersonation, the application that the trusted calling application is
+          calling on behalf of. e.g. {"eieapplication":{idSource":108,"idValue":"2f8d5988-c631-4235-8d13-287b384b316a","applicationShortName":"IA
+          - Chatbot}}
+        required: false
+        schema:
+          type: string
+      - name: x-eieversion
+        in: header
+        description: EIEHeader version. e.g. {"eieversion":{"Major":3,"Minor":0,"Maintenance":0}}
+        required: false
+        schema:
+          type: string
+      - name: x-eieusercontext
+        in: header
+        description: Details about the calling user (or the user being impersonated).
+          e.g. Eie Header from APIC - eieHeader :{x-eiecorrelationid={"eiecorrelationid":"2f8d5988-c631-4235-8d13-287b384b316a|687401f85f466f604638a233"},
+          x-eieversion={"eieversion":{"Major":3,"Minor":0,"Maintenance":0}}, x-apitransactionId=687401f85f466f604638a233,
+          x-eieaction=POST, x-eieapplication={"eieapplication":{"idSource":108,"idValue":"2f8d5988-c631-4235-8d13-287b384b316a","applicationShortName":"IA
+          - Chatbot"}}, x-eieusercontext={"eieusercontext":{"AccountIdentifier":{"accountIdentiferSource":"15","accountIdentifierValue":"X1MCXKBBBPXY"},"LevelOfAssurance":{"assuranceType":"identity","assuranceValue":"http://consumer.aetna.com/assurance/loa-1"},"AuthorizedRole":[{"Role":""}],"BusinessIdentifier":[{"businessIdentifierSource":"","businessIdentifierValue":""}],"ConstituentRole":[]}}}
+        required: true
+        schema:
+          type: string
+      summary: GET health claims list for requested membership Id
+      security:
+      - OAuth2:
+        - APPPII
+      - OAuth2:
+        - APPPHI
+    parameters:
+    - name: id
+      required: true
+      in: path
+      description: The membership identifier
+      schema:
+        type: string
+tags: [
+  ]
+externalDocs:
+  description: HTTP Common Error Codes
+  url: https://eaintegrationgovernance.github.io/APIC-Common-Error-Codes.github.io/
+servers:
+- url: https://$(catalog.host)
+components:
+  schemas:
+    APIerror:
+      description: ''
+      type: object
+      properties:
+        httpCode:
+          type: string
+          description: Indicates the httpCode returned in the header
+          example: '401'
+        httpMessage:
+          type: string
+          description: Short description of the error
+          example: Unauthorized
+        moreInformation:
+          type: string
+          description: Long description of the error
+          example: Client id missing
+    APIresponse:
+      description: A JSON object containing a list of claims for membership
+      type: object
+      properties:
+        readConsolidatedClaimsResponse:
+          type: object
+          properties:
+            information:
+              type: array
+              items:
+                properties:
+                  detail:
+                    type: string
+                    description: detail of the warning
+                    example: more than 160 claims
+                  severity:
+                    type: string
+                    description: Warning
+                    example: Warning
+                  statusCode:
+                    type: string
+                    description: '5000:''more than 160 claims'' -- 5001:''Pharmacy
+                      claims are currently unavailable'' --5002:''Medical/Dental claims
+                      are currently unavailable''--5003:''PAYMENT_DATA_UNAVAILABLE'' '
+                    example: '5000'
+                  claimTypesImpacted:
+                    type: string
+                    description: comma delimited string of claim types that relate
+                      to this specific message.  These values match claim type in
+                      payload.
+                    example: Medical, Dental, Pharmacy,Hear,SBH
+            consolidatedclaims:
+              type: array
+              items:
+                properties:
+                  claimIdentifier:
+                    type: string
+                    description: concatenation of idsource ECR=56,PHAR=40001,HRP=62,CVS
+                      pharmacy=63 and idvalue ECR= A34ADCRY+17+1660+F+M67, Phar rxbor=0737539879.  Used
+                      for subsequent calls for claim details.
+                    example: 56~A34ADCRY+17+1660+F+M67
+                  claimStatus:
+                    type: string
+                    description: claim status. Values can be one of ECR(Healthclaims)Completed,Not
+                      Approved, Revised-Phar(Rxbor)PAID
+                    example: Completed
+                  sourceClaimStatus:
+                    type: string
+                    description: This field represents the status of the claim as
+                      determined by the source adjudication system (Ex ACAS, HRP,
+                      etc)
+                  claimVersion:
+                    description: A 2-character numeric string with values from 00
+                      to 99.  This value is incremented when a claim in final status
+                      is reworked for any reason and finalized when the claim is paid.
+                    type: string
+                  claimType:
+                    type: string
+                    description: Type of claim. Medical, Dental,Pharmacy
+                    example: Medical
+                  claimSubType:
+                    description: 'Sub classification of claim type. Example: A claim
+                      type of Medica is sub classifed as Hospital Claim.'
+                    type: string
+                  externalClaimId:
+                    type: string
+                    description: The Unique Claim Key that identifies a claim. This
+                      field needs to be displayed when the customer calls into customer
+                      service. For pharmacy claims this is prescription No
+                    example: M00100416
+                  dateSubmitted:
+                    description: The date that the claim was received by the carrier.
+                    type: string
+                    format: date
+                  dateOfServiceBegin:
+                    type: string
+                    description: The date only (no time) when the billed healthcare
+                      service began. For pharmacy claims, this is the date medication
+                      was filled.
+                    example: '2017-01-05T00:00:00.000Z'
+                    format: date
+                  dateOfServiceEnd:
+                    type: string
+                    description: The date only (no time) when the billed healthcare
+                      service began. For pharmacy claims, this is the date medication
+                      was filled.
+                    example: '2017-01-05T00:00:00.000Z'
+                    format: date
+                  eventLifecycleCode:
+                    description: 'A code which identifies the view of the claim segment.
+                      These values are used in the event tracker to see where the
+                      claim is in the lifecycle. Enumerated Values: SBMT ??? submitted
+                      RCVD ??? received ADJU ??? adjudicated'
+                    type: string
+                  lineOfBusiness:
+                    type: string
+                    description: Textual description of the line of business of the
+                      policy. Permitted values are 'M', 'C' or 'I'. 'M' - Medicare,
+                      'C' - Traditional Commerical,'I' - IVL-Commercial.
+                    example: M
+                  patientNameFirst:
+                    type: string
+                    description: Member First Name
+                    example: Charlotte
+                  patientNameMiddle:
+                    type: string
+                    description: Member Middle Name
+                    example: Charlotte
+                  patientNameLast:
+                    type: string
+                    description: Member Last Name
+                    example: Mike
+                  nameSuffix:
+                    description: A suffix that follows a person's name (e.g., D.D.S,
+                      PMP, etc.).
+                    type: string
+                  generationalSuffix:
+                    description: Describes if a person is senior,junior,III, etc.
+                    type: string
+                  patientDateOfBirth:
+                    type: string
+                    description: Member Date of Birth
+                    example: 01/01/1976
+                  relationshipToSubscriber:
+                    description: The unencoded form of RelationshipToSubscriber (Father,
+                      Brother, Spouse etc.)
+                    type: string
+                  patientMemberId:
+                    description: The member id of the patient for whom this claim
+                      was processed
+                    type: string
+                  subscriberMemberId:
+                    description: The member id of the subscriber for whom this claim
+                      was processed
+                    type: string
+                  totalSubscriber:
+                    type: number
+                    description: The total amount that the subscriber owes for this
+                      healthcare claim - i.e., the balance of the allowed amount that
+                      is not covered by the carrier. This total is a roll-up of individual
+                      amounts from health claim lines on the health claim. For pharmacy
+                      claims, this is the amount that member paid at the pharmacy.
+                    example: 100
+                    format: Number
+                  totalMemberResponsibility:
+                    description: The final calculated member responsibility amount.
+                      I.e the amount member is responsible to pay after all deductions
+                      such as funds, deductible, coinsurance, allowed amounts etc
+                      are applied.
+                    type: number
+                    format: double
+                  totalSubscriberPostCOB:
+                    description: The total dollar amount the subscriber is responsible
+                      to pay after COB adjustments.(does not include other adjustments
+                      like fund amounts).
+                    type: number
+                    format: double
+                  isCOBApplied:
+                    description: 'Identifies if coordination of benefits(COB) has
+                      been applied to the claim. '
+                    type: boolean
+                    example: Y or N
+                  totalPayable:
+                    description: The total amount payable by the policy. For health
+                      claims, this is typically a payment to one or more providers
+                      that billed the carrier for rendered services. For disability
+                      claims, this is typically a recurring payment that lasts as
+                      long as the claimant qualifies for disability benefits. For
+                      life claims, this is typically a lump payment to one or more
+                      beneficiaries.
+                    type: number
+                    format: double
+                  totalBilled:
+                    description: The total amount billed for the set of submitted
+                      service on a healthcare claim. This total is a roll-up of individual
+                      amounts from health claim lines on the health claim.
+                    type: number
+                    format: double
+                  sensitiveIndicator:
+                    description: True, if the claim has been identified as containing
+                      "sensitive information". Otherwise, false.
+                    type: boolean
+                  restriction:
+                    type: object
+                    description: Used to show whether a restriction has been applied.
+                      If yes, identifies the attributes that were restricted. Example
+                      - PlanSponsor restriction where certain fields are not viewable
+                      on a member record unless authorized to look at that plansponsor's
+                      member's data.
+                    properties:
+                      isRestrictionApplied:
+                        type: boolean
+                        description: An indicator that one or more restrictions have
+                          been applied.
+                        example: 'true'
+                      restrictedAttributes:
+                        type: array
+                        items:
+                          type: string
+                          description: List of attributes that have been restricted
+                            based on the user's authorization level.
+                          example: Billed Amount,Plan Paid Amount,Member Responsibility
+                  claimPaymentStatus:
+                    description: Current payment status of the claim
+                    type: string
+                  claimCurrentBalance:
+                    description: Current balance of the claim.
+                    type: number
+                    format: double
+                  paymentSource:
+                    type: string
+                  blockProviderMessage:
+                    type: string
+                  providerId:
+                    description: An Aetna-specific value that identifies a particular
+                      provider.
+                    type: string
+                  legalOwnerName:
+                    description: The name of the person or organization that filed
+                      the claim as it is reported to the IRS and other tax agencies
+                    type: string
+                  claimPayableStatus:
+                    description: Indicates whether claim is payable or not
+                    type: boolean
+                  payableReason:
+                    description: Reason why claim cannot be paid
+                    type: array
+                    items:
+                      type: string
+                    enum:
+                    - NO_PAYMENTS_ACCEPTED
+                    - MISSING_PROVIDER_INFO
+                    - PAYMENTS_ACCEPTED
+                    - PAID
+                    - UNPAYABLE_CLAIM_STATUS
+                    - PAYMENT_DATA_UNAVAILABLE
+                    - REFUNDED_EXISTS
+                    - REJECTED_EXISTS
+                    - BLOCKED_PROVIDER
+                    - BLOCKED_PROVIDER_BAD_ADDRESS
+                  adjudicationSource:
+                    description: Claim adjudication source (e.g. ACAS, HMOC, HRP)
+                    type: string
+                  taxID:
+                    description: A tax payable identification (TIN) number used by
+                      the IRS in the administration of tax laws. It is used either
+                      by social security administration or by IRS. SSN issued by the
+                      SSA whereas TINs are issued by the IRS.
+                    type: string
+                  parIndicator:
+                    type: string
+                    description: Prescription ID.
+                    example: 12345
+                  planPaidAmount:
+                    type: number
+                    description: The???amount???that???the???benefit???plan???will???pay???for???the???service
+                      (s)???provided,???as???determined???by???adjudication???(not???payment???process).??????In???the???case???of???a???capitated???service,???this???is???usually???0.
+                    example: 500
+                    format: Number
+                  datePaid:
+                    description: The date on which final payment was (will be) made
+                      for this claim by the benefit plan.
+                    type: string
+                    format: date
+                  patientMembershipIdentifier:
+                    type: string
+                    description: The member ID of the associated participant in the
+                      membership relationship. This will be patient???s (not subscriber???s)
+                      member ID.
+                    example: A123456
+                  subscriberMembershipIdentifier:
+                    type: string
+                    description: subscriber member ID.
+                    example: A120000
+                  externalClaimStatus:
+                    description: This field represents external versions of the system-specific
+                      claim status values that can be returned within the claimStatus
+                      field.  These external values are defined by the business for
+                      enterprise-wide external communication of a claim status. The
+                      value within this field may be overridden within an opportunistic
+                      service/API layer for a specific consumer, but no consumer-specific
+                      values should be applied at the enterprise layer.external claim
+                      status. roll up Values for claim status(Healthclaims)Completed,Denied,Reversed,
+                      Received,In-Progress
+                    enum:
+                    - Completed
+                    - Denied
+                    - Reversed
+                    - Received
+                    - In-Progress
+                    - Additional Info Requested
+                    - Waiting for Funding
+                    type: string
+                  hasClaimDetails:
+                    description: Indicator to show whether claim details can be retrieved
+                    type: boolean
+                  isMultiSegment:
+                    description: Indicates if the segment has more than one active
+                      segment.
+                    type: boolean
+                  capOfficeId:
+                    description: The ID of the Capitation Office associated with this
+                      claim.
+                    type: string
+                  applicationProviderIdentifier:
+                    description: This field allows capture of application-specific
+                      Provider Identifiers (e.g. HRP SupplierID, which is not the
+                      Aetna-assigned EPDB PIN).  The source (application) and value
+                      can be captured to allow multiple occurrences of this data.
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Identifier'
+                  providerType:
+                    description: provider type
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProviderClassification'
+                  prescriptionId:
+                    description: The prescription number associated to the claim.  Applies
+                      to Pharmacy claims.
+                    type: string
+                  pharmacyName:
+                    description: The name and ID of the Pharmacy where the prescription
+                      was fulfilled or processed.  Applies to pharmacy claims.
+                    type: string
+                  totalPaidAllSources:
+                    description: This represents the combined payment due to the claim
+                      from all sources
+                    type: number
+                    format: double
+                  drug:
+                    type: object
+                    properties:
+                      drugName:
+                        description: The name of the manufactured drug.
+                        type: string
+                      nationalDrugCode:
+                        description: The NCPDP defined value using a unique algorithm
+                        type: string
+                      NDC11:
+                        description: The NCPDP defined value using a unique algorithm
+                          to derive a 11 digit NDC number.
+                        type: string
+                      medicationRoute:
+                        description: The method a medicine should be consumed. Injectable,
+                          Oral
+                        type: string
+                      medicationForm:
+                        description: The form a medicine is distributed. Liquid, Tablet
+                        type: string
+                      medicationStrength:
+                        description: The chemical strength of a medicine. 10 MG, etc..
+                        type: string
+                      brandNameCode:
+                        description: The code to identify what type of name is associated
+                          with the drug
+                        type: string
+                      clinicPackId:
+                        description: Identifies drug products distributed to patients
+                          as samples such as, clinic packs and institutional packs,
+                          by hospitals, clinics, manufacturers, and physicians. Clinic
+                          packs generally have no price associated with them
+                        type: string
+                      dateTimeCreated:
+                        description: The date and time the entry was created
+                        type: string
+                      dateTimeModified:
+                        description: The date and time the entry was last modified
+                        type: string
+                      deaClassCode:
+                        description: A code identifying controlled substances, as
+                          classified by the DEA
+                        type: string
+                      descriptionText:
+                        description: The textual description of what is specified
+                          as the full or wild-carded portion of the generic product
+                          identifier.
+                        type: string
+                      desiCode:
+                        description: '0'
+                        type: string
+                      dispensingUnitCode:
+                        description: Code indicating the usual dispensing sizes for
+                          tablets, capsules, and liquids
+                        type: string
+                      dollarRankCode:
+                        description: A code depicting the product dollar-rank according
+                          to independent research audits
+                        type: string
+                      drugStatus:
+                        description: Indicates the Active or Inactive status of a
+                          drug
+                        type: string
+                      effectiveDate:
+                        description: Date the entry is in effect
+                        type: string
+                      formId:
+                        description: An indication on legend drugs whether an OTC
+                          drug exists that is therapeutically equivalent
+                        type: string
+                      formTypeCode:
+                        description: Code indicating the administered form
+                        type: string
+                      genericCode:
+                        description: Generic code defined by Medi-Span
+                        type: string
+                      genericName:
+                        description: The GPI generic name identifies the product represented
+                          by the GPI. Name will include ingredient(s), dosage form
+                          and strength or concentration of the product
+                        type: string
+                      extendedAhfsTheraClassCode:
+                        type: string
+                      genericProductId:
+                        description: The full or wild-carded portion of generic product
+                          identifier specified for an occurrence of sensitive drug
+                          information.
+                        type: string
+                      gpccCode:
+                        description: 'The generic product packaging code identifies
+                          unique combinations of the following fields: generic product
+                          ID (GPI), package description, package size, package size
+                          unit of measure, package quantity, and unit dose;unit of
+                          use (UU;UD) packaging code'
+                        type: string
+                      innerpackId:
+                        description: Identifies the NDC that appears on items contained
+                          within a large carton. These innerpack NDCs differ slightly
+                          from the carton NDC and may not be sold separately by the
+                          manufacturer. However, they may be sold individually by
+                          the wholesaler. Their prices are calculated from the carton
+                          NDC and are updated when a price change occurs to the carton
+                          NDC
+                        type: string
+                      intExtCode:
+                        description: Internally, externally or combination of the
+                          two for the route of administration
+                        type: string
+                      label:
+                        description: Abbreviated, 25-character product description
+                        type: string
+                      legendChangeDate:
+                        description: Effective date drug product changed from prescription
+                          to over-the-counter, or vice-versa
+                        type: string
+                      limitedDistCode:
+                        description: Is used to denote if there are restricted distributions
+                          for a product. For example, this code denotes a private
+                          labeler, availability restricted to one region, and so on
+                        type: string
+                      maintenanceDrugCode:
+                        description: Indicator to determine if the drug meets criteria
+                          for consideration as a maintenance drug
+                        type: string
+                      manufacturerId:
+                        description: Links the proper manufacturer id to the product.  In
+                          some cases, the manufacturer id may differ from the manufacturer
+                          id in the NDC code
+                        type: string
+                      manufacturerName:
+                        description: Name of the manufacturer and;or distributor whose
+                          company name is included on the label
+                        type: string
+                      manufacturerNameAbbr:
+                        description: Abbreviated name for the manufacturer
+                        type: string
+                      nextLargerSuffix:
+                        description: Identifies the last one- or two-digit suffix
+                          for the next larger size of a given product
+                        type: string
+                      nextSmallerSuffix:
+                        description: Identifies the last one- or two-digit suffix
+                          for the next smaller size of a given product
+                        type: string
+                      numSystemCharCode:
+                        description: Identifies the type of number used in the Secondary
+                          ID Number [Data Element Code A079]. The Number System Character
+                          is a prefix to the Secondary ID Number. The Number System
+                          Character is also printed in readable form to the left of
+                          the bar code symbol
+                        type: string
+                      otcEquivCode:
+                        type: string
+                      packageQty:
+                        type: string
+                      packageSize:
+                        description: Represents the dispensing size of the package
+                          in terms of the volume or number of units contained
+                        type: string
+                      packageTotalQty:
+                        description: Total package quantity is the package size *
+                          package quantity
+                        type: string
+                      packageDesc:
+                        description: Indicates the container or package used for the
+                          drug
+                        type: string
+                      packageUom:
+                        description: Identifies the unit of measure for the package
+                          size of the solid, liquid, or gas, as dispensed
+                        type: string
+                      precededNdc:
+                        description: The old NDC for this entry
+                        type: string
+                      repackagerCode:
+                        description: Repackage code identifies products marketed specifically
+                          for physician unit-of-use dispensing
+                        type: string
+                      routeAdminCode:
+                        description: Code indicating how the medication, in the defined
+                          dosage form, is administered to the patient
+                        type: string
+                      rxOtcIndicator:
+                        description: A code indicating whether the drug is a prescription
+                          drug or an over-the-counter drug
+                        type: string
+                      rxRankCode:
+                        description: A code depicting the prescription-velocity rank
+                          according to independent research audits
+                        type: string
+                      secIdFormatCode:
+                        description: Identifies the format used for the number in
+                          the Secondary ID Number [Data Element Code A079]
+                        type: string
+                      singleCombCode:
+                        description: A code distinguishing between products containing
+                          a single active ingredient and those containing two or more
+                          active ingredients
+                        type: string
+                      strengthUom:
+                        description: Strength unit of measure, when combined with
+                          metric strength, represents the dosage strength as provided
+                          by the manufacturer
+                        type: string
+                      supercededNdc:
+                        description: The new NDC for this entry
+                        type: string
+                      terminationDate:
+                        type: string
+                      therapeuticClassCode:
+                        type: string
+                      therapeuticEquivCode:
+                        description: Two character code indicating the U.S. Food and
+                          Drug Admins rating of the therapeutic equivalence of a product
+                          with other products
+                        type: string
+                      thirdPartyRestCode:
+                        description: 3rd party restriction code which may be used
+                          by third-party processors for exceptions or restrictions
+                          in the payment of certain prescription claims
+                        type: string
+                      unitDoseCode:
+                        description: Identifies drugs which are packaged as a "unit
+                          dose" or "unit of use" medication
+                        type: string
+                      userIdCreated:
+                        type: string
+                      userIdModified:
+                        description: The user ID that last modified the entry
+                        type: string
+                      sensitivityIndicator:
+                        type: boolean
+                  providerSpecialty:
+                    description: Repeatable structure to indicate the provider specialty
+                    type: array
+                    items:
+                      properties:
+                        specialtyType:
+                          description: A high-level classification for this specialty
+                            (e.g., Cardiologist).
+                          type: string
+                        specialtyName:
+                          description: The name of this specialty (e.g., Clinical
+                            Cardiac Electrophysiology).
+                          type: string
+                        code:
+                          description: A code that represents this provider speciality.
+                            This code also is part of the provider specialty identifier
+                            (idValue field) - but may not be unique across multiple
+                            adjudication platforms (which have different idSource
+                            values).
+                          type: string
+                  totalAllowable:
+                    type: number
+                    description: The total amount allowable for the set of submitted
+                      service on a healthcare claim. This total is a roll-up of individual
+                      amounts from health claim lines on the health claim.
+                    example: 600
+                    format: Number
+                  isReversal:
+                    description: Identifies if the claim is a reversed claim or not.
+                    type: boolean
+                  claimRework:
+                    type: array
+                    items:
+                      properties:
+                        claimReworkIdentifier:
+                          type: object
+                          description: This object will contain the Unique identifier
+                            for the claim rework
+                          properties:
+                            idSource:
+                              type: string
+                              description: The source of the associated identifier
+                                value, which represents the originator of the identifier,
+                                i.e., the system or organization that generated the
+                                identifier
+                              example: 5 or 6 or 59
+                            idValue:
+                              type: string
+                              description: This attribute contains the claim Rework
+                                Identifier Value
+                              example: 20000345
+                            idType:
+                              type: string
+                              description: specifies the subject of the identifier
+                                and is used to qualify the URI of the API. The value
+                                of idType typically mirrors the class whose attributes
+                                are consumed or provided by the API
+                              example: claimRework
+                            resourceId:
+                              type: string
+                              description: This attribute contains the concatenation
+                                of the fields idSource and idValue
+                              example: 51~2345 32456
+                        claimReworkStatus:
+                          type: string
+                          description: Point-in-time status of the rework within the
+                            rework system.
+                          example: open
+                  billType:
+                    description: 'A three-digit numeric code which identifies the
+                      specific type of bill. Some systems use a four digit code with
+                      a leading 0. CMS ignores the leading 0. Reference: cms.gov (fl4)
+                      The first digit represents Type of Facility, the second digit
+                      the Bill Classification, and the third digit the Frequency of
+                      the claim which indicates the sequence of this bill in this
+                      particular episode of care. Example:  131 - 1 = Hospital, 3
+                      = Outpatient, 1 = Admit Through Discharge Claim'
+                    type: string
+    Identifier:
+      type: object
+      description: Unique identifier
+      properties:
+        idsource:
+          type: string
+          description: The source of the associated identifier value, which represents
+            the originator of the identifier, i.e., the system or organization that
+            generated the identifier
+          example: 5 or 6 or 59
+        idvalue:
+          type: string
+          description: This attribute contains the claim rework identifier value
+          example: 20000345
+        idtype:
+          type: string
+          description: specifies the subject of the identifier and is used to qualify
+            the URI of the API. The value of idType typically mirrors the class whose
+            attributes are consumed or provided by the API
+          example: claimRework
+        resourceId:
+          type: string
+          description: This attribute contains the concatenation of the fields idSource
+            and idValue
+          example: 51~2345 32456
+    ProviderClassification:
+      type: object
+      description: Unique identifier
+      properties:
+        classificationCode:
+          type: string
+        description:
+          type: string
+        providerClassificationIdentifier:
+          $ref: '#/components/schemas/Identifier'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProviderClassification'
+    eieHeaderObj:
+      properties:
+        eieHeader:
+          type: object
+          xml: {
+            }
+          properties:
+            action:
+              type: string
+            accessToken:
+              type: string
+            transactionID:
+              type: string
+            multiPath:
+              type: string
+            impersonatingApplicationIdentifier:
+              type: object
+              properties:
+                idSource:
+                  type: string
+                idValue:
+                  type: string
+                idType:
+                  type: string
+            applicationIdentifier:
+              type: object
+              properties:
+                idSource:
+                  type: string
+                idValue:
+                  type: string
+                idType:
+                  type: string
+            eieHeaderUserContext:
+              type: object
+              properties:
+                assuranceLevel:
+                  type: string
+                dnAccountName:
+                  type: string
+                eieHeaderAuthorizedRole:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      authorizedRole:
+                        type: string
+                impersonatingAccountIdentifier:
+                  type: object
+                  properties:
+                    idSource:
+                      type: string
+                    idValue:
+                      type: string
+                    idType:
+                      type: string
+                accountIdentifier:
+                  type: object
+                  properties:
+                    idSource:
+                      type: string
+                    idValue:
+                      type: string
+                    idType:
+                      type: string
+            eieHeaderVersion:
+              type: object
+              properties:
+                major:
+                  type: string
+                minor:
+                  type: string
+                maintenance:
+                  type: string
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: '{  "BuildEieHeader" : "map",  "SecurityTemplate" : "AppPrivApp(APPPII+APPPHI)",    "Backend"
+        : "IIB",  "Errorhandlingpolicy": "Standard Policy",  "Consumer":Internal",  "Mutual
+        Auth between Consumer and APIC" : "Not Required"  }'
+      x-ibm-oauth-provider: v3-internal-auth-oauth2-privapp-token
+      flows:
+        clientCredentials:
+          tokenUrl: /v3/internal/auth/oauth2/privapp/token
+          scopes:
+            APPPHI: APPPHI
+            APPPII: APPPII
+    AccessTokenAuth:
+      type: http
+      description: Use the access_token retrived from the token exchange call as a
+        Bearer token
+      scheme: bearer
+      bearerFormat: opaque

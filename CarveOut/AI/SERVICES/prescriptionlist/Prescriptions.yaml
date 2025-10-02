@@ -1,0 +1,1063 @@
+{
+  "openapi": "3.0.0",
+  "info":
+    {
+      "title": "Prescriptions",
+      "version": "3.0.4",
+      "description": "This version of Prescription search combines the auto refill and renew statues into a single autoRefill status",
+    },
+  "servers": [{ "url": "/cvs/v1/memberships" }],
+  "paths":
+    {
+      "/{membershipId}/prescriptions":
+        {
+          "get":
+            {
+              "parameters":
+                [
+                  {
+                    "name": "membershipId",
+                    "required": true,
+                    "in": "path",
+                    "description": "This is a membership Identifier",
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "claimId",
+                    "required": true,
+                    "in": "query",
+                    "description": "This is a membership Identifier",
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "startDate",
+                    "in": "query",
+                    "description": 'The start date from which the API must search the claims for. This is an optional field, default to 365 days from current date if client does not provide. Its format should be "yyyy-mm-dd".',
+                    "style": "form",
+                    "explode": true,
+                    "schema": { "type": "string", "format": "date" },
+                  },
+                  {
+                    "name": "endDate",
+                    "in": "query",
+                    "description": 'The end date up to which the API must search the claims for. This is an optional field, Default to current date if client does not provide. Its format should be "yyyy-mm-dd".',
+                    "style": "form",
+                    "explode": true,
+                    "schema": { "type": "string", "format": "date" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Success",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/prescriptionDetailResponse",
+                                },
+                            },
+                        },
+                    },
+                  "400":
+                    {
+                      "description": "Bad request",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "401":
+                    {
+                      "description": "Unauthorized",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "403":
+                    {
+                      "description": "Forbidden",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "404":
+                    {
+                      "description": "Not found",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "500":
+                    {
+                      "description": "Internal Server error",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "503":
+                    {
+                      "description": "Service Unavailable",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/{membershipId}/prescriptions/search":
+        {
+          "post":
+            {
+              "parameters":
+                [
+                  {
+                    "in": "header",
+                    "name": "Accept-Language",
+                    "schema": { "type": "string", "enum": ["en", "es"] },
+                    "example": "es, en, es-ES, en-US",
+                  },
+                  {
+                    "name": "membershipId",
+                    "required": true,
+                    "in": "path",
+                    "description": "This is a membership Identifier",
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "startDate",
+                    "in": "query",
+                    "description": 'The start date from which the API must search the claims for. This is an optional field, default to 365 days from current date if client does not provide. Its format should be "yyyy-mm-dd".',
+                    "style": "form",
+                    "explode": true,
+                    "schema": { "type": "string", "format": "date" },
+                  },
+                  {
+                    "name": "endDate",
+                    "in": "query",
+                    "description": 'The end date up to which the API must search the claims for. This is an optional field, Default to current date if client does not provide. Its format should be "yyyy-mm-dd".',
+                    "style": "form",
+                    "explode": true,
+                    "schema": { "type": "string", "format": "date" },
+                  },
+                ],
+              "requestBody":
+                {
+                  "description": "If no prescriptionsRequest passed in from client, by default prescriptions for all members on the plan (allowed by family access rule and UAF rules) are going to be returned.",
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            {
+                              "$ref": "#/components/schemas/prescriptionSearchRequest",
+                            },
+                        },
+                    },
+                  "required": false,
+                },
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/prescriptionSearchResponse",
+                                },
+                            },
+                        },
+                    },
+                  "400":
+                    {
+                      "description": "Bad request",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "401":
+                    {
+                      "description": "Unauthorized",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "403":
+                    {
+                      "description": "Forbidden",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "404":
+                    {
+                      "description": "Unauthorized",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "500":
+                    {
+                      "description": "Internal Server error",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "503":
+                    {
+                      "description": "Service Unavailable",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/prescriptions/search":
+        {
+          "post":
+            {
+              "parameters":
+                [
+                  {
+                    "in": "header",
+                    "name": "Accept-Language",
+                    "schema": { "type": "string", "enum": ["en", "es"] },
+                    "example": "es, en, es-ES, en-US",
+                  },
+                  {
+                    "name": "startDate",
+                    "in": "query",
+                    "description": 'The start date from which the API must search the claims for. This is an optional field, default to 365 days from current date if client does not provide. Its format should be "yyyy-mm-dd".',
+                    "style": "form",
+                    "explode": true,
+                    "required": true,
+                    "schema": { "type": "string", "format": "date" },
+                  },
+                  {
+                    "name": "endDate",
+                    "in": "query",
+                    "description": 'The end date up to which the API must search the claims for. This is an optional field, Default to current date if client does not provide. Its format should be "yyyy-mm-dd".',
+                    "style": "form",
+                    "explode": true,
+                    "schema": { "type": "string", "format": "date" },
+                  },
+                ],
+              "requestBody":
+                {
+                  "description": "If no prescriptionsRequest passed in from client, by default prescriptions for all members on the plan (allowed by family access rule and UAF rules) are going to be returned.",
+                  "content":
+                    {
+                      "application/json":
+                        {
+                          "schema":
+                            {
+                              "$ref": "#/components/schemas/prescriptionSearchRequestWithMemId",
+                            },
+                        },
+                    },
+                  "required": false,
+                },
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "Success",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/prescriptionSearchResponse",
+                                },
+                            },
+                        },
+                    },
+                  "400":
+                    {
+                      "description": "Bad request",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "401":
+                    {
+                      "description": "Unauthorized",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "403":
+                    {
+                      "description": "Forbidden",
+                      "headers": {},
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "404":
+                    {
+                      "description": "Unauthorized",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "500":
+                    {
+                      "description": "Internal Server error",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                  "503":
+                    {
+                      "description": "Service Unavailable",
+                      "content":
+                        {
+                          "application/json":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/error" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+  "components":
+    {
+      "schemas":
+        {
+          "prescriptionDetailResponse":
+            {
+              "title": "prescriptionDetailResponse",
+              "required":
+                [
+                  "claimId",
+                  "prescriptionId",
+                  "lastFilledDate",
+                  "memberFirstName",
+                  "memberLastName",
+                  "relationshipToSubscriber",
+                  "membershipResourceId",
+                  "memberResourceId",
+                  "drug",
+                  "quantity",
+                  "daysSupply",
+                  "prescriberName",
+                  "fulfilledBy",
+                  "estimatedCost",
+                  "prescriptionNumber",
+                  "statusText",
+                ],
+              "type": "object",
+              "properties":
+                {
+                  "information":
+                    {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/information" },
+                      "description": "",
+                    },
+                  "claimId":
+                    {
+                      "type": "string",
+                      "description": "Identification number for the claim.",
+                      "example": "200023611694001",
+                    },
+                  "prescriptionId":
+                    {
+                      "type": "string",
+                      "description": "Identification number of the prescription.",
+                      "example": "674529584",
+                    },
+                  "lastFilledDate":
+                    {
+                      "type": "string",
+                      "description": "Signifies the date the prescription was filled",
+                      "example": "2018-04-12",
+                    },
+                  "memberFirstName": { "type": "string", "example": "John" },
+                  "memberLastName": { "type": "string", "example": "Doe" },
+                  "relationshipToSubscriber":
+                    {
+                      "type": "string",
+                      "description": "Description of the relationship To Subscriber codes based upon ANSI X12 834 guidance as follows - Spouse , Father or Mother, Grandfather or Grandmother, Grandson or Granddaughter, Uncle or Aunt, Nephew or Niece, Cousin, Adopted Child, Foster Child, Son-in-law or Daughter-in-law, Brother-in-law or Sister-in-law, Mother-in-law or Father-in-law, Brother or Sister, Ward, Stepparent, Stepson or Stepdaughter, Self, Child, Sponsored Dependent, Dependent of a Minor Dependent, Ex-spouse, Guardian, Court Appointed Guardian, Collateral Dependent, Life Partner, Annuitant, Trustee, Other Relationship, Other Relative.Permitted values are as follows - Self, Other Relative.",
+                      "example": "Self",
+                    },
+                  "membershipResourceId":
+                    {
+                      "type": "string",
+                      "description": "the membershipResourceId",
+                      "example": "5~263801696+31+1+20180101+788678+C+3",
+                    },
+                  "memberResourceId":
+                    {
+                      "type": "string",
+                      "description": "the memberResourceId",
+                      "example": "41~263801696",
+                    },
+                  "drug": { "$ref": "#/components/schemas/drug" },
+                  "quantity":
+                    {
+                      "type": "number",
+                      "description": "Quantity of the drug.",
+                      "example": 15,
+                    },
+                  "daysSupply":
+                    {
+                      "type": "integer",
+                      "description": "This indicates the number of days of supply for this prescription",
+                      "format": "int32",
+                      "example": 5,
+                    },
+                  "prescriberName":
+                    {
+                      "type": "string",
+                      "description": "Name of the Prescriber",
+                      "example": "John Doe",
+                      "nullable": true,
+                    },
+                  "prescriberFirstName":
+                    {
+                      "type": "string",
+                      "description": "First name of the prescriber",
+                      "example": "Jane",
+                    },
+                  "prescriberLastName":
+                    {
+                      "type": "string",
+                      "description": "Last name of the prescriber",
+                      "example": "Doe",
+                    },
+                  "prescriberNpiNumber":
+                    {
+                      "type": "string",
+                      "description": "National Provider Identifier of the prescriber. A National Provider Identifier (NPI) is a unique 10-digit identification number issued to health care providers in the United States by the Centers for Medicare and Medicaid Services (CMS)",
+                      "example": "12345",
+                    },
+                  "fulfilledBy":
+                    {
+                      "type": "string",
+                      "description": "Pharmacy name",
+                      "example": "Caremark prescription service",
+                    },
+                  "estimatedCost":
+                    {
+                      "type": "number",
+                      "description": "total amount of payment",
+                      "example": 111,
+                    },
+                  "autoRefill":
+                    {
+                      "type": "boolean",
+                      "description": "This flag indicates whether the prescription is enrolled for auto-refill. This is required for MAIL refillType.",
+                      "example": false,
+                    },
+                  "isAutoRefillAllowed":
+                    {
+                      "type": "boolean",
+                      "description": "This flag indicates whether the prescription is eligible for auto-refill. This is required for MAIL refillType.",
+                      "example": false,
+                    },
+                  "autoRefillNotAllowedReason":
+                    {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "This field indicates if the member's plan allows for auto-refill enrollment. Member level field. This is required for MAIL refillType.",
+                    },
+                  "prescriptionExpirationDate":
+                    {
+                      "type": "string",
+                      "description": "the expiration date of the prescription in yyyy‑mm‑dd",
+                      "example": "2018-04-12",
+                      "nullable": true,
+                    },
+                  "prescriptionNumber":
+                    {
+                      "type": "string",
+                      "description": "the unique Rx number of the prescription",
+                      "example": "674529584",
+                    },
+                  "refillType":
+                    {
+                      "type": "string",
+                      "description": 'The refill type, example RETAIL, MAIL. If the refillType= "MAIL", then mailOrderResponse will contain the order details.',
+                      "example": "MAIL",
+                    },
+                  "refillsLeft":
+                    {
+                      "type": "integer",
+                      "description": "Number of refills remaining",
+                      "format": "int32",
+                      "example": 3,
+                      "nullable": true,
+                    },
+                  "rxStatus":
+                    {
+                      "type": "string",
+                      "description": "The refill status which includes refill, renew or order status. Applicable only for retail refills.",
+                      "example": "Ready for Refill",
+                    },
+                  "refillStatusText":
+                    {
+                      "type": "string",
+                      "description": "The refill status. Applicable only for mail order refills.",
+                      "example": "Available Now",
+                    },
+                  "renewStatusText":
+                    {
+                      "type": "string",
+                      "description": "The renew status. Applicable only for mail order refills.",
+                      "example": "One-time renew",
+                    },
+                  "statusDescription":
+                    {
+                      "type": "string",
+                      "description": "The user friendly description of the status.",
+                      "example": "Available to Refill",
+                    },
+                  "nextFillDate":
+                    {
+                      "type": "string",
+                      "description": "This field indicates the date when the prescription is due for refill.",
+                      "example": "2019-02-21",
+                    },
+                  "orderNumber":
+                    {
+                      "type": "string",
+                      "description": "The order number.",
+                      "example": "2261665002",
+                    },
+                  "needsShipConsent":
+                    {
+                      "type": "boolean",
+                      "description": "If the order needs a consent from the member, this flag will be set to true or else false.",
+                      "example": true,
+                    },
+                  "trackingNumber":
+                    {
+                      "type": "string",
+                      "description": "The tracking number for the order.",
+                      "example": "125281891",
+                    },
+                  "trackingURL":
+                    {
+                      "type": "string",
+                      "description": "The tracking url for tracking the order. This is populated only when orderStatus is SHIPPED.",
+                      "example": "https://www.ups.com/track?loc=en_US&requester=WT#/",
+                    },
+                  "statusText":
+                    {
+                      "type": "string",
+                      "description": "status of the prescription",
+                      "example": "UPCOMING_REFILLS",
+                    },
+                },
+            },
+          "prescriptionSearchRequest":
+            {
+              "title": "prescriptionsRequest",
+              "type": "object",
+              "properties":
+                {
+                  "membershipResourceIds":
+                    {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "A list of memberResourceId for the person on the plan",
+                    },
+                },
+              "description": "request object",
+            },
+          "prescriptionSearchRequestWithMemId":
+            {
+              "title": "prescriptionsRequestWithMemId",
+              "type": "object",
+              "required": ["membershipResourceId"],
+              "properties":
+                {
+                  "membershipResourceId":
+                    {
+                      "type": "string",
+                      "description": "This is a membership Identifier of the logged in member",
+                    },
+                  "membershipResourceIds":
+                    {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "A list of memberResourceId for the person on the plan",
+                    },
+                },
+              "description": "request object",
+            },
+          "prescriptionSearchResponse":
+            {
+              "title": "prescriptionsResponse",
+              "type": "object",
+              "properties":
+                {
+                  "information":
+                    {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/information" },
+                      "description": "",
+                    },
+                  "startDate":
+                    {
+                      "type": "string",
+                      "description": "The start date from which the API must search the claims for.",
+                      "example": "2019-04-01",
+                    },
+                  "startDateText":
+                    {
+                      "type": "string",
+                      "description": "The start date transformed in a client-friendly format based on the locale.",
+                      "example": "Oct 5, 2022",
+                    },
+                  "endDate":
+                    {
+                      "type": "string",
+                      "description": "The end date up to which the API must search the claims for.",
+                      "example": "2019-12-05",
+                    },
+                  "prescriptionList":
+                    {
+                      "type": "array",
+                      "items":
+                        {
+                          "$ref": "#/components/schemas/prescriptionSearchObject",
+                        },
+                      "description": "",
+                    },
+                },
+            },
+          "prescriptionSearchObject":
+            {
+              "title": "prescription",
+              "required":
+                [
+                  "membershipResourceId",
+                  "memberFirstName",
+                  "memberLastName",
+                  "relationshipToSubscriber",
+                  "claimId",
+                  "prescriptionId",
+                  "drug",
+                  "quantity",
+                  "lastFilledDate",
+                  "daysSupply",
+                  "fulfilledBy",
+                  "estimatedCost",
+                  "statusText",
+                ],
+              "type": "object",
+              "properties":
+                {
+                  "membershipResourceId":
+                    {
+                      "type": "string",
+                      "example": "5~263801696+31+1+20180101+788678+C+3",
+                    },
+                  "memberFirstName": { "type": "string", "example": "John" },
+                  "memberLastName": { "type": "string", "example": "Doe" },
+                  "relationshipToSubscriber":
+                    {
+                      "type": "string",
+                      "description": "Description of the relationship To Subscriber codes based upon ANSI X12 834 guidance as follows - Spouse, Father or Mother, Grandfather or Grandmother, Grandson or Granddaughter, Uncle or Aunt, Nephew or Niece, Cousin, Adopted Child, Foster Child, Son-in-law or Daughter-in-law, Brother-in-law or Sister-in-law, Mother-in-law or Father-in-law, Brother or Sister, Ward, Stepparent, Stepson or Stepdaughter, Self, Child, Sponsored Dependent, Dependent of a Minor Dependent, Ex-spouse, Guardian, Court Appointed Guardian, Collateral Dependent, Life Partner, Annuitant, Trustee, Other Relationship, Other Relative.Permitted values are as follows - Self, Other Relative.",
+                      "example": "Self",
+                    },
+                  "claimId":
+                    {
+                      "type": "string",
+                      "description": "Identification number for the claim.",
+                      "example": "200023611694001",
+                    },
+                  "prescriptionId":
+                    {
+                      "type": "string",
+                      "description": "Identification number of the prescription.",
+                      "example": "674529584",
+                    },
+                  "drug": { "$ref": "#/components/schemas/drug" },
+                  "quantity":
+                    {
+                      "type": "number",
+                      "description": "Quantity of the drug.",
+                      "example": 15,
+                    },
+                  "lastFilledDate":
+                    {
+                      "type": "string",
+                      "description": "Signifies the date the prescription was filled",
+                      "example": "2018-04-12",
+                    },
+                  "daysSupply":
+                    {
+                      "type": "integer",
+                      "description": "This indicates the number of days of supply for this prescription",
+                      "format": "int32",
+                      "example": 5,
+                    },
+                  "fulfilledBy":
+                    {
+                      "type": "string",
+                      "description": "Pharmacy name",
+                      "example": "Caremark prescription service",
+                    },
+                  "prescriberName":
+                    {
+                      "type": "string",
+                      "description": "Name of the Prescriber",
+                      "example": "John Doe",
+                      "nullable": true,
+                    },
+                  "prescriberFirstName":
+                    {
+                      "type": "string",
+                      "description": "First name of the prescriber",
+                      "example": "Jane",
+                    },
+                  "prescriberLastName":
+                    {
+                      "type": "string",
+                      "description": "Last name of the prescriber",
+                      "example": "Doe",
+                    },
+                  "prescriberNpiNumber":
+                    {
+                      "type": "string",
+                      "description": "National Provider Identifier of the prescriber. A National Provider Identifier (NPI) is a unique 10-digit identification number issued to health care providers in the United States by the Centers for Medicare and Medicaid Services (CMS)",
+                      "example": "12345",
+                    },
+                  "refillType":
+                    {
+                      "type": "string",
+                      "description": 'The refill type, example RETAIL, MAIL. If the refillType= "MAIL", then mailOrderResponse will contain the order details.',
+                      "example": "MAIL",
+                    },
+                  "refillsLeft":
+                    {
+                      "type": "integer",
+                      "description": "Number of refills remaining",
+                      "format": "int32",
+                      "example": 3,
+                      "nullable": true,
+                    },
+                  "rxStatus":
+                    {
+                      "type": "string",
+                      "description": "The refill status which includes refill, renew or order status. Applicable only for retail refills.",
+                      "example": "Ready for Refill",
+                    },
+                  "refillStatusText":
+                    {
+                      "type": "string",
+                      "description": "The refill status. Applicable only for mail order refills.",
+                      "example": "Available Now",
+                    },
+                  "renewStatusText":
+                    {
+                      "type": "string",
+                      "description": "The renew status. Applicable only for mail order refills.",
+                      "example": "One-time renew",
+                    },
+                  "statusDescription":
+                    {
+                      "type": "string",
+                      "description": "The user friendly description of the status.",
+                      "example": "Available to Refill",
+                    },
+                  "estimatedCost":
+                    {
+                      "type": "number",
+                      "description": "total amount of payment",
+                      "example": 111,
+                    },
+                  "orderNumber":
+                    {
+                      "type": "string",
+                      "description": "The order number.",
+                      "example": "2261665002",
+                    },
+                  "needsShipConsent":
+                    {
+                      "type": "boolean",
+                      "description": "If the order needs a consent from the member, this flag will be set to true or else false.",
+                      "example": true,
+                    },
+                  "autoRefill":
+                    {
+                      "type": "boolean",
+                      "description": "This flag indicates whether the prescription is enrolled for auto-refill. This is required for MAIL refillType.",
+                      "example": false,
+                    },
+                  "isAutoRefillAllowed":
+                    {
+                      "type": "boolean",
+                      "description": "This flag indicates whether the prescription is eligible for auto-refill. This is required for MAIL refillType.",
+                      "example": false,
+                    },
+                  "autoRefillNotAllowedReason":
+                    {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "description": "This field indicates if the member's plan allows for auto-refill enrollment. Member level field. This is required for MAIL refillType.",
+                    },
+                  "prescriptionExpirationDate":
+                    {
+                      "type": "string",
+                      "description": "This field indicates the date when the prescription expires.",
+                      "example": "2020-01-04",
+                      "nullable": true,
+                    },
+                  "statusText":
+                    {
+                      "type": "string",
+                      "description": "status of the prescription",
+                      "example": "UPCOMING_REFILLS",
+                    },
+                },
+            },
+          "drug":
+            {
+              "title": "drug",
+              "required":
+                ["drugName", "drugForm", "drugStrength", "isBrand", "NDC11"],
+              "type": "object",
+              "properties":
+                {
+                  "drugForm":
+                    {
+                      "type": "string",
+                      "description": "Form of the drug in the specific dosage. For example Capsule.",
+                      "example": "Capsule",
+                    },
+                  "drugName":
+                    {
+                      "type": "string",
+                      "description": "Name of the drug like Lipitor, Prozac, etc",
+                      "example": "Prozac",
+                    },
+                  "NDC11":
+                    {
+                      "type": "string",
+                      "description": "The National Drug Code (NDC) is a unique product identifier used for drugs intended for human use",
+                      "example": "66582041474",
+                    },
+                  "drugStrength":
+                    {
+                      "type": "string",
+                      "description": "This field provides the Drug strength value.",
+                      "example": "200mg",
+                      "nullable": true,
+                    },
+                  "requiresColdPack":
+                    {
+                      "type": "boolean",
+                      "description": "A true value of this field indicates that the drug cannot be shipped with normal packaging. Is required for MAIL refilltype.",
+                      "example": false,
+                    },
+                  "isControlledSubstance":
+                    {
+                      "type": "boolean",
+                      "description": "A true value of this field indicates a controlled drug as per DEA",
+                      "example": false,
+                    },
+                  "isSensitive":
+                    {
+                      "type": "boolean",
+                      "description": "A true value of this field indicates sensitive medication. Is required for MAIL refilltype.",
+                      "example": false,
+                    },
+                  "isBrand":
+                    {
+                      "type": "boolean",
+                      "description": "This field determines if the drug is brand or generic.",
+                      "example": true,
+                    },
+                  "gpiCode":
+                    {
+                      "title": "gpiCode",
+                      "type": "string",
+                      "description": "Drug gpicode",
+                      "example": "96428049502900",
+                    },
+                },
+            },
+          "information":
+            {
+              "title": "information",
+              "required": ["statusCode"],
+              "type": "object",
+              "properties":
+                {
+                  "statusCode":
+                    {
+                      "type": "string",
+                      "description": "The status of mail or retail refills. If mail order refills on CVS  is down, then the status would be MAIL_ERROR, and if retail system is down it will be RETAIL_ERROR.",
+                      "example": "RETAIL_ERROR",
+                    },
+                  "detail":
+                    {
+                      "type": "string",
+                      "description": "The detail description of the error/information",
+                      "example": "Retail service is down",
+                    },
+                },
+            },
+          "error":
+            {
+              "title": "error",
+              "type": "object",
+              "properties":
+                {
+                  "httpCode":
+                    {
+                      "type": "string",
+                      "description": "Status code is used to determine what went wrong and/or how the downstream system responds to the request",
+                      "example": "400",
+                    },
+                  "httpMessage":
+                    {
+                      "type": "string",
+                      "description": "A human readable description of the status code",
+                      "example": "Bad request",
+                    },
+                  "moreInformation":
+                    {
+                      "type": "string",
+                      "description": "A more detailed description of the error",
+                      "example": "membership id is invalid",
+                    },
+                  "status":
+                    {
+                      "type": "integer",
+                      "description": "Status code is used to determine what went wrong and/or how the downstream system responds to the request",
+                      "format": "int32",
+                      "example": 400,
+                    },
+                  "title":
+                    {
+                      "type": "string",
+                      "description": "A human readable description of the status code",
+                      "example": "Bad request",
+                    },
+                  "detail":
+                    {
+                      "type": "string",
+                      "description": "A more detailed description of the error",
+                      "example": "membership id is invalid",
+                    },
+                  "type":
+                    {
+                      "type": "string",
+                      "description": "used to add a type of error for validation",
+                      "example": "common.error-types.address.PROVIDE_MANDATORY_FIELDS",
+                    },
+                },
+            },
+        },
+    },
+}

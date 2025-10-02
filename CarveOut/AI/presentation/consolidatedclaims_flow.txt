@@ -1,0 +1,153 @@
+CONSOLIDATED CLAIMS FLOW - PowerPoint Slide Content
+
+TITLE: Consolidated Claims API Flow - Date Range Enhancement
+
+SLIDE CONTENT:
+
+1. USER INTERACTION FLOW
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ User clicks "Claims" in top-tier menu on health portal         │
+   │ ↓                                                               │
+   │ Frontend initiates consolidated claims request                  │
+   │ ↓                                                               │
+   │ API Call: at/eieheader/v3/memberships/{id}/consolidatedclaims  │
+   └─────────────────────────────────────────────────────────────────┘
+
+2. CURRENT IMPLEMENTATION (from consolidatedclaims.js)
+   
+   API Endpoint: https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v3/consolidatedclaim/find
+   
+   Request Body Parameters:
+   • lineOfBusinessName: "Commercial"
+   • planSponsorId: "0000000100903903"
+   • relationshipToSubscriber: "Self"
+   • claimType: "MED,DEN,PHAR,HEAR,SBH"
+   • includeCvsDirectClaims: true
+   • claimStatus: ["CMPL","RVSD","INPR","DENY","IREQ","HP","Paid","Final","Denied"]
+   
+   CURRENT DATE RANGE LOGIC:
+   • fromDate: "2023-10-02T04:00:00.000Z" (2 years ago from today)
+   • toDate: "2025-10-03T03:59:59.000Z" (today + 1 day)
+   
+   System automatically calculates 2-year lookback period from current date
+
+3. JWT TOKEN CONTEXT (from consolidatedclaims_idtoken.json)
+   
+   User Identity:
+   • Member: XAVIER HUNTER
+   • Account ID: "1~dmt-s-w185351572"
+   • Business Identifier: "15~QFNV1BBBBPXZ"
+   • Role: "subscriber,memberSubscriber1"
+   • Line of Business: Commercial
+
+4. PROPOSED ENHANCEMENT - POLICY EFFECTIVE DATE RESTRICTION
+
+   CURRENT BEHAVIOR:
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ System sets fromDate = Today - 2 years                         │
+   │ No consideration of policy effective date                       │
+   └─────────────────────────────────────────────────────────────────┘
+
+   ENHANCED BEHAVIOR (Using Application Startup Object):
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ 1. Calculate standard 2-year lookback: Today - 2 years         │
+   │ 2. Extract policy effective dates from application_startup:     │
+   │    • Parse readApplicationStartup.portalGroups[].policies[]     │
+   │    • Get effectiveDatetimeBegin for each membership type       │
+   │    • Filter by claimType (MED, DEN, PHAR, HEAR, SBH)          │
+   │ 3. Apply business rule per policy type:                        │
+   │    FOR EACH claimType in request:                              │
+   │      policy_effective = membership.effectiveDatetimeBegin      │
+   │      IF policy_effective > calculated_from_date THEN           │
+   │         fromDate = policy_effective                            │
+   │      ELSE                                                      │
+   │         fromDate = calculated_from_date                        │
+   │ 4. Use the most restrictive (latest) fromDate across types    │
+   └─────────────────────────────────────────────────────────────────┘
+
+5. POLICY EFFECTIVE DATE SOURCE - APPLICATION STARTUP OBJECT
+
+   ┌─────────────────────────────────────────────────────────────────┐
+   │                APPLICATION_STARTUP JSON PAYLOAD                 │
+   │                                                                 │
+   │ ASSUMPTION: System has access to application_startup object     │
+   │                                                                 │
+   │ Data Path: readApplicationStartup.portalGroups[].policies[]     │
+   │           .memberships[].effectiveDatetimeBegin                 │
+   │                                                                 │
+   │ Example from application_startup_response.json:                 │
+   │ • Medical: "effectiveDatetimeBegin": "2023-01-01T04:00:00Z"    │
+   │ • Dental: "effectiveDatetimeBegin": "2023-01-01T04:00:00Z"     │
+   │ • Pharmacy: "effectiveDatetimeBegin": "2023-01-01T04:00:00Z"   │
+   │ • Vision: "effectiveDatetimeBegin": "2023-01-01T04:00:00Z"     │
+   │ • Hearing: "effectiveDatetimeBegin": "2023-01-01T04:00:00Z"    │
+   │                                                                 │
+   │ Alternative: coverageDatetimeBegin (same values in example)     │
+   └─────────────────────────────────────────────────────────────────┘
+
+6. BUSINESS IMPACT
+
+   BEFORE: Claims may be retrieved from before policy was active
+   AFTER: Claims search limited to actual policy coverage period
+   
+   BENEFIT: Ensures data accuracy and prevents display of pre-coverage claims
+
+7. TECHNICAL IMPLEMENTATION WITH APPLICATION_STARTUP
+
+   Data Structure Access:
+   • application_startup.readApplicationStartup.portalGroups[0].policies[]
+   • Each policy contains memberships[] array with effectiveDatetimeBegin
+   • Policy types: Medical, Dental, Vision, Hearing, Pharmacy
+   
+   Implementation Logic:
+   ```
+   function getRestrictedFromDate(claimTypes, applicationStartup) {
+     const twoYearsAgo = new Date();
+     twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
+     
+     let mostRestrictiveDate = twoYearsAgo;
+     
+     claimTypes.forEach(claimType => {
+       const policy = findPolicyByType(applicationStartup, claimType);
+       if (policy && policy.memberships[0]) {
+         const effectiveDate = new Date(policy.memberships[0].effectiveDatetimeBegin);
+         if (effectiveDate > mostRestrictiveDate) {
+           mostRestrictiveDate = effectiveDate;
+         }
+       }
+     });
+     
+     return mostRestrictiveDate.toISOString();
+   }
+   ```
+   
+   Error Handling:
+   • Graceful fallback to 2-year lookback if application_startup unavailable
+   • Log warnings when policy effective dates cannot be determined
+   • Maintain backward compatibility with existing date range logic
+
+8. CONCRETE EXAMPLE WITH ACTUAL DATA
+
+   Current Request (from consolidatedclaims.js):
+   • claimType: "MED,DEN,PHAR,HEAR,SBH"
+   • fromDate: "2023-10-02T04:00:00.000Z" (2 years ago)
+   • toDate: "2025-10-03T03:59:59.000Z"
+   
+   Application Startup Data (all policies effective 2023-01-01T04:00:00Z):
+   • Medical Policy: effectiveDatetimeBegin: "2023-01-01T04:00:00Z"
+   • Dental Policy: effectiveDatetimeBegin: "2023-01-01T04:00:00Z"  
+   • Pharmacy Policy: effectiveDatetimeBegin: "2023-01-01T04:00:00Z"
+   • Hearing Policy: effectiveDatetimeBegin: "2023-01-01T04:00:00Z"
+   
+   Enhanced Logic Result:
+   • 2-year lookback: 2023-10-02T04:00:00.000Z
+   • Policy effective: 2023-01-01T04:00:00Z (earlier than lookback)
+   • Final fromDate: 2023-10-02T04:00:00.000Z (no change in this case)
+   
+   Scenario Where Enhancement Matters:
+   • If policy effective date was 2024-06-01T04:00:00Z
+   • Then fromDate would be restricted to 2024-06-01T04:00:00Z
+   • Preventing retrieval of pre-policy claims
+
+SLIDE FOOTER:
+Enhancement ensures claims data aligns with actual policy coverage periods, improving data accuracy and member experience.

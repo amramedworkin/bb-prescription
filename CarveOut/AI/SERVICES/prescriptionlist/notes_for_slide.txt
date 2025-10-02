@@ -1,0 +1,9 @@
+aetnahealth-cvs-claims/server/controllers/claimsController.tsk
+
+this code makes the pharmacyclaims call that ultimately calls CVS getClaimsHistory which returns the prescription list that is transformed by Aetna's Claims Service (/pharmacyclaims) and CVS Prescription Service (/prescriptions/search).
+it is here that the underrun must be managed.  
+There has been a lack of failure data that I can use to see if the overrun is the problem
+Both services use (/prescriptions/search and /pharmacyclaims) pass effective dates
+These dates must be checked to make sure they are using the mebershipResource effective dates
+If any of the respondant values are outside of the parameters of the effective dates, then they should be stripped from the returning value list
+This should happen at GET /pharamcyclaims in the Claims Service as this is used by all upstream prescription requesting mechanisms

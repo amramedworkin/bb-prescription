@@ -1,0 +1,31 @@
+1. Prescription selected on top menu
+2. /healthcare/qapath1/v4/dashboard/pharmacy?membershipResourceId=5~185351572%2B10%2B2%2B20200101%2B762245%2BB%2B2' called
+2.a. ID_TOKEN
+{
+  "ae_version": "1.1.0",
+  "iss": "https://openid.aetna.com/consumer",
+  "sub": "17OYCKLJHX7SPC1S53NU@aetnae.com",
+  "aud": "9859ed0d-c0bc-4301-9f51-afab26b178d4",
+  "exp": 1759407418,
+  "iat": 1759403818,
+  "given_name": "XAVIER",
+  "family_name": "HUNTER",
+  "acr": "http://consumer.aetna.com/assurance/loa-2",
+  "ae_dgn": "CN=DMT-S-W185351572,OU=Members,OU=External,DC=aetheq,DC=aetnaeq,DC=com",
+  "ae_hcr": "subscriber,memberSubscriber1",
+  "ae_accountId": "1~dmt-s-w185351572",
+  "ae_busIndID": [
+    "globalIdentifier",
+    "60005~8038047766798485487",
+    "preferredProxyId",
+    "15~QFNV1BBBBPXZ"
+  ],
+  "ae_impAUD": "",
+  "ae_impHCR": "",
+  "ae_impACR": "",
+  "ae_impDGN": "",
+  "ae_impAccountId": "",
+  "ae_impBusIndID": [],
+  "ae_impGrantedLOA": ""
+}
+

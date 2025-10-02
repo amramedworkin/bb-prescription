@@ -1,0 +1,127 @@
+CVS CLAIMS HISTORY COMPLIANCE ISSUE - PowerPoint Slide Content
+
+TITLE: CVS getClaimsHistory Compliance Risk - Prescription Data Outside Membership Effective Dates
+
+SLIDE CONTENT:
+
+1. PROBLEM STATEMENT
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ COMPLIANCE RISK: CVS getClaimsHistory API returns prescription  │
+   │ claims data that may fall outside of membershipResource         │
+   │ effective dates, potentially exposing non-compliant data        │
+   │                                                                 │
+   │ IMPACT: Violation of data governance and member privacy rules   │
+   │ by displaying claims from periods when coverage was inactive    │
+   └─────────────────────────────────────────────────────────────────┘
+
+2. CURRENT PRESCRIPTION LIST FLOW (from prescriptionlist_flow.txt)
+
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ 1. Client → POST /prescriptions/search                         │
+   │ 2. CVS Prescription Service → GET /pharmacyclaims               │
+   │ 3. Claims Service checks cache                                  │
+   │ 4. Claims Service → /cvs_auth_token_data (CVS Auth)            │
+   │ 5. Parallel calls:                                             │
+   │    • /userauthorizations (Core Proxy Service)                  │
+   │    • /familyaccessrules (Member Profile Service)               │
+   │    • /getClaimsHistory (CVS Backend) ⚠️ RISK POINT            │
+   │ 6. Apply CVS family access rules                               │
+   │ 7. Apply UAF rules                                             │
+   │ 8. Create response object and cache                            │
+   │ 9. Return filtered results                                     │
+   └─────────────────────────────────────────────────────────────────┘
+
+3. SPECIFIC API DETAILS (from prescriptionlist.js)
+
+   Current Request:
+   • Endpoint: /v3/aetnahealth_prescriptions/memberships/{membershipId}/prescriptions/search
+   • Membership ID: "5~185351572+10+2+20200101+762245+B+2"
+   • User: XAVIER HUNTER (from JWT token)
+   • Date Parameters: startDate, endDate (optional, defaults to 365 days)
+
+4. THE COMPLIANCE GAP
+
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ CURRENT STATE:                                                  │
+   │ • CVS getClaimsHistory returns ALL claims for date range        │
+   │ • No validation against membershipResource effective dates      │
+   │ • Claims may include data from before/after coverage periods    │
+   │                                                                 │
+   │ MEMBERSHIP RESOURCE EFFECTIVE DATES:                            │
+   │ • effectiveDatetimeBegin: Coverage start date                   │
+   │ • effectiveDatetimeEnd: Coverage end date                       │
+   │ • Claims outside these dates = NON-COMPLIANT DATA               │
+   └─────────────────────────────────────────────────────────────────┘
+
+5. REQUIRED SOLUTION - EFFECTIVE DATE VALIDATION
+
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ IMPLEMENTATION POINT: GET /pharmacyclaims in Claims Service     │
+   │ (claimsController.ts - getClaims function)                      │
+   │                                                                 │
+   │ VALIDATION LOGIC NEEDED:                                        │
+   │ 1. Extract membershipResource effective dates from startup data │
+   │ 2. Filter CVS getClaimsHistory response                        │
+   │ 3. Remove claims where:                                         │
+   │    claim.serviceDate < membershipResource.effectiveDateBegin    │
+   │    OR                                                           │
+   │    claim.serviceDate > membershipResource.effectiveDateEnd      │
+   │ 4. Return only compliant claims data                           │
+   └─────────────────────────────────────────────────────────────────┘
+
+6. ENHANCED FLOW WITH COMPLIANCE CHECK
+
+   ┌─────────────────────────────────────────────────────────────────┐
+   │ 1-7. [Same as current flow]                                     │
+   │ 8. CVS getClaimsHistory returns raw claims data                 │
+   │ 9. ⭐ NEW: Effective Date Validation Layer                      │
+   │    • Get membershipResource effective dates                     │
+   │    • Filter claims by service date vs. effective dates         │
+   │    • Strip non-compliant claims from response                   │
+   │ 10. Apply existing CVS family access rules                     │
+   │ 11. Apply UAF rules                                             │
+   │ 12. Create compliant response object and cache                  │
+   │ 13. Return filtered, compliant results                         │
+   └─────────────────────────────────────────────────────────────────┘
+
+7. TECHNICAL IMPLEMENTATION (claimsController.ts Enhancement)
+
+   ```typescript
+   export async function getClaims(req: Request, res: Response, next: NextFunction): Promise<void> {
+     try {
+       const { membershipId } = req.params;
+       const { startDate, endDate } = req.query;
+       
+       // Get membership effective dates from application_startup
+       const membershipDates = await getMembershipEffectiveDates(membershipId);
+       
+       // Get pharmacy claims from CVS
+       const rawClaims = await getPharmacyClaims(membershipId, startDate, endDate);
+       
+       // ⭐ NEW: Filter claims by membership effective dates
+       const compliantClaims = filterClaimsByEffectiveDates(rawClaims, membershipDates);
+       
+       res.json(compliantClaims);
+     } catch (error) {
+       next(error);
+     }
+   }
+   ```
+
+8. COMPLIANCE BENEFITS
+
+   ✅ Prevents exposure of claims from inactive coverage periods
+   ✅ Ensures data governance compliance
+   ✅ Protects member privacy
+   ✅ Reduces regulatory risk
+   ✅ Maintains data accuracy across all prescription requesting mechanisms
+
+9. IMPLEMENTATION PRIORITY
+
+   🚨 HIGH PRIORITY: This affects all upstream prescription requesting mechanisms
+   📍 SINGLE POINT OF CONTROL: Fix at GET /pharmacyclaims level
+   🔄 BACKWARD COMPATIBLE: No changes to existing API contracts
+   ⚡ PERFORMANCE: Minimal impact - simple date comparison filtering
+
+SLIDE FOOTER:
+Critical compliance fix required to prevent exposure of prescription data outside membership effective date periods.
