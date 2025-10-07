@@ -1,0 +1,284 @@
+GM Dworkin, Amram, please let me know if I can schedule the walkthrough for F167030, F202781 this week and F215343 (if ready). thank you!
+Rally Login
+4439970270 - Cardiology
+Hoopla Library Card - 26098047783018
+
+
+
+curl 'https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v4/dashboard/pharmacy?membershipResourceId=5~185351572%2B10%2B2%2B20200101%2B762245%2BB%2B2' \
+  -X 'POST' \
+  -H 'accept: application/json' \
+  -H 'accept-language: en-US' \
+  -H 'authorization: Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0r77wg1yRgxgGuFVUpQe2sHn22wKIXDQCL8Vo-PrrPG_KiYKu7qUsHrrrklSOfiGK_np3uFAyCx5JG5yl1UagPcI_NTDUKcSkH3TBqKNAfGq6o4oxuD7vxrO5bFswRk4IvOCqCeoQ6l3mMTicjBES0Y4g1jWEC2tjd9C0suGGLEPw7EYRExnTOkJ4UC5umEV4BkAIqy2noZO5H17uQXB8nRoc4VGaweuogJ_PAtOAhW15e_zOGCdhqnHS-nNscpFnLlNOIcFI0jti1P6Tljmi9uFlIPAqaQe4OBqnamIlX4tj-6Uw-uLXLImC0jbfyEtz3aZgFy7PX-c_mPITlJZEVTVEodU5E1QZAchYIq05uYA2xSve4c6XKA14EoKa3NEP' \
+  -H 'cache-control: no-store no-cache' \
+  -H 'content-length: 0' \
+  -H 'content-type: application/json' \
+  -b 'languagePreference=en-US; AETAdnrc=08533b115a0a1000226775a0e73a4bc1db68ceda972e54f7; AETAdnuc=08533b115a062000a11154a4cae701f8ef2fbe0002697f7598a7279824f1c89dc736dde47ba251f4; nlbi_2317287=HerSNLEK3nWiGVzWSVjhZgAAAAAqwrU/lRXfaqn3MsJyByTq; nlbi_2781707=kafFM7w7YF+YyZyCmE9qGAAAAAAhoD0Z5Ds0BJk0trGs5xQm; AMCV_06660D1556E030D17F000101%40AdobeOrg=MCMID|00798009821182202861579621076017029222; QuantumMetricUserID=0a545029ec6186113942bcd8246f183f; qa_path=1; visid_incap_2317287=cTZmJd0JRQOhduIG86IQ9gxf3mgAAAAAQUIPAAAAAABT59FaHwgrLQPS8XFpc8vQ; incap_ses_232_2317287=yAN5IcitNC3xcQI1Ljs4Aw1f3mgAAAAAn6lHYlZfSlrA80Up7M87aA==; QuantumMetricSessionID=d73f5181d83182cb089aff61db8c97fd; visid_incap_2781707=Ky+kQcPqRvSNuP9a58ztCRNf3mgAAAAAQUIPAAAAAADElOgEcCJJRXyIawGamx1U; incap_ses_232_2781707=6c9rKXS8OXbpdwI1Ljs4AxNf3mgAAAAA2xWBNd/m8xMLnxbwY9LecA==; nlbi_2783411_3143677=0+/Tejg5qCFQ9v7fVWQwTQAAAABaSVXzlavI905TjFqe+H5t; incap_ses_242_2783411=c60hbxVPRU7+IE7tIsJbAxNf3mgAAAAA8WEklPWQ3vj57aASfbP99g==; incap_ses_181_2783411=EmVxekoc60x0tA2RGAuDAhVf3mgAAAAA9bQhpk+TRC5RZfaVlxW0Fw==; incap_ses_230_2783411=6OKXTQo+kXGKUercNyAxAxRf3mgAAAAASza44a0eeVBfJC2msTIn9g==; incap_ses_185_2783411=ehPLQTEUx3krcsWf60CRAhVf3mgAAAAAaCxBWpWFDlr+85i0Xc9bXQ==; incap_ses_278_2783411=8arMBR8mYTlpCml07afbAxVf3mgAAAAAaiQ5kWsneUt9AsRlBrx1wg==; incap_ses_161_2783411=3wTaPz7FpTvSn415Ff07AhVf3mgAAAAA2zJJ1XJSo/NcaeeEXGujfQ==; incap_ses_155_2783411=2IKuaG1gqjjWw2ulFqwmAhVf3mgAAAAAeAWr0DVAk9Pqic9NivNcuQ==; incap_ses_157_2783411=S2pFe79XvyWUmgTsE8ctAhZf3mgAAAAA3m9KOWwL9meYeIgsaGABvw==; incap_ses_183_2783411=vGgqeur1n3QWsWzUFSaKAhVf3mgAAAAAiAe0hv4Ec4VWMdyQWR3l3A==; incap_ses_190_2783411=uuctIdVKmThs9s7UZASjAhZf3mgAAAAAWiuORY6aSgb4oCYDtLA/0A==; incap_ses_153_2783411=LGDkeuqc/1lZsU4RCZEfAhdf3mgAAAAApA9qwUT9XAK0mzyXtTfu8w==; kndctr_06660D1556E030D17F000101_AdobeOrg_cluster=va6; incap_ses_216_2783411=9b+VY/sHN1cl1UzqQ2P/Ahdf3mgAAAAAfL+PMPHVhr5AwrOT0ufFMw==; kndctr_06660D1556E030D17F000101_AdobeOrg_identity=CiYwMDc5ODAwOTgyMTE4MjIwMjg2MTU3OTYyMTA3NjAxNzAyOTIyMlIQCKOm-t2ZMxgBKgNWQTYwAfAB5euNpZoz; incap_ses_180_2783411=5l6xdRH66GE0akWqe31/Ahhf3mgAAAAAfIETaLZTIDm5fRH+A0QGoA==; sessionKey=p/66Qd+qEa25WJurnp5/FgB3Fg6U8zz+uB52rpG+o0EUHXD1NhILlosnBcN3Is8P; Authorization=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNmM2ZTU3Zi02YTljLTQwMjUtYjFiMS1hZDliNGJmOGExODEiLCJleHAiOjE3NTk0MDc0MDZ9.7J81BwFUN_kpw06dBNga-STurbGAFNhvt3SwO_h1ISo; incap_ses_186_2783411=7jIPUaP9wWesYKDtZ86UAh5f3mgAAAAADQYtmG+Z1eFz26K4a8Pwdw==; visid_incap_2783411=C5AV1t8RQHmzL0peopa5dyBf3mgAAAAAQUIPAAAAAADE71/pGdQcbYo9mnpVJ0Vc; incap_ses_182_2783411=AkubN1E30RIQhfOydpiGAiRf3mgAAAAA9JUVa7nws4mj4TJQCT3PvQ==; AHContinueButtonClickTime=1759403813065; ADRUM=s=1759403816343&r=https%3A%2F%2Fqawww.aetna.com%2Fmanagemyaccount%2Flogin%3Fhash%3D-1744549690; nlbi_2317287_2147483392=gMYMLP/iZDwMsLm+SVjhZgAAAACaV34Nt5A9p18czSQVh0Ks; AE_BVxn10XGHG3vi+hJ70+7g26cb3z6n0EiQh4Dv0u89k4cQ==1476873378436165198026415385430; access_token=AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0r77wg1yRgxgGuFVUpQe2sHn22wKIXDQCL8Vo-PrrPG_KiYKu7qUsHrrrklSOfiGK_np3uFAyCx5JG5yl1UagPcI_NTDUKcSkH3TBqKNAfGq6o4oxuD7vxrO5bFswRk4IvOCqCeoQ6l3mMTicjBES0Y4g1jWEC2tjd9C0suGGLEPw7EYRExnTOkJ4UC5umEV4BkAIqy2noZO5H17uQXB8nRoc4VGaweuogJ_PAtOAhW15e_zOGCdhqnHS-nNscpFnLlNOIcFI0jti1P6Tljmi9uFlIPAqaQe4OBqnamIlX4tj-6Uw-uLXLImC0jbfyEtz3aZgFy7PX-c_mPITlJZEVTVEodU5E1QZAchYIq05uYA2xSve4c6XKA14EoKa3NEP; id_token=eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDA3NDE4LCJpYXQiOjE3NTk0MDM4MTgsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.ahxsqIATubyX_R_N_UGLOCQtpY5BnwaXSzX03qwZ6-AWttnyLSzpiMayp2yCPOjLaemRklgoNuuiFDIrTxM_7CEHPrchzSQIb1uRnyzGCk15NqP2RLAHQ1AguCDwZezPC-pqJx_QFccW91_wtGrmhfTuxYfDEZBIrM8O8d4ne7Ew6WapuvaXlXQtKfkF0gDVMtoNc2D0fS-2lInleby9R8_PX9HN6IVZrAKYxIRcUbx9WUD5CTPO9Z_c37B3IbUQwrb8IkOWHaEYmKxZStxiqSAJeNa8BShCD_R9D0ggtoqQ_AuC2yfbIgpRF9lbLO3iAeafhCbmIn0HUuCtBX9tCA; clientId=9859ed0d-c0bc-4301-9f51-afab26b178d4; SMSESSION=Se4d273WI0rDNxcF+Rb2XvW9EE4LdyysLE00OZvQSTthFbW4Dy3/PzeGruGsYuH4DlbPyP0Ln5BqUUr17QXQzFZUqXMez+eWTskJ/hzgDpLuaAkjhh6eqifiSHu+/t2fDD/zNBhyeNlQopBGQbucGRKSoRSf83iv+u5WfxFsEiQBVS7RooFathcu7WIIV+mkw8745uE0Pfc6aQ5as1JaYCnrx6Cx568srQc68STCYltN59gqFBhCNFfmGyFULfhnXRgTHwrX6h6HV1XiX+cB0dkNbwmErUjrJ9BUqjBIiO2OR/nYPEeekEOl9d5AmEthVcjtbEmlxn9UYg/puG6x+5IXb/tuT6w+mxwG0S1m/9Oq4hxLDfXlvr+twisn5193YMn+cnA8Ykjs3/Zi8IpvT4aEN3fZclWKjVROeRfDk72n9XwGTF41ZAxapQ7wsD1DxbuQUkTTPGV66yCKtSUbskFTuKCPRgV3cue5Jl1LPGJmx90dJYtvR8TNRZJMU0nFk9ugF7QyDPa30daUibiW8/HVUY1SlCR8aOmBK396fIBpH+On7+UFqPKeEa5hg6pF6rkEbJzPQcj8LiObGr3mX4AaIQh6aMwDaN6HluXCageUOVnf4zD20rPJnAh3TOAoOmovzrOuCipXitsgwhcmmtxXqKs7yjCdndLjfWoHNry+CjYxtZv7mgeTBeYqmIURQF6U+tmx95Zxa6Q47wvHvljmeun9Ux+snbMVGTTH56f2Rdl8dV6FwXK1RRuOZyck8bEJJI9TUshJMiAoPpVLc7G+DZpxzEyITR8zdw0ZiWvjno/6Q9wy1ECxpBAvVAQ5wKpEiYSx82fGBjLXGK4daA6AgnlF6yCVPGreDhfhu8GF3Wpg2KKxPTKphvb8o001JDRKK5bYRj6tP/x1NB7Uc6gQdPSkeRqjUZwXUsBtS4WQljcdgIC9FZGgeaIIladOef7/a0yti6nyFU27tmtk4jwDI0f5cf0E2LHPxjLSdFQKTFJJyV0/no+9zyP/t2Te0pYiynhseUQGK1l/Y4VP3wbw5jg6dT6zhJ7GBixSFZHaV4bBBGQrlAWawlEZLEOJColX27ksJOr2LoATs6ayYclSUAndMe1WRzi5HTGDFxPgA4TOerUSzQPhL0eS+nKW6BOdsNAtlm7GVgq1quSZOPZ1QpeHvjV4' \
+  -H 'id_token: eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDA3NDE4LCJpYXQiOjE3NTk0MDM4MTgsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.ahxsqIATubyX_R_N_UGLOCQtpY5BnwaXSzX03qwZ6-AWttnyLSzpiMayp2yCPOjLaemRklgoNuuiFDIrTxM_7CEHPrchzSQIb1uRnyzGCk15NqP2RLAHQ1AguCDwZezPC-pqJx_QFccW91_wtGrmhfTuxYfDEZBIrM8O8d4ne7Ew6WapuvaXlXQtKfkF0gDVMtoNc2D0fS-2lInleby9R8_PX9HN6IVZrAKYxIRcUbx9WUD5CTPO9Z_c37B3IbUQwrb8IkOWHaEYmKxZStxiqSAJeNa8BShCD_R9D0ggtoqQ_AuC2yfbIgpRF9lbLO3iAeafhCbmIn0HUuCtBX9tCA' \
+  -H 'origin: https://qa-health.aetna.com' \
+  -H 'pragma: no-cache' \
+  -H 'priority: u=1, i' \
+  -H 'referer: https://qa-health.aetna.com/' \
+  -H 'sec-ch-ua: "Chromium";v="140", "Not=A?Brand";v="24", "Google Chrome";v="140"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "macOS"' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-site: same-site' \
+  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' \
+  -H 'x-aetna-accept-language: en-US' \
+  -H 'x-ibm-client-id: 9859ed0d-c0bc-4301-9f51-afab26b178d4'
+
+
+
+
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v4/dashboard/pharmacy?membershipResourceId=5~185351572%2B10%2B2%2B20200101%2B762245%2BB%2B2", {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US",
+    "authorization": "Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0r77wg1yRgxgGuFVUpQe2sHn22wKIXDQCL8Vo-PrrPG_KiYKu7qUsHrrrklSOfiGK_np3uFAyCx5JG5yl1UagPcI_NTDUKcSkH3TBqKNAfGq6o4oxuD7vxrO5bFswRk4IvOCqCeoQ6l3mMTicjBES0Y4g1jWEC2tjd9C0suGGLEPw7EYRExnTOkJ4UC5umEV4BkAIqy2noZO5H17uQXB8nRoc4VGaweuogJ_PAtOAhW15e_zOGCdhqnHS-nNscpFnLlNOIcFI0jti1P6Tljmi9uFlIPAqaQe4OBqnamIlX4tj-6Uw-uLXLImC0jbfyEtz3aZgFy7PX-c_mPITlJZEVTVEodU5E1QZAchYIq05uYA2xSve4c6XKA14EoKa3NEP",
+    "cache-control": "no-store no-cache",
+    "content-type": "application/json",
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDA3NDE4LCJpYXQiOjE3NTk0MDM4MTgsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.ahxsqIATubyX_R_N_UGLOCQtpY5BnwaXSzX03qwZ6-AWttnyLSzpiMayp2yCPOjLaemRklgoNuuiFDIrTxM_7CEHPrchzSQIb1uRnyzGCk15NqP2RLAHQ1AguCDwZezPC-pqJx_QFccW91_wtGrmhfTuxYfDEZBIrM8O8d4ne7Ew6WapuvaXlXQtKfkF0gDVMtoNc2D0fS-2lInleby9R8_PX9HN6IVZrAKYxIRcUbx9WUD5CTPO9Z_c37B3IbUQwrb8IkOWHaEYmKxZStxiqSAJeNa8BShCD_R9D0ggtoqQ_AuC2yfbIgpRF9lbLO3iAeafhCbmIn0HUuCtBX9tCA",
+    "pragma": "no-cache",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "x-aetna-accept-language": "en-US",
+    "x-ibm-client-id": "9859ed0d-c0bc-4301-9f51-afab26b178d4"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": null,
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+
+
+
+
+
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v3/consolidatedclaim/find", {
+    "headers": {
+        "accept": "application/json",
+        "accept-language": "en-US",
+        "authorization": "Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0AR9b7BrsxzEFivhc1ddW02ZxwGkuzWPU2DuS5rvOzRQZ1e8bqBSenGApjoDiXQ_eH8MztLKQmfkX7m3psV7H2W_DeikAuX76vxfiHSPOM0cODXSBZKvIIlC8sfpH8ZUhvwAXlZ10zpBNkhE_rYtWUEZfXDgtUqy9zq2R-pcEtUle_tvBMc0oaXzTL8fgOG7fjLJ-CL5-zudnvBHNi3Q-f0hBX9xp1rTsmXKId2nH79RjfgwCormHLS65FTSPq5D5OgLgBixR76yk_NDLnXe0EhLfXkkAOTg8b5yNvOzC3eO3lkx6ZM4IMEkykYPFAipn5RXBiH--yggBIA46NnVhMZvwD10fU_SAe2BdgOEMLHLW57EafUDCvktHxzbCrbnu",
+        "cache-control": "no-store no-cache",
+        "content-type": "application/json",
+        "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDA5NDg4LCJpYXQiOjE3NTk0MDU4ODgsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.MYkrAMc__5BICuuPmtbIumMDd5Ew3yhsDvXvKZsjrav3RZ2qAPf7-Z4tLjERca8kmlBCcYSYuVNQr9R-4q8V8IVhAtanTO8T1omK9v0I-jpMxTAV-dVzuUDLcl3AvMvW83LJaidfTGsACT9Cgl9-qR3Vh-21lzEd2VRM8v1En5-3NXZN9CVEkZAA9MDKBac2aLMkqqxqx1JoKgXqiVQ9jSR2skpd0UUEHDgTGsguyRAo294ATKfbIABPNwEOAzf0djjeAT9AjNjaU8oQ3DSTzVJlQ-ARc7Jl0FYVdReWmK2gyiy-2T8Z-kiViWqhrwDmmtutRFq84E0jjcVRC80c9A",
+        "pragma": "no-cache",
+        "priority": "u=1, i",
+        "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"macOS\"",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-site",
+        "x-aetna-accept-language": "en-US",
+        "x-ibm-client-id": "9859ed0d-c0bc-4301-9f51-afab26b178d4"
+    },
+    "referrer": "https://qa-health.aetna.com/",
+    "body": "{\"lineOfBusinessName\":\"Commercial\",\"planSponsorId\":\"0000000100903903\",\"relationshipToSubscriber\":\"Self\",\"claimType\":\"MED,DEN,PHAR,HEAR,SBH\",\"includeCvsDirectClaims\":true,\"claimStatus\":[\"CMPL\",\"RVSD\",\"INPR\",\"DENY\",\"IREQ\",\"HP\",\"Paid\",\"Final\",\"Denied\"],\"fromDate\":\"2023-10-02T04:00:00.000Z\",\"toDate\":\"2025-10-03T03:59:59.000Z\"}",
+    "method": "POST",
+    "mode": "cors",
+    "credentials": "include"
+
+
+
+
+
+
+
+
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/identitymanagement/qapath1/v3/aetnahealth_prescriptions/memberships/5~185351572+10+2+20200101+762245+B+2/cvstoken", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "priority": "u=1, i",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": null,
+  "method": "OPTIONS",
+  "mode": "cors",
+  "credentials": "omit"
+}); ;
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/identitymanagement/qapath1/v3/aetnahealth_prescriptions/memberships/5~185351572+10+2+20200101+762245+B+2/cvstoken", {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US",
+    "authorization": "Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0GBOENflgzOmtBF8p7f_01XUKuVD-7AvwupXoskIXW4UOepKK-2EpOTQZDmGlHOWRwanCa3Xa-bix7NvZbScmFvussTqLhhe_iXXk3a4QhnViB9XlYQKGpZshQdgKtk8B92MN8DN3XlTCyln5TBUN3tLV_R8U_347rItZE5LIILreKYfCI8KufwfcikIjhwKRe9f9szTWE4UuosVjeX1Fw27SJ0cd4MtvjIU4JoaXWI5zmAx-JYW0W20jVSQup1Qg4kkmN1OQ9AYOz2lkBSWePix1JbYiR-L61DTMqPNtP1OrpsmwHsnklAKw_5OUIjp_4rz__nMAbxM-mP3LJiwb0m2_v-PtjJlFuZYNA_d1YpHc7ypc437LrWBnLWVVBGZP",
+    "cache-control": "no-store no-cache",
+    "content-type": "application/json",
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDExNDM3LCJpYXQiOjE3NTk0MDc4MzcsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.cunioS8pb-dr02sEXqavcI64mMlpp46r_W7JCV6JV8p83Bdz7oEiO8200LcDIk8hbNQ8AzwzHORZ_akKfROzt5NOJfvxcBBe5E6jWHz-B8dPhNm4dWnBVwfbbag3WikD0aEZJvlTfsUMN9OlQmDd_lN33ajk6uP1X8zCT0uCEXDqwDTMffqtqAhwtC3aipgQ08W1_TaRim2glvb5_JCsZqI9ChETNQQDmILuGMs0DTmj-_sSBDMn0NPcOylZhxI_mjCQEFgoww83Omw2RBfMyXZaYdMVTs1WCwBB3FGF73AUvdiHwYKxr6uzUodnJ2jz44VW-mL8mIpspov_IqdZIw",
+    "pragma": "no-cache",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "x-aetna-accept-language": "en-US",
+    "x-ibm-client-id": "9859ed0d-c0bc-4301-9f51-afab26b178d4"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+}); ;
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v4/dashboard/pharmacy?membershipResourceId=5~185351572%2B10%2B2%2B20200101%2B762245%2BB%2B2", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "priority": "u=1, i",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": null,
+  "method": "OPTIONS",
+  "mode": "cors",
+  "credentials": "omit"
+}); ;
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v4/dashboard/pharmacy?membershipResourceId=5~185351572%2B10%2B2%2B20200101%2B762245%2BB%2B2", {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US",
+    "authorization": "Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0GBOENflgzOmtBF8p7f_01XUKuVD-7AvwupXoskIXW4UOepKK-2EpOTQZDmGlHOWRwanCa3Xa-bix7NvZbScmFvussTqLhhe_iXXk3a4QhnViB9XlYQKGpZshQdgKtk8B92MN8DN3XlTCyln5TBUN3tLV_R8U_347rItZE5LIILreKYfCI8KufwfcikIjhwKRe9f9szTWE4UuosVjeX1Fw27SJ0cd4MtvjIU4JoaXWI5zmAx-JYW0W20jVSQup1Qg4kkmN1OQ9AYOz2lkBSWePix1JbYiR-L61DTMqPNtP1OrpsmwHsnklAKw_5OUIjp_4rz__nMAbxM-mP3LJiwb0m2_v-PtjJlFuZYNA_d1YpHc7ypc437LrWBnLWVVBGZP",
+    "cache-control": "no-store no-cache",
+    "content-type": "application/json",
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDExNDM3LCJpYXQiOjE3NTk0MDc4MzcsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.cunioS8pb-dr02sEXqavcI64mMlpp46r_W7JCV6JV8p83Bdz7oEiO8200LcDIk8hbNQ8AzwzHORZ_akKfROzt5NOJfvxcBBe5E6jWHz-B8dPhNm4dWnBVwfbbag3WikD0aEZJvlTfsUMN9OlQmDd_lN33ajk6uP1X8zCT0uCEXDqwDTMffqtqAhwtC3aipgQ08W1_TaRim2glvb5_JCsZqI9ChETNQQDmILuGMs0DTmj-_sSBDMn0NPcOylZhxI_mjCQEFgoww83Omw2RBfMyXZaYdMVTs1WCwBB3FGF73AUvdiHwYKxr6uzUodnJ2jz44VW-mL8mIpspov_IqdZIw",
+    "pragma": "no-cache",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "x-aetna-accept-language": "en-US",
+    "x-ibm-client-id": "9859ed0d-c0bc-4301-9f51-afab26b178d4"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": null,
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+
+
+
+
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v2/pharmacy/prescription/summary/403295314", {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US",
+    "authorization": "Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0_GMWO9E2dOL6blwJXC28DGiJ31K4R7C_D9Pldf0uQtgkFOgvxJv78ZHSFMhqTZ_sQCSbOkZIJUGF6jf8gxwSTgwFaBdJ8P9KuehCTOhvumFY6bWALN1t-CbxzPGJ71uXZhl3u5aItqoD_36q0r8iR-lCXd-uQsmQgmmabKWUxD1LE0b3NbJa0ZZvBql6fwdPHilFGwd0P_F0DfPuzBR2wSC9YoQy8hkcrm11SkuvTAPx3XZ3ygeeAPmXrmfDxA8XFOQzavWoMKneaIZPcQLnb07O_EdwNc_fkF8X3f3GFSFvvMYvd9brxYfof6em6rOIkCoThiKrFwhLLnavX8x5mKaQQtFEBGRs5cMEuT2y8VO7Rn_8edO1zJ5ZjI9VjBUz",
+    "cache-control": "no-store no-cache",
+    "content-type": "application/json",
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDE1NTM0LCJpYXQiOjE3NTk0MTE5MzQsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.VQPCLl8DbrD-62ui3jWa2--REshELHaXHBZWOtcDE9FAoe7wm7s_ZpSUahx95W06Fr8gUBR-Xi1kucfEn9POF7mQM9adpha8vg6XQn5HMDzNKBLQTOEQofYt1FBeCj6qm68_nm2UNSCxE0iWeiqNFySa7e73Y0mCh8Zse_YzrhuRI9HWsQlR-Ux_LwoVcX8XJUjmwCw7mcNNlm8meUEJqagEMnCFdfSqAJXOHD1xg_a76s9gAY7wW088CdiST6ku_0Pq6h8alkujCtiYDNGZNuxxcxgAf1Xgw17YGtSl2kE51mMjVGpyNJVu-ZfSDuFggwNTgTtmrHjGCh-ZSbogZA",
+    "pragma": "no-cache",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "x-aetna-accept-language": "en-US",
+    "x-ibm-client-id": "9859ed0d-c0bc-4301-9f51-afab26b178d4"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": "{\"drug\":{\"drugName\":\"HUMALOG\",\"NDC11\":\"2751017\",\"drugForm\":\"VIA\",\"drugStrength\":\"100U/ML\"},\"membershipResourceId\":\"5~185351572+10+2+20200101+762245+B+2\",\"selectedMemberResourceId\":\"41~185351572\"}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+
+
+fetch("https://ahwproxy.aetna.com/qaapi03.aetna.com/healthcare/qapath1/v2/pharmacy/prescription/summary/403297013", {
+  "headers": {
+    "accept": "application/json",
+    "accept-language": "en-US",
+    "authorization": "Bearer AAIkOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0_GMWO9E2dOL6blwJXC28DGiJ31K4R7C_D9Pldf0uQtgkFOgvxJv78ZHSFMhqTZ_sQCSbOkZIJUGF6jf8gxwSTgwFaBdJ8P9KuehCTOhvumFY6bWALN1t-CbxzPGJ71uXZhl3u5aItqoD_36q0r8iR-lCXd-uQsmQgmmabKWUxD1LE0b3NbJa0ZZvBql6fwdPHilFGwd0P_F0DfPuzBR2wSC9YoQy8hkcrm11SkuvTAPx3XZ3ygeeAPmXrmfDxA8XFOQzavWoMKneaIZPcQLnb07O_EdwNc_fkF8X3f3GFSFvvMYvd9brxYfof6em6rOIkCoThiKrFwhLLnavX8x5mKaQQtFEBGRs5cMEuT2y8VO7Rn_8edO1zJ5ZjI9VjBUz",
+    "cache-control": "no-store no-cache",
+    "content-type": "application/json",
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhZV92ZXJzaW9uIjoiMS4xLjAiLCJpc3MiOiJodHRwczovL29wZW5pZC5hZXRuYS5jb20vY29uc3VtZXIiLCJzdWIiOiIxN09ZQ0tMSkhYN1NQQzFTNTNOVUBhZXRuYWUuY29tIiwiYXVkIjoiOTg1OWVkMGQtYzBiYy00MzAxLTlmNTEtYWZhYjI2YjE3OGQ0IiwiZXhwIjoxNzU5NDE1NTM0LCJpYXQiOjE3NTk0MTE5MzQsImdpdmVuX25hbWUiOiJYQVZJRVIiLCJmYW1pbHlfbmFtZSI6IkhVTlRFUiIsImFjciI6Imh0dHA6Ly9jb25zdW1lci5hZXRuYS5jb20vYXNzdXJhbmNlL2xvYS0yIiwiYWVfZGduIjoiQ049RE1ULVMtVzE4NTM1MTU3MixPVT1NZW1iZXJzLE9VPUV4dGVybmFsLERDPWFldGhlcSxEQz1hZXRuYWVxLERDPWNvbSIsImFlX2hjciI6InN1YnNjcmliZXIsbWVtYmVyU3Vic2NyaWJlcjEiLCJhZV9hY2NvdW50SWQiOiIxfmRtdC1zLXcxODUzNTE1NzIiLCJhZV9idXNJbmRJRCI6WyJnbG9iYWxJZGVudGlmaWVyIiwiNjAwMDV-ODAzODA0Nzc2Njc5ODQ4NTQ4NyIsInByZWZlcnJlZFByb3h5SWQiLCIxNX5RRk5WMUJCQkJQWFoiXSwiYWVfaW1wQVVEIjoiIiwiYWVfaW1wSENSIjoiIiwiYWVfaW1wQUNSIjoiIiwiYWVfaW1wREdOIjoiIiwiYWVfaW1wQWNjb3VudElkIjoiIiwiYWVfaW1wQnVzSW5kSUQiOltdLCJhZV9pbXBHcmFudGVkTE9BIjoiIn0.VQPCLl8DbrD-62ui3jWa2--REshELHaXHBZWOtcDE9FAoe7wm7s_ZpSUahx95W06Fr8gUBR-Xi1kucfEn9POF7mQM9adpha8vg6XQn5HMDzNKBLQTOEQofYt1FBeCj6qm68_nm2UNSCxE0iWeiqNFySa7e73Y0mCh8Zse_YzrhuRI9HWsQlR-Ux_LwoVcX8XJUjmwCw7mcNNlm8meUEJqagEMnCFdfSqAJXOHD1xg_a76s9gAY7wW088CdiST6ku_0Pq6h8alkujCtiYDNGZNuxxcxgAf1Xgw17YGtSl2kE51mMjVGpyNJVu-ZfSDuFggwNTgTtmrHjGCh-ZSbogZA",
+    "pragma": "no-cache",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"macOS\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-site",
+    "x-aetna-accept-language": "en-US",
+    "x-ibm-client-id": "9859ed0d-c0bc-4301-9f51-afab26b178d4"
+  },
+  "referrer": "https://qa-health.aetna.com/",
+  "body": "{\"drug\":{\"drugName\":\"Vitamin B-2\",\"NDC11\":\"43292055538\",\"drugForm\":\"TAB\",\"drugStrength\":\"25MG\"},\"membershipResourceId\":\"5~185351572+10+2+20200101+762245+B+2\",\"selectedMemberResourceId\":\"41~185351572\"}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+
+
+
+
+	
+https://apih3.aetna.com/healthcare/prod/v3/plangroups/select
+
+
+
+
+
+
+Idea ius that as part of the plp perscription api
+- one of those possibilities cancle order
+- the prescription list api tells us the eligibility of the function\
+- We will know through the nature of the PLP api
+- Enhance server response
+
+Update fill Date 
+- PLP will tell us whether the fill date can be changed
+- If so the user will be able to change the fill date
+- What date ranges can be filled in
+
+Medication Pricing Migration to I90
+- API swap from the existing API to the I90 version
+- No enhanced capabilities
+- But we should have a delta
+- We do pricing in the drug pricing section of the website
+- We display pricing in the retail flow
+- We display pricing in the new mail order request flow
+- In the medication pharmacy flow the user selects the pharmacy to price against
+- There is a multi pharmacy search to select using location
+- When they are checkout flow they select the address of the pharmacy where the prescription goes to
+- The pharmacy price locks in
+- The pricing is a mock adjudication of a claim through RX claim
+- All CVS prescription calls - No Aetna
+
+Add support for Speciality Order Status
+- What do we need to do to enable Specialty Pharmacy new features
+- Kaizan may know what we already do
+- We have a sister function BA/BM enabler to see how we support it
+- Today we have order status for regular, what do we need to turn on to support specialty order status
+
+Add support for Specialty Medications in PLP / PDP
+- We don't handle anything in PLP/PDP 
+- Will they come back as part of that list
+- What are we going to do to support
+
+

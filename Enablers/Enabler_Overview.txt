@@ -1,0 +1,41 @@
+FROM: Conversation with Shawn on 10/2/2025 @ 1530 (private conversation)
+
+F2134025 - Rx: Enabler (Arch): Cancel Order (Including self-service UI structure) 
+- Idea ius that as part of the plp perscription api
+- one of those possibilities cancle order
+- the prescription list api tells us the eligibility of the function\
+- We will know through the nature of the PLP api
+- Enhance server response
+
+F214011 - Rx: Enabler (Arch): Update fill Date 
+- PLP will tell us whether the fill date can be changed
+- If so the user will be able to change the fill date
+- What date ranges can be filled in
+
+F218119 - Rx: Enabler (Arch): i90 Medication Pricing Migration for Pricing As A Service (PRaaS)
+- API swap from the existing API to the I90 version
+- No enhanced capabilities
+- But we should have a delta
+- We do pricing in the drug pricing section of the website
+- We display pricing in the retail flow
+- We display pricing in the new mail order request flow
+- In the medication pharmacy flow the user selects the pharmacy to price against
+- There is a multi pharmacy search to select using location
+- When they are checkout flow they select the address of the pharmacy where the prescription goes to
+- The pharmacy price locks in
+- The pricing is a mock adjudication of a claim through RX claim
+- All CVS prescription calls - No Aetna
+
+F221956 - Enabler (Arch): Add Support for Specialty Order Status
+Add support for Speciality Order Status
+- What do we need to do to enable Specialty Pharmacy new features
+- Kaizan may know what we already do
+- We have a sister function BA/BM enabler to see how we support it
+- Today we have order status for regular, what do we need to turn on to support specialty order status
+
+F167018 - Rx: Enabler (Arch): Add Support for Specialty Medications In PLP/PDP
+Add support for Specialty Medications in PLP / PDP
+- We don't handle anything in PLP/PDP 
+- Will they come back as part of that list
+- What are we going to do to support
+
