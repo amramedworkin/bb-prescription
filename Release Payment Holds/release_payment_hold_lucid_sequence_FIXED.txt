@@ -1,4 +1,4 @@
-title: Release Payment Hold — Sequence (Aetna → APIc → BFF → CVS)
+title Release Payment Hold
 
 participant Member
 participant "Aetna Frontend" as FE
@@ -56,6 +56,6 @@ alt Provider supports single-op resolve
 end
 
 note over Member, CVS: --- Error Handling (summary) ---
-# Eligibility false -> CTA hidden
-# Consent rejected -> FE shows message; retry allowed
-# Resolve failed -> Audit failure; safe retry with same Idempotency-Key
+note over Member, CVS: Eligibility false -> CTA hidden
+note over Member, CVS: Consent rejected -> FE shows message; retry allowed
+note over Member, CVS: Resolve failed -> Audit failure; safe retry with same Idempotency-Key
