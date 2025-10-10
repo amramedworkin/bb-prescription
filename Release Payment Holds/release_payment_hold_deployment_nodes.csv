@@ -1,0 +1,10 @@
+Node,Parent
+Member Device,
+Aetna Frontend,Member Device
+AWS - Aetna,
+APIc (Apigee),AWS - Aetna
+Release Payment Hold BFF,AWS - Aetna
+Aetna Transient Cache,AWS - Aetna
+Aetna Audit Store,AWS - Aetna
+CVS Domain,
+CVS Experience APIs (/cvs/*),CVS Domain

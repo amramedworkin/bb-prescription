@@ -1,0 +1,52 @@
+@startuml ReleasePaymentHold_Deployment
+title Release Payment Hold — Deployment (Aetna + CVS)
+
+skinparam shadowing false
+skinparam rectangle {
+  BackgroundColor #fdfdfd
+  BorderColor #999
+}
+skinparam node {
+  BackgroundColor #f8fbff
+  BorderColor #6b93d6
+}
+
+node "Member Device" as device {
+  artifact "Aetna Web/Mobile\nFrontend" as fe
+}
+
+node "AWS - Aetna" as aws {
+  node "APIc (Apigee)" as apigw {
+    [Route: /v1/release-payment-hold/*]
+    [Policies: Auth, Quota, Logging, CORS]
+  }
+  node "Release Payment Hold BFF\n(Containers / Fargate / K8s)" as bff {
+    [REST: /v1/release-payment-hold/*]
+    [Telemetry: X-Trace-Id propagation]
+  }
+  database "Aetna Transient Cache\n(Redis/ElastiCache)" as cache
+  database "Aetna Audit Store\n(Append-only)" as audit
+}
+
+node "CVS (PBM) Domain" as cvs {
+  node "CVS Experience APIs" as exp {
+    [GET /cvs/high-cost-hold]
+    [POST /cvs/payment-consent]
+    [POST /cvs/orders/{orderId}/resolve-payment-hold]
+    [GET /cvs/orders/{orderId}]
+  }
+}
+
+fe --> apigw : HTTPS (OAuth2 / mTLS)\n/v1/release-payment-hold/*
+apigw --> bff : Internal HTTPS
+bff --> exp : HTTPS /cvs/*\n(mTLS, allowlist)
+bff --> cache : purge/read
+bff --> audit : append events
+
+note bottom
+Namespaces:
+• Aetna-owned: /v1/release-payment-hold/*
+• CVS-owned:   /cvs/*
+Idempotency & observability enforced at BFF and APIc.
+end note
+@enduml

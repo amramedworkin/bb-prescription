@@ -1,0 +1,61 @@
+title: Release Payment Hold — Sequence (Aetna → APIc → BFF → CVS)
+
+participant Member
+participant "Aetna Frontend" as FE
+participant "APIc (Apigee)" as APIc
+participant "Release Payment Hold BFF" as BFF
+participant "CVS Backend (/cvs/*)" as CVS
+participant "Aetna Transient Cache" as Cache
+participant "Aetna Audit Store" as Audit
+
+== Eligibility ==
+Member->FE: Open RX details
+FE->APIc: GET /v1/release-payment-hold/eligibility?rxId&memberId \nX-Trace-Id, Auth
+APIc->BFF: GET /v1/release-payment-hold/eligibility
+BFF->CVS: GET /cvs/high-cost-hold?rxId&memberId
+CVS-->BFF: {status: ELIGIBLE, reasonCode: 54}
+note over BFF,FE: If ELIGIBLE and reasonCode=54, render CTA "Change Payment Method"
+BFF-->APIc: 200 eligibility payload
+APIc-->FE: 200 eligibility payload
+
+== Submit Payment + Consent ==
+Member->FE: Enter payment + consent (Y/N)
+FE->APIc: POST /v1/release-payment-hold/payment-consent \nIdempotency-Key, X-Trace-Id
+APIc->BFF: POST /payment-consent {orderId, rx[], paymentInstrument, consentResponse, memberId}
+BFF->CVS: POST /cvs/payment-consent {...}
+CVS-->BFF: {status: accepted, consentReference: CONS-xxx}
+BFF->Audit: Append event: CONSENT_ACCEPTED
+BFF-->APIc: 202 accepted {consentReference}
+APIc-->FE: 202 accepted {consentReference}
+
+== Resolve Payment Hold ==
+FE->APIc: POST /v1/release-payment-hold/resolve \nIdempotency-Key, X-Trace-Id
+APIc->BFF: POST /resolve {orderId, rx[], memberId, consentReference}
+BFF->CVS: POST /cvs/orders/{orderId}/resolve-payment-hold {...}
+CVS-->BFF: {result: released, auditId: AUD-...}
+BFF->Cache: Purge order + rx cache
+BFF->Audit: Append event: HOLD_RELEASED (auditId)
+BFF-->APIc: 200 released {auditId}
+APIc-->FE: 200 released {auditId}
+FE->APIc: GET /v1/release-payment-hold/orders/{orderId}
+APIc->BFF: GET /orders/{orderId}
+BFF->CVS: GET /cvs/orders/{orderId}
+CVS-->BFF: {order: {holds: []}}
+BFF-->APIc: 200 order (no holds)
+APIc-->FE: 200 order (no holds)
+FE-->Member: Success toast: Hold released
+
+alt Provider supports single-op resolve
+  FE->APIc: POST /v1/release-payment-hold/payment-hold:resolve
+  APIc->BFF: POST payment-hold:resolve {orderId, rx[], paymentInstrument, consentResponse, memberId}
+  BFF->CVS: POST /cvs/payment-hold:resolve {...}
+  CVS-->BFF: {result: released, auditId}
+  BFF->Cache: Purge
+  BFF->Audit: Append
+  BFF-->FE: 200 released
+end
+
+== Error Handling (summary) ==
+... Eligibility false -> CTA hidden ...
+... Consent rejected -> FE shows message; retry allowed ...
+... Resolve failed -> Audit failure; safe retry with same Idempotency-Key ...

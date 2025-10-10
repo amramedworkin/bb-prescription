@@ -1,0 +1,6 @@
+From,To,Label
+Aetna Frontend,APIc (Apigee),HTTPS /v1/release-payment-hold/*
+APIc (Apigee),Release Payment Hold BFF,Internal HTTPS
+Release Payment Hold BFF,CVS Experience APIs (/cvs/*),HTTPS /cvs/* (mTLS)
+Release Payment Hold BFF,Aetna Transient Cache,purge/read
+Release Payment Hold BFF,Aetna Audit Store,append events
