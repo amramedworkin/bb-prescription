@@ -1,0 +1,24 @@
+graph LR
+%% Deployment-style view using flowchart syntax for Lucid compatibility
+
+subgraph "Member Device"
+  FE["Aetna Web/Mobile Frontend"]
+end
+
+subgraph "AWS - Aetna"
+  APIc["APIc (Apigee)\nRoute: /v1/release-payment-hold/*"]
+  BFF["Release Payment Hold BFF\n/v1/release-payment-hold/*"]
+  Cache[("Aetna Transient Cache")]
+  Audit[("Aetna Audit Store")]
+end
+
+subgraph "CVS (PBM) Domain"
+  CVSAPI["CVS Experience APIs\n/cvs/*"]
+end
+
+%% Connectivity
+FE -->|HTTPS (OAuth2 / mTLS)\n/v1/release-payment-hold/*| APIc
+APIc -->|Internal HTTPS| BFF
+BFF -->|HTTPS /cvs/* (mTLS, allowlist)| CVSAPI
+BFF -->|purge/read| Cache
+BFF -->|append events| Audit
