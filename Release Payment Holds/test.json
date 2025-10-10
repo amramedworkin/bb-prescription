@@ -1,0 +1,6 @@
+{ "orderId":"ORD-10001","rx":[{"rxNumber":"1234567","consentResponse":"Y"}],
+  "paymentInstrument":{"token":"pm_..."},"memberId":"M-12345","traceId":"TRACE-..." }
+→ { "status":"accepted","consentReference":"CONS-9f2c3" }
+POST /v1/orders/ORD-10001/resolve-payment-hold
+{ "rx":[{"rxNumber":"1234567"}],"memberId":"M-12345","consentReference":"CONS-9f2c3","traceId":"TRACE-..." }
+→ { "result":"released","auditId":"AUD-20251010-001" }
