@@ -1,24 +1,70 @@
-graph LR
-%% Deployment-style view using flowchart syntax for Lucid compatibility
+flowchart LR
 
-subgraph "Member Device"
+%% ---------- Member ----------
+subgraph MD["Member Device"]
   FE["Aetna Web/Mobile Frontend"]
 end
 
-subgraph "AWS - Aetna"
-  APIc["APIc (Apigee)\nRoute: /v1/release-payment-hold/*"]
-  BFF["Release Payment Hold BFF\n/v1/release-payment-hold/*"]
-  Cache[("Aetna Transient Cache")]
-  Audit[("Aetna Audit Store")]
+%% ---------- AWS (Aetna) ----------
+subgraph AWS["AWS - Aetna"]
+  direction LR
+
+  %% Public Tier
+  subgraph AWS_PUB["Public Tier"]
+    WAF["WAF / CDN"]
+    APIc["APIc (Apigee)"]
+    OAuth["Auth Provider (OAuth2)"]
+  end
+
+  %% App Tier
+  subgraph AWS_APP["App Tier"]
+    BFF["Release Payment Hold BFF"]
+    Feature["Feature Flags / Config"]
+  end
+
+  %% Data Tier
+  subgraph AWS_DATA["Data Tier"]
+    Cache["Transient Cache"]
+    Audit["Audit Store"]
+    Logs["Log Store"]
+  end
+
+  %% Observability
+  subgraph AWS_OBS["Observability"]
+    Trace["Distributed Tracing"]
+    Metrics["Metrics"]
+    Dash["Dashboards"]
+  end
 end
 
-subgraph "CVS (PBM) Domain"
-  CVSAPI["CVS Experience APIs\n/cvs/*"]
+%% ---------- CVS (PBM) ----------
+subgraph CVS["CVS (PBM) Domain"]
+  direction TB
+  CVS_GW["CVS API Gateway"]
+  CVS_Elig["High Cost Hold (eligibility)"]
+  CVS_Consent["Payment Consent"]
+  CVS_Resolve["Resolve Payment Hold"]
+  CVS_Orders["Orders Query"]
+
+  CVS_GW --> CVS_Elig
+  CVS_GW --> CVS_Consent
+  CVS_GW --> CVS_Resolve
+  CVS_GW --> CVS_Orders
 end
 
-%% Connectivity
-FE -->|HTTPS (OAuth2 / mTLS)\n/v1/release-payment-hold/*| APIc
-APIc -->|Internal HTTPS| BFF
-BFF -->|HTTPS /cvs/* (mTLS, allowlist)| CVSAPI
-BFF -->|purge/read| Cache
-BFF -->|append events| Audit
+%% ---------- Connectivity ----------
+FE --> WAF
+WAF --> APIc
+APIc --> OAuth
+APIc --> BFF
+
+BFF --> Cache
+BFF --> Audit
+BFF --> Logs
+BFF --> Trace
+BFF --> Metrics
+Metrics --> Dash
+Trace --> Dash
+
+BFF --> CVS_GW
+BFF --> CVS_Orders
