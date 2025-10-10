@@ -1,0 +1,685 @@
+Date: Fri, 10 Oct 2025 07:51:22 +0000 (UTC)
+Message-ID: <1566631699.55.1760082682314@7161c3feab79>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_54_1193540562.1760082682314"
+
+------=_Part_54_1193540562.1760082682314
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Architecture Template</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Architecture Template</h1>
+    <div class=3D"Section1">
+        <p>
+<style>[data-colorid=3Dek4vmia5rq]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dek4vmia5rq]{color:#5999f8}[data-colorid=3Dqo0y799m5x]{c=
+olor:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dqo0y799m5x]{colo=
+r:#5999f8}[data-colorid=3Doeg4dmm1bg]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Doeg4dmm1bg]{color:#5999f8}[data-colorid=3Dr6ufdd7o=
+aw]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dr6ufdd7oaw]=
+{color:#5999f8}[data-colorid=3Dx3246mlj3m]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dx3246mlj3m]{color:#5999f8}[data-colorid=3Dipp1y=
+sv20y]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dipp1ysv2=
+0y]{color:#5999f8}[data-colorid=3Dxns1ja9mil]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Dxns1ja9mil]{color:#5999f8}[data-colorid=3Da5=
+udml36mk]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Da5udm=
+l36mk]{color:#5999f8}[data-colorid=3Dncm0f05lb5]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Dncm0f05lb5]{color:#5999f8}[data-colorid=
+=3Ddw2q05ty5f]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+dw2q05ty5f]{color:#5999f8}[data-colorid=3Di65cn09wwu]{color:#0747a6} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Di65cn09wwu]{color:#5999f8}[data-colo=
+rid=3Dukqdlm6mur]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=
+=3Dukqdlm6mur]{color:#5999f8}[data-colorid=3Dlz5mh0wrw9]{color:#0747a6} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dlz5mh0wrw9]{color:#5999f8}[data-c=
+olorid=3Dxapd1gcexk]{color:#0747a6} html[data-color-mode=3Ddark] [data-colo=
+rid=3Dxapd1gcexk]{color:#5999f8}[data-colorid=3Dejkrknf0hx]{color:#0747a6} =
+html[data-color-mode=3Ddark] [data-colorid=3Dejkrknf0hx]{color:#5999f8}[dat=
+a-colorid=3Dos50ry1qw2]{color:#0747a6} html[data-color-mode=3Ddark] [data-c=
+olorid=3Dos50ry1qw2]{color:#5999f8}[data-colorid=3Dt55votpqjb]{color:#0747a=
+6} html[data-color-mode=3Ddark] [data-colorid=3Dt55votpqjb]{color:#5999f8}[=
+data-colorid=3Dimj39hg48c]{color:#0747a6} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dimj39hg48c]{color:#5999f8}[data-colorid=3Dgkk132h4s0]{color:#07=
+47a6} html[data-color-mode=3Ddark] [data-colorid=3Dgkk132h4s0]{color:#5999f=
+8}[data-colorid=3Dsx1v5qf28z]{color:#0747a6} html[data-color-mode=3Ddark] [=
+data-colorid=3Dsx1v5qf28z]{color:#5999f8}[data-colorid=3Djqio390b7f]{color:=
+#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Djqio390b7f]{color:#59=
+99f8}[data-colorid=3Dnjm0a20dm9]{color:#0747a6} html[data-color-mode=3Ddark=
+] [data-colorid=3Dnjm0a20dm9]{color:#5999f8}[data-colorid=3Dxrwrl0o05r]{col=
+or:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dxrwrl0o05r]{color:=
+#5999f8}[data-colorid=3Dw9vy4jf87r]{color:#0747a6} html[data-color-mode=3Dd=
+ark] [data-colorid=3Dw9vy4jf87r]{color:#5999f8}[data-colorid=3Dqu4p2ra6bh]{=
+color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dqu4p2ra6bh]{col=
+or:#5999f8}[data-colorid=3Dnnjrplx5di]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dnnjrplx5di]{color:#5999f8}[data-colorid=3Duk907n54=
+rm]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Duk907n54rm]=
+{color:#5999f8}[data-colorid=3Dep9dus4292]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dep9dus4292]{color:#5999f8}[data-colorid=3Dcoxgf=
+xsf5h]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dcoxgfxsf=
+5h]{color:#5999f8}[data-colorid=3Du375cs3int]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Du375cs3int]{color:#5999f8}[data-colorid=3Dsw=
+af5ypew6]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dswaf5=
+ypew6]{color:#5999f8}[data-colorid=3Djyg6gow1dp]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Djyg6gow1dp]{color:#5999f8}[data-colorid=
+=3Dxmxma3pskv]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+xmxma3pskv]{color:#5999f8}[data-colorid=3Du7zmp64mfc]{color:#0747a6} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Du7zmp64mfc]{color:#5999f8}[data-colo=
+rid=3Dvykohkh572]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=
+=3Dvykohkh572]{color:#5999f8}[data-colorid=3Dzgms460z7o]{color:#0747a6} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dzgms460z7o]{color:#5999f8}[data-c=
+olorid=3Do1qpeh3oex]{color:#0747a6} html[data-color-mode=3Ddark] [data-colo=
+rid=3Do1qpeh3oex]{color:#5999f8}[data-colorid=3Dyvksw1ktav]{color:#0747a6} =
+html[data-color-mode=3Ddark] [data-colorid=3Dyvksw1ktav]{color:#5999f8}[dat=
+a-colorid=3Djupydzh6xs]{color:#0747a6} html[data-color-mode=3Ddark] [data-c=
+olorid=3Djupydzh6xs]{color:#5999f8}[data-colorid=3Dlaok9pu371]{color:#0747a=
+6} html[data-color-mode=3Ddark] [data-colorid=3Dlaok9pu371]{color:#5999f8}[=
+data-colorid=3Dvmu9o6bdnj]{color:#0747a6} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dvmu9o6bdnj]{color:#5999f8}[data-colorid=3Dwenkno9429]{color:#07=
+47a6} html[data-color-mode=3Ddark] [data-colorid=3Dwenkno9429]{color:#5999f=
+8}[data-colorid=3Dq5xlyxuk8o]{color:#0747a6} html[data-color-mode=3Ddark] [=
+data-colorid=3Dq5xlyxuk8o]{color:#5999f8}[data-colorid=3Dui4yl6pssj]{color:=
+#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dui4yl6pssj]{color:#59=
+99f8}[data-colorid=3Dgxlqo6tp1j]{color:#0747a6} html[data-color-mode=3Ddark=
+] [data-colorid=3Dgxlqo6tp1j]{color:#5999f8}[data-colorid=3Dd20foch9ly]{col=
+or:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dd20foch9ly]{color:=
+#5999f8}[data-colorid=3Dr566a8izya]{color:#0747a6} html[data-color-mode=3Dd=
+ark] [data-colorid=3Dr566a8izya]{color:#5999f8}[data-colorid=3Dfvmemvohz8]{=
+color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dfvmemvohz8]{col=
+or:#5999f8}[data-colorid=3Dg53654afbj]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dg53654afbj]{color:#5999f8}[data-colorid=3Dgk2kqi9i=
+m6]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dgk2kqi9im6]=
+{color:#5999f8}[data-colorid=3Dvdx2mo2aar]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dvdx2mo2aar]{color:#5999f8}[data-colorid=3Dhtcmw=
+u6zf9]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dhtcmwu6z=
+f9]{color:#5999f8}[data-colorid=3Diipkr3ges4]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Diipkr3ges4]{color:#5999f8}[data-colorid=3Dv2=
+mzooiifi]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dv2mzo=
+oiifi]{color:#5999f8}</style>Title of page should be Feature Name</p>
+<p></p>
+<style type=3D"text/css">/*<![CDATA[*/
+div.rbtoc1760082681694 {padding: 0px;}
+div.rbtoc1760082681694 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1760082681694 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style>
+<div class=3D"toc-macro rbtoc1760082681694">
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-Feature">Feature</a></li>
+<li><a href=3D"#ArchitectureTemplate-Summary">Summary</a></li>
+<li><a href=3D"#ArchitectureTemplate-Milestones">Milestones</a></li>
+<li><a href=3D"#ArchitectureTemplate-Discovery">Discovery</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-Option1">Option 1</a></li>
+<li><a href=3D"#ArchitectureTemplate-Option2">Option 2</a></li>
+</ul></li>
+<li><a href=3D"#ArchitectureTemplate-SolutionSketch">Solution Sketch</a></l=
+i>
+<li><a href=3D"#ArchitectureTemplate-OrchestrationDiagram">Orchestration Di=
+agram</a></li>
+<li><a href=3D"#ArchitectureTemplate-APIs/Swagger">APIs/Swagger</a></li>
+<li><a href=3D"#ArchitectureTemplate-NFR">NFR</a></li>
+<li><a href=3D"#ArchitectureTemplate-Services">Services</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-ServiceLogic">Service Logic</a></li>
+<li><a href=3D"#ArchitectureTemplate-ServiceComponents">Service Components<=
+/a></li>
+</ul></li>
+<li><a href=3D"#ArchitectureTemplate-ClientChanges">Client Changes</a>
+<ul class=3D"toc-indentation">
+<li><a href=3D"#ArchitectureTemplate-Clientsidelogic">Client side logic</a>=
+</li>
+<li><a href=3D"#ArchitectureTemplate-Fieldmapping">Field mapping</a></li>
+<li><a href=3D"#ArchitectureTemplate-Anydifferencesbetweenplatforms">Any di=
+fferences between platforms</a></li>
+</ul></li>
+<li><a href=3D"#ArchitectureTemplate-Scenarios">Scenarios</a></li>
+<li><a href=3D"#ArchitectureTemplate-Testing">Testing</a></li>
+<li><a href=3D"#ArchitectureTemplate-SecurityReview">Security Review</a></l=
+i>
+<li><a href=3D"#ArchitectureTemplate-ContactsandImpactedTeams/People">Conta=
+cts and Impacted Teams/People</a></li>
+</ul>
+</div>
+<h1 id=3D"ArchitectureTemplate-Feature">Feature</h1>
+<p><em><span data-colorid=3D"laok9pu371">URL/Link to feature in Rally</span=
+></em></p>
+<h1 id=3D"ArchitectureTemplate-Summary">Summary</h1>
+<p><em><span data-colorid=3D"u7zmp64mfc">Brief summary of the requirements =
+and solution (or solution options).</span></em></p>
+<p><em><span data-colorid=3D"a5udml36mk">Could link out to any documentatio=
+n from analysts or PMs.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-Milestones">Milestones</h1>
+<p><em><span data-colorid=3D"q5xlyxuk8o">Below milestone descriptions are j=
+ust examples - please add/remove these depending upon what this feature req=
+uires.</span></em></p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"34=
+91b785-c600-4a8a-a5e7-4b1e7b87e63b" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>Milestone Description</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Date Completed</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Kickoff/Working Session</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Walkthrough for AEI team(s)</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Walkthrough for APIc team</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Walkthrough for AH Server team</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Walkthrough for AH Client teams</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"ArchitectureTemplate-Discovery">Discovery</h1>
+<p><em><span data-colorid=3D"t55votpqjb">If there are multiple options - de=
+scribe each one with pros/cons. Indicate chosen direction. These should not=
+ be too in depth. Just high level depiction of options. Sometimes there are=
+ not multiple options - in that case just document early discovery aspects.=
+</span></em></p>
+<h2 id=3D"ArchitectureTemplate-Option1">Option 1</h2>
+<h2 id=3D"ArchitectureTemplate-Option2">Option 2</h2>
+<h1 id=3D"ArchitectureTemplate-SolutionSketch">Solution Sketch</h1>
+<div class=3D"error-page ac-content">
+<style>[data-colorid=3Dek4vmia5rq]{color:#0747a6} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dek4vmia5rq]{color:#5999f8}[data-colorid=3Dqo0y799m5x]{c=
+olor:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dqo0y799m5x]{colo=
+r:#5999f8}[data-colorid=3Doeg4dmm1bg]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Doeg4dmm1bg]{color:#5999f8}[data-colorid=3Dr6ufdd7o=
+aw]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dr6ufdd7oaw]=
+{color:#5999f8}[data-colorid=3Dx3246mlj3m]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dx3246mlj3m]{color:#5999f8}[data-colorid=3Dipp1y=
+sv20y]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dipp1ysv2=
+0y]{color:#5999f8}[data-colorid=3Dxns1ja9mil]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Dxns1ja9mil]{color:#5999f8}[data-colorid=3Da5=
+udml36mk]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Da5udm=
+l36mk]{color:#5999f8}[data-colorid=3Dncm0f05lb5]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Dncm0f05lb5]{color:#5999f8}[data-colorid=
+=3Ddw2q05ty5f]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+dw2q05ty5f]{color:#5999f8}[data-colorid=3Di65cn09wwu]{color:#0747a6} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Di65cn09wwu]{color:#5999f8}[data-colo=
+rid=3Dukqdlm6mur]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=
+=3Dukqdlm6mur]{color:#5999f8}[data-colorid=3Dlz5mh0wrw9]{color:#0747a6} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dlz5mh0wrw9]{color:#5999f8}[data-c=
+olorid=3Dxapd1gcexk]{color:#0747a6} html[data-color-mode=3Ddark] [data-colo=
+rid=3Dxapd1gcexk]{color:#5999f8}[data-colorid=3Dejkrknf0hx]{color:#0747a6} =
+html[data-color-mode=3Ddark] [data-colorid=3Dejkrknf0hx]{color:#5999f8}[dat=
+a-colorid=3Dos50ry1qw2]{color:#0747a6} html[data-color-mode=3Ddark] [data-c=
+olorid=3Dos50ry1qw2]{color:#5999f8}[data-colorid=3Dt55votpqjb]{color:#0747a=
+6} html[data-color-mode=3Ddark] [data-colorid=3Dt55votpqjb]{color:#5999f8}[=
+data-colorid=3Dimj39hg48c]{color:#0747a6} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dimj39hg48c]{color:#5999f8}[data-colorid=3Dgkk132h4s0]{color:#07=
+47a6} html[data-color-mode=3Ddark] [data-colorid=3Dgkk132h4s0]{color:#5999f=
+8}[data-colorid=3Dsx1v5qf28z]{color:#0747a6} html[data-color-mode=3Ddark] [=
+data-colorid=3Dsx1v5qf28z]{color:#5999f8}[data-colorid=3Djqio390b7f]{color:=
+#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Djqio390b7f]{color:#59=
+99f8}[data-colorid=3Dnjm0a20dm9]{color:#0747a6} html[data-color-mode=3Ddark=
+] [data-colorid=3Dnjm0a20dm9]{color:#5999f8}[data-colorid=3Dxrwrl0o05r]{col=
+or:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dxrwrl0o05r]{color:=
+#5999f8}[data-colorid=3Dw9vy4jf87r]{color:#0747a6} html[data-color-mode=3Dd=
+ark] [data-colorid=3Dw9vy4jf87r]{color:#5999f8}[data-colorid=3Dqu4p2ra6bh]{=
+color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dqu4p2ra6bh]{col=
+or:#5999f8}[data-colorid=3Dnnjrplx5di]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dnnjrplx5di]{color:#5999f8}[data-colorid=3Duk907n54=
+rm]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Duk907n54rm]=
+{color:#5999f8}[data-colorid=3Dep9dus4292]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dep9dus4292]{color:#5999f8}[data-colorid=3Dcoxgf=
+xsf5h]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dcoxgfxsf=
+5h]{color:#5999f8}[data-colorid=3Du375cs3int]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Du375cs3int]{color:#5999f8}[data-colorid=3Dsw=
+af5ypew6]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dswaf5=
+ypew6]{color:#5999f8}[data-colorid=3Djyg6gow1dp]{color:#0747a6} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Djyg6gow1dp]{color:#5999f8}[data-colorid=
+=3Dxmxma3pskv]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3D=
+xmxma3pskv]{color:#5999f8}[data-colorid=3Du7zmp64mfc]{color:#0747a6} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Du7zmp64mfc]{color:#5999f8}[data-colo=
+rid=3Dvykohkh572]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=
+=3Dvykohkh572]{color:#5999f8}[data-colorid=3Dzgms460z7o]{color:#0747a6} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dzgms460z7o]{color:#5999f8}[data-c=
+olorid=3Do1qpeh3oex]{color:#0747a6} html[data-color-mode=3Ddark] [data-colo=
+rid=3Do1qpeh3oex]{color:#5999f8}[data-colorid=3Dyvksw1ktav]{color:#0747a6} =
+html[data-color-mode=3Ddark] [data-colorid=3Dyvksw1ktav]{color:#5999f8}[dat=
+a-colorid=3Djupydzh6xs]{color:#0747a6} html[data-color-mode=3Ddark] [data-c=
+olorid=3Djupydzh6xs]{color:#5999f8}[data-colorid=3Dlaok9pu371]{color:#0747a=
+6} html[data-color-mode=3Ddark] [data-colorid=3Dlaok9pu371]{color:#5999f8}[=
+data-colorid=3Dvmu9o6bdnj]{color:#0747a6} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dvmu9o6bdnj]{color:#5999f8}[data-colorid=3Dwenkno9429]{color:#07=
+47a6} html[data-color-mode=3Ddark] [data-colorid=3Dwenkno9429]{color:#5999f=
+8}[data-colorid=3Dq5xlyxuk8o]{color:#0747a6} html[data-color-mode=3Ddark] [=
+data-colorid=3Dq5xlyxuk8o]{color:#5999f8}[data-colorid=3Dui4yl6pssj]{color:=
+#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dui4yl6pssj]{color:#59=
+99f8}[data-colorid=3Dgxlqo6tp1j]{color:#0747a6} html[data-color-mode=3Ddark=
+] [data-colorid=3Dgxlqo6tp1j]{color:#5999f8}[data-colorid=3Dd20foch9ly]{col=
+or:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dd20foch9ly]{color:=
+#5999f8}[data-colorid=3Dr566a8izya]{color:#0747a6} html[data-color-mode=3Dd=
+ark] [data-colorid=3Dr566a8izya]{color:#5999f8}[data-colorid=3Dfvmemvohz8]{=
+color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dfvmemvohz8]{col=
+or:#5999f8}[data-colorid=3Dg53654afbj]{color:#0747a6} html[data-color-mode=
+=3Ddark] [data-colorid=3Dg53654afbj]{color:#5999f8}[data-colorid=3Dgk2kqi9i=
+m6]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dgk2kqi9im6]=
+{color:#5999f8}[data-colorid=3Dvdx2mo2aar]{color:#0747a6} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dvdx2mo2aar]{color:#5999f8}[data-colorid=3Dhtcmw=
+u6zf9]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dhtcmwu6z=
+f9]{color:#5999f8}[data-colorid=3Diipkr3ges4]{color:#0747a6} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Diipkr3ges4]{color:#5999f8}[data-colorid=3Dv2=
+mzooiifi]{color:#0747a6} html[data-color-mode=3Ddark] [data-colorid=3Dv2mzo=
+oiifi]{color:#5999f8}</style> Sorry!=20
+<div class=3D"description">
+Our servers experienced an error. We apologize for the inconvenience.
+</div>
+</div>
+<h1 id=3D"ArchitectureTemplate-OrchestrationDiagram">Orchestration Diagram<=
+/h1>
+<p><em><span data-colorid=3D"i65cn09wwu">(For IA work/ EDB Service Updates =
+Only)</span></em></p>
+<p><em><span data-colorid=3D"fvmemvohz8">Upload an RSA attachment to displa=
+y in the screen. Use =E2=80=9Cfiles and images=E2=80=9D link from top toolb=
+ar for this.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-APIs/Swagger">APIs/Swagger</h1>
+<p><em><span data-colorid=3D"r566a8izya">This should be a link to SwaggerHu=
+b where the API schema has been uploaded for anything hosted in AWS APIc. C=
+an also optionally include a copy in the page as an attachment for convenie=
+nce. </span></em></p>
+<p><em><span data-colorid=3D"ek4vmia5rq">For APIs hosted in Middletown/Wind=
+sor APIc - need swagger uploaded here are referenced. Use =E2=80=9Cfiles an=
+d images=E2=80=9D link from top toolbar. And a link to the API definition i=
+n the APIc documentation portal in QA. Please also include the APIc product=
+ that the API is part of.</span></em></p>
+<p><em><span data-colorid=3D"jupydzh6xs">Provide example API request and re=
+sponse using =E2=80=9Ccode=E2=80=9D widget (use + item from top toolbar) fo=
+r each API.</span></em></p>
+<p><em><span data-colorid=3D"swaf5ypew6">Note any specific schema changes. =
+DPIM or Swagger attributes that were updated.</span></em></p>
+<p><em><span data-colorid=3D"uk907n54rm">Consider also if any APIs or servi=
+ces will be deprecated - when should this happen. Considering iOS/Android a=
+nd older client versions.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-NFR">NFR</h1>
+<p><em><span data-colorid=3D"qo0y799m5x">Are there NFR changes are part of =
+the solution? Volume increase/decrease? Response time expected to improve? =
+</span><strong><span data-colorid=3D"wenkno9429"> Performance testing requi=
+red? </span></strong><span data-colorid=3D"ncm0f05lb5"> Please note this he=
+re. Please note the rate limit that should be used for each API that is par=
+t of the solution.</span></em></p>
+<p><em><span data-colorid=3D"v2mzooiifi">Attach NFR spreadsheet.</span></em=
+></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-Services">Services</h1>
+<h2 id=3D"ArchitectureTemplate-ServiceLogic">Service Logic</h2>
+<p><em><span data-colorid=3D"d20foch9ly">Overview of flow through the servi=
+ce. This can be depicted in several ways</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"x3246mlj3m">Overview description of the logica=
+l flow through the services/APIs</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"gxlqo6tp1j">Sequence Diagram</span></em></p></=
+li>
+<li>
+<p><em><strong><span data-colorid=3D"g53654afbj">Transformation/Mapping</sp=
+an></strong><span data-colorid=3D"ui4yl6pssj"> - use the table widget from =
+top toolbar. Source to Target.</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"ep9dus4292">Request from client - showing how =
+this gets formed, each attribute, into request to any back-end app token AP=
+Is or other integrations or DB queries/updates.</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"w9vy4jf87r">Response back to client - showing =
+how each attribute gets formed into response to client from any db queries/=
+updates, app token API integrations or any other.</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"ejkrknf0hx">May require more than just two tab=
+les depending upon steps/components/solution</span></em></p></li>
+</ul></li>
+</ul>
+<h2 id=3D"ArchitectureTemplate-ServiceComponents">Service Components</h2>
+<p><em><span data-colorid=3D"yvksw1ktav">Describe each component and the pu=
+rpose - including specifics that will be needed for development team to imp=
+lement - </span><strong><span data-colorid=3D"r6ufdd7oaw">examples</span></=
+strong><span data-colorid=3D"dw2q05ty5f"> may include:</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"njm0a20dm9">ODM (core rules engine)</span></em=
+></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"imj39hg48c">What are the rules, inputs, output=
+s - could be an attachment. Could just be a summary to start with.</span></=
+em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"xns1ja9mil">Extreme Scale (caching in core ser=
+vices)</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"vmu9o6bdnj">Cache key</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"os50ry1qw2">Expiry</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"lz5mh0wrw9">Grid size</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"vykohkh572">ACE/EDB service(s) that are part o=
+f the solution</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"gk2kqi9im6">Cloud or On Prem</span></em></p></=
+li>
+<li>
+<p><em><span data-colorid=3D"ipp1ysv20y">AEI teams that support the service=
+s</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"ukqdlm6mur">AWS services</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"htcmwu6zf9">Tech stack</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"nnjrplx5di">CMS (Contentful or other)</span></=
+em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"o1qpeh3oex">Content Model</span></em></p></li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"xapd1gcexk">Database</span></em></p>
+<ul>
+<li>
+<p><em><span data-colorid=3D"u375cs3int">Technology</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"iipkr3ges4">Schema/Data stored</span></em></p>=
+</li>
+<li>
+<p><em><span data-colorid=3D"oeg4dmm1bg">Interaction</span></em></p></li>
+<li>
+<p><em><span data-colorid=3D"qu4p2ra6bh">Anticipated size</span></em></p></=
+li>
+</ul></li>
+<li>
+<p><em><span data-colorid=3D"jqio390b7f">EDA or other Files/ETL process</sp=
+an></em></p></li>
+<li>
+<p><em><span data-colorid=3D"coxgfxsf5h">Etc, etc</span></em></p></li>
+</ul>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-ClientChanges">Client Changes</h1>
+<h2 id=3D"ArchitectureTemplate-Clientsidelogic">Client side logic</h2>
+<p><em><span data-colorid=3D"jyg6gow1dp">Summary of how client should integ=
+rate.</span></em></p>
+<h2 id=3D"ArchitectureTemplate-Fieldmapping">Field mapping</h2>
+<p><em><span data-colorid=3D"xrwrl0o05r">Screenshots, miro links, table etc=
+ - whatever is needed showing the UI fields and what the client should use =
+to populate that information.</span></em></p>
+<h2 id=3D"ArchitectureTemplate-Anydifferencesbetweenplatforms">Any differen=
+ces between platforms</h2>
+<p><em><span data-colorid=3D"zgms460z7o">Consider if any different integrat=
+ion/logic may be needed for Web vs iOS vs Android.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-Scenarios">Scenarios</h1>
+<p><em><span data-colorid=3D"gkk132h4s0">Identify use cases that are critic=
+al for this feature in mapping, logic, testing.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-Testing">Testing</h1>
+<p><em><span data-colorid=3D"sx1v5qf28z">Please explain how this solution/u=
+pdate should be tested. Any aspects of the solution specific to testability=
+.</span></em></p>
+<p></p>
+<h1 id=3D"ArchitectureTemplate-SecurityReview">Security Review</h1>
+<p><em><span data-colorid=3D"vdx2mo2aar">Provide any notes, changes done as=
+ part of security review. Security reviews should be done especially when s=
+omething non-standard is happening. Third party integration, some new techn=
+ology/component, SDK recommendation, SFTP, PII/PHI storage, etc =E2=80=A6 p=
+lease do a security review with members of security team and provide date, =
+findings, changes here.</span></em></p>
+<h1 id=3D"ArchitectureTemplate-ContactsandImpactedTeams/People">Contacts an=
+d Impacted Teams/People</h1>
+<p><em><span data-colorid=3D"xmxma3pskv">Bulleted list of teams and individ=
+uals that are updated</span></em></p>
+    </div>
+</body>
+</html>
+------=_Part_54_1193540562.1760082682314--
