@@ -1,0 +1,51 @@
+sequenceDiagram
+actor Member as Member
+participant FE as Aetna Frontend
+participant APIc as APIc (Apigee)
+participant BFF as Release Payment Hold BFF
+participant CVS as CVS Backend (/cvs/*)
+participant Cache as Aetna Transient Cache
+participant Audit as Aetna Audit Store
+
+Member->>FE: Open RX details
+FE->>APIc: GET /v1/release-payment-hold/eligibility?rxId&memberId (X-Trace-Id, Auth)
+APIc->>BFF: GET /v1/release-payment-hold/eligibility
+BFF->>CVS: GET /cvs/high-cost-hold?rxId&memberId
+CVS-->>BFF: {status: ELIGIBLE, reasonCode: 54}
+BFF-->>APIc: 200 eligibility payload
+APIc-->>FE: 200 eligibility payload
+
+Member->>FE: Enter payment + consent (Y/N)
+FE->>APIc: POST /v1/release-payment-hold/payment-consent (Idempotency-Key, X-Trace-Id)
+APIc->>BFF: POST /payment-consent {orderId, rx[], paymentInstrument, consentResponse, memberId}
+BFF->>CVS: POST /cvs/payment-consent {...}
+CVS-->>BFF: {status: accepted, consentReference}
+BFF->>Audit: Append CONSENT_ACCEPTED
+BFF-->>APIc: 202 accepted {consentReference}
+APIc-->>FE: 202 accepted {consentReference}
+
+FE->>APIc: POST /v1/release-payment-hold/resolve (Idempotency-Key, X-Trace-Id)
+APIc->>BFF: POST /resolve {orderId, rx[], memberId, consentReference}
+BFF->>CVS: POST /cvs/orders/{orderId}/resolve-payment-hold {...}
+CVS-->>BFF: {result: released, auditId}
+BFF->>Cache: Purge order + rx cache
+BFF->>Audit: Append HOLD_RELEASED (auditId)
+BFF-->>APIc: 200 released {auditId}
+APIc-->>FE: 200 released {auditId}
+FE->>APIc: GET /v1/release-payment-hold/orders/{orderId}
+APIc->>BFF: GET /orders/{orderId}
+BFF->>CVS: GET /cvs/orders/{orderId}
+CVS-->>BFF: {order:{holds:[]}}
+BFF-->>APIc: 200 order (no holds)
+APIc-->>FE: 200 order (no holds)
+FE-->>Member: Success: Hold released
+
+alt Single-operation resolve supported
+  FE->>APIc: POST /v1/release-payment-hold/payment-hold:resolve
+  APIc->>BFF: POST payment-hold:resolve {...}
+  BFF->>CVS: POST /cvs/payment-hold:resolve {...}
+  CVS-->>BFF: {result: released, auditId}
+  BFF->>Cache: Purge
+  BFF->>Audit: Append
+  BFF-->>FE: 200 released
+end
