@@ -39,3 +39,15 @@ Add support for Specialty Medications in PLP / PDP
 - Will they come back as part of that list
 - What are we going to do to support
 
+US2130025 - RX CANCEL ORDER
+- There are opportunities for call deflection using self service functionality to resolve prescription issues digitally. 
+- Why (goals)?  Members may run into issues with their prescription that today require them to cancel after it's been placed. Making this capability digital will reduce costs and effort for the member.
+- What (observations)? This functionality isn't currently available digitally
+- Who (users/stakeholders)? Any member may encounter issues with their prescription.
+- What (impact)? Members will need to call to resolve this issue. 
+- Scope: Review the CVS APIs which allow the following:
+	+ Use the PLP API to determine if an RX is eligible for cancellation
+	+ Allow the member to cancel an order, if cancelled within the appropriate window
+
+F167030 - Rx: Enabler (Arch): Release Payment Holds
+
