@@ -1,0 +1,15 @@
+{
+    "auditId": "AUD-20251010-001",
+    "actor": {
+        "type": "MEMBER",
+        "id": "M-12345"
+    },
+    "domain": "PBM",
+    "orderId": "ORD-10001",
+    "rx": [
+        "1234567"
+    ],
+    "action": "HOLD_RELEASED",
+    "traceId": "TRACE-...",
+    "timestamp": "2025-10-10T14:31:22Z"
+}

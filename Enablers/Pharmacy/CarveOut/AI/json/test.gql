@@ -1,0 +1,9 @@
+mutation SavePaymentConsentWithLookupKey(
+  $savePaymentConsentRequest: [SavePaymentConsentRequest!]!,
+  $id: String, $idType: PatientIdTypeEnum
+){
+  SavePaymentConsentWithLookupKey(
+    savePaymentConsentRequest: $savePaymentConsentRequest,
+    id: $id, idType: $idType
+  ){ statusCode statusDescription }
+}

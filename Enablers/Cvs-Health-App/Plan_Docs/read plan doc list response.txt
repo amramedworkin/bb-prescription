@@ -1,0 +1,21 @@
+SuccessResponse{
+description:	
+Sample Response JSON To Consumer
+
+readHealthPoliciesCommunicationContentsResponse	{
+readCommunicationContents	{
+communicationContent	[{
+webHyperlink	[...]
+documentType*	[...]
+description	[...]
+title	[...]
+format	[...]
+documentSubType	[...]
+language	[...]
+contentSize	[...]
+communicationContentIdentifier	[...]
+communicationContentEffectivePeriod	{...}
+}]
+}
+}
+}
