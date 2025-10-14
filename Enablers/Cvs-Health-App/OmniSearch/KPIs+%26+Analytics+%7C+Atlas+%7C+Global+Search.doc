@@ -1,0 +1,673 @@
+Message-ID: <1948346039.253.1750879383453@92940484411f>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_252_1714681037.1750879383453"
+
+------=_Part_252_1714681037.1750879383453
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>KPIs &amp; Analytics | Atlas | Global Search</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>KPIs &amp; Analytics | Atlas | Global Search</h1>
+    <div class=3D"Section1">
+        <div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"center" data-local-id=3D"79=
+cfa09d-a896-4551-af29-a3331d9c3b24" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td class=3D"confluenceTd">
+<p>Goal</p></td>
+<td class=3D"confluenceTd">
+<p>Metric</p></td>
+<td class=3D"confluenceTd">
+<p>Formula</p></td>
+<td class=3D"confluenceTd">
+<p>Data Source</p></td>
+<td class=3D"confluenceTd">
+<p>Owner</p></td>
+<td class=3D"confluenceTd">
+<p>MVP</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Drive consistent engagement with search</p></td>
+<td class=3D"confluenceTd">
+<p>Total search queries</p></td>
+<td class=3D"confluenceTd">
+<p>Count of all search queries per month</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Expand reach across the member base</p></td>
+<td class=3D"confluenceTd">
+<p>Unique search users</p></td>
+<td class=3D"confluenceTd">
+<p># of distinct users who searched / # of active portal users</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Encourage repeated query behavior</p></td>
+<td class=3D"confluenceTd">
+<p>Avg. queries per session</p></td>
+<td class=3D"confluenceTd">
+<p>Total search queries / Total search sessions</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Reduce drop-off after search box focus</p></td>
+<td class=3D"confluenceTd">
+<p>Query completion rate</p></td>
+<td class=3D"confluenceTd">
+<p># of initiated searches / # of search input box focuses</p></td>
+<td class=3D"confluenceTd">
+<p>Adobe Analytics</p></td>
+<td class=3D"confluenceTd">
+<p>Nancy/Gokhul</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Drive deeper interaction with generative outputs</p></td>
+<td class=3D"confluenceTd">
+<p>CTR on GenAI response actions</p></td>
+<td class=3D"confluenceTd">
+<p># of clicks on buttons/links in GenAI output / Total GenAI responses sho=
+wn</p></td>
+<td class=3D"confluenceTd">
+<p>Adobe Analytics</p></td>
+<td class=3D"confluenceTd">
+<p>Nancy/Gokhul</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Deliver fast experiences</p></td>
+<td class=3D"confluenceTd">
+<p>Avg. time to display entire answer</p></td>
+<td class=3D"confluenceTd">
+<p>Sum of time to first token + time to final token / Total responses</p></=
+td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Ensure prompt reliability</p></td>
+<td class=3D"confluenceTd">
+<p>Search reformulation rate</p></td>
+<td class=3D"confluenceTd">
+<p># of searches followed by a reworded query / Total sessions</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>Ambiguous Queries</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Improve coverage with GenAI</p></td>
+<td class=3D"confluenceTd">
+<p>% of sessions with no result / fallback</p></td>
+<td class=3D"confluenceTd">
+<p># of sessions with fallback experience messaging / Total sessions</p></t=
+d>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Show member relevant, specific data</p></td>
+<td class=3D"confluenceTd">
+<p>% responses with member-specific (personalized) data</p></td>
+<td class=3D"confluenceTd">
+<p># of responses with injected user location data / Total GenAI responses<=
+/p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Understand top needs and intent types</p></td>
+<td class=3D"confluenceTd">
+<p>Top member intents by volume (multiple timeframes)</p></td>
+<td class=3D"confluenceTd">
+<p>Categorization of queries by intent (already have partially)</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon/Kyle</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Make GenAI feel like a conversation</p></td>
+<td class=3D"confluenceTd">
+<p>% of multi-turn interactions</p></td>
+<td class=3D"confluenceTd">
+<p>Sessions with &gt; 1 back-and-forth turn / Total GenAI sessions</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Exposure</p></td>
+<td class=3D"confluenceTd">
+<p>Top entry points into search (homepage, benefits, claims, etc.)</p></td>
+<td class=3D"confluenceTd">
+<p>UX trigger to see which pages user is on when clicking into search</p></=
+td>
+<td class=3D"confluenceTd">
+<p>Adobe Analytics</p></td>
+<td class=3D"confluenceTd">
+<p>Nancy/Gokhul</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Growth</p></td>
+<td class=3D"confluenceTd">
+<p>MoM growth in search queries as a %</p></td>
+<td class=3D"confluenceTd">
+<p>((Current MoM queries - Prior MoM queries) / Prior MoM queries) x 100</p=
+></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Reliability</p></td>
+<td class=3D"confluenceTd">
+<p>Response latency</p></td>
+<td class=3D"confluenceTd">
+<p>Avg. time from query submission to response complete</p></td>
+<td class=3D"confluenceTd">
+<p>New Relic</p></td>
+<td class=3D"confluenceTd">
+<p>Jon/Jesse</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>API Reliability</p></td>
+<td class=3D"confluenceTd">
+<p>API uptime</p></td>
+<td class=3D"confluenceTd">
+<p>(Total available uptime / Total possible uptime) x 100</p></td>
+<td class=3D"confluenceTd">
+<p>Cloudwatch / New Relic</p></td>
+<td class=3D"confluenceTd">
+<p>Jon/Jesse</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Stickiness</p></td>
+<td class=3D"confluenceTd">
+<p>Repeat Usage Rate</p></td>
+<td class=3D"confluenceTd">
+<p>&gt;50% of users who return to portal use search again</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Balance precision and recall</p></td>
+<td class=3D"confluenceTd">
+<p>F1 Score</p></td>
+<td class=3D"confluenceTd">
+<p>F1 =3D 2 x ((Precision x Recall)/(Precision + Recall))</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Avoid false positives</p></td>
+<td class=3D"confluenceTd">
+<p>Precision</p></td>
+<td class=3D"confluenceTd">
+<p>TP / (TP + FP)&nbsp;&nbsp;&nbsp; expected skills / selected skills</p></=
+td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Catch all true positives</p></td>
+<td class=3D"confluenceTd">
+<p>Recall</p></td>
+<td class=3D"confluenceTd">
+<p>TP / (TP + FN)&nbsp;&nbsp; intersect(selected, expected) / expected</p><=
+/td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Answer questions correctly</p></td>
+<td class=3D"confluenceTd">
+<p>Answer accruacy</p></td>
+<td class=3D"confluenceTd">
+<p># correct answers&nbsp; / total # of answers</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Answers are relevant to the question</p></td>
+<td class=3D"confluenceTd">
+<p>Query Grounding (relevance)</p></td>
+<td class=3D"confluenceTd">
+<p># answers related to query / total # answers</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Answers are based on sources of truth</p></td>
+<td class=3D"confluenceTd">
+<p>Retrieved Data Grounding (contradictions)</p></td>
+<td class=3D"confluenceTd">
+<p># answers without contradictions / total # of answers</p></td>
+<td class=3D"confluenceTd">
+<p>Audit DB</p></td>
+<td class=3D"confluenceTd">
+<p>Jon</p></td>
+<td class=3D"confluenceTd">
+<p>Yes</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Analytics wants API information used in Omni</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p>Kyle/Jon/Jesse</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"align-start" data-local-id=
+=3D"b10108ae-3617-4019-8212-4a5af8f27620" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 451.0px;">
+<col style=3D"width: 748.0px;">
+<col style=3D"width: 600.0px;">
+</colgroup>
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>Title (Items for Nancy)</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Definition</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Why it Matters</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Time on Page</p></td>
+<td class=3D"confluenceTd">
+<p>Total duration user spends on the search results page.</p></td>
+<td class=3D"confluenceTd">
+<p>Long enough suggests engagement; too short may signal dissatisfaction or=
+ irrelevance.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Scroll Depth</p></td>
+<td class=3D"confluenceTd">
+<p>How far down the user scrolls in the response.</p></td>
+<td class=3D"confluenceTd">
+<p>Shows how much of the generative answer and contextual links they actual=
+ly consume.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Response Dwell Time</p></td>
+<td class=3D"confluenceTd">
+<p>Time from response generation to first user interaction (scrolling, clic=
+king, etc.)</p></td>
+<td class=3D"confluenceTd">
+<p>High dwell time before interaction may mean users are reading or confuse=
+d.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Follow-Up Prompt/Link Interaction Rate</p></td>
+<td class=3D"confluenceTd">
+<p>% of users who click on suggested follow-up questions/prompts.</p></td>
+<td class=3D"confluenceTd">
+<p>Indicates engagement and usefulness of system-prompted clarifications.</=
+p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Text-Highlighting / Copy Behavior</p></td>
+<td class=3D"confluenceTd">
+<p>Instances where users highlight or copy text from the response.</p></td>
+<td class=3D"confluenceTd">
+<p>Suggests perceived value or intent to reuse info elsewhere.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Call after rate by API group (claims, prior auths)</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_252_1714681037.1750879383453--
