@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: ClientAPI_Rxretail_to_Mail_Transfers
+tags:
+  - name: ClientAPI_Rxretail_to_Mail_Transfers
+    externalDocs:
+      description: Find out more
+      url: https://www-qa2.cvs.com/experience/intake/api/view-exp
+servers:
+  - url: >-
+      https://digital-retail-rx-qa.internal.cvshealth.com/microservices/bff-rest/bff/v1
+paths:
+  /submitRetailToMailRxTransfer:
+    post:
+      tags:
+        - ClientAPI_Rxretail_to_Mail_Transfers
+      description: >+
+        Submit retail to mail prescription transfer request for the given
+        prescription and member information
+
+
+      operationId: submitRetailToMailRxTransfer
+      parameters:
+        - in: header
+          name: x-experienceId
+          required: true
+          example: ba400c33-d652-413e-90c7-521faff3a37a
+          schema:
+            type: string
+        - in: header
+          name: x-clientId
+          required: true
+          example: client_transactions
+          schema:
+            type: string
+        - in: header
+          name: authorization
+          required: true
+          example: Bearer eyJraWQiOiJhZWExYmI3Mi05OGExLTQwZDYt
+          schema:
+            type: string
+      requestBody:
+        description: >-
+          Retail to mail transfer request body with member, prescription,
+          prescriber and pharmacy information
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestBody'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseBody'
+        '401':
+          description: Auth error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error401'
+        '409':
+          description: Graphql Gateway error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error409'
+        '500':
+          description: System error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error500'
+components:
+  schemas:
+    RequestBody:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            retailToMailTransferInput:
+              type: object
+              properties:
+                memberInfo:
+                  type: object
+                  properties:
+                    memberId:
+                      type: string
+                      example: S1438867201
+                    cardholderId:
+                      type: integer
+                      example: 492395417
+                    patientId:
+                      type: integer
+                      example: 492395417
+                prescriptionInfo:
+                  type: object
+                  properties:
+                    prescriptionNumber:
+                      type: string
+                      example: '01884433434'
+                    prescriptionLookupKey:
+                      type: string
+                      example: >-
+                        U2FsdGVkX196o0h7VDCLVeu0Yizc7ZdZvjxCFo5FL/VYEYvnZ0FgKxWh+w0ozbyGJvRNk6m3NqY/jcamnjtCgaock2IkWkWsWQraj7qU8r8veh8zasYn2rkVeput4JWvhNgjjXusZ1S4QbJvb+4wNUJx3RAbTKsW8lCGJR8e7QhRveaUtl0eLRRnU95qAOsbfZIp7j8/1w5y9XKICPvuo/6/tsrd54yaNgiGUMQZDICQ/GVbsTAccp9XqX2voQC1ljMZzH4qea4kkatDSN5HYf9bSKgpLBRM98rlDitMxeXaxJPHjRJ+8t9DJcFr3LGIPlxO/NYNX0eOU5dkZAxosOu5FqEpgxKu2+0fc7NsBWOpH5PbQo70U7GNFvU1riay
+                    prescribedDrug:
+                      type: object
+                      properties:
+                        pbrNdcId:
+                          type: string
+                          example: '71015523'
+                        pbrDrugName:
+                          type: string
+                          example: FUROSEMIDE 20 MG TABLET
+                        pbrDrugStrength:
+                          type: string
+                          example: 20 MG
+                        pbrDosageFormat:
+                          type: string
+                          example: TABLET
+                        pbrWrittenDate:
+                          type: string
+                          example: 06-18-2025
+                        pbrRefillmaxqty:
+                          type: integer
+                          example: 3
+                        prescribedQuantity:
+                          type: string
+                          example: '60'
+                    dispensedDrug:
+                      type: object
+                      properties:
+                        dispNdcId:
+                          type: string
+                          example: '71015523'
+                        dispDrugName:
+                          type: string
+                          example: CAL-CITRATE PLUS VITAMIN D TAB
+                        dispDrugStrength:
+                          type: string
+                          example: 250 mg-2.5 mcg (100 UNIT)
+                        dispDosageFormat:
+                          type: string
+                          example: TABLET
+                        dispensedQuantity:
+                          type: string
+                          example: '30'
+                        daysSupply:
+                          type: integer
+                          example: 90
+                        lastFillDate:
+                          type: string
+                          example: 05-18-2025
+                        unitOfMeasure:
+                          type: string
+                          example: EA
+                        remainingQty:
+                          type: string
+                          example: '30'
+                        instructions:
+                          type: string
+                          example: TAKE AS DIRECTED
+                        nbOfDispensedRefills:
+                          type: integer
+                          example: 1
+                        remainingRefills:
+                          type: integer
+                          example: 2
+                        daw:
+                          type: string
+                          example: '0'
+                        compoundInd:
+                          type: string
+                          example: 'N'
+                        fillStatus:
+                          type: integer
+                          example: 7
+                        firstFillDate:
+                          type: string
+                          example: 06-19-2025
+                prescriberInfo:
+                  type: object
+                  properties:
+                    spiId:
+                      type: string
+                      example: '8741932433002'
+                    pbrLastName:
+                      type: string
+                      example: CARI
+                    pbrFirstName:
+                      type: string
+                      example: DUNA
+                    pbrPhone:
+                      type: string
+                      example: '4012525555'
+                    pbrNpiId:
+                      type: string
+                      example: '1083609135'
+                    pbrDea:
+                      type: string
+                      example: BC9822784
+                pharmacyInfo:
+                  type: object
+                  properties:
+                    sendingPharmacy:
+                      type: object
+                      properties:
+                        pharmacyName:
+                          type: string
+                          example: CVSPharmacy
+                        phmAddressLine1:
+                          type: string
+                          example: 5500 N MACARTHUR BLVD
+                        phmAddressLine2:
+                          type: string
+                          example: ''
+                        phmCity:
+                          type: string
+                          example: IRVING
+                        phmState:
+                          type: string
+                          example: PA
+                        phmZipCode:
+                          type: string
+                          example: '75038'
+                        phmPhone:
+                          type: string
+                          example: '5515559876'
+                        phmDea:
+                          type: string
+                          example: BJ1234567
+                        phmNcpdpId:
+                          type: string
+                          example: '1417052'
+                        phmNpiId:
+                          type: string
+                          example: '123'
+                        phmLicense:
+                          type: string
+                          example: TX393930
+                    pharmacist:
+                      type: object
+                      properties:
+                        phmFullName:
+                          type: string
+                          example: MICHAEL SAINT MARTIN
+    ResponseBody:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            submitRetailToMailRxTransfer:
+              type: object
+              properties:
+                statusCode:
+                  type: string
+                  example: '0001'
+                statusDescription:
+                  type: string
+                  example: Partial Success
+                fault:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: Partial Success
+                    title:
+                      type: string
+                      example: 'SUBMIT: Failed to inactivate the RxNumber: 01884433434'
+                    moreInfo:
+                      type: string
+                      example: https://developer.cvshealth.com/common/error-codes
+    Error401:
+      type: object
+      properties:
+        source:
+          type: string
+          example: AUTHLOGIC
+        description:
+          type: string
+          example: ERROR IN GUEST_PROFILE_SERVICE API
+        statusCode:
+          type: integer
+          format: int32
+          example: '401'
+        detail:
+          type: object
+          properties: {}
+    Error409:
+      type: object
+      properties:
+        source:
+          type: string
+          example: GATE WAY
+        description:
+          type: string
+          example: ERROR IN EXPERIENCE API GATE WAY
+        statusCode:
+          type: integer
+          format: int32
+          example: '409'
+        detail:
+          type: object
+          properties: {}
+    Error500:
+      type: object
+      properties:
+        source:
+          type: string
+          example: APPLICATION
+        description:
+          type: string
+          example: ERROR IN EXPERIENCE API
+        statusCode:
+          type: integer
+          format: int32
+          example: '500'
+        detail:
+          type: object
+          properties: {}
