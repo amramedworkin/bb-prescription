@@ -1,0 +1,5 @@
+{
+  "memberId": "A12345",
+  "prescription": { "rxNumber": "8901234", "daysSupplyRemaining": 90 },
+  "pharmacy": { "ncpdpId": "56789" }
+}
