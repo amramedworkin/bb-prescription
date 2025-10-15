@@ -1,0 +1,39 @@
+@startuml
+' Styling
+skinparam componentStyle rectangle
+skinparam rectangle {
+  BackgroundColor<<Aetna>> LightBlue
+  BackgroundColor<<AWS>> LightYellow
+  BackgroundColor<<CVS>> LightGreen
+  BorderColor Black
+}
+
+package "Aetna" <<Aetna>> {
+  [Frontend (Web/iOS/Android)] as FE
+  [BFF / Domain Service] as BFF
+}
+
+package "AWS" <<AWS>> {
+  [Feature Toggles / Config] as FT
+  [Analytics / Tagging] as AN
+}
+
+package "CVS / Caremark" <<CVS>> {
+  [Eligibility API (GraphQL)] as EL
+  [External Rx Transfer API (REST)] as TX
+  [RxConnect / ICE] as RX
+  [Mail Order Fulfillment] as MO
+}
+
+' Interactions
+FE --> BFF : Select Rx & Transfer
+FE --> FT : read flags/config
+BFF --> EL : Eligibility check
+EL --> BFF : Eligible / Not eligible
+BFF --> TX : Submit transfer (if eligible)
+TX --> RX : Inactivate retail Rx\n(reason: "Transferred to Mail")
+TX --> MO : Create mail-order Rx / start fulfillment
+
+' Outcomes & Observability
+FE ..> AN : Metrics/Tagging
+@enduml

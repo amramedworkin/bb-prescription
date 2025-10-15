@@ -1,0 +1,49 @@
+@startuml
+' Style
+skinparam sequenceMessageAlign center
+skinparam BoxPadding 10
+skinparam ParticipantPadding 20
+skinparam ResponseMessageBelowArrow true
+autonumber
+
+box "Aetna" #LightBlue
+  actor M as "Member (Web/iOS/Android)"
+  participant FE as "Aetna Frontend (App)"
+  participant BFF as "Aetna BFF / Domain Service"
+end box
+
+box "AWS" #LightYellow
+  participant FT as "Feature Toggles / Config"
+  participant AN as "Analytics / Tagging"
+end box
+
+box "CVS / Caremark" #LightGreen
+  participant EL as "Eligibility API (GraphQL)"
+  participant TX as "External Rx Transfer API (REST)"
+  participant RX as "RxConnect / ICE"
+  participant MO as "Mail Order Fulfillment"
+end box
+
+M -> FE : Select "Transfer to Mail Order"
+FE -> FT : Read feature flags / config
+FE -> BFF : Get Rx list / choose Rx for transfer
+
+BFF -> EL : getRetailToMailRxTransferEligibility(input)
+EL --> BFF : RetailToMailRxTransferResponse(eligibility, reason)
+
+alt Eligible for direct transfer
+  BFF -> TX : submitRetailToMailTransfer(payload)
+  TX --> BFF : { statusCode: "0000", statusDescription: "Success" }
+  TX -> RX : Inactivate Rx ("Transferred to Mail")
+  RX --> TX : Inactivate OK
+  TX -> MO : Create Mail-Order Rx / Start fulfillment
+  MO --> TX : Ack
+  BFF --> FE : Success details (order id, ETA)
+  FE -> AN : Tag success + metrics
+  FE --> M : Confirmation\n(Eligible Mail Order – Confirmation)
+else Not eligible → provider approval (FastStart)
+  BFF --> FE : Not eligible + reason
+  FE -> AN : Tag fallback + metrics
+  FE --> M : Provider approval needed\n(FastStart path)
+end
+@enduml
