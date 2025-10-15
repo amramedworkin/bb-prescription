@@ -1,0 +1,441 @@
+openapi: 3.0.3
+info:
+  title: Aetna Retail-to-Mail (R2M) API
+  version: "1.0.0"
+  description: |
+    Public contracts for Aetna-hosted services enabling CVS Retail-to-Mail (R2M) transfers.
+    These endpoints front CVS i90 services and normalize responses for Aetna web and mobile apps.
+    Security requires OAuth2 Bearer tokens and (environment-specific) mTLS at the gateway.
+servers:
+  - url: https://api.aetna.com
+    description: Production
+  - url: https://api-qa.aetna.com
+    description: QA
+security:
+  - bearerAuth: []
+paths:
+  /v1/retail-to-mail/eligibility:
+    post:
+      summary: Check eligibility for retail-to-mail transfer
+      description: |
+        Validates whether a retail prescription can be directly transferred to CVS Mail Order.
+        This endpoint normalizes CVS eligibility into a boolean `eligible` plus reason codes.
+      operationId: checkEligibility
+      tags: [Eligibility]
+      parameters:
+        - $ref: "#/components/parameters/XExperienceId"
+        - $ref: "#/components/parameters/XClientId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EligibilityRequest"
+            example:
+              memberId: "A123456789"
+              cardholderId: "C00001234"
+              patientId: "P00005678"
+              prescription:
+                rxNumber: "8901234"
+                ndcId: "00093-7424-56"
+                daysSupplyRemaining: 90
+                remainingRefills: 3
+              prescriber:
+                spiId: "SPI12345"
+                npiId: "1234567890"
+              pharmacy:
+                ncpdpId: "1234567"
+      responses:
+        "200":
+          description: Eligibility outcome
+          headers:
+            x-cvs-correlationId:
+              description: Correlation ID returned from CVS downstream
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EligibilityResponse"
+              examples:
+                eligible:
+                  value:
+                    eligible: true
+                    reasonCode: "EL01"
+                    reasonText: "Eligible for direct mail transfer"
+                    transferRecommended: true
+                    cvsCorrelationId: "abcd-1234"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/retail-to-mail/transfer:
+    post:
+      summary: Submit retail-to-mail transfer
+      description: |
+        Submits a direct transfer to CVS. Must be called only after an eligible response.
+        Returns normalized status and (when available) the mail-order identifiers.
+      operationId: submitTransfer
+      tags: [Transfer]
+      parameters:
+        - $ref: "#/components/parameters/XExperienceId"
+        - $ref: "#/components/parameters/XClientId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransferRequest"
+            example:
+              transactionId: "T2025-10-15-0001"
+              memberId: "A123456789"
+              cardholderId: "C00001234"
+              patientId: "P00005678"
+              prescription:
+                prescriptionNumber: "8901234"
+                ndcId: "00093-7424-56"
+                daysSupply: 90
+              prescriber:
+                spiId: "SPI12345"
+                npiId: "1234567890"
+                dea: "AB1234567"
+              pharmacy:
+                ncpdpId: "1234567"
+                npiId: "1760456789"
+      responses:
+        "200":
+          description: Transfer accepted
+          headers:
+            x-cvs-correlationId:
+              description: Correlation ID returned from CVS downstream
+              schema: { type: string }
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransferResponse"
+              examples:
+                success:
+                  value:
+                    statusCode: "0000"
+                    statusDescription: "Success"
+                    orderId: "MO123456789"
+                    etaDays: 5
+                    cvsCorrelationId: "abcd-1234"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "409":
+          description: Duplicate or conflicting transactionId
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ProblemDetails" }
+        "422":
+          description: Unprocessable entity (e.g., ineligible)
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ProblemDetails" }
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/retail-to-mail/status/{transactionId}:
+    get:
+      summary: Get transfer status
+      description: |
+        Retrieves the latest known state for the requested transaction. Implementations may
+        hydrate from cached CVS responses or event-driven stores. Intended for client polling.
+      operationId: getTransferStatus
+      tags: [Status]
+      parameters:
+        - $ref: "#/components/parameters/XExperienceId"
+        - $ref: "#/components/parameters/XClientId"
+        - in: path
+          name: transactionId
+          required: true
+          schema: { type: string, minLength: 1 }
+          description: Client-supplied idempotency key used at submit time.
+      responses:
+        "200":
+          description: Current status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatusResponse"
+              examples:
+                submitted:
+                  value:
+                    state: "SUBMITTED"
+                    orderId: null
+                    reasonCode: null
+                    updatedAt: "2025-10-15T13:45:00Z"
+                fulfilled:
+                  value:
+                    state: "FULFILLMENT"
+                    orderId: "MO123456789"
+                    etaDays: 4
+                    updatedAt: "2025-10-15T14:10:00Z"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          description: Unknown transactionId
+          content:
+            application/problem+json:
+              schema: { $ref: "#/components/schemas/ProblemDetails" }
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+  /v1/retail-to-mail/events:
+    post:
+      summary: Receive CVS event callbacks (optional)
+      description: |
+        Webhook endpoint for CVS i90 event notifications (e.g., retail inactivation, fulfillment updates).
+        Requires shared secret verification and IP allow-list at the gateway.
+      operationId: receiveEvents
+      tags: [Events]
+      parameters:
+        - $ref: "#/components/parameters/XClientId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CvsEvent"
+            examples:
+              inactivated:
+                value:
+                  eventType: "INACTIVATED"
+                  cvsCorrelationId: "abcd-1234"
+                  transactionId: "T2025-10-15-0001"
+                  occurredAt: "2025-10-15T14:10:00Z"
+                  payload:
+                    reason: "Customer Requested – Transferred to Mail"
+              failure:
+                value:
+                  eventType: "FAILED"
+                  cvsCorrelationId: "abcd-1234"
+                  transactionId: "T2025-10-15-0002"
+                  occurredAt: "2025-10-15T14:20:00Z"
+                  payload:
+                    statusCode: "0002"
+                    statusDescription: "Controlled Substance / Not Transferable"
+      responses:
+        "204":
+          description: Accepted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "500":
+          $ref: "#/components/responses/InternalError"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    XExperienceId:
+      name: x-experienceId
+      in: header
+      required: true
+      description: Experience identifier for A/B testing and analytics attribution
+      schema: { type: string }
+    XClientId:
+      name: x-clientId
+      in: header
+      required: true
+      description: Calling client identifier issued by Aetna API Gateway
+      schema: { type: string }
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ProblemDetails" }
+    Unauthorized:
+      description: Missing or invalid credentials
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ProblemDetails" }
+    Forbidden:
+      description: Not authorized for this operation
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ProblemDetails" }
+    InternalError:
+      description: Unexpected server error
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/ProblemDetails" }
+
+  schemas:
+    ProblemDetails:
+      type: object
+      description: RFC 7807 Problem Details
+      properties:
+        type: { type: string, format: uri }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string }
+        instance: { type: string, format: uri }
+        errorId: { type: string, description: "Server-side correlation id" }
+      required: [title, status]
+
+    EligibilityRequest:
+      type: object
+      required: [memberId, cardholderId, patientId, prescription, prescriber, pharmacy]
+      properties:
+        memberId: { type: string }
+        cardholderId: { type: string }
+        patientId: { type: string }
+        prescription:
+          $ref: "#/components/schemas/PrescriptionEligibilityInput"
+        prescriber:
+          $ref: "#/components/schemas/Prescriber"
+        pharmacy:
+          $ref: "#/components/schemas/Pharmacy"
+        clientContext:
+          $ref: "#/components/schemas/ClientContext"
+
+    EligibilityResponse:
+      type: object
+      required: [eligible, reasonCode, reasonText]
+      properties:
+        eligible: { type: boolean }
+        reasonCode: { type: string, description: "Canonical eligibility reason code" }
+        reasonText: { type: string, description: "Human-readable eligibility explanation" }
+        transferRecommended: { type: boolean, description: "If true, the next step is to call /transfer" }
+        cvsCorrelationId: { type: string }
+
+    TransferRequest:
+      type: object
+      required: [transactionId, memberId, cardholderId, patientId, prescription, prescriber, pharmacy]
+      properties:
+        transactionId: { type: string, description: "Idempotency key; unique per submit attempt" }
+        memberId: { type: string }
+        cardholderId: { type: string }
+        patientId: { type: string }
+        prescription:
+          $ref: "#/components/schemas/PrescriptionTransferInput"
+        prescriber:
+          $ref: "#/components/schemas/Prescriber"
+        pharmacy:
+          $ref: "#/components/schemas/Pharmacy"
+        clientContext:
+          $ref: "#/components/schemas/ClientContext"
+
+    TransferResponse:
+      type: object
+      required: [statusCode, statusDescription]
+      properties:
+        statusCode:
+          type: string
+          description: "Downstream response status"
+          example: "0000"
+        statusDescription:
+          type: string
+          example: "Success"
+        orderId:
+          type: string
+          nullable: true
+        etaDays:
+          type: integer
+          nullable: true
+        cvsCorrelationId:
+          type: string
+          nullable: true
+
+    StatusResponse:
+      type: object
+      required: [state, updatedAt]
+      properties:
+        state:
+          type: string
+          enum:
+            - ELIGIBLE
+            - SUBMITTED
+            - INACTIVATED
+            - FULFILLMENT
+            - FAILED
+        orderId:
+          type: string
+          nullable: true
+        etaDays:
+          type: integer
+          nullable: true
+        reasonCode:
+          type: string
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+
+    CvsEvent:
+      type: object
+      required: [eventType, occurredAt]
+      properties:
+        eventType:
+          type: string
+          enum: [INACTIVATED, FULFILLMENT, FAILED, UNKNOWN]
+        cvsCorrelationId: { type: string }
+        transactionId: { type: string }
+        occurredAt: { type: string, format: date-time }
+        payload:
+          type: object
+          additionalProperties: true
+
+    PrescriptionEligibilityInput:
+      type: object
+      properties:
+        rxNumber: { type: string }
+        lookupKey: { type: string, description: "Alternative key when rxNumber is not available" }
+        ndcId: { type: string }
+        daysSupplyRemaining: { type: integer, minimum: 0 }
+        remainingRefills: { type: integer, minimum: 0 }
+      required: [rxNumber]
+
+    PrescriptionTransferInput:
+      type: object
+      properties:
+        prescriptionNumber: { type: string }
+        ndcId: { type: string }
+        daysSupply: { type: integer, minimum: 0 }
+      required: [prescriptionNumber]
+
+    Prescriber:
+      type: object
+      properties:
+        spiId: { type: string }
+        npiId: { type: string }
+        dea: { type: string }
+      required: [spiId]
+
+    Pharmacy:
+      type: object
+      properties:
+        ncpdpId: { type: string, description: "Maps to CVS phmNabpId" }
+        npiId: { type: string }
+      required: [ncpdpId]
+
+    ClientContext:
+      type: object
+      properties:
+        locale: { type: string, example: "en-US" }
+        channel: { type: string, example: "web" }
+        appVersion: { type: string }
+        deviceId: { type: string }
