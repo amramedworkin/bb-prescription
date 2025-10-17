@@ -1,0 +1,46 @@
+@startuml
+' Style
+skinparam sequenceMessageAlign center
+skinparam BoxPadding 10
+skinparam ParticipantPadding 20
+skinparam ResponseMessageBelowArrow true
+autonumber
+
+box "Aetna" #LightBlue
+  actor "Member (Web/iOS/Android)" as M
+  participant "Aetna Frontend (App)" as FE
+  participant "/enhanced prescription list" as EPL
+  participant "Aetna BFF / Domain Service" as BFF
+  participant "/v1/retail-to-mail/eligibility" as EL
+end box
+
+box "CVS / Caremark" #LightGreen
+  participant "/cvs/submitRetailToMailRxTransfer" as TX
+  participant "RxConnect / ICE" as RX
+  participant "Mail Order Fulfillment" as MO
+end box
+
+M -> FE : Select "Transfer to Mail Order"
+FE -> EPL : Get Rx list / choose Rx for transfer
+EPL -> BFF : Forward request
+
+BFF -> EL : getRetailToMailRxTransferEligibility(input)
+EL --> BFF : RetailToMailRxTransferResponse(eligibility, reason)
+
+alt Eligible for direct transfer
+  BFF -> TX : submitRetailToMailTransfer(payload)
+  TX --> BFF : { statusCode: "0000", statusDescription: "Success" }
+  
+  TX -> RX : Inactivate Rx ("Transferred to Mail")
+  RX --> TX : Inactivate OK
+  
+  TX -> MO : Create Mail-Order Rx / Start fulfillment
+  MO --> TX : Ack
+  
+  BFF --> FE : Success details (order id, ETA)
+  FE --> M : Confirmation\n(Eligible Mail Order – Confirmation)
+else Not eligible → provider approval (FastStart)
+  BFF --> FE : Not eligible + reason
+  FE --> M : Provider approval needed\n(FastStart path)
+end
+@enduml
