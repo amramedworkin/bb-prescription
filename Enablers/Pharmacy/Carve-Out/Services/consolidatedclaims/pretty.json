@@ -1,0 +1,20 @@
+{
+    "lineOfBusinessName": "Commercial",
+    "planSponsorId": "0000000100903903",
+    "relationshipToSubscriber": "Self",
+    "claimType": "MED,DEN,PHAR,HEAR,SBH",
+    "includeCvsDirectClaims": true,
+    "claimStatus": [
+        "CMPL",
+        "RVSD",
+        "INPR",
+        "DENY",
+        "IREQ",
+        "HP",
+        "Paid",
+        "Final",
+        "Denied"
+    ],
+    "fromDate": "2023-10-17T04:00:00.000Z",
+    "toDate": "2025-10-18T03:59:59.000Z"
+}

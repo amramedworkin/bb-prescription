@@ -1,0 +1,13 @@
+{
+    "data": {
+      "submitRetailToMailRxTransfer": {
+        "statusCode": "0001",
+        "statusDescription": "Partial Success",
+        "fault": {
+          "type": "Partial Success",
+          "title": "SUBMIT: Failed to inactivate the RxNumber: 01884433434",
+          "moreInfo": "https://developer.cvshealth.com/common/error-codes"
+        }
+      }
+    }
+  }

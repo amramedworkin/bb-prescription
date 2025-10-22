@@ -1,0 +1,175 @@
+{
+  "data": {
+    "getLinkedMemberPatients": [
+      {
+        "linkedIDs": [
+          {
+            "lookupId": null,
+            "prescriptionforPatient": [
+              {
+                "ancillaryProductInd": null,
+                "displayPromiseTime": null,
+                "drugInfo": {
+                  "drug": {
+                    "name": "MAOX 420MG TAB",
+                    "formName": "TAB",
+                    "formStrengthName": "420MG",
+                    "gcnSequenceNumber": "4093",
+                    "ndcId": "10706083701",
+                    "genericCodeNumber": "4093",
+                    "strengthQuantity": null,
+                    "drugEnforcementAdministrationClassCode": "0"
+                  },
+                  "drugProperties": {
+                    "isControlledSubstances": false,
+                    "isColdpackRequired": false
+                  }
+                },
+                "isHiddenByUser": false,
+                "prescribedName": null,
+                "fulfilledBy": "CVS Caremark??",
+                "fills": [
+                  {
+                    "expectedReturnToStockDate": null,
+                    "fillCost": null,
+                    "fillNumber": 0,
+                    "fillQuantity": null,
+                    "fillSequenceNumber": null,
+                    "fillStatus": "On Hold",
+                    "fillStatusCode": "14",
+                    "pickupDate": null,
+                    "promiseDate": null,
+                    "promiseTime": null,
+                    "totalRxCost": 0,
+                    "daysSupply": null,
+                    "fillVersionNumber": null,
+                    "patientPayAmount": 0,
+                    "estimatedCashPrice": null,
+                    "totalPatientPaidAmount": null,
+                    "orderNumber": "2052469002",
+                    "group": null
+                  }
+                ],
+                "id": "674551514",
+                "idType": "PBM_QL_PRESCRIPTION_ID_TYPE",
+                "prescriptionLookupKey": "U2FsdGVkX19md2eIJT0sd+X1hJPZ1ZYPirHQULLHelOi47ekFEhi7vfUMeRp4eOrMOwubQjd1/Xk69ETf97Ktwers979pLgIv4kuvJLKXUobFg1tkjMxJ1gfEKkslkgjQtqpiTJQ6FTY8CX0/ucRrdlNMeG/x1HnJDHn6aWdG4EqmBx4E9JrZiMYLPVAHrnDWrG5Y3sO3zq/0b9xuiTuGbv42r1+gCZCSJ54P6as6DbwfKDvf3PovzSvevYyV1NKNd2Z0XWPoGzrxXgtMB8KkiJBjmNX+3jiJktQmMbSEoh5kwkqxQAulfuAH5nvhW1KTmDGijlmgUnXCxSvUSMrS2oGgk/GEFYb7qRjyy2PsDQh6jilyM8xL4iDg+9I3POreUIb5FBniC0/N4M/vzVWjUXhiZEKkLi2hvoDv6kVs2h2MzYO3cNRRVl/QQ74erMn2MrV3sNfr+MjsRzsQbdz6AIvT+6BgNbL6OK48ETvtEToXtx0pIGTdnudzckyQdwV",
+                "isMaintenanceChoice": false,
+                "isPriorPrescription": false,
+                "isRefillable": true,
+                "lastRefillDate": null,
+                "nextFillDate": "2025-05-07T00:00:00.000Z",
+                "numberOfRefillsAuthorized": null,
+                "numberOfRefillsRemaining": 2,
+                "quantity": 30,
+                "quantityRemaining": null,
+                "readyFillQualResult": null,
+                "rescheduleEligible": null,
+                "rollUpIndex": {
+                  "groupIndex": "1",
+                  "groupingValue": "48400020000315",
+                  "discombubulator": false
+                },
+                "rxStatus": {
+                  "date": null,
+                  "isActiveOrder": false,
+                  "parentStatus": "Not filled",
+                  "ruleId": "onhold_rc14",
+                  "rxActivityDate": "Apr 08, 2025",
+                  "rxActivityLabel": "Received ",
+                  "sortIndex": "10",
+                  "status": "We need your help",
+                  "subStatus": "Please call the Customer Care number on your member ID card."
+                },
+                "rxSubscriptions": [
+                  {
+                    "programName": "PBM_READY_FILL",
+                    "status": "ELIGIBLE",
+                    "subStatus": null,
+                    "nextPickupDate": null
+                  }
+                ],
+                "storeNumber": null,
+                "storeDetails": null,
+                "totalPrescriptionCost": 0,
+                "actualPromiseTimestamp": null,
+                "currentTimestamp": null,
+                "daysSupply": 30,
+                "isRxCancelable": false,
+                "isRetailToMailEligible": null,
+                "isTransferable": false,
+                "isUpcomingPrescription": false,
+                "issueDate": "2025-04-08T00:00:00.000Z",
+                "nextAutoRefillDate": null,
+                "status": "ACTIVE",
+                "expirationDate": "2026-04-07T00:00:00.000Z",
+                "autoRenewStatus": "ELIGIBLE",
+                "prescriberRequestAllowedForDrugSchedule": null,
+                "prescriber": {
+                  "firstName": "AGRIPPI",
+                  "lastName": "TARAB",
+                  "phone": "0268588166",
+                  "prescriberProtocol": null,
+                  "prohibitRenewalRequest": null,
+                  "blockedPrescriber": null,
+                  "prescriberObsoleteInd": null,
+                  "prescriberDeceasedInd": null
+                },
+                "rxDirection": null,
+                "isReadyFill": null,
+                "mdoFlag": null,
+                "starterRxInd": null,
+                "firstFillIndicator": null,
+                "acceptDigitalRefill": null,
+                "refrigIndicator": null,
+                "currentFillNumber": null,
+                "isRenewEligible": false,
+                "rxIneligibleforSelfServ": null,
+                "orgRxExcludeInd": null,
+                "selfServeOptions": null
+              }
+            ]
+          }
+        ],
+        "memberType": "primary",
+        "patient": {
+          "relationshipToSubscriber": "Self",
+          "dateOfBirth": "1942-12-17T00:00:00.000Z",
+          "firstName": "AZALEE",
+          "lastName": "PECK",
+          "id": "955203962",
+          "phoneNumbers": [
+            {
+              "value": "0268588166"
+            }
+          ]
+        }
+      }
+    ],
+    "allRxStatuses": [
+      "Due for refill",
+      "Inactive",
+      "On the way",
+      "Scheduled"
+    ],
+    "cta": {
+      "viewDetails": {
+        "text": "View Details"
+      },
+      "addToCart": {
+        "text": "Add to Cart"
+      },
+      "addedToCart": {
+        "text": "Added to Cart"
+      },
+      "removeFromCart": {
+        "text": "Remove from Cart"
+      },
+      "viewOrder": {
+        "text": "View Order"
+      },
+      "trackOrder": {
+        "text": "Track Order"
+      }
+    }
+  }
+}

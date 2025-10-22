@@ -1,0 +1,774 @@
+openapi: 3.0.3
+info:
+  title: Ship Consent Details
+  contact:
+    name: AH Kaizen
+    url: https://cvsdigital.atlassian.net/wiki/spaces/NGX/pages/4042654658/Kaizen
+    email: Enterprise-Digital-AH-Kaizen@CVSHealth.com
+  version: 1.0.0
+servers:
+  - url: http://0.0.0.0:9094/prescription-mgmt-svc
+    description: local
+  - url: https://prescription-management.dev.aetnadigital.net
+    description: dev
+  - url: https://prescription-management.qa.aetnadigital.net
+    description: qa
+  - url: https://prescription-management.prd.aetnadigital.net
+    description: prod
+  - url: https://qaapi03.aetna.com/healthcare/qapath1/prescription-mgmt-svc
+    description: Apic External qapath1
+  - url: https://api03.aetna.com/healthcare/prod/prescription-mgmt-svc
+    description: Apic Prod
+paths:
+  /v1/orders/shipconsent:
+    post:
+      tags:
+        - Orders
+      summary: Save ship consent for orders
+      description: Allows saving ship consent for orders
+      operationId: saveShipConsent
+      parameters:
+        - $ref: '#/components/parameters/Eieheaderusercontext'
+        - $ref: '#/components/parameters/Eieheaderapplicationidentifier'
+        - $ref: '#/components/parameters/Eieheaderaction'
+        - $ref: '#/components/parameters/Eieheaderorchestratingapplicationidentifier'
+        - $ref: '#/components/parameters/Eieheaderversion'
+        - $ref: '#/components/parameters/Eieheadertransactionid'
+        - $ref: '#/components/parameters/QaPath'
+        - $ref: '#/components/parameters/AetnaAcceptLanguage'
+      requestBody:
+        description: Save ship consent request body
+        content:
+          application/json:
+            schema:
+              required:
+                - lineOfBusinessName
+                - orderLookupKeys
+                - planSponsorId
+                - relationshipToSubscriber
+              type: object
+              properties:
+                orderLookupKeys:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      orderLookupKey:
+                        type: string
+                        description: Lookup key for the order
+                lineOfBusinessName:
+                  type: string
+                  description: Name of the line of business
+                planSponsorId:
+                  type: string
+                  description: ID of the plan sponsor
+                relationshipToSubscriber:
+                  type: string
+                  description: Relationship to the subscriber
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: >-
+                      Indicates the overall status of the operation (e.g.,
+                      "SUCCESS", "FAILURE", "PARTIAL_SUCCESS")
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCodes'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCodes'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCodes'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCodes'
+        '500':
+          description: Internal Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCodes'
+        '503':
+          description: Service Unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorCodes'
+components:
+  schemas:
+    Address:
+      title: Address
+      type: object
+      description: address model
+      properties:
+        street1:
+          type: string
+          description: street address line 1
+          example: 1220 E Colfax Ave
+        street2:
+          type: string
+          description: street address line 2
+          example: PO Box 23
+        city:
+          type: string
+          description: city
+          example: Denver
+        state:
+          type: string
+          description: state
+          example: CO
+        zipCode:
+          type: string
+          description: zip code
+          example: 80021
+        zipCodeSuffix:
+          type: string
+          description: zip code suffix
+          example: 1234
+        county:
+          type: string
+          description: county
+          example: adams
+        country:
+          type: string
+          description: country
+          example: US
+    Error:
+      required:
+        - detail
+        - status
+        - title
+      type: object
+      properties:
+        status:
+          type: integer
+          description: Indicates the error Code
+          example: 500
+        title:
+          type: string
+          description: short description of the error
+          example: Internal Server Error
+        detail:
+          type: string
+          description: Long description of the error
+          example: Service is down.
+        moreInformation:
+          type: string
+          description: Long description of the error
+          example: Service is down.
+    Prescription:
+      title: Prescription
+      type: object
+      required:
+        - id
+        - claimId
+        - quantity
+        - daysSupply
+        - filledDate
+        - fulfilledBy
+        - remainingRefills
+        - isAutoRefillEligible
+        - isAutoRenewEligible
+        - isAutoRefillEnabled
+        - isAutoRenewEnabled
+        - needsShipConsent
+        - drug
+        - patient
+        - prescriber
+      properties:
+        id:
+          type: string
+          description: Prescription id
+          example: '4952919291403055736'
+        claimId:
+          type: string
+          description: Identification number for the claim.
+          example: '200023611694001'
+        patient:
+          title: CaremarkMember
+          type: object
+          required:
+            - membershipId
+            - memberResourceId
+            - memberId
+            - personCode
+            - firstName
+            - lastName
+            - planId
+          properties:
+            membershipId:
+              type: string
+              description: The membership Id
+              example: 41~123456789
+            memberResourceId:
+              type: string
+              description: The member resource Id
+              example: 5~264311950+10+1+20190101+760179+A+1
+            memberId:
+              type: string
+              description: The member Id
+              example: 41~123456789
+            personCode:
+              type: string
+              description: this is the indexId for a family member
+              example: 1
+            firstName:
+              type: string
+              description: The first name of the member who this drug was prescribed to.
+              example: Anne
+            lastName:
+              type: string
+              description: The last name of the member who this drug was prescribed to.
+              example: Doe
+            nameSuffix:
+              type: string
+              description: >-
+                The last name suffix of the member who this drug was prescribed
+                to.
+              example: Jr
+            dateOfBirth:
+              type: string
+              description: The date of birth of the member who this drug was prescribed to.
+              example: '2005-05-01T00:00:00.000Z'
+              format: date
+            gender:
+              type: string
+              description: The gender of the member who this drug was prescribed to.
+              example: m
+            planId:
+              type: string
+              description: pharmacy plan id in Caremark
+            prescriptionPlan:
+              type: object
+              title: Prescription plan
+              description: prescription plan of a member
+              required:
+                - planId
+                - groupId
+                - isCarvedOut
+                - relationshipToSubscriber
+                - coverageDateBegin
+                - coverageDateEnd
+                - hasMaintenanceChoice
+                - hasRetail90
+                - isPrimary
+                - isSTCOB
+                - isMedicare
+              properties:
+                planId:
+                  type: string
+                  description: pharmacy plan id in Caremark
+                groupId:
+                  type: string
+                  description: pharmacy group id in Caremark
+                coverageDateBegin:
+                  type: string
+                  description: date the coverage of the plan began
+                  format: date
+                coverageDateEnd:
+                  type: string
+                  description: date the coverage of the plan ended
+                  format: date
+                isCarvedOut:
+                  type: boolean
+                  description: whether the member is a carved out member or not
+                  example: false
+                relationshipToSubscriber:
+                  type: string
+                  description: the members relationship to the subscriber
+                  example: SELF
+                  enum:
+                    - SELF
+                    - SPOUSE
+                    - CHILD
+                hasMaintenanceChoice:
+                  type: boolean
+                  description: whether the prescription plan has a maintenance choice
+                  example: false
+                hasRetail90:
+                  type: boolean
+                  description: whether the prescription plan has a retail 90
+                  example: false
+                isPrimary:
+                  type: boolean
+                  description: whether the prescription plan is the primary plan
+                  example: false
+                isSTCOB:
+                  type: boolean
+                  description: whether the prescription plan is STCOB
+                  example: false
+                isMedicare:
+                  type: boolean
+                  description: whether the prescription plan is medicare
+                  example: false
+                carrierId:
+                  type: string
+                  description: carrier id
+                eligibility:
+                  type: object
+                  description: plan eligibility
+                  required:
+                    - eligible
+                    - enrolledAutoRefill
+                    - enrolledAutoRenew
+                    - autoRefillStatus
+                    - autoRenewStatus
+                  properties:
+                    eligible:
+                      type: boolean
+                      description: whether the prescription plan is eligible
+                      example: false
+                    enrolledAutoRefill:
+                      type: boolean
+                      description: whether the prescription plan is enrolled in auto refill
+                      example: false
+                    enrolledAutoRenew:
+                      type: boolean
+                      description: whether the prescription plan is enrolled in auto renew
+                      example: false
+                    autoRefillStatus:
+                      type: boolean
+                      description: current status of a plans auto refill
+                      example: false
+                    autoRenewStatus:
+                      type: boolean
+                      description: current status of a plans auto renew
+                      example: false
+        drug:
+          title: Drug
+          type: object
+          description: drug model
+          required:
+            - name
+            - form
+            - strength
+            - ndc
+            - requiresColdPack
+            - isSensitive
+            - isControlledSubstance
+            - isGeneric
+            - isCompound
+            - isVaccine
+          properties:
+            name:
+              type: string
+              description: The drug name
+              example: Lipitor
+            form:
+              type: string
+              description: Sample values - CAPSULE, TABLET, SUSP RECON, CREAM
+              example: Capsule
+            strength:
+              type: string
+              description: Sample values - 10mg, 200mg, 6MG/ML, 1%
+              example: 10mg
+            ndc:
+              type: string
+              description: >-
+                The National Drug Code (NDC) is a unique product identifier used
+                for drugs intended for human use
+              example: '12345678901'
+            requiresColdPack:
+              type: boolean
+              description: >-
+                A true value of this field indicates that the drug cannot be
+                shipped with normal packaging. Is required for MAIL refilltype.
+              example: false
+            isSensitive:
+              type: boolean
+              description: >-
+                A true value of this field indicates sensitive medication. Is
+                required for MAIL refilltype.
+              example: false
+            isControlledSubstance:
+              type: boolean
+              description: >-
+                A true value of this field indicates a controlled drug as per
+                DEA
+              example: false
+            isGeneric:
+              type: boolean
+              description: A true value indicates the drug is generic brand
+              example: false
+            gpiCode:
+              type: string
+              description: >-
+                The Generic Product Identifier (GPI) is a 14-character
+                hierarchical classification system to identify drugs
+              example: '500'
+            abbreviateDrugForm:
+              type: string
+              description: The abbreviated drug form
+            gcnCode:
+              type: string
+              description: TBD
+            deaClassCode:
+              type: string
+              description: Drug Enforcement Administration Class Code
+              example: '500'
+            isCompound:
+              type: boolean
+              description: A true value indicates the drug is a compound
+              example: false
+            isVaccine:
+              type: boolean
+              description: A true value indicates the drug is a vaccine
+              example: false
+        prescriber:
+          title: Prescriber
+          type: object
+          description: Prescriber
+          required:
+            - fullName
+            - firstName
+            - lastName
+            - npiNumber
+          properties:
+            fullName:
+              type: string
+              description: full name of the prescriber
+              example: Jane Doe
+            firstName:
+              type: string
+              description: First name of the prescriber
+              example: Jane
+            lastName:
+              type: string
+              description: Last name of the prescriber
+              example: Doe
+            npiNumber:
+              type: string
+              description: >-
+                National Provider Identifier of the prescriber. A National
+                Provider Identifier (NPI) is a unique 10-digit identification
+                number issued to health care providers in the United States by
+                the Centers for Medicare and Medicaid Services (CMS).
+              example: '12345'
+            address:
+              $ref: '#/components/schemas/Address'
+        expirationDate:
+          type: string
+          description: This field indicates the date when the prescription expires.
+          nullable: true
+          format: date
+          example: '2020-01-04T00:00:00.000Z'
+        quantity:
+          type: number
+          description: This is the actual quantity of the drug dispensed.
+          example: 108
+        daysSupply:
+          type: integer
+          description: This indicates the number of days of supply for this prescription.
+          format: int32
+          example: 36
+        filledDate:
+          type: string
+          description: >-
+            This field indicates the date when this prescription was last
+            filled. This will be blank for the first-fill.
+          example: '2019-01-05T00:00:00.000Z'
+          format: date
+        fulfilledBy:
+          type: string
+          description: >-
+            This field provides the fulfilling pharmacy name. This field can be
+            customized to provide client branding.
+          example: Home Delivery Pharmacy
+        remainingRefills:
+          type: integer
+          description: Number of refills remaining
+          format: int32
+          nullable: true
+          example: 3
+        isAutoRefillEligible:
+          type: boolean
+          description: >-
+            This flag indicates whether the prescription is eligible for
+            auto-refill. This is required for MAIL refillType.
+          example: false
+        isAutoRenewEligible:
+          type: boolean
+          description: >-
+            This flag indicates whether the prescription is eligible for
+            auto-renew. This is required for MAIL refillType.
+          example: false
+        isAutoRefillEnabled:
+          type: boolean
+          description: >-
+            This flag indicates whether the prescription is enrolled for
+            auto-refill. This is required for MAIL refillType.
+          example: false
+        isAutoRenewEnabled:
+          type: boolean
+          description: >-
+            This flag indicates whether the prescription is enrolled for
+            auto-renew. This is required for MAIL refillType.
+          example: false
+        autoRenewNotAllowedReason:
+          type: array
+          description: >-
+            This field indicates if the member's plan allows for auto-renew
+            enrollment. Member level field. This is required for MAIL
+            refillType.
+          items:
+            type: string
+        autoRefillNotAllowedReason:
+          type: array
+          description: >-
+            This field indicates if the member's plan allows for auto-refill
+            enrollment. Member level field. This is required for MAIL
+            refillType.
+          items:
+            type: string
+        needsShipConsent:
+          type: boolean
+          description: This flag indicates whether the prescription needs consent to ship
+          example: false
+    PrescriptionRefill:
+      title: PrescriptionRefill
+      allOf:
+        - $ref: '#/components/schemas/Prescription'
+        - type: object
+          required:
+            - refillType
+            - estimatedCost
+          properties:
+            refillType:
+              type: string
+              description: The refill type, MAIL, RETAIL, SPECIALTY etc.
+              example: MAIL
+              enum:
+                - MAIL
+                - RETAIL
+            refillStatus:
+              type: string
+              description: The refill status. Applicable only for mail order refills.
+              example: AVAILABLE_NOW
+              enum:
+                - AVAILABLE_NOW
+                - READY_TO_SHIP
+                - ORDER_FILLED
+                - ON_HOLD
+                - ORDER_VERIFIED
+                - SHIPPED
+                - IN_PROCESS
+                - DELIVERED
+                - AVAILABLE_TO_REFILL
+                - AVAILABLE_TO_RENEW
+                - OUT_OF_STOCK
+                - READY_FOR_PICKUP
+                - CONTACT_YOUR_PHARMACY
+                - AUTO_REFILLS_ON
+                - AVAILABLE_TO_REFILL_ON
+                - AVAILABLE_TO_RENEW_ON
+            renewStatus:
+              type: string
+              description: >-
+                The renew status. Applicable for both retail and mail order
+                refills.
+              example: AVAILABLE_NOW
+              enum:
+                - READY_TO_SHIP
+                - ON_HOLD
+                - SHIPPED
+                - IN_PROCESS
+                - CONSENT_NEEDED
+                - FUTURE_FILL_ON
+                - CANCELED
+                - ONE_TIME_RENEW
+                - RENEW_EXPIRED
+                - UNAVAILABLE
+                - NOT_ABLE_REFILL_TODAY
+                - MOVED
+                - AVAILABLE_FOR_REFILL_ON
+                - DUPE_RX_ON_HOLD
+            estimatedCost:
+              type: number
+              description: >-
+                Estimated Cost is the amount the Member is required to pay to
+                obtain the prescription in accordance with the Member???s
+                benefit plan. This cost may include a copayment, deductible, a
+                percentage of the prescription price, a fixed amount, or other
+                charge, with the balance, if any, paid by the Plan Sponsor.
+              nullable: true
+              example: 6600
+            store:
+              required:
+                - id
+                - name
+                - address
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: ID of the retail pharmacy store
+                  example: 3598
+                name:
+                  type: string
+                  description: Name of the store
+                  example: CVS
+                address:
+                  $ref: '#/components/schemas/Address'
+            nextFillDate:
+              type: string
+              description: >-
+                This field indicates the date when the prescription is due for
+                refill.
+              example: '2019-02-21T00:00:00.000Z'
+    ErrorCodes:
+      required:
+        - detail
+        - status
+        - title
+      type: object
+      properties:
+        status:
+          type: integer
+          description: Indicates the error code.
+          example: 400
+        title:
+          type: string
+          description: Short description of the error.
+          example: Bad Request
+        detail:
+          type: string
+          description: Detailed description of the error.
+          example: The request is invalid.
+  parameters:
+    Eieheaderusercontext:
+      name: eieheaderusercontext
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderapplicationidentifier:
+      name: eieheaderapplicationidentifier
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderaction:
+      name: eieheaderaction
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderorchestratingapplicationidentifier:
+      name: eieheaderorchestratingapplicationidentifier
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderversion:
+      name: eieheaderversion
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheadertransactionid:
+      name: eieheadertransactionid
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    QaPath:
+      name: x-qapath
+      in: header
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: '1'
+    AetnaAcceptLanguage:
+      name: x-aetna-accept-Language
+      in: header
+      description: Defaults to en-US.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        enum:
+          - en-US
+          - es-US
+      example: es-ES, en-US
+    RequesterMemberIdHeader:
+      name: requesterMemberId
+      in: header
+      description: >-
+        The membershipResourceId of the member making the request or logged in
+        that the request is on behalf of.
+      required: false
+      style: simple
+      explode: false
+      allowReserved: true
+      schema:
+        type: string
+    PatientMemberId:
+      name: patientMemberId
+      in: query
+      description: >-
+        The membershipResourceId for the patient/person the data is being
+        requested for.
+      required: false
+      style: form
+      explode: true
+      allowReserved: true
+      schema:
+        type: string
+    StartDate:
+      name: startDate
+      in: query
+      description: >-
+        start date in yyyy???MM???dd. This is defaulted to 12 months from the
+        current date at APIc if clients dont provide it.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+    EndDate:
+      name: endDate
+      in: query
+      description: >-
+        end date in yyyy???MM???dd. This is defaulted to today at APIc if
+        clients dont provide it.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string

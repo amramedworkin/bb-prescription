@@ -1,0 +1,313 @@
+{
+    "prescriptionSummaryInfo": {
+        "prescriptionList": [
+            {
+                "claimId": "242901584886004",
+                "prescriptionNumber": "403295309",
+                "prescriptionId": "5390040571403295309",
+                "daysSupply": 90,
+                "quantity": 10,
+                "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+                "lastFilledDate": "2024-10-16",
+                "prescriberName": "TARAB, AGRIPPI",
+                "drug": {
+                    "drugForm": "VIA",
+                    "drugName": "Novolog",
+                    "NDC11": "169750111",
+                    "gpiCode": "27104002002022",
+                    "drugStrength": "100U/ML",
+                    "isSensitive": false,
+                    "isBrand": true
+                },
+                "statusText": "NOT_AVAILABLE",
+                "estimatedCost": 43.79,
+                "prescriptionExpirationDate": null,
+                "refillCategory": "NOT_AVAILABLE",
+                "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+                "memberResourceId": "41~185351572",
+                "memberFirstName": "Xavier",
+                "memberLastName": "Hunter",
+                "relationshipToSubscriber": "Self",
+                "refillsLeft": null
+            },
+            {
+                "claimId": "242900736468007",
+                "prescriptionNumber": "403295288",
+                "prescriptionId": "5390040571403295288",
+                "daysSupply": 90,
+                "quantity": 10,
+                "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+                "lastFilledDate": "2024-10-16",
+                "prescriberName": "TARAB, AGRIPPI",
+                "drug": {
+                    "drugForm": "VIA",
+                    "drugName": "Novolog",
+                    "NDC11": "169750111",
+                    "gpiCode": "27104002002022",
+                    "drugStrength": "100U/ML",
+                    "requiresColdPack": true,
+                    "isControlledSubstance": false,
+                    "isSensitive": false,
+                    "isBrand": true
+                },
+                "statusText": "READY_FOR_REFILL",
+                "estimatedCost": 43.79,
+                "prescriptionExpirationDate": "2025-10-15",
+                "refillCategory": "READY_FOR_REFILL",
+                "orderNumber": "2550239002",
+                "autoRefill": false,
+                "autoRenew": false,
+                "isAutoRefillAllowed": true,
+                "isAutoRenewAllowed": true,
+                "nextFillDate": "2025-10-02",
+                "prescriberFirstName": "AGRIPPI",
+                "prescriberLastName": "TARAB",
+                "refillsLeft": 5,
+                "refillType": "MAIL",
+                "statusDescription": "Available to Refill",
+                "statusDescriptionText": "AVAILABLE_TO_REFILL",
+                "renewStatusText": "",
+                "refillStatusText": "Available now",
+                "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+                "memberResourceId": "41~185351572",
+                "memberFirstName": "Xavier",
+                "memberLastName": "Hunter",
+                "relationshipToSubscriber": "Self",
+                "currentRxCTADisabled": "Added to Cart",
+                "currentRxCTAEnabled": "Add to Cart"
+            },
+            {
+                "claimId": "242900763349006",
+                "prescriptionNumber": "403295291",
+                "prescriptionId": "5390040571403295291",
+                "daysSupply": 365,
+                "quantity": 10,
+                "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+                "lastFilledDate": "2024-10-16",
+                "prescriberName": "TARAB, AGRIPPI",
+                "drug": {
+                    "drugForm": "VIA",
+                    "drugName": "Novolog",
+                    "NDC11": "169750111",
+                    "gpiCode": "27104002002022",
+                    "drugStrength": "100U/ML",
+                    "isSensitive": false,
+                    "isBrand": true
+                },
+                "statusText": "NOT_AVAILABLE",
+                "estimatedCost": 43.79,
+                "prescriptionExpirationDate": null,
+                "refillCategory": "NOT_AVAILABLE",
+                "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+                "memberResourceId": "41~185351572",
+                "memberFirstName": "Xavier",
+                "memberLastName": "Hunter",
+                "relationshipToSubscriber": "Self",
+                "refillsLeft": null
+            },
+            {
+                "claimId": "242900764820006",
+                "prescriptionNumber": "403295294",
+                "prescriptionId": "5390040571403295294",
+                "daysSupply": 365,
+                "quantity": 10,
+                "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+                "lastFilledDate": "2024-10-16",
+                "prescriberName": "TARAB, AGRIPPI",
+                "drug": {
+                    "drugForm": "VIA",
+                    "drugName": "Novolog",
+                    "NDC11": "169750111",
+                    "gpiCode": "27104002002022",
+                    "drugStrength": "100U/ML",
+                    "isSensitive": false,
+                    "isBrand": true
+                },
+                "statusText": "NOT_AVAILABLE",
+                "estimatedCost": 43.79,
+                "prescriptionExpirationDate": null,
+                "refillCategory": "NOT_AVAILABLE",
+                "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+                "memberResourceId": "41~185351572",
+                "memberFirstName": "Xavier",
+                "memberLastName": "Hunter",
+                "relationshipToSubscriber": "Self",
+                "refillsLeft": null
+            },
+            {
+                "claimId": "242901583479003",
+                "prescriptionNumber": "403295308",
+                "prescriptionId": "5390040571403295308",
+                "daysSupply": 90,
+                "quantity": 10,
+                "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+                "lastFilledDate": "2024-10-16",
+                "prescriberName": "TARAB, AGRIPPI",
+                "drug": {
+                    "drugForm": "VIA",
+                    "drugName": "Novolog",
+                    "NDC11": "169750111",
+                    "gpiCode": "27104002002022",
+                    "drugStrength": "100U/ML",
+                    "requiresColdPack": true,
+                    "isControlledSubstance": false,
+                    "isSensitive": false,
+                    "isBrand": true
+                },
+                "statusText": "READY_FOR_REFILL",
+                "estimatedCost": 43.79,
+                "prescriptionExpirationDate": "2025-10-15",
+                "refillCategory": "READY_FOR_REFILL",
+                "orderNumber": "2190239002",
+                "autoRefill": false,
+                "autoRenew": false,
+                "isAutoRefillAllowed": true,
+                "isAutoRenewAllowed": true,
+                "nextFillDate": "2025-10-02",
+                "prescriberFirstName": "AGRIPPI",
+                "prescriberLastName": "TARAB",
+                "refillsLeft": 3,
+                "refillType": "MAIL",
+                "statusDescription": "Available to Refill",
+                "statusDescriptionText": "AVAILABLE_TO_REFILL",
+                "renewStatusText": "",
+                "refillStatusText": "Available now",
+                "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+                "memberResourceId": "41~185351572",
+                "memberFirstName": "Xavier",
+                "memberLastName": "Hunter",
+                "relationshipToSubscriber": "Self",
+                "currentRxCTADisabled": "Added to Cart",
+                "currentRxCTAEnabled": "Add to Cart"
+            },
+            {
+                "claimId": "242901586227005",
+                "prescriptionNumber": "403295310",
+                "prescriptionId": "5390040571403295310",
+                "daysSupply": 90,
+                "quantity": 10,
+                "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+                "lastFilledDate": "2024-10-16",
+                "prescriberName": "TARAB, AGRIPPI",
+                "drug": {
+                    "drugForm": "VIA",
+                    "drugName": "Novolog",
+                    "NDC11": "169750111",
+                    "gpiCode": "27104002002022",
+                    "drugStrength": "100U/ML",
+                    "isSensitive": false,
+                    "isBrand": true
+                },
+                "statusText": "NOT_AVAILABLE",
+                "estimatedCost": 43.79,
+                "prescriptionExpirationDate": null,
+                "refillCategory": "NOT_AVAILABLE",
+                "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+                "memberResourceId": "41~185351572",
+                "memberFirstName": "Xavier",
+                "memberLastName": "Hunter",
+                "relationshipToSubscriber": "Self",
+                "refillsLeft": null
+            }
+        ]
+    },
+    "medicationDetailsInfo": {
+        "medicationDetails": {
+            "usedFor": "INSULIN ASPART (IN su lin AS part) treats diabetes. It works by increasing insulin levels in your body, which decreases your blood sugar (glucose). It belongs to a group of medications called rapid-acting insulins. Changes to diet and exercise are often combined with this medication.",
+            "usedFor_md": "* INSULIN ASPART (IN su lin AS part) treats diabetes. It works by increasing insulin levels in your body, which decreases your blood sugar (glucose). It belongs to a group of medications called rapid-acting insulins. Changes to diet and exercise are often combined with this medication.\n",
+            "precautions": "They need to know if you have any of these conditions:\n  -Kidney disease\n  -Liver disease\n  -Often have low blood sugar\n  -Vision problems\n  -An unusual or allergic reaction to insulin, other medications, foods, dyes, or preservatives\n  -Pregnant or trying to get pregnant\n  -Breastfeeding",
+            "precautions_md": "* They need to know if you have any of these conditions:\n    * Kidney disease\n    * Liver disease\n    * Often have low blood sugar\n    * Vision problems\n    * An unusual or allergic reaction to insulin, other medications, foods, dyes, or preservatives\n    * Pregnant or trying to get pregnant\n    * Breastfeeding\n",
+            "howToTake": "This medication is injected under the skin. Use it as directed. It is important to follow the directions given to you by your care team. If you are using Fiasp, give your dose at the start of the meal or within 20 minutes after starting a meal. If you are using Novolog, give your dose 5 to 10 minutes before a starting a meal. Have your food ready before you give your dose. Do not delay eating. Talk to your care team about how to adjust doses for activity and illness. Know what to do if you skip a meal. Keep taking insulin therapy unless your care team tells you to stop.\nThis medication comes with INSTRUCTIONS FOR USE. Ask your pharmacist for directions on how to use this medication. Read the information carefully. Talk to your pharmacist or care team if you have questions.\nCheck the label. Make sure you have the right insulin and supplies.\nAlways check the appearance of your insulin before using it. This insulin should be clear and colorless like water. Do not use if it is thick, cloudy, or colored.\nChoose where to give the injection. This medication can be injected in the stomach, buttocks, upper arms, or upper legs (thighs). Do not inject into skin that is thickened or has pits or lumps. Do not inject into skin that is irritated. Keep a chart of the areas you have injected. It is important to rotate your injection site.\nIt is important that you put your used needles and syringes in a special sharps container. Do not put them in a trash can. If you do not have a sharps container, call your pharmacist or care team to get one.\nTalk to your care team about the use of this medication in children. While it may be prescribed for children for selected conditions, precautions do apply.",
+            "howToTake_md": "* This medication is injected under the skin. Use it as directed. It is important to follow the directions given to you by your care team. If you are using Fiasp, give your dose at the start of the meal or within 20 minutes after starting a meal. If you are using Novolog, give your dose 5 to 10 minutes before a starting a meal. Have your food ready before you give your dose. Do not delay eating. Talk to your care team about how to adjust doses for activity and illness. Know what to do if you skip a meal. Keep taking insulin therapy unless your care team tells you to stop.\n* This medication comes with INSTRUCTIONS FOR USE. Ask your pharmacist for directions on how to use this medication. Read the information carefully. Talk to your pharmacist or care team if you have questions.\n* Check the label. Make sure you have the right insulin and supplies.\n* Always check the appearance of your insulin before using it. This insulin should be clear and colorless like water. Do not use if it is thick, cloudy, or colored.\n* Choose where to give the injection. This medication can be injected in the stomach, buttocks, upper arms, or upper legs (thighs). Do not inject into skin that is thickened or has pits or lumps. Do not inject into skin that is irritated. Keep a chart of the areas you have injected. It is important to rotate your injection site.\n* It is important that you put your used needles and syringes in a special sharps container. Do not put them in a trash can. If you do not have a sharps container, call your pharmacist or care team to get one.\n* Talk to your care team about the use of this medication in children. While it may be prescribed for children for selected conditions, precautions do apply.\n",
+            "missedDose": "It is important to follow your insulin routine as directed. Talk to your care team if you miss a dose. They can help you adjust your dosing routine. Do not take double doses.",
+            "missedDose_md": "* It is important to follow your insulin routine as directed. Talk to your care team if you miss a dose. They can help you adjust your dosing routine. Do not take double doses.\n",
+            "interactions": "Some medications may affect your blood sugar levels or hide the symptoms of low blood sugar (hypoglycemia). Talk with your care team about all of the medications you take. They may suggest changes to your insulin dose or checking your blood sugar levels more often.\\nMedications that may affect your blood sugar levels include:\\n  -Alcohol\\n  -Certain antibiotics, such as ciprofloxacin, levofloxacin, sulfamethoxazole; trimethoprim\\n  -Certain medications for blood pressure or heart disease, such as benazepril, enalapril, lisinopril, losartan, valsartan\\n  -Certain medications for mental health conditions, such as fluoxetine or olanzapine\\n  -Diuretics, such as hydrochlorothiazide (HCTZ)\\n  -Estrogen and progestin hormones\\n  -Other medications for diabetes\\n  -Steroid medications, such as prednisone or cortisone\\n  -Testosterone\\n  -Thyroid hormones\\nMedications that may mask symptoms of low blood sugar include:\\n  -Beta blockers, such as atenolol, metoprolol, propranolol\\n  -Clonidine\\n  -Guanethidine\\n  -Reserpine",
+            "interactions_md": "* Some medications may affect your blood sugar levels or hide the symptoms of low blood sugar (hypoglycemia). Talk with your care team about all of the medications you take. They may suggest changes to your insulin dose or checking your blood sugar levels more often.\n* Medications that may affect your blood sugar levels include:\n    * Alcohol\n    * Certain antibiotics, such as ciprofloxacin, levofloxacin, sulfamethoxazole; trimethoprim\n    * Certain medications for blood pressure or heart disease, such as benazepril, enalapril, lisinopril, losartan, valsartan\n    * Certain medications for mental health conditions, such as fluoxetine or olanzapine\n    * Diuretics, such as hydrochlorothiazide (HCTZ)\n    * Estrogen and progestin hormones\n    * Other medications for diabetes\n    * Steroid medications, such as prednisone or cortisone\n    * Testosterone\n    * Thyroid hormones\n*** \n* Medications that may mask symptoms of low blood sugar include:\n    * Beta blockers, such as atenolol, metoprolol, propranolol\n    * Clonidine\n    * Guanethidine\n    * Reserpine\n",
+            "watchOutFor": "Visit your care team for regular health checks.\nYou may need blood work done while you are taking this medication. Your care team will monitor your HbA1C (A1C). This test shows what your average blood sugar level was over the past 2 to 3 months.\nThis medication may affect your coordination, reaction time, or judgment. Do not drive or operate machinery until you know how this medication affects you. Sit up or stand slowly to reduce the risk of dizzy or fainting spells. Drinking alcohol with this medication can increase the risk of these side effects.\nLearn how to check your blood sugar. Know the symptoms of low and high blood sugar and how to manage them.\nKnow the symptoms of low blood sugar and know how to treat it. Always carry a source of quick sugar with you. Examples include hard sugar candy or glucose tablets. Make sure others know that you can choke if you eat or drink if your blood sugar is too low and you are unable to care for yourself. Get medical help at once.\nTell your care team if you have high blood sugar. Your medication dose may change if your body is under stress. Some types of stress that may affect your blood sugar include fever, infection, and surgery.\nDo not skip meals. Ask your care team if you should avoid alcohol. Many cough and cold products contain sugar or alcohol. These can affect blood sugar levels.\nMake sure that you have the correct syringe for the type of insulin you use. Do not change the brand or type of insulin or syringe unless your care team tells you to. Switching insulin brand or type can affect your blood sugar enough to cause serious adverse effects.\nAlways keep an extra supply of insulin and related supplies on hand. Only use syringes once. Get rid of syringes and needles in a closed container to prevent accidental needle sticks.\nWear a medical ID bracelet or chain. Carry a card that describes your condition. List the medications and doses you take on the card.",
+            "watchOutFor_md": "* Visit your care team for regular health checks.\n* You may need blood work done while you are taking this medication. Your care team will monitor your HbA1C (A1C). This test shows what your average blood sugar level was over the past 2 to 3 months.\n* This medication may affect your coordination, reaction time, or judgment. Do not drive or operate machinery until you know how this medication affects you. Sit up or stand slowly to reduce the risk of dizzy or fainting spells. Drinking alcohol with this medication can increase the risk of these side effects.\n* Learn how to check your blood sugar. Know the symptoms of low and high blood sugar and how to manage them.\n* Know the symptoms of low blood sugar and know how to treat it. Always carry a source of quick sugar with you. Examples include hard sugar candy or glucose tablets. Make sure others know that you can choke if you eat or drink if your blood sugar is too low and you are unable to care for yourself. Get medical help at once.\n* Tell your care team if you have high blood sugar. Your medication dose may change if your body is under stress. Some types of stress that may affect your blood sugar include fever, infection, and surgery.\n* Do not skip meals. Ask your care team if you should avoid alcohol. Many cough and cold products contain sugar or alcohol. These can affect blood sugar levels.\n* Make sure that you have the correct syringe for the type of insulin you use. Do not change the brand or type of insulin or syringe unless your care team tells you to. Switching insulin brand or type can affect your blood sugar enough to cause serious adverse effects.\n* Always keep an extra supply of insulin and related supplies on hand. Only use syringes once. Get rid of syringes and needles in a closed container to prevent accidental needle sticks.\n* Wear a medical ID bracelet or chain. Carry a card that describes your condition. List the medications and doses you take on the card.\n",
+            "sideEffects": "Side effects that you should report to your care team as soon as possible:\n  -Allergic reactions—skin rash, itching, hives, swelling of the face, lips, tongue, or throat\n  -Low blood sugar (hypoglycemia)—tremors or shaking, anxiety, sweating, cold or clammy skin, confusion, dizziness, rapid heartbeat\n  -Low potassium level—muscle pain or cramps, unusual weakness or fatigue, fast or irregular heartbeat, constipation\nSide effects that usually do not require medical attention (report to your care team if they continue or are bothersome):\n  -Lipodystrophy—hardening or scarring of tissue at injection site\n  -Pain, redness, or irritation at injection site\n  -Weight gain",
+            "sideEffects_md": "* Side effects that you should report to your care team as soon as possible:\n    * Allergic reactions—skin rash, itching, hives, swelling of the face, lips, tongue, or throat\n    * Low blood sugar (hypoglycemia)—tremors or shaking, anxiety, sweating, cold or clammy skin, confusion, dizziness, rapid heartbeat\n    * Low potassium level—muscle pain or cramps, unusual weakness or fatigue, fast or irregular heartbeat, constipation\n*** \n* Side effects that usually do not require medical attention (report to your care team if they continue or are bothersome):\n    * Lipodystrophy—hardening or scarring of tissue at injection site\n    * Pain, redness, or irritation at injection site\n    * Weight gain\n",
+            "howToStore": "Keep out of the reach of children and pets.\nStorage and expiration dates for different insulin products may vary. Check the label for information on how to store your insulin. Talk to your care team if you have any questions.\nDo not freeze. Protect from direct light and heat. Do not use insulin if it is exposed to temperatures above 37 degrees C (98.6 degrees F). Do not use insulin if it has been frozen.\n  -Unopened (not in-use) vials: Store at room temperature up to 30 degrees C (86 degrees F) for up to 28 days or refrigerated until the expiration date.\n  -Opened (in-use) vials: Store at room temperature up to 30 degrees C (86 degrees F) or refrigerated for up to 28 days.\nInsulin pump users: Change the insulin and infusion set on your pump as directed using the time period from the pump user manual or the insulin label, whichever occurs first.\nTo get rid of medications that are no longer needed or have expired:\n  -Take the medication to a medication take-back program. Check with your pharmacy or law enforcement to find a location.\n  -If you cannot return the medication, ask your pharmacist or care team how to get rid of this medication safely.",
+            "howToStore_md": "* Keep out of the reach of children and pets.\n* Storage and expiration dates for different insulin products may vary. Check the label for information on how to store your insulin. Talk to your care team if you have any questions.\n* Do not freeze. Protect from direct light and heat. Do not use insulin if it is exposed to temperatures above 37 degrees C (98.6 degrees F). Do not use insulin if it has been frozen.\n    * Unopened (not in-use) vials: Store at room temperature up to 30 degrees C (86 degrees F) for up to 28 days or refrigerated until the expiration date.\n    * Opened (in-use) vials: Store at room temperature up to 30 degrees C (86 degrees F) or refrigerated for up to 28 days.\n*** \n* Insulin pump users: Change the insulin and infusion set on your pump as directed using the time period from the pump user manual or the insulin label, whichever occurs first.\n*** \n* To get rid of medications that are no longer needed or have expired:\n    * Take the medication to a medication take-back program. Check with your pharmacy or law enforcement to find a location.\n    * If you cannot return the medication, ask your pharmacist or care team how to get rid of this medication safely.\n",
+            "generic": "Insulin Aspart (Recombinant)",
+            "productName": "Novolog 100u/Ml Via",
+            "NDC11": "169750111",
+            "isPriceable": true,
+            "isSolid": false,
+            "drugName": "NOVOLOG",
+            "retailNDC11": "169750111",
+            "cvs_trep_preferred_ndc_cd": "169750111",
+            "requiresColdPack": true,
+            "isControlledSubstance": false,
+            "isSensitive": false,
+            "isGeneric": false,
+            "isBrand": true,
+            "drugStrength": "100U/ML",
+            "dosageForm": "VIA",
+            "commonBrands": [
+                "Fiasp",
+                "Fiasp Flex Touch",
+                "Fiasp PenFill",
+                "Fiasp PumpCart",
+                "Merilog",
+                "NovoLog",
+                "NovoLog Flexpen",
+                "NovoLog PenFill",
+                "Merilog Solostar"
+            ],
+            "productVarieties": [
+                {
+                    "name": "Fiasp 100unit/mL Soln for Inj",
+                    "id": "456cda6b4de6f2fd204493578e4c128b"
+                },
+                {
+                    "name": "Fiasp Flex 100unit/mL Soln Inj",
+                    "id": "c759b0cb0fdd2730cab9584234597a3d"
+                },
+                {
+                    "name": "Fiasp Pen 100unit/mL for Inj",
+                    "id": "554dbe7daa473ae2bee8698cc8f9b15c"
+                },
+                {
+                    "name": "Fiasp Pump 100unit/mL for Inj",
+                    "id": "1aa9664c82b378fcc1304da7376c9269"
+                },
+                {
+                    "name": "Insulin Aspart 100unit/mL Inj",
+                    "id": "468bb727af77eebb5be52fd6320c007b"
+                },
+                {
+                    "name": "Insulin Aspart FlexPen for Inj",
+                    "id": "832e80e53dfd20d5839e76cc9df10829"
+                },
+                {
+                    "name": "Insulin Aspart Penfill for Inj",
+                    "id": "0353e31f08dfd8551617e64e2a1c0f51"
+                },
+                {
+                    "name": "Novolog 100U/mL Soln for Inj",
+                    "id": "3870ffc4763671a3791237ee74352b77"
+                },
+                {
+                    "name": "Novolog 100unit/mL Soln Inj",
+                    "id": "78588f9df0edbf0a1d277a48850b383c"
+                },
+                {
+                    "name": "Novolog FlexPen Soln for Inj",
+                    "id": "6a8422586d087aa912a0cffee3cf923a"
+                },
+                {
+                    "name": "Novolog Penfill 100unit/mL Inj",
+                    "id": "3cf3cd3826fc4f04bf6e58d642c39fca"
+                }
+            ]
+        }
+    },
+    "orderInfo": {
+        "statusInfo": {
+            "status": 400,
+            "title": "AetnaDigitalError",
+            "detail": "No matching order ID for prescription found"
+        }
+    }
+}

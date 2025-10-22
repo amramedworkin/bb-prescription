@@ -197,51 +197,7 @@ paths:
         "500":
           $ref: "#/components/responses/InternalError"
 
-  /v1/retail-to-mail/events:
-    post:
-      summary: Receive CVS event callbacks (optional)
-      description: |
-        Webhook endpoint for CVS i90 event notifications (e.g., retail inactivation, fulfillment updates).
-        Requires shared secret verification and IP allow-list at the gateway.
-      operationId: receiveEvents
-      tags: [Events]
-      parameters:
-        - $ref: "#/components/parameters/XClientId"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CvsEvent"
-            examples:
-              inactivated:
-                value:
-                  eventType: "INACTIVATED"
-                  cvsCorrelationId: "abcd-1234"
-                  transactionId: "T2025-10-15-0001"
-                  occurredAt: "2025-10-15T14:10:00Z"
-                  payload:
-                    reason: "Customer Requested – Transferred to Mail"
-              failure:
-                value:
-                  eventType: "FAILED"
-                  cvsCorrelationId: "abcd-1234"
-                  transactionId: "T2025-10-15-0002"
-                  occurredAt: "2025-10-15T14:20:00Z"
-                  payload:
-                    statusCode: "0002"
-                    statusDescription: "Controlled Substance / Not Transferable"
-      responses:
-        "204":
-          description: Accepted
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          $ref: "#/components/responses/Forbidden"
-        "500":
-          $ref: "#/components/responses/InternalError"
+
 
 components:
   securitySchemes:

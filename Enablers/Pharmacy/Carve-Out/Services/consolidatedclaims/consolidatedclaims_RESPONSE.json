@@ -1,0 +1,894 @@
+{
+    "readClaimsResponse": {
+        "claims": [
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++243463492695002++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403297013",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 1.08,
+                "totalPayable": 1.09,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 2.17,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-12-11",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "VITAMIN B-2 TAB 25MG",
+                        "form": "TAB",
+                        "strength": "25MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900619610007++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295287",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 57.71,
+                "totalPayable": 57.71,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 115.42,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "RIOMET SOL 500/5ML",
+                        "form": "SOL",
+                        "strength": "500/5ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900736468007++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295288",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 43.79,
+                "totalPayable": 43.78,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 87.57,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "NOVOLOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900635138007++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295289",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 575.39,
+                "totalPayable": 575.39,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 1150.78,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": true,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "PROZAC CAP 10MG",
+                        "form": "CAP",
+                        "strength": "10MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900641896005++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295290",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 57.71,
+                "totalPayable": 57.71,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 115.42,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "RIOMET SOL 500/5ML",
+                        "form": "SOL",
+                        "strength": "500/5ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900763349006++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295291",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 43.79,
+                "totalPayable": 43.78,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 87.57,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "NOVOLOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900655824003++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295292",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 575.39,
+                "totalPayable": 575.39,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 1150.78,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": true,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "PROZAC CAP 10MG",
+                        "form": "CAP",
+                        "strength": "10MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900661682007++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295293",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 57.71,
+                "totalPayable": 57.71,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 115.42,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "RIOMET SOL 500/5ML",
+                        "form": "SOL",
+                        "strength": "500/5ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242900764820006++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295294",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 43.79,
+                "totalPayable": 43.78,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 87.57,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "NOVOLOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242901583479003++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295308",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 43.79,
+                "totalPayable": 43.78,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 87.57,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "NOVOLOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242901584886004++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295309",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 43.79,
+                "totalPayable": 43.78,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 87.57,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "NOVOLOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242901586227005++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295310",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 43.79,
+                "totalPayable": 43.78,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 87.57,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "NOVOLOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242901982280005++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295314",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 49.45,
+                "totalPayable": 49.44,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 98.89,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "HUMALOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242901983650004++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295315",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 49.45,
+                "totalPayable": 49.44,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 98.89,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "HUMALOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242901985305005++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295316",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 49.45,
+                "totalPayable": 49.44,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 98.89,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "HUMALOG VIA 100U/ML",
+                        "form": "VIA",
+                        "strength": "100U/ML"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242892745043006++999",
+                "type": "Pharmacy",
+                "externalClaimId": "403295202",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 575.39,
+                "totalPayable": 575.39,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 1150.78,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-10-15",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CAREMARK PRESCRIPTION SVC-CHI",
+                    "isSensitive": true,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "PROZAC CAP 10MG",
+                        "form": "CAP",
+                        "strength": "10MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904138256000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201732",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 10,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 10,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": true,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "PROZAC CAP 10MG",
+                        "form": "CAP",
+                        "strength": "10MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904140535000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201733",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 4.43,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 4.43,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "LIPISTART POW -",
+                        "form": "POW",
+                        "strength": "-"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904142323000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201734",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 3.23,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 3.23,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "B COMPLEX CAP -",
+                        "form": "CAP",
+                        "strength": "-"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904151397000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201735",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 10,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 10,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Xavier"
+                    },
+                    "patientRelationshipToSubscriber": "Self",
+                    "memberId": "185351572"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "MERCAPTOPURINE TAB 50MG",
+                        "form": "TAB",
+                        "strength": "50MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904174604000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201740",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 10,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 10,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Mark"
+                    },
+                    "patientRelationshipToSubscriber": "Child",
+                    "memberId": "185351576"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": true,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "PROZAC CAP 10MG",
+                        "form": "CAP",
+                        "strength": "10MG"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904191520000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201741",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 4.43,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 4.43,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Mark"
+                    },
+                    "patientRelationshipToSubscriber": "Child",
+                    "memberId": "185351576"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "LIPISTART POW -",
+                        "form": "POW",
+                        "strength": "-"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904193316000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201742",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 3.23,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 3.23,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Mark"
+                    },
+                    "patientRelationshipToSubscriber": "Child",
+                    "memberId": "185351576"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "B COMPLEX CAP -",
+                        "form": "CAP",
+                        "strength": "-"
+                    }
+                }
+            },
+            {
+                "id": "6007~RC++5~185351572+10+2+20200101+762245+B+2++242904195656000++999",
+                "type": "Pharmacy",
+                "externalClaimId": "0201743",
+                "status": "Paid",
+                "externalClaimStatus": "Completed",
+                "isPaid": true,
+                "isPayable": false,
+                "payableReason": [
+                    "PAID"
+                ],
+                "totalSubscriber": 10,
+                "totalPayable": 0,
+                "requestingMembershipId": "5~185351572+10+2+20200101+762245+B+2",
+                "totalPaidAllSources": 10,
+                "claimCurrentBalance": 0,
+                "dateOfServiceBegin": "2024-09-16",
+                "adjudicationSource": "CVS/Caremark",
+                "hasClaimDetails": true,
+                "patient": {
+                    "name": {
+                        "first": "Mark"
+                    },
+                    "patientRelationshipToSubscriber": "Child",
+                    "memberId": "185351576"
+                },
+                "pharmacy": {
+                    "pharmacyName": "CVS PHARMACY 00021",
+                    "isSensitive": false,
+                    "isCvsDirect": true,
+                    "drug": {
+                        "name": "MERCAPTOPURINE TAB 50MG",
+                        "form": "TAB",
+                        "strength": "50MG"
+                    }
+                }
+            }
+        ]
+    }
+}

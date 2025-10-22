@@ -1,0 +1,929 @@
+openapi: 3.0.3
+info:
+  title: Aetna Health Prescriptions List
+  description: >-
+    This api utilizes multiple CVS experience apis as well as a CMS and returns
+    a list of member prescriptions
+  contact:
+    name: Joey Gutierrez
+    email: gutierrezj2@aetna.com
+  version: 0.0.5
+servers:
+  - url: http://0.0.0.0:9090/prescription-mgmt-svc
+    description: local
+  - url: https://prescription-management.dev.aetnadigital.net/prescription-mgmt-svc
+    description: dev
+  - url: https://prescription-management.qa.aetnadigital.net/prescription-mgmt-svc
+    description: qa
+  - url: https://prescription-management.prd.aetnadigital.net/prescription-mgmt-svc
+    description: prod
+paths:
+  /v1/list-prescriptions:
+    post:
+      tags:
+        - Prescription List
+      summary: Returns list of prescriptions
+      parameters:
+        - $ref: '#/components/parameters/Eieheaderusercontext'
+        - $ref: '#/components/parameters/Eieheaderapplicationidentifier'
+        - $ref: '#/components/parameters/Eieheaderaction'
+        - $ref: '#/components/parameters/Eieheaderorchestratingapplicationidentifier'
+        - $ref: '#/components/parameters/Eieheaderversion'
+        - $ref: '#/components/parameters/Eieheadertransactionid'
+        - $ref: '#/components/parameters/QaPath'
+        - $ref: '#/components/parameters/AetnaAcceptLanguage'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrescriptionRequest'
+        required: true
+      responses:
+        '200':
+          description: Status 200
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrescriptionResponse'
+        '400':
+          description: Malformed request syntax or improper request routing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                status: 400
+                title: AetnaDigitalError
+                detail: request/body must have required property 'lineOfBusiness'
+                moreInformation: >-
+                  [{"path":"/body/lineOfBusiness","message":"must have required
+                  property
+                  'lineOfBusiness'","errorCode":"required.openapi.validation"}]
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                status: 401
+                title: AetnaDigitalError
+                detail: Unauthorized
+                moreInformation: ''
+        '500':
+          description: >-
+            A generic, catch-all response. Indicates server cant find a better
+            5xx error code for the error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                Prescriptions:
+                  value:
+                    status: 500
+                    title: AetnaDigitalError
+                    detail: Error retrieving prescriptions from CVS
+                    moreInformation: ''
+                Statuses:
+                  value:
+                    status: 500
+                    title: AetnaDigitalError
+                    detail: Error retrieving statuses from CVS
+                    moreInformation: ''
+                CMS:
+                  value:
+                    status: 500
+                    title: AetnaDigitalError
+                    detail: Error calling CMS
+                    moreInformation: ''
+                General:
+                  value:
+                    status: 500
+                    title: AetnaDigitalError
+                    detail: Error getting prescription list
+                    moreInformation: ''
+components:
+  schemas:
+    Error:
+      required:
+        - detail
+        - status
+        - title
+      type: object
+      properties:
+        status:
+          type: integer
+          description: Indicates the error Code
+          example: 500
+        title:
+          type: string
+          description: short description of the error
+          example: Internal Server Error
+        detail:
+          type: string
+          description: Long description of the error
+          example: Service is down.
+        moreInformation:
+          type: string
+          description: Long description of the error
+          example: Service is down.
+    PrescriptionRequest:
+      required:
+        - lineOfBusinessName
+        - planSponsorId
+        - relationshipToSubscriber
+      type: object
+      properties:
+        lineOfBusinessName:
+          type: string
+          description: Line of business on which filtration need to happen.
+          enum:
+            - Commercial
+            - Medicare
+        planSponsorId:
+          type: string
+          description: Plan sponsor Id
+          example: '0000000092504745'
+        relationshipToSubscriber:
+          type: string
+          description: Description of the relationship To Subscriber
+          enum:
+            - Self
+            - Spouse
+            - Child
+            - Other
+        memberId:
+          type: string
+          description: Aetna member id
+          example: '300013286700'
+        startDate:
+          type: string
+          description: >-
+            Start date for the prescription lookup. Optional attribute. Start
+            date has to be older than end date. Default search done for 6 months
+            from current date. Retail and Mailorder supports search upto 18
+            months from current date. Specialty supports 13 months backward from
+            current date.
+          format: date
+        endDate:
+          type: string
+          description: >-
+            End date for the prescription lookup. Optional attribute. End date
+            has to be current date or older, but newer than start date.
+          format: date
+        rxStatusFilter:
+          minItems: 1
+          type: array
+          description: >-
+            client can pass a list of rxStatuses they would like to filter on. 
+            Any status not in the list are filtered out.
+          example:
+            - Due for refill
+            - Inactive
+          items:
+            type: string
+        patientIdFilter:
+          minItems: 1
+          type: array
+          description: >-
+            client can pass a list of patient ids they would like to filter on. 
+            Any patient id not in the list will be filtered out. The patient id
+            is on the patient object patient.id
+          example:
+            - 955203962
+          items:
+            type: string
+        refillTypeFilter:
+          type: string
+          description: >-
+            client can pass a refill type to return all refill prescriptions,
+            mail type prescription or retail type prescriptions. ALL will return
+            all refills, MAIL will return only mail type refills, RETAIL will
+            return only retail type refills and NONE will return prescriptions
+            with is refillable false.
+          example: ALL
+          enum:
+            - ALL
+            - MAIL
+            - RETAIL
+            - NONE
+        prescribedByFilter:
+          type: array
+          items:
+            type: object
+            properties:
+              firstName:
+                type: string
+                description: first name of prescriber
+                example: John
+              lastName:
+                type: string
+                description: last name of prescriber
+                example: Doe
+            description: >-
+              client can pass an a prescribed by object filter to filter out
+              prescriptons that were prescribed by a specific individual.  It
+              will match on first name, last name or both.
+    Prescriber:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        prescriberProtocol:
+          type: string
+          nullable: true
+        prohibitRenewalRequest:
+          type: string
+          nullable: true
+          enum:
+            - 'Y'
+            - 'N'
+        blockedPrescriber:
+          type: string
+          nullable: true
+          enum:
+            - 'Y'
+            - 'N'
+        prescriberObsoleteInd:
+          type: string
+          nullable: true
+          enum:
+            - 'Y'
+            - 'N'
+        prescriberDeceasedInd:
+          type: string
+          nullable: true
+          enum:
+            - 'Y'
+            - 'N'
+    RxStatus:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          nullable: true
+        isActiveOrder:
+          type: boolean
+        parentStatus:
+          type: string
+        ruleId:
+          type: string
+        rxActivityDate:
+          type: string
+        rxActivityLabel:
+          type: string
+        sortIndex:
+          type: string
+        status:
+          type: string
+        subStatus:
+          type: string
+    Drug:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the Drug. Example - MERCAPTOPURINE 50 MG TABLET
+        formName:
+          type: string
+          description: Drug Form. Example - TABLET
+        formStrengthName:
+          type: string
+          description: Drug Strength. Example - 50MG
+        gcnSequenceNumber:
+          type: string
+          description: GCN Code for the drug
+        ndcId:
+          type: string
+          description: National Drug Code Identifier. Example - '00054458127'
+        genericCodeNumber:
+          type: string
+        strengthQuantity:
+          type: number
+          nullable: true
+        drugEnforcementAdministrationClassCode:
+          type: string
+          description: DEA Class Code. Example - Legend
+    Prescriptions:
+      required:
+        - id
+        - prescriptionLookupKey
+      type: object
+      properties:
+        ancillaryProductInd:
+          type: boolean
+          description: Non-Drug Supplies Product Indicator
+          nullable: true
+        displayPromiseTime:
+          type: string
+          description: Promise time for the prescription
+          nullable: true
+        drugInfo:
+          type: object
+          properties:
+            drug:
+              $ref: '#/components/schemas/Drug'
+            drugProperties:
+              type: object
+              properties:
+                isControlledSubstances:
+                  type: boolean
+                  description: Indicator to identify if the Rx is for a c1 or c2 substance
+                isColdpackRequired:
+                  type: boolean
+                  description: Indicator to specify if drug needs to be refrigerated
+        isHiddenByUser:
+          type: boolean
+          description: >-
+            Indicator to identify if member wants to see this Rx in the list or
+            not
+        prescribedName:
+          type: string
+          description: Name of the prescribed drug
+          nullable: true
+        fulfilledBy:
+          type: string
+          description: Name of the pharmacy filling the prescription
+        fills:
+          type: array
+          items:
+            type: object
+            properties:
+              expectedReturnToStockDate:
+                type: string
+                description: date by when the drugs would be returned to stock
+                nullable: true
+              fillCost:
+                type: number
+                description: Cost associated with the fill
+                nullable: true
+              fillNumber:
+                type: integer
+              fillQuantity:
+                type: integer
+                description: Prescription quantity filled
+                nullable: true
+              fillSequenceNumber:
+                type: integer
+                description: Prescription fill sequence
+                nullable: true
+              fillStatus:
+                type: string
+                description: Prescription fill status
+              fillStatusCode:
+                type: string
+                nullable: true
+              pickupDate:
+                type: string
+                format: date
+                nullable: true
+              promiseDate:
+                type: string
+                nullable: true
+              promiseTime:
+                type: string
+                nullable: true
+              totalRxCost:
+                type: number
+              daysSupply:
+                type: integer
+              fillVersionNumber:
+                type: string
+                nullable: true
+              patientPayAmount:
+                type: number
+                description: Patient Pay Amount for the order
+              estimatedCashPrice:
+                type: number
+                description: Price for drugs that may be paid with cash without insurance
+                nullable: true
+              totalPatientPaidAmount:
+                type: number
+                nullable: true
+              orderNumber:
+                type: string
+              group:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    bin:
+                      type: string
+                    condorCode:
+                      type: string
+                    group:
+                      type: string
+                    pcn:
+                      type: string
+                  nullable: true
+        id:
+          type: string
+          description: unique id for the prescription
+        idType:
+          type: string
+          description: >-
+            Prescription Type that specifies LOB's. Example -
+            RXC_RX_PRESCRIPTION_ID_TYPE for RETAIL; PBM_QL_PRESCRIPTION_ID_TYPE
+            for Mail Order; SPL_HB_PRESCRIPTION_ID_TYPE for Specialty
+        prescriptionLookupKey:
+          type: string
+          description: Encrypted lookupkey associated with a specific Rx
+        isMaintenanceChoice:
+          type: boolean
+          nullable: true
+        isPriorPrescription:
+          type: boolean
+        isRefillable:
+          type: boolean
+        lastRefillDate:
+          type: string
+          format: date
+          nullable: true
+        nextFillDate:
+          type: string
+          format: date
+          nullable: true
+        numberOfRefillsAuthorized:
+          type: integer
+        numberOfRefillsRemaining:
+          type: integer
+        quantity:
+          type: number
+        quantityRemaining:
+          type: number
+        readyFillQualResult:
+          type: string
+          nullable: true
+        rescheduleEligible:
+          type: boolean
+        rollUpIndex:
+          type: object
+          properties:
+            groupIndex:
+              type: string
+            groupingValue:
+              type: string
+            discombubulator:
+              type: boolean
+              example: false
+        rxStatus:
+          $ref: '#/components/schemas/RxStatus'
+        rxSubscriptions:
+          type: array
+          items:
+            type: object
+            properties:
+              programName:
+                type: string
+              status:
+                type: string
+              subStatus:
+                type: string
+                nullable: true
+              nextPickupDate:
+                type: string
+                format: date
+                nullable: true
+        storeNumber:
+          type: string
+          nullable: true
+        storeDetails:
+          type: object
+          properties:
+            address:
+              type: object
+              properties:
+                line:
+                  type: array
+                  items:
+                    type: string
+          nullable: true
+        totalPrescriptionCost:
+          type: number
+        actualPromiseTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+        currentTimestamp:
+          type: string
+          format: date-time
+          nullable: true
+        daysSupply:
+          type: integer
+        isRxCancelable:
+          type: boolean
+        isRetailToMailEligible:
+          type: boolean
+        isTransferable:
+          type: boolean
+        isUpcomingPrescription:
+          type: boolean
+        issueDate:
+          type: string
+          format: date
+        nextAutoRefillDate:
+          type: string
+          format: date
+          nullable: true
+        status:
+          type: string
+        expirationDate:
+          type: string
+          format: date
+          nullable: true
+        autoRenewStatus:
+          type: string
+        prescriberRequestAllowedForDrugSchedule:
+          type: boolean
+          nullable: true
+        prescriber:
+          $ref: '#/components/schemas/Prescriber'
+        rxDirection:
+          type: string
+          nullable: true
+        isReadyFill:
+          type: boolean
+          description: Indicator that states if this is SPLTY readyfill enrolled Rx
+          nullable: true
+        mdoFlag:
+          type: boolean
+          description: Indicator that states if this Rx has to be shipped to MD office
+          nullable: true
+        starterRxInd:
+          type: boolean
+          description: Indicator that states whether this Rx is part of a starter kit
+          nullable: true
+        firstFillIndicator:
+          type: boolean
+          description: Indicator that states this is a SPLTY first fill Rx
+          nullable: true
+        acceptDigitalRefill:
+          type: boolean
+          description: >-
+            Indicator that states if this SPLTY Rx refill can be requested
+            Digitally
+          nullable: true
+        refrigIndicator:
+          type: boolean
+          description: Indicator that states if this SPLTY Rx needs refrigeration
+          nullable: true
+        currentFillNumber:
+          type: integer
+          nullable: true
+        isRenewEligible:
+          type: boolean
+        rxIneligibleforSelfServ:
+          type: boolean
+        orgRxExcludeInd:
+          type: string
+          nullable: true
+        selfServeOptions:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              reasonCode:
+                type: string
+              reasonCodeDescription:
+                type: string
+              selfServeOption:
+                type: string
+                description: The self-service action possible on the prescription
+              displayValue:
+                type: string
+                description: >-
+                  The self-serve action name that can be displayed on the UI for
+                  the members
+              priority:
+                type: string
+                description: The order of priority for the self service listing on the UI
+              status:
+                type: string
+                description: >-
+                  The eligibility status of the prescription for the self-serve
+                  action
+              heroAction:
+                type: string
+                description: This indicates whether this action has priority over others
+              callToAction:
+                type: string
+                description: >-
+                  This indicates if this self serve option should show as a CTA
+                  button on UI or not
+    LinkedId:
+      type: object
+      properties:
+        lookupId:
+          type: string
+        prescriptionforPatient:
+          type: array
+          items:
+            $ref: '#/components/schemas/Prescriptions'
+    MemberPatient:
+      type: object
+      properties:
+        memberType:
+          type: string
+          description: >-
+            Primary or Secondary. Type of the member to identify if he/she is a
+            cardholder or dependent.
+        patient:
+          required:
+            - firstName
+          type: object
+          properties:
+            relationshipToSubscriber:
+              type: string
+              enum:
+                - Self
+                - Spouse
+                - Child
+                - Other
+            dateOfBirth:
+              type: string
+              format: date
+            firstName:
+              type: string
+            lastName:
+              type: string
+            id:
+              type: string
+            phoneNumbers:
+              type: array
+              items:
+                type: object
+                properties:
+                  value:
+                    type: string
+        linkedIDs:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkedId'
+    PrescriptionResponse:
+      required:
+        - data
+      type: object
+      properties:
+        data:
+          required:
+            - allRxStatuses
+            - getLinkedMemberPatients
+          type: object
+          properties:
+            getLinkedMemberPatients:
+              type: array
+              items:
+                $ref: '#/components/schemas/MemberPatient'
+            allRxStatuses:
+              type: array
+              items:
+                type: string
+            cta:
+              type: object
+              properties:
+                addToCart:
+                  $ref: '#/components/schemas/ActionsItem'
+                viewOrder:
+                  $ref: '#/components/schemas/ActionsItem'
+                removeFromCart:
+                  $ref: '#/components/schemas/ActionsItem'
+                trackOrder:
+                  $ref: '#/components/schemas/ActionsItem'
+                viewDetails:
+                  $ref: '#/components/schemas/ActionsItem'
+                addedToCart:
+                  $ref: '#/components/schemas/ActionsItem'
+      example:
+        data:
+          getLinkedMemberPatients:
+            - linkedIDs:
+                - lookupId: null
+                  prescriptionforPatient:
+                    - ancillaryProductInd: null
+                      displayPromiseTime: null
+                      drugInfo:
+                        drug:
+                          name: MAOX 420MG TAB
+                          formName: TAB
+                          formStrengthName: 420MG
+                          gcnSequenceNumber: '4093'
+                          ndcId: '10706083701'
+                          genericCodeNumber: '4093'
+                          strengthQuantity: null
+                          drugEnforcementAdministrationClassCode: '0'
+                        drugProperties:
+                          isControlledSubstances: false
+                          isColdpackRequired: false
+                      isHiddenByUser: false
+                      prescribedName: null
+                      fulfilledBy: CVS Caremark??
+                      fills:
+                        - expectedReturnToStockDate: null
+                          fillCost: null
+                          fillNumber: 0
+                          fillQuantity: null
+                          fillSequenceNumber: null
+                          fillStatus: On Hold
+                          fillStatusCode: '14'
+                          pickupDate: null
+                          promiseDate: null
+                          promiseTime: null
+                          totalRxCost: 0
+                          daysSupply: null
+                          fillVersionNumber: null
+                          patientPayAmount: 0
+                          estimatedCashPrice: null
+                          totalPatientPaidAmount: null
+                          orderNumber: '2052469002'
+                          group: null
+                      id: '674551514'
+                      idType: PBM_QL_PRESCRIPTION_ID_TYPE
+                      prescriptionLookupKey: >-
+                        U2FsdGVkX19md2eIJT0sd+X1hJPZ1ZYPirHQULLHelOi47ekFEhi7vfUMeRp4eOrMOwubQjd1/Xk69ETf97Ktwers979pLgIv4kuvJLKXUobFg1tkjMxJ1gfEKkslkgjQtqpiTJQ6FTY8CX0/ucRrdlNMeG/x1HnJDHn6aWdG4EqmBx4E9JrZiMYLPVAHrnDWrG5Y3sO3zq/0b9xuiTuGbv42r1+gCZCSJ54P6as6DbwfKDvf3PovzSvevYyV1NKNd2Z0XWPoGzrxXgtMB8KkiJBjmNX+3jiJktQmMbSEoh5kwkqxQAulfuAH5nvhW1KTmDGijlmgUnXCxSvUSMrS2oGgk/GEFYb7qRjyy2PsDQh6jilyM8xL4iDg+9I3POreUIb5FBniC0/N4M/vzVWjUXhiZEKkLi2hvoDv6kVs2h2MzYO3cNRRVl/QQ74erMn2MrV3sNfr+MjsRzsQbdz6AIvT+6BgNbL6OK48ETvtEToXtx0pIGTdnudzckyQdwV
+                      isMaintenanceChoice: false
+                      isPriorPrescription: false
+                      isRefillable: true
+                      lastRefillDate: null
+                      nextFillDate: '2025-05-07T00:00:00.000Z'
+                      numberOfRefillsAuthorized: null
+                      numberOfRefillsRemaining: 2
+                      quantity: 30
+                      quantityRemaining: null
+                      readyFillQualResult: null
+                      rescheduleEligible: null
+                      rollUpIndex:
+                        groupIndex: '1'
+                        groupingValue: '48400020000315'
+                        discombubulator: false
+                      rxStatus:
+                        date: null
+                        isActiveOrder: false
+                        parentStatus: Not filled
+                        ruleId: onhold_rc14
+                        rxActivityDate: Apr 08, 2025
+                        rxActivityLabel: 'Received '
+                        sortIndex: '10'
+                        status: We need your help
+                        subStatus: >-
+                          Please call the Customer Care number on your member ID
+                          card.
+                      rxSubscriptions:
+                        - programName: PBM_READY_FILL
+                          status: ELIGIBLE
+                          subStatus: null
+                          nextPickupDate: null
+                      storeNumber: null
+                      storeDetails: null
+                      totalPrescriptionCost: 0
+                      actualPromiseTimestamp: null
+                      currentTimestamp: null
+                      daysSupply: 30
+                      isRxCancelable: false
+                      isRetailToMailEligible: null
+                      isTransferable: false
+                      isUpcomingPrescription: false
+                      issueDate: '2025-04-08T00:00:00.000Z'
+                      nextAutoRefillDate: null
+                      status: ACTIVE
+                      expirationDate: '2026-04-07T00:00:00.000Z'
+                      autoRenewStatus: ELIGIBLE
+                      prescriberRequestAllowedForDrugSchedule: null
+                      prescriber:
+                        firstName: AGRIPPI
+                        lastName: TARAB
+                        phone: '0268588166'
+                        prescriberProtocol: null
+                        prohibitRenewalRequest: null
+                        blockedPrescriber: null
+                        prescriberObsoleteInd: null
+                        prescriberDeceasedInd: null
+                      rxDirection: null
+                      isReadyFill: null
+                      mdoFlag: null
+                      starterRxInd: null
+                      firstFillIndicator: null
+                      acceptDigitalRefill: null
+                      refrigIndicator: null
+                      currentFillNumber: null
+                      isRenewEligible: false
+                      rxIneligibleforSelfServ: null
+                      orgRxExcludeInd: null
+                      selfServeOptions: null
+              memberType: primary
+              patient:
+                relationshipToSubscriber: Self
+                dateOfBirth: '1942-12-17T00:00:00.000Z'
+                firstName: AZALEE
+                lastName: PECK
+                id: '955203962'
+                phoneNumbers:
+                  - value: '0268588166'
+          allRxStatuses:
+            - Due for refill
+            - Inactive
+            - On the way
+            - Scheduled
+          cta:
+            viewDetails:
+              text: View Details
+            addToCart:
+              text: Add to Cart
+            addedToCart:
+              text: Added to Cart
+            removeFromCart:
+              text: Remove from Cart
+            viewOrder:
+              text: View Order
+            trackOrder:
+              text: Track Order
+    ActionsItem:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Call-to-action text, typically used for general UI   elements.
+          nullable: true
+          example: Add to Cart
+  parameters:
+    Eieheaderusercontext:
+      name: eieheaderusercontext
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderapplicationidentifier:
+      name: eieheaderapplicationidentifier
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderaction:
+      name: eieheaderaction
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderorchestratingapplicationidentifier:
+      name: eieheaderorchestratingapplicationidentifier
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheaderversion:
+      name: eieheaderversion
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    Eieheadertransactionid:
+      name: eieheadertransactionid
+      in: header
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    QaPath:
+      name: x-qapath
+      in: header
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        default: '1'
+    AetnaAcceptLanguage:
+      name: x-aetna-accept-Language
+      in: header
+      description: Defaults to en-US.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+        enum:
+          - en-US
+          - es-US
+      example: es-ES, en-US

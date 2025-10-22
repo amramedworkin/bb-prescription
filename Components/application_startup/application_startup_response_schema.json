@@ -1,0 +1,45 @@
+{
+    "readApplicationStartup": {
+      "planGroups": [
+        {
+          "lineOfBusinessName": "Medicare",
+          "planSponsorId": "string",
+          "planSponsorName": "string",
+          "relationshipToSubscriber": "string",
+          "policies": [
+            {
+              "primaryPolicyType": "string",
+              "memberships": [
+                {
+                  "status": "string",
+                  "relationshipToSubscriber": "string",
+                  "memberResourceId": "string",
+                  "membershipResourceId": "string",
+                  "effectiveDatetimeBegin": "string",
+                  "effectiveDatetimeEnd": "string",
+                  "claimOfficeKey": "string",
+                  "membershipIdSource": "string",
+                  "memberId": "string",
+                  "policyResourceId": "string",
+                  "control": "string",
+                  "suffix": "string",
+                  "account": "string",
+                  "planSummary": "string",
+                  "planNumber": "string",
+                  "execMedicalPlanInd": "string",
+                  "coverageDatetimeBegin": "string",
+                  "coverageDatetimeEnd": "string",
+                  "planVersionDatetimeBegin": "string",
+                  "planVersionDatetimeEnd": "string",
+                  "renewalDatetime": "string",
+                  "datetimeAsOf": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "multiplePlanSponsorInd": true,
+      "proxyResourceId": "string"
+    }
+  }

@@ -1,0 +1,103 @@
+@startuml Major Version Change & Sunsetting Timeline
+
+!theme spacelab
+
+title "Timeline: Major API Version Change (v1 -> v2) & Sunsetting"
+
+'--- Participant Aliases ---
+concise "Provider PM" as PMP
+concise "Consumer PM" as PMC
+concise "Exec Sponsor" as Exec
+concise "Provider Architect" as PA
+concise "Consumer Architect" as CA
+concise "Provider PMO" as PMO_P
+concise "Provider Dev Team" as Dev_P
+concise "Consumer Dev Team" as Dev_C
+concise "Consumer PM Lead" as PM_C_Lead
+
+'--- Sprint Definitions ---
+concise "Sprint 0" as S0
+concise "Sprint 1" as S1
+concise "Sprint 2" as S2
+concise "Sprint 3" as S3
+concise "Sprint 4" as S4
+concise "Sprint 5" as S5
+concise "Sprint 6" as S6
+concise "Sprint 7" as S7
+concise "Sprint 8" as S8
+concise "Sprint 9" as S9
+concise "Sprint 10" as S10
+concise "Sprint 11" as S11
+concise "Sprint 12" as S12
+concise "Sprint 13" as S13
+concise "Sprint 14" as S14
+concise "Sprint 15" as S15
+concise "Sprint 16" as S16
+concise "Sprint 17" as S17
+concise "Sprint 18" as S18
+concise "Sprint 29" as S29
+concise "Sprint 37" as S37
+concise "Sprint 40" as S40
+concise "Sprint 41" as S41
+
+'--- Timeline Events ---
+@S0
+PMP is "Joint Charter Drafting"
+PMC is "Charter Review Phase"
+
+@S1
+Exec is "Charter Approved"
+PA is "Technical Design Review"
+CA is "Integration Feedback"
+
+@S2
+PMO_P is "v1 Deprecation Announced"
+Dev_P is "v2 Spec & Guide Published"
+Dev_C is "Migration Analysis"
+
+@S3
+Dev_P is "v2 Development Continues"
+Dev_C is "Migration Backlog Planning"
+
+@S6
+Dev_P is "v2 Development Complete"
+
+@S7
+Dev_P is "v2 Sandbox Deployment"
+Dev_C is "Sandbox Integration Testing"
+
+@S11
+Dev_C is "Sandbox Testing Signoff"
+
+@S12
+Dev_P is "v2 Production Deployment"
+PMO_P is "Live Metrics Dashboard"
+
+@S13
+Dev_C is "Phased v2 Rollout"
+PMP is "Monitoring Migration"
+PMC is "Monitoring Migration"
+
+@S17
+Dev_C is "Full Migration Complete"
+PM_C_Lead is "v2 Traffic Confirmed"
+PMO_P is "v1 Now Deprecated"
+
+@S18
+Dev_P is "Add Deprecation Headers"
+
+@S29
+PMO_P is "3-Month v1 Shutdown Notice"
+
+@S37
+PMO_P is "1-Month v1 Shutdown Notice"
+Dev_P is "v1 Brownout Testing"
+
+@S40
+PMO_P is "1-Week and 24hr Final Notices"
+
+@S41
+Dev_P is "v1 Traffic Blocked"
+Dev_P is "v1 Fully Retired"
+
+@enduml

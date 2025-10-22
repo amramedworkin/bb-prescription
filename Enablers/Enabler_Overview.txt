@@ -51,7 +51,17 @@ US2130025 - RX CANCEL ORDER
 
 F167030 - Rx: Enabler (Arch): Release Payment Holds
 
+F218119: Rx: Enabler (Arch): i90 Medication Pricing Migration for Pricing As A Service (PRaaS)
 
+- New integration with i90 api
+- verify if we still need integration with find-drugs api to deduce the NDC
+- Investigate if it includes formulary alternatives as well
+- investigate/verify if it supports all types of drugs - specialty, retail, retail90, mail
+- verify impacts to different consumers - ah clients, Omni
+- ensure the new api supports reject settlement codes
+- consolidate error messages 
+- review and clean up the legacy drug price flows in native esp iOS (Chris T and Sowmini discussed in the past).
+ 
 
 What member Id Activity chart.  
 When the list call occurs.  

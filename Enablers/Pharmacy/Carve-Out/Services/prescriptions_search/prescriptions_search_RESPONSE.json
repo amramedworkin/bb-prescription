@@ -1,0 +1,40 @@
+{
+    "startDate": "2024-10-17",
+    "endDate": "2025-10-17",
+    "prescriptionList": [
+        {
+            "claimId": "243463492695002",
+            "prescriptionNumber": "403297013",
+            "prescriptionId": "5390040571403297013",
+            "daysSupply": 90,
+            "quantity": 90,
+            "fulfilledBy": "CAREMARK PRESCRIPTION SVC-CHI",
+            "lastFilledDate": "2024-12-11",
+            "prescriberName": "LEUNGLO, DOARDO",
+            "drug": {
+                "drugForm": "TAB",
+                "drugName": "Vitamin B-2",
+                "NDC11": "43292055538",
+                "gpiCode": "77102010000320",
+                "drugStrength": "25MG",
+                "isSensitive": false,
+                "isBrand": false
+            },
+            "statusText": "NOT_AVAILABLE",
+            "estimatedCost": 1.08,
+            "prescriptionExpirationDate": null,
+            "refillCategory": "NOT_AVAILABLE",
+            "membershipResourceId": "5~185351572+10+2+20200101+762245+B+2",
+            "memberResourceId": "41~185351572",
+            "memberFirstName": "Xavier",
+            "memberLastName": "Hunter",
+            "relationshipToSubscriber": "Self"
+        }
+    ],
+    "information": [
+        {
+            "statusCode": "ORDERS_ERROR",
+            "detail": "Error fetching CVS orders"
+        }
+    ]
+}

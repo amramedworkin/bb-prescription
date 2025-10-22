@@ -1,0 +1,68 @@
+{
+    "data": {
+      "retailToMailTransferInput": {
+        "memberInfo": {
+          "memberId": "S1438867201",
+          "cardholderId": 492395417,
+          "patientId": 492395417
+        },
+        "prescriptionInfo": {
+          "prescriptionNumber": "01884433434",
+          "prescriptionLookupKey": "U2FsdGVkX196o0h7VDCLVeu0Yizc7ZdZvjxCFo5FL/VYEYvnZ0FgKxWh+w0ozbyGJvRNk6m3NqY/jcamnjtCgaock2IkWkWsWQraj7qU8r8veh8zasYn2rkVeput4JWvhNgjjXusZ1S4QbJvb+4wNUJx3RAbTKsW8lCGJR8e7QhRveaUtl0eLRRnU95qAOsbfZIp7j8/1w5y9XKICPvuo/6/tsrd54yaNgiGUMQZDICQ/GVbsTAccp9XqX2voQC1ljMZzH4qea4kkatDSN5HYf9bSKgpLBRM98rlDitMxeXaxJPHjRJ+8t9DJcFr3LGIPlxO/NYNX0eOU5dkZAxosOu5FqEpgxKu2+0fc7NsBWOpH5PbQo70U7GNFvU1riay",
+          "prescribedDrug": {
+            "pbrNdcId": "71015523",
+            "pbrDrugName": "FUROSEMIDE 20 MG TABLET",
+            "pbrDrugStrength": "20 MG",
+            "pbrDosageFormat": "TABLET",
+            "pbrWrittenDate": "06-18-2025",
+            "pbrRefillmaxqty": 3,
+            "prescribedQuantity": "60"
+          },
+          "dispensedDrug": {
+            "dispNdcId": "71015523",
+            "dispDrugName": "CAL-CITRATE PLUS VITAMIN D TAB",
+            "dispDrugStrength": "250 mg-2.5 mcg (100 UNIT)",
+            "dispDosageFormat": "TABLET",
+            "dispensedQuantity": "30",
+            "daysSupply": 90,
+            "lastFillDate": "05-18-2025",
+            "unitOfMeasure": "EA",
+            "remainingQty": "30",
+            "instructions": "TAKE AS DIRECTED",
+            "nbOfDispensedRefills": 1,
+            "remainingRefills": 2,
+            "daw": "0",
+            "compoundInd": "N",
+            "fillStatus": 7,
+            "firstFillDate": "06-19-2025"
+          }
+        },
+        "prescriberInfo": {
+          "spiId": "8741932433002",
+          "pbrLastName": "CARI",
+          "pbrFirstName": "DUNA",
+          "pbrPhone": "4012525555",
+          "pbrNpiId": "1083609135",
+          "pbrDea": "BC9822784"
+        },
+        "pharmacyInfo": {
+          "sendingPharmacy": {
+            "pharmacyName": "CVSPharmacy",
+            "phmAddressLine1": "5500 N MACARTHUR BLVD",
+            "phmAddressLine2": "",
+            "phmCity": "IRVING",
+            "phmState": "PA",
+            "phmZipCode": "75038",
+            "phmPhone": "5515559876",
+            "phmDea": "BJ1234567",
+            "phmNcpdpId": "1417052",
+            "phmNpiId": "123",
+            "phmLicense": "TX393930"
+          },
+          "pharmacist": {
+            "phmFullName": "MICHAEL SAINT MARTIN"
+          }
+        }
+      }
+    }
+  }

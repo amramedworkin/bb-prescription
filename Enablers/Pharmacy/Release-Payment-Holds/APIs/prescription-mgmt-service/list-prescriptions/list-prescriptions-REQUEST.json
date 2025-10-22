@@ -1,0 +1,22 @@
+{
+    "lineOfBusinessName": "Commercial",
+    "planSponsorId": "0000000092504745",
+    "relationshipToSubscriber": "Self",
+    "memberId": "300013286700",
+    "startDate": "2025-10-22",
+    "endDate": "2025-10-22",
+    "rxStatusFilter": [
+      "Due for refill",
+      "Inactive"
+    ],
+    "patientIdFilter": [
+      955203962
+    ],
+    "refillTypeFilter": "ALL",
+    "prescribedByFilter": [
+      {
+        "firstName": "John",
+        "lastName": "Doe"
+      }
+    ]
+  }

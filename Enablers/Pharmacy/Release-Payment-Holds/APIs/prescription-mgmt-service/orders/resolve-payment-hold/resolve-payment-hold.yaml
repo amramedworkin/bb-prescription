@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: MOCKUP - Resolve Payment Hold
+  version: 1.0.0
+  description: >
+    This endpoint allows a member to resolve a payment hold on a prescription order
+    by submitting a previously captured consent reference and prescription details.
+
+paths:
+  /experience/orders/{orderId}/resolve-payment-hold:
+    post:
+      summary: Resolve a payment hold on a prescription order
+      operationId: resolvePaymentHold
+      tags:
+        - Payment Hold
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: Unique identifier for the prescription order
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - rx
+                - memberId
+                - consentReference
+                - traceId
+              properties:
+                rx:
+                  type: array
+                  description: List of prescriptions to release
+                  items:
+                    type: object
+                    required:
+                      - rxNumber
+                    properties:
+                      rxNumber:
+                        type: string
+                        example: "674551514"
+                memberId:
+                  type: string
+                  description: Unique identifier for the member
+                  example: "955203962"
+                consentReference:
+                  type: string
+                  description: Reference ID for the previously submitted consent
+                  example: "CONS-9f2c3"
+                traceId:
+                  type: string
+                  description: Trace ID for observability and debugging
+                  example: "TRACE-abc123"
+      responses:
+        '200':
+          description: Hold successfully released
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    example: "released"
+                  auditId:
+                    type: string
+                    example: "AUD-20251010-001"
+        '400':
+          description: Bad request due to missing or invalid input
+        '401':
+          description: Unauthorized - invalid or expired token
+        '404':
+          description: Order or prescription not found
+        '409':
+          description: Conflict - hold already resolved or invalid state
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

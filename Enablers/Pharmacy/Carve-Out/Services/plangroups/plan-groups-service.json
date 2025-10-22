@@ -1,0 +1,69 @@
+{
+  "proxyResourceId": "15~V4S9XBBBHPXZ",
+  "portalGroups": [
+    {
+      "lineOfBusinessName": "Commercial",
+      "planSponsorId": "0000000099853142",
+      "planSponsorName": "DMT-S-JAIN",
+      "relationshipToSubscriber": "Self",
+      "policies": [
+        {
+          "primaryPolicyType": "Medical",
+          "memberships": [
+            {
+              "status": "Actively Covered",
+              "relationshipToSubscriber": "Self",
+              "memberResourceId": "41~265529730",
+              "membershipResourceId": "5~265529730+34+104+20240401+815910+SB+151",
+              "effectiveDatetimeBegin": "2024-04-01T04:00:00Z",
+              "effectiveDatetimeEnd": "9999-12-31T04:00:00Z",
+              "claimOfficeKey": "315",
+              "membershipIdSource": "5",
+              "memberId": "265529730",
+              "policyResourceId": "3~815910+SB+151",
+              "control": "815910",
+              "suffix": "34",
+              "account": "104",
+              "planSummary": "SB",
+              "planNumber": "151",
+              "execMedicalPlanInd": "N",
+              "coverageDatetimeBegin": "2024-04-01T04:00:00Z",
+              "coverageDatetimeEnd": "9999-12-31T04:00:00Z",
+              "policyTypes": [
+                {
+                  "policyTypeCode": "INH",
+                  "policyType": "Informed Health Line"
+                },
+                {
+                  "policyTypeCode": "MED",
+                  "policyType": "Medical"
+                },
+                {
+                  "policyTypeCode": "PHR",
+                  "policyType": "Pharmacy"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "planSponsorWaveNumber": "998"
+    }
+  ],
+  "meta": {
+    "requestStartedAt": 1753217182905,
+    "requestEndTime": 1753217183805,
+    "duration": "900 ms"
+  },
+  "msg": "Axios Incoming Response",
+  "time": "2025-07-22T20:46:23.805Z",
+  "v": 0,
+  "levelname": "INFO",
+  "localtime": "7/22/2025, 8:46:23 PM",
+  "timestamp": "2025-07-22T20:46:23.805Z",
+  "qapath": "3",
+  "traceId": "5e35ef6d687ff89e012c9691",
+  "language": "en-US",
+  "accountId": "1~DMT-S-W265529730",
+  "userAgent": "axios/1.8.4"
+}

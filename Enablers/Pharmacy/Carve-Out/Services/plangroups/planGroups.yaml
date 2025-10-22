@@ -1,0 +1,578 @@
+---
+swagger: "2.0"
+info:
+  title: Plan Groups (App Startup 2.0)
+  version: 1.0.0
+  description: |-
+  contact:
+    name: Joachim Martin
+    email: martinj@aetna.com
+schemes:
+  - https
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /ah/v1/planGroups:
+    get:
+      responses:
+        200:
+          description: "200 OK"
+          schema:
+            $ref: '#/definitions/planGroupsResponse'
+        500:
+          description: service error
+          schema:
+            $ref: '#/definitions/apiError'
+      summary: summary of a user's memberships grouped by line of business, plan sponsor and role
+      description: This endpoint returns a list of plan groups, which are a summary of the authenticated user's memberships,
+        grouped by line of business, plan sponsor, and role, intended to be used to present a choice of plans to the user to start a session.
+        Memberships are returned for the past 5 years and 1 day for Medicare and IVL, and 2 years for Commerical, and for pending plans
+        becoming effective in the next 90 days.
+        <br/><br/>
+        The request accepts query parameters used to filter the response for a specific client, which may not support all
+        membership statuses, or is scoped to a specific plan sponsor.  This is implemented as a response filter; all
+        applicable memberships are initially cached, and filters are applied before returning the response.  This allows
+        different clients to call the same endpoint with different filters but use the same underlying cached data.
+        <br/><br/>
+        Service consumers may call this endpoint on behalf of the user to get a list of member ids that should be used
+        to retrieve data for that service, e.g. Claims, EOBs, etc.
+        <br/><br/>
+        User identity for this endpoint is based on the Proxy Individual ID in the incoming OIDC ID Token.
+      parameters:
+        - name: consumingApp
+          type: string
+          in: query
+          description: "Type of Consumer - passed to core app startup.  Previously this was used to trigger cache warming for web vs mobile"
+          enum:
+            - Web
+            - Mobile
+        - name: linesOfBusiness
+          type: array
+          items:
+            type: string
+            enum:
+              - Commercial
+              - Medicare
+              - Medicaid
+          in: query
+          description: Lines of Business that the client supports
+        - name: planSponsorIds
+          type: array
+          items:
+            type: string
+          in: query
+          description: Plan Sponsor Id to filter results by
+        - name: relationshipToSubscriber
+          type: string
+          enum:
+            - Self
+            - Other Relative
+          in: query
+          description: Relationship To Subscriber value to filter results by - indicates Subscriber or Dependent
+        - name: memberResourceIds
+          type: array
+          items:
+            type: string
+          in: query
+          description: member ids in scope for the session - currently used to force a specific session context when web inbounds from navigator
+        - name: supportedOperativeProductTypes
+          type: array
+          items:
+            type: string
+            enum:
+              - Medical
+              - Dental
+              - Vision
+              - Behavioral Health
+              - Disability
+              - Hearing
+              - Life
+              - Pharmacy
+          in: query
+          description: 'What product types to use to find Aetna Health enabled memberships for determining the enabled attribute.  This is not a filter for plan groups, it impacts the enabled flag only.  This API may return plan groups that are not enabled for Aetna Health on either web or mobile platforms.'
+        - name: supportedOperativeStatusTypes
+          type: array
+          items:
+            type: string
+            enum:
+              - Pending Coverage
+              - Actively Covered
+              - Terminated Coverage
+              - Dependents Only Pending Coverage
+              - Dependents Only Actively Covered
+              - Dependents Only Terminated Coverage
+          in: query
+          description: 'What status types to use to find Aetna Health enabled memberships for determining the enabled attribute.  This is not a filter for plan groups, it impacts the enabled flag only.  This API may return plan groups that are not enabled for Aetna Health on either web or mobile platforms.'
+        - name: planGroupId
+          type: string
+          in: query
+          description: 'A specific planGroupId to filter the results.  This should be used by backend services to retrieve a single plan group summary with additional data such as policies with product types. In most cases backend consumers will be more interested in Plan Group Details.'
+        - name: includePolicies
+          required: false
+          in: query
+          type: boolean
+          description: whether to return extended member plan data such as member/membership details, feature toggles,
+            pcp/pdp provider information, etc.  This is an optional parameter, and the default is to not return
+            this data since front end consumers do not need it.
+  /ah/v1/planGroups/{id}:
+    get:
+      responses:
+        200:
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/planGroupDetailResponse'
+        500:
+          description: service error
+          schema:
+            $ref: '#/definitions/apiError'
+      summary: detailed plan group information, including member data
+      description: Returns a plan group by id, plus member data needed to initialize the Aetna Health application.  This
+        includes a list of memberships plus a primary "operative" membership, feature toggles that represent benefits the member
+        is entitled to in the scope of the plan group, a list of dependents, etc.
+      parameters:
+        - name: id
+          required: true
+          in: path
+          type: string
+          description: plan group id from /planGroups list
+definitions:
+  policy:
+    type: object
+    properties:
+      primaryPolicyType:
+        type: string
+        example: Medical
+      memberships:
+        type: array
+        items:
+          type: object
+          properties:
+            status:
+              type: string
+              example: Pending Coverage
+            relationshipToSubscriber:
+              type: string
+              example: Self
+            memberResourceId:
+              type: string
+              example: 41~123456780
+            membershipResourceId:
+              type: string
+              example: 5~123456780+10+4+20190101+786078+D+4
+            effectiveDatetimeBegin:
+              type: string
+              format: date-time
+              example: '2019-01-01T05:00:00Z'
+            effectiveDatetimeEnd:
+              type: string
+              format: date-time
+              example: '2019-12-31T05:00:00Z'
+            claimOfficeKey:
+              type: string
+              example: claimOfficeKey
+            membershipIdSource:
+              type: string
+              example: 5
+            memberId:
+              type: string
+              example: 123456780
+            policyResourceId:
+              type: string
+              example: 3~786078+D+4
+            control:
+              type: string
+              example: 786078
+            suffix:
+              type: string
+              example: 10
+            account:
+              type: string
+              example: 4
+            planSummary:
+              type: string
+              example: D
+            planNumber:
+              type: string
+              example: 4
+            execMedicalPlanInd:
+              type: string
+              example: Y
+            coverageDatetimeBegin:
+              type: string
+              format: date-time
+              example: '2019-01-01T05:00:00Z'
+            coverageDatetimeEnd:
+              type: string
+              format: date-time
+              example: '2019-12-31T05:00:00Z'
+            jvOrg:
+              type: string
+              example: aetna
+            actualJvOrg:
+              type: string
+              example: aetna
+            jvOrgName:
+              type: string
+              example: Aetna
+  member:
+    type: object
+    properties:
+      fullName:
+        type: string
+        example: Joachim Martin
+      firstName:
+        type: string
+        example: Joachim
+      lastName:
+        type: string
+        example: Martin
+      privacyRestriction:
+        type: boolean
+      dateOfBirth:
+        type: string
+        format: date
+        example: '1969-09-13'
+      gender:
+        type: string
+        example: M
+      proxyResourceId:
+        type: string
+        example: 15~YYYYYYYYYYYY
+  planGroupsResponse:
+    description: ""
+    type: object
+    properties:
+      planGroups:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "YXBwPXdlYiZsb2I9YyxtJnBzaWQ9MTIzNCZyPXN1YiZtaWQ9NDF-NTY3OCw0MX45MTAxMTEyJm9wdD1tZWQsZGVuLHZpcyZvcHM9YSx0LHAmcGdrPWMsMTIzNCxzCg"
+            lineOfBusinessName:
+              type: string
+              example: Commercial
+            planSponsorId:
+              type: string
+              example: "1234"
+            planSponsorName:
+              type: string
+              example: Acme Corp
+            relationshipToSubscriber:
+              type: string
+              example: Self
+            webEnabled:
+              type: boolean
+              description: "whether any of the memberships in the plan group are enabled for Aetna Health on Web.  This may include
+              termed or pending memberships"
+            appEnabled:
+              type: boolean
+              description: "whether any of the memberships in the plan group are enabled for Aetna Health on Native.  This may include
+                termed or pending memberships"
+            coverageDateBegin:
+              type: string
+              format: date
+              example: "2019-01-01"
+              description: the earliest effective end date of memberships in the plan group, preferring active, then pending, then termed.  For example
+                if a plan group has some pending and termed memberships and some active memberships, this field will
+                return the effective begin date
+            coverageDateEnd:
+              type: string
+              format: date
+              example: "2019-12-31"
+              description: the latest effective end date of memberships in the plan group, preferring active, then pending, then termed.  For example
+                if a plan group has some pending and termed memberships and some active memberships, this field will
+                return the effective end date
+            policies:
+              type: array
+              items:
+                $ref: '#/definitions/policy'
+    example:
+      planGroups:
+        - id: "YXBwPXdlYiZsb2I9YyxtJnBzdT0xMjM0JnI9c3ViJm1pZD00MX41Njc4LDQxfjkxMDExMTImb3B0PW1lZCxkZW4sdmlzJm9wcz1hLHQscCZwZ2s9YywxMjM0LHN1Ygo"
+          lineOfBusinessName: Commercial
+          planSponsorId: "1234"
+          planSponsorName: Acme Corp
+          relationshipToSubscriber: Self
+          webEnabled: true
+          appEnabled: true
+          coverageDateBegin: "2019-01-01"
+          coverageDateEnd: "2019-12-31"
+        - id: "YXBwPXdlYiZsb2I9YyxtJnBzdT0xMjM0JnI9c3ViJm1pZD00MX41Njc4LDQxfjkxMDExMTImb3B0PW1lZCxkZW4sdmlzJm9wcz1hLHQscCZwZ2s9YywxMjM0LGRlcAo"
+          lineOfBusinessName: Commercial
+          planSponsorId: "1234"
+          planSponsorName: Acme Corp
+          relationshipToSubscriber: Other Relative
+          webEnabled: true
+          appEnabled: true
+          coverageDateBegin: "2019-01-01"
+          coverageDateEnd: "2019-12-31"
+        - id: "YXBwPXdlYiZsb2I9YyxtJnBzdT0xMjM0JnI9c3ViJm1pZD00MX41Njc4LDQxfjkxMDExMTImb3B0PW1lZCxkZW4sdmlzJm9wcz1hLHQscCZwZ2s9bSwwLHN1Ygo"
+          lineOfBusinessName: "Medicare"
+          planSponsorId: "0"
+          planSponsorName: Individual
+          relationshipToSubscriber: Self
+          webEnabled: true
+          appEnabled: true
+          coverageDateBegin: "2019-01-01"
+          coverageDateEnd: "2019-12-31"
+        - id: "YXBwPXdlYiZsb2I9YyxtJnBzdT0xMjM0JnI9c3ViJm1pZD00MX41Njc4LDQxfjkxMDExMTImb3B0PW1lZCxkZW4sdmlzJm9wcz1hLHQscCZwZ2s9bSwwLHN1Ygo"
+          lineOfBusinessName: "Medicare"
+          planSponsorId: "50"
+          planSponsorName: "State of Illinois"
+          relationshipToSubscriber: Self
+          webEnabled: true
+          appEnabled: true
+          coverageDateBegin: "2019-01-01"
+          coverageDateEnd: "2019-12-31"
+  planGroupDetailResponse:
+    description: ""
+    type: object
+    properties:
+      id:
+        type: string
+        example: "YXBwPXdlYiZsb2I9YyxtJnBzdT0xMjM0JnI9c3ViJm1pZD00MX41Njc4LDQxfjkxMDExMTImb3B0PW1lZCxkZW4sdmlzJm9wcz1hLHQscCZwZ2s9YywxMjM0LHN1Ygo"
+      lineOfBusinessName:
+        type: string
+        example: Commercial
+      planSponsorId:
+        type: string
+        example: "1234"
+      planSponsorName:
+        type: string
+        example: Acme Corp
+      relationshipToSubscriber:
+        type: string
+        example: Self
+      memberResourceIds:
+        type: array
+        items:
+          type: string
+          example: 41~123456780
+      membershipResourceIds:
+        type: array
+        items:
+          type: string
+          example: 5~123456780+10+4+20180101+786078+D+4
+      webEnabled:
+        type: boolean
+      appEnabled:
+        type: boolean
+      coverageDateBegin:
+        type: string
+        format: date
+        example: "2019-01-01"
+      coverageDateEnd:
+        type: string
+        format: date
+        example: "2019-12-31"
+      memberData:
+        type: object
+        properties:
+          member:
+            $ref: '#/definitions/member'
+          jvOrg:
+            type: string
+            example: aetna
+          actualJvOrg:
+            type: string
+            example: aetna
+          jvOrgId:
+            type: number
+            example: 12345
+          jvOrgArrangementId:
+            type: number
+            example: 56789
+          operativeMembership:
+            type: object
+            properties:
+              primaryPolicyType:
+                type: string
+                example: Medical
+              status:
+                type: string
+                example: Actively Covered
+              relationshipToSubscriber:
+                type: string
+                example: Self
+              memberResourceId:
+                type: string
+                example: 41~123456780
+              membershipResourceId:
+                type: string
+                example: 5~123456780+10+4+20180101+786078+D+4
+              effectiveDatetimeBegin:
+                type: string
+                format: date-time
+                example: '2018-01-01T05:00:00Z'
+              effectiveDatetimeEnd:
+                type: string
+                format: date-time
+                example: '2018-12-31T05:00:00Z'
+              claimOfficeKey:
+                type: string
+                example: claimOfficeKey
+              membershipIdSource:
+                type: string
+                example: 5
+              memberId:
+                type: string
+                example: 123456780
+              policyResourceId:
+                type: string
+                example: 3~786078+D+4
+              control:
+                type: string
+                example: 786078
+              suffix:
+                type: string
+                example: 10
+              account:
+                type: string
+                example: 4
+              planSummary:
+                type: string
+                example: D
+              planNumber:
+                type: string
+                example: 4
+              execMedicalPlanInd:
+                type: string
+                example: Y
+              coverageDatetimeBegin:
+                type: string
+                format: date-time
+                example: '2018-01-01T05:00:00Z'
+              coverageDatetimeEnd:
+                type: string
+                format: date-time
+                example: '2018-12-31T05:00:00Z'
+          membershipSelectedProvider:
+            type: array
+            items:
+              type: object
+              properties:
+                providerPIN:
+                  type: string
+                  example: 6299057
+                providerIdentifier:
+                  type: object
+                  properties:
+                    idSource:
+                      type: string
+                      example: 94
+                    idValue:
+                      type: string
+                      example: 6299057
+                    idType:
+                      type: string
+                      example: providers
+                    resourceId:
+                      type: string
+                      example: 94~6299057
+          policies:
+            type: array
+            items:
+              $ref: '#/definitions/policy'
+          features:
+            type: array
+            items:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                featureCode:
+                  type: string
+                  example: ProviderSearch
+                status:
+                  type: string
+                  example: ONLINE
+                membershipResourceIds:
+                  type: array
+                  items:
+                    type: string
+                    example: 5~123456781+37+3+20190101+15024+PC+202
+          dependents:
+            type: array
+            items:
+              type: object
+              properties:
+                relationshipToSubscriber:
+                  type: string
+                  example: Child
+                memberResourceId:
+                  type: string
+                  example: 41~123456789
+                memberNameFull:
+                  type: string
+                  example: David Martin
+                privacyRestriction:
+                  type: boolean
+                policies:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      policyType:
+                        type: string
+                        example: Medical
+                      memberships:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            status:
+                              type: string
+                              example: Actively Covered
+                            membershipResourceId:
+                              type: string
+                              example: 5~123456789+10+40+20200601+141974+AN+40
+                            effectiveDatetimeBegin:
+                              type: string
+                              format: date-time
+                              example: '2020-06-01T05:00:00Z'
+                            effectiveDatetimeEnd:
+                              type: string
+                              example: '9999-12-31T05:00:00Z'
+                dateOfBirth:
+                  type: string
+                  format: date
+                  example: '1999-03-19'
+                nameFirst:
+                  type: string
+                  example: David
+                nameLast:
+                  type: string
+                  example: Martin
+                gender:
+                  type: string
+                  example: MALE
+                phiRestrictionType:
+                  type: string
+                  example: PHI-MA
+                individualIdProxy:
+                  type: string
+                  example: 15~XXXXXXXXXXXX
+  apiError:
+    description: "TODO: align this with AH API best practices"
+    type: object
+    properties:
+      httpCode:
+        type: string
+        description: Indicates the httpCode returned in the header
+        example: "401"
+      httpMessage:
+        type: string
+        description: Short description of the error
+        example: Unauthorized
+      moreInformation:
+        type: string
+        description: Long description of the error
+        example: Client id missing
+tags: []
+externalDocs:
+  description: "HTTP Common Error Codes [TODO: align this with AH API best practices]"
+  url: https://docshare2013.aetna.com/sites/mcoeESBAPIDocs/Shared%20Documents/API%20Connect%20Documentation/API%20Connect%20Returned%20Errors/API%20Common%20Error%20Code.pdf
